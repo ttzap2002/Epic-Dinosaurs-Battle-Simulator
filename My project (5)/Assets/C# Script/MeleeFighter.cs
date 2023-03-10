@@ -62,13 +62,20 @@ public class MeleeFighter : MonoBehaviour
         if (tag == "Enemy")
         {
             GameObject myEnemy = FindNearbiestEnemy("Blue", transform.position);
-            transform.position = Vector3.MoveTowards(transform.position, myEnemy.transform.position, Time.deltaTime*speed);
+            if (myEnemy != null)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, myEnemy.transform.position, Time.deltaTime * speed);
+            }
         }
         else if (tag == "Blue")
         {
+
             GameObject myEnemy = FindNearbiestEnemy("Enemy", transform.position);
-            transform.position = Vector3.MoveTowards(transform.position, myEnemy.transform.position, Time.deltaTime*speed);
-        }
+            if (myEnemy!=null)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, myEnemy.transform.position, Time.deltaTime * speed);
+            }
+         }
     }
     private GameObject FindNearbiestEnemy(string tag,Vector3 vectorOfMyObj)
     {
