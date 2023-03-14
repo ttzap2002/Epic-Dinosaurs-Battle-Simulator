@@ -12,21 +12,29 @@ public class GameCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKey(KeyCode.KeypadPlus))
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y - _speed, transform.position.z);
+        }
+        if(Input.GetKey(KeyCode.KeypadMinus))
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y + _speed, transform.position.z);
+        }
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.position = new Vector3(transform.position.x+_speed, transform.position.y, transform.position.z);
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - _speed);
         }
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.position = new Vector3(transform.position.x - _speed , transform.position.y, transform.position.z);
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + _speed);
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y- _speed, transform.position.z);
+            transform.position = new Vector3(transform.position.x - _speed, transform.position.y, transform.position.z);
         }
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y+_speed, transform.position.z);
+            transform.position = new Vector3(transform.position.x + _speed, transform.position.y, transform.position.z);
         }
 
     }
