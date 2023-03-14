@@ -7,20 +7,20 @@ public class CameraRotation : MonoBehaviour
     // Referencja do kamery
     public Camera cam;
 
-    // Zmienna przechowuj¹ca poprzedni¹ orientacjê telefonu
+    // Zmienna przechowujaca poprzednia orientacje telefonu
     private DeviceOrientation previousOrientation;
 
     // Metoda wywo³ywana przy starcie skryptu
     void Start()
     {
-        // Ustawienie pocz¹tkowej orientacji na aktualn¹ orientacjê telefonu
+        // Ustawienie poczatkowej orientacji na aktualna orientacje telefonu
         previousOrientation = Input.deviceOrientation;
     }
 
-    // Metoda wywo³ywana co klatkê
+    // Metoda wywolywana co klatke
     void Update()
     {
-        // Sprawdzenie, czy orientacja telefonu siê zmieni³a
+        // Sprawdzenie, czy orientacja telefonu siê zmienila
         if (Input.deviceOrientation != previousOrientation)
         {
             // Jeœli tak, to obrócenie kamery o 180 stopni wokó³ osi Y
