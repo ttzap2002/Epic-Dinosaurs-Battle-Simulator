@@ -8,9 +8,10 @@ public class GameManager : MonoBehaviour
 {
     public int i=0;
     private static GameManager _instance;
-  
+    public GameObject mouse;
+    public List<GameObject> gameObjects = new List<GameObject>();
     public bool isStarted=false;
-    public MeleeFighter[] fighters=new MeleeFighter[100];
+    public List<MeleeFighter> fighters=new List<MeleeFighter>();
     
     public static GameManager Instance { get { return _instance; } }
     public void Awake()
@@ -27,7 +28,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        fighters = FindObjectsOfType<MeleeFighter>();
+        fighters = FindObjectsOfType<MeleeFighter>().ToListPooled();
         foreach(var f in fighters) { f.setdisactive(); }
     }
     // Update is called once per frame
@@ -44,12 +45,13 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-    public void AddToList(GameObject obj) 
+    public void AddObject(MeleeFighter fighter)
     {
-        fighters.AddRange(obj.GetComponentsInChildren<GameObject>());
+        fighters.Add(fighter);
     }
     public void SetAllObjectActive()
     {
+       
    
         if (fighters == null) { Debug.Log("NULL"); }
         foreach (MeleeFighter fighter in fighters)

@@ -7,15 +7,16 @@ using UnityEngine.SceneManagement;
 public class PlayButton : MonoBehaviour
 {
 
-    private MeleeFighter[] fighter;
+
     public void LetsPLay()
     {
 
         //GameManager.Instance.SetAllObjectActive();
-        fighter = GameManager.Instance.fighters;
-        foreach(MeleeFighter f in fighter) 
+
+        foreach(GameObject f in GameManager.Instance.gameObjects) 
         {
-            f.gameObject.SetActive(true);
+            f.gameObject.AddComponent<MeleeFighter>();
+
         }
         Debug.Log("Pies");
       

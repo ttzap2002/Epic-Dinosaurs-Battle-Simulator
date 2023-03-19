@@ -13,7 +13,7 @@ public class MeleeFighter : MonoBehaviour
     public float attack = 20f;
     public float radius = 5f;
     public bool isFighting = false;
-    public int a = 0;
+    public int index = 0;
    
 
     private void Start()
@@ -38,7 +38,7 @@ public class MeleeFighter : MonoBehaviour
         if (!isFighting){ Move(tag); }
         else if(isFighting){ DoDamage(); }
         
-        if (a==100) { GameManager.Instance.GameResume(); }
+
         
         //transform.position += moveDirection;
     }
