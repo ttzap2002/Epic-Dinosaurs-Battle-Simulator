@@ -14,15 +14,19 @@ public class MeleeFighter : MonoBehaviour
     public float radius = 5f;
     public bool isFighting = false;
     public int a = 0;
+   
 
     private void Start()
     {
         //GameManager.Instance.Awake();
+     
+      
         
     }
+
     void Update()
     {
-        a++;
+        
         //float horizontal = Input.GetAxis("Horizontal"); // pobierz wartoœæ wciœniêtego klawisza w poziomie (A/D lub strza³ki)
         //float vertical = Input.GetAxis("Vertical"); // pobierz wartoœæ wciœniêtego klawisza w pionie (W/S lub strza³ki)
         // oblicz wektor ruchu na podstawie wciœniêtych klawiszy i prêdkoœci
@@ -33,10 +37,15 @@ public class MeleeFighter : MonoBehaviour
         //Move(tag);
         if (!isFighting){ Move(tag); }
         else if(isFighting){ DoDamage(); }
-        Debug.Log(a);
+        
         if (a==100) { GameManager.Instance.GameResume(); }
         
         //transform.position += moveDirection;
+    }
+
+    public void setdisactive()
+    {
+        gameObject.SetActive(false);
     }
     void DoDamage()
     {
