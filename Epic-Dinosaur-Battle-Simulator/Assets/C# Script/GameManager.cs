@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditorInternal;
 using UnityEngine;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
     public int i=0;
     private static GameManager _instance;
     public GameObject mouse;
+    public GameObject Uiinformation;
     public List<GameObject> gameObjects = new List<GameObject>();
     public bool isStarted=false;
     public List<MeleeFighter> fighters=new List<MeleeFighter>();
-    
+    protected AllLevelContainer levelContainer= new AllLevelContainer();
+    public SceneLevel currentScene;
     public static GameManager Instance { get { return _instance; } }
     public void Awake()
     {
@@ -24,6 +27,9 @@ public class GameManager : MonoBehaviour
         {
             _instance = this;
         }
+        levelContainer.AddAllScene();
+        currentScene = levelContainer.LevelList[0];
+
     }
     // Start is called before the first frame update
     void Start()
@@ -36,6 +42,8 @@ public class GameManager : MonoBehaviour
     { 
         
     }
+
+
     public void GameResume() 
     {
         Time.timeScale = 1f;
@@ -43,6 +51,11 @@ public class GameManager : MonoBehaviour
     public void GamePause() 
     {
         Time.timeScale = 0f;
+    }
+
+    public void AddScene(int id) 
+    {
+        currentScene = levelContainer.LevelList[id];
     }
 
     public void AddObject(MeleeFighter fighter)
@@ -60,5 +73,5 @@ public class GameManager : MonoBehaviour
         }
        
     }
-    public void DoNothing() { }
+    
 }

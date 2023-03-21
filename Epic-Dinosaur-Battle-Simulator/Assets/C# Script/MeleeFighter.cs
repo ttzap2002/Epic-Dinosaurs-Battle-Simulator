@@ -13,8 +13,8 @@ public class MeleeFighter : MonoBehaviour
     public float attack = 20f;
     public float radius = 5f;
     public bool isFighting = false;
-    public int index = 0;
-   
+  
+
 
     private void Start()
     {

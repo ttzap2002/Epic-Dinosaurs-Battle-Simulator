@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AllLevelContainer : MonoBehaviour
+public class AllLevelContainer 
 {
-    // Start is called before the first frame update
-    void Start()
+    List<SceneLevel> levelList;
+
+    public AllLevelContainer()
     {
-        
+        this.levelList= new List<SceneLevel>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public List<SceneLevel> LevelList { get => levelList; set => levelList = value; }
+
+    public void AddAllScene() 
     {
-        
+        SceneLevel Sandbox = new SceneLevel(1000000, 80);
+        levelList.Add(Sandbox);
     }
+
 }
