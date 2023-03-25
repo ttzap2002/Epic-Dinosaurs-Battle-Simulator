@@ -25,7 +25,6 @@ public class BattleInformation : MonoBehaviour
         enemyTroopsTxt = enemyTroops.GetComponent<TextMeshProUGUI>();
         blueMoneyTxt = blueMoney.GetComponent<TextMeshProUGUI>();
         blueTroopsTxt = blueTroops.GetComponent<TextMeshProUGUI>();
-
     }
 
     public void enemyMoneyUpdate(int money) 

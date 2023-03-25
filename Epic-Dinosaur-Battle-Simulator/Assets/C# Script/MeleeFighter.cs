@@ -13,20 +13,21 @@ public class MeleeFighter : MonoBehaviour
     public float attack = 20f;
     public float radius = 5f;
     public bool isFighting = false;
-  
+    public GameObject target=null;
 
 
     private void Start()
     {
         //GameManager.Instance.Awake();
-     
-      
-        
+        GetFirstTarget();
+        Debug.Log("pies");
     }
+
+    
 
     void Update()
     {
-        
+
         //float horizontal = Input.GetAxis("Horizontal"); // pobierz wartoœæ wciœniêtego klawisza w poziomie (A/D lub strza³ki)
         //float vertical = Input.GetAxis("Vertical"); // pobierz wartoœæ wciœniêtego klawisza w pionie (W/S lub strza³ki)
         // oblicz wektor ruchu na podstawie wciœniêtych klawiszy i prêdkoœci
@@ -35,14 +36,33 @@ public class MeleeFighter : MonoBehaviour
         // przesuñ obiekt o wektor ruch
 
         //Move(tag);
-        if (!isFighting){ Move(tag); }
-        else if(isFighting){ DoDamage(); }
-        
+        if (target != null)
+        {
+            if (isChangeOfSquare())
+            {
+                if (tag == "Blue")
+                {
+                    GameManager.Instance.battleManager.React(false, gameObject);
+                }
+                else
+                {
+                    GameManager.Instance.battleManager.React(true, gameObject);
+                }
+            }
+            if (Vector3.Distance(transform.position, target.transform.position) < radius) { isFighting = true; }
+            if (!isFighting) { SecondMove(); }
+            else if (isFighting) { DoDamage(); }
+
+        }
+        else if (target == null) { GetFirstTarget();}
+        //else { GetFirstTarget(); }
 
         
         //transform.position += moveDirection;
     }
 
+    public void GetFirstTarget() { if (tag == "Blue") { target=FindNearbiestEnemy("Enemy",transform.position); }
+        else { target=FindNearbiestEnemy("Blue",transform.position);}}
     public void setdisactive()
     {
         gameObject.SetActive(false);
@@ -84,8 +104,28 @@ public class MeleeFighter : MonoBehaviour
             {
                 transform.position = Vector3.MoveTowards(transform.position, myEnemy.transform.position, Time.deltaTime * speed);
             }
-         }
+        }
     }
+
+    private void SecondMove()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * speed);
+    }
+
+
+  
+
+    private bool isChangeOfSquare()
+    {
+        WhichSquare mySquare = gameObject.GetComponent<WhichSquare>();
+        if (mySquare.CheckWhichSquare()[0]!=mySquare.row || mySquare.CheckWhichSquare()[1] != mySquare.col) 
+        {
+            return true;
+        }
+        return false;
+    }
+
+
     private GameObject FindNearbiestEnemy(string tag,Vector3 vectorOfMyObj)
     {
         float min = Mathf.Infinity;

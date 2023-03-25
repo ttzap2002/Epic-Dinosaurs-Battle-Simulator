@@ -12,12 +12,14 @@ public class PlayButton : MonoBehaviour
     {
 
         //GameManager.Instance.SetAllObjectActive();
+        
 
-        foreach(GameObject f in GameManager.Instance.gameObjects) 
+        foreach (GameObject f in GameManager.Instance.gameObjects) 
         {
             f.gameObject.AddComponent<MeleeFighter>();
-
+            
         }
+     
         Debug.Log("Pies");
       
     }

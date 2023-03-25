@@ -36,21 +36,24 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnEndDrag(PointerEventData eventData)
     {
         Debug.Log("End");
+
         GameObject obj = Instantiate(GameManager.Instance.gameObjects[fighterid]);
+        obj.SetActive(true);
         int cost = obj.GetComponent<CreatureStats>().cost;
+   
         Destroy(obj.gameObject.GetComponent<MeleeFighter>());
         obj.transform.position = GameManager.Instance.mouse.transform.position;
-        obj.SetActive(true);
-        GameManager.Instance.gameObjects.Add(obj);
-        if (obj.transform.position.z > 0f) 
-        { obj.tag = "Enemy";
-           GameManager.Instance.Uiinformation.GetComponent<BattleInformation>().enemyTroopsUpdate(true);
-           GameManager.Instance.Uiinformation.GetComponent<BattleInformation>().enemyMoneyUpdate(cost);
 
-        }
-        else { obj.tag = "Blue";
+        GameManager.Instance.gameObjects.Add(obj);
+        if (obj.transform.position.z > 50f) 
+        { obj.tag = "Blue";
            GameManager.Instance.Uiinformation.GetComponent<BattleInformation>().blueTroopsUpdate(true);
            GameManager.Instance.Uiinformation.GetComponent<BattleInformation>().blueMoneyUpdate(cost);
+
+        }
+        else { obj.tag = "Enemy";
+           GameManager.Instance.Uiinformation.GetComponent<BattleInformation>().enemyTroopsUpdate(true);
+           GameManager.Instance.Uiinformation.GetComponent<BattleInformation>().enemyMoneyUpdate(cost);
         }
 
         Destroy(gameObject);

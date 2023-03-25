@@ -16,7 +16,10 @@ public class GameManager : MonoBehaviour
     public List<MeleeFighter> fighters=new List<MeleeFighter>();
     protected AllLevelContainer levelContainer= new AllLevelContainer();
     public SceneLevel currentScene;
+    public BattleManager battleManager;
     public static GameManager Instance { get { return _instance; } }
+
+
     public void Awake()
     {
         if (_instance != null && _instance != this)
@@ -36,6 +39,7 @@ public class GameManager : MonoBehaviour
     {
         fighters = FindObjectsOfType<MeleeFighter>().ToListPooled();
         foreach(var f in fighters) { f.setdisactive(); }
+        SetBattleManager();
     }
     // Update is called once per frame
     void Update()
@@ -43,6 +47,13 @@ public class GameManager : MonoBehaviour
         
     }
 
+    void SetBattleManager() 
+    {
+        List<WhichSquare> enemyFighters = gameObjects.Select(x => x.GetComponent<WhichSquare>()).Where(x=>x.tag=="Enemy").ToList();
+        List<WhichSquare> blueFighters = gameObjects.Select(x => x.GetComponent<WhichSquare>()).Where(x => x.tag == "Blue").ToList();
+        battleManager=new BattleManager(enemyFighters, blueFighters);
+
+    }
 
     public void GameResume() 
     {
@@ -64,8 +75,6 @@ public class GameManager : MonoBehaviour
     }
     public void SetAllObjectActive()
     {
-       
-   
         if (fighters == null) { Debug.Log("NULL"); }
         foreach (MeleeFighter fighter in fighters)
         {
