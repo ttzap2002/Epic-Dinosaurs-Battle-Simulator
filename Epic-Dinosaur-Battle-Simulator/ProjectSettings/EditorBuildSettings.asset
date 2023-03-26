@@ -11,4 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/ContinentChoice.unity
+    guid: 6212ff2dee5dbbb49aa213f38a6cde75
+  - enabled: 1
+    path: Assets/Scenes/LvlChoice.unity
+    guid: c9843bbf89a1b2042966c211695cb260
+  - enabled: 1
+    path: Assets/Scenes/LevelBattle.unity
+    guid: 90ed0cfdcfd6d764d86a7f748244030c
   m_configObjects: {}
