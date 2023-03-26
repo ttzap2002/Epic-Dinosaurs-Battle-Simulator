@@ -28,34 +28,50 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("drag");
-        transform.position = Input.mousePosition;
-      
+
+    
+        SetInstanceOfObject();
+
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("End");
 
-        GameObject obj = Instantiate(GameManager.Instance.gameObjects[fighterid]);
-        obj.SetActive(true);
-        int cost = obj.GetComponent<CreatureStats>().cost;
-   
-        Destroy(obj.gameObject.GetComponent<MeleeFighter>());
-        obj.transform.position = GameManager.Instance.mouse.transform.position;
-
-        GameManager.Instance.gameObjects.Add(obj);
-        if (obj.transform.position.z > 50f) 
-        { obj.tag = "Blue";
-           GameManager.Instance.Uiinformation.GetComponent<BattleInformation>().blueTroopsUpdate(true);
-           GameManager.Instance.Uiinformation.GetComponent<BattleInformation>().blueMoneyUpdate(cost);
-
-        }
-        else { obj.tag = "Enemy";
-           GameManager.Instance.Uiinformation.GetComponent<BattleInformation>().enemyTroopsUpdate(true);
-           GameManager.Instance.Uiinformation.GetComponent<BattleInformation>().enemyMoneyUpdate(cost);
-        }
-
+        SetInstanceOfObject();
         Destroy(gameObject);
     }
+
+    private void SetInstanceOfObject() 
+    {
+        GameObject obj = Instantiate(GameManager.Instance.prefabGameObjects[fighterid]);
+        obj.SetActive(true);
+        int cost = obj.GetComponent<CreatureStats>().cost;
+        Destroy(obj.gameObject.GetComponent<MeleeFighter>());
+        obj.transform.position = GameManager.Instance.mouse.transform.position;
+      
+        if (obj.transform.position.z > 50f)
+        {
+            obj.tag = "Blue";
+          
+            if (GameManager.Instance.blueGameObjects.Count >= GameManager.Instance.currentScene.Troopslimit) { Destroy(obj); }
+            else {
+                GameManager.Instance.Uiinformation.GetComponent<BattleInformation>().blueTroopsUpdate(true);
+                GameManager.Instance.Uiinformation.GetComponent<BattleInformation>().blueMoneyUpdate(cost);
+                GameManager.Instance.blueGameObjects.Add(obj); }
+     
+        }
+        else
+        {
+            obj.tag = "Enemy";
+            
+            if (GameManager.Instance.enemyGameObjects.Count >= GameManager.Instance.currentScene.Troopslimit) { Destroy(obj); }
+            else {
+                GameManager.Instance.Uiinformation.GetComponent<BattleInformation>().enemyTroopsUpdate(true);
+                GameManager.Instance.Uiinformation.GetComponent<BattleInformation>().enemyMoneyUpdate(cost);
+                GameManager.Instance.enemyGameObjects.Add(obj); }
+        }
+        
+    }
+
+
 }

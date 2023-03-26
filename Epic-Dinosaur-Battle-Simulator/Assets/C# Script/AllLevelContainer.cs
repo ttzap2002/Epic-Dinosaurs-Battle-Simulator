@@ -17,6 +17,10 @@ public class AllLevelContainer
     {
         SceneLevel Sandbox = new SceneLevel(1000000, 80);
         levelList.Add(Sandbox);
+
+        SceneLevel Level1 = new SceneLevel(10000, 30);
+        levelList.Add(Level1);
+
     }
 
 }

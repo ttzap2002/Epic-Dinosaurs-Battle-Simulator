@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class PlayButton : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class PlayButton : MonoBehaviour
         //GameManager.Instance.SetAllObjectActive();
         
 
-        foreach (GameObject f in GameManager.Instance.gameObjects) 
+        foreach (GameObject f in (GameManager.Instance.blueGameObjects.Concat( GameManager.Instance.enemyGameObjects))) 
         {
             f.gameObject.AddComponent<MeleeFighter>();
             

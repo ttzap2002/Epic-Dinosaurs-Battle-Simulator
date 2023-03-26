@@ -8,12 +8,14 @@ using UnityEngine;
 public class MeleeFighter : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float speed = 5f; // prêdkoœæ poruszania siê obiektu
-    public float hp = 100f;
-    public float attack = 20f;
+    [SerializeField] private float speed = 25f;
+    [SerializeField] private float attack = 20f;
+    private bool isFighting = false;
+    int a = 1;
+    public GameObject target = null;
     public float radius = 5f;
-    public bool isFighting = false;
-    public GameObject target=null;
+    public float hp = 100f;
+
 
 
     private void Start()
@@ -36,29 +38,34 @@ public class MeleeFighter : MonoBehaviour
         // przesuñ obiekt o wektor ruch
 
         //Move(tag);
-        if (target != null)
+        if (a % 3 == 0)
         {
-            if (isChangeOfSquare())
+            if (target != null)
             {
-                if (tag == "Blue")
+                
+                if (isChangeOfSquare())
                 {
-                    GameManager.Instance.battleManager.React(false, gameObject);
+                    if (tag == "Blue")
+                    {
+                        GameManager.Instance.battleManager.React(false, gameObject);
+                    }
+                    else
+                    {
+                        GameManager.Instance.battleManager.React(true, gameObject);
+                    }
+          
                 }
-                else
-                {
-                    GameManager.Instance.battleManager.React(true, gameObject);
+                if (!isFighting) { SecondMove();  if (Vector3.Distance(transform.position, target.transform.position) < radius) { isFighting = true; }
                 }
+                else if (isFighting) { DoDamage(); }
+
             }
-            if (Vector3.Distance(transform.position, target.transform.position) < radius) { isFighting = true; }
-            if (!isFighting) { SecondMove(); }
-            else if (isFighting) { DoDamage(); }
-
+            else if (target == null) { GetFirstTarget(); }
+            //else { GetFirstTarget(); }
+           
         }
-        else if (target == null) { GetFirstTarget();}
-        //else { GetFirstTarget(); }
-
-        
         //transform.position += moveDirection;
+        a++;
     }
 
     public void GetFirstTarget() { if (tag == "Blue") { target=FindNearbiestEnemy("Enemy",transform.position); }

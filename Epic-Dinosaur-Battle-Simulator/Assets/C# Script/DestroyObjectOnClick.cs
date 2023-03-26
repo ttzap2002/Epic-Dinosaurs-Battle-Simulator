@@ -16,6 +16,7 @@ public class DestroyObjectOnClick : MonoBehaviour
                 enemyTroopsUpdate(false);
             GameManager.Instance.Uiinformation.GetComponent<BattleInformation>().
                 enemyMoneyUpdate(-objectToDestroy.GetComponent<CreatureStats>().cost);
+            GameManager.Instance.enemyGameObjects.Remove(objectToDestroy);
 
         }
         else 
@@ -24,10 +25,12 @@ public class DestroyObjectOnClick : MonoBehaviour
                blueTroopsUpdate(false);
             GameManager.Instance.Uiinformation.GetComponent<BattleInformation>().
                        blueMoneyUpdate(-objectToDestroy.GetComponent<CreatureStats>().cost);
+            GameManager.Instance.blueGameObjects.Remove(objectToDestroy);
+
 
 
         }
-        GameManager.Instance.gameObjects.Remove(objectToDestroy);
+
         Destroy(objectToDestroy);   
     }
 }

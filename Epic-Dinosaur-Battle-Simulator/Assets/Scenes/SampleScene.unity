@@ -1529,12 +1529,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab716d9538ba53246b79419cc240c6e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  hp: 100
+  speed: 100
   attack: 20
-  radius: 5
-  isFighting: 0
   target: {fileID: 1264023047}
+  radius: 5
+  hp: 100
 --- !u!114 &1032565343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1574,12 +1573,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1d8efb9e42321a42943e295339110e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  hp: 100
-  attack: 20
-  radius: 5
-  isFighting: 0
-  target: {fileID: 0}
   row: 0
   col: 0
 --- !u!1 &1055414450
@@ -1867,12 +1860,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1d8efb9e42321a42943e295339110e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  hp: 100
-  attack: 20
-  radius: 5
-  isFighting: 0
-  target: {fileID: 0}
   row: 0
   col: 0
 --- !u!1 &1395888378
@@ -2654,14 +2641,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aacd2c023ec23724ab5dd30ce83b473d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  i: 0
   mouse: {fileID: 1395888378}
   Uiinformation: {fileID: 934855453}
-  gameObjects:
+  prefabGameObjects:
   - {fileID: 1282390815}
   - {fileID: 1032565333}
+  enemyGameObjects: []
+  blueGameObjects: []
   isStarted: 0
-  fighters: []
   battleManager: {fileID: 0}
 --- !u!4 &2104336519
 Transform:

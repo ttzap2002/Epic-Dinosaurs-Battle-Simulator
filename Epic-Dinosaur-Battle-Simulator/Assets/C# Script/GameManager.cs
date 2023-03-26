@@ -7,13 +7,14 @@ using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
-    public int i=0;
+    private int i=0;
     private static GameManager _instance;
     public GameObject mouse;
     public GameObject Uiinformation;
-    public List<GameObject> gameObjects = new List<GameObject>();
+    public List<GameObject> prefabGameObjects = new List<GameObject>();
+    public List<GameObject> enemyGameObjects = new List<GameObject>();
+    public List<GameObject> blueGameObjects = new List<GameObject>();
     public bool isStarted=false;
-    public List<MeleeFighter> fighters=new List<MeleeFighter>();
     protected AllLevelContainer levelContainer= new AllLevelContainer();
     public SceneLevel currentScene;
     public BattleManager battleManager;
@@ -31,14 +32,13 @@ public class GameManager : MonoBehaviour
             _instance = this;
         }
         levelContainer.AddAllScene();
-        currentScene = levelContainer.LevelList[0];
+        currentScene = levelContainer.LevelList[1];
 
     }
     // Start is called before the first frame update
     void Start()
     {
-        fighters = FindObjectsOfType<MeleeFighter>().ToListPooled();
-        foreach(var f in fighters) { f.setdisactive(); }
+       
         SetBattleManager();
     }
     // Update is called once per frame
@@ -49,8 +49,8 @@ public class GameManager : MonoBehaviour
 
     void SetBattleManager() 
     {
-        List<WhichSquare> enemyFighters = gameObjects.Select(x => x.GetComponent<WhichSquare>()).Where(x=>x.tag=="Enemy").ToList();
-        List<WhichSquare> blueFighters = gameObjects.Select(x => x.GetComponent<WhichSquare>()).Where(x => x.tag == "Blue").ToList();
+        List<WhichSquare> enemyFighters = prefabGameObjects.Select(x => x.GetComponent<WhichSquare>()).Where(x=>x.tag=="Enemy").ToList();
+        List<WhichSquare> blueFighters = prefabGameObjects.Select(x => x.GetComponent<WhichSquare>()).Where(x => x.tag == "Blue").ToList();
         battleManager=new BattleManager(enemyFighters, blueFighters);
 
     }
@@ -69,18 +69,5 @@ public class GameManager : MonoBehaviour
         currentScene = levelContainer.LevelList[id];
     }
 
-    public void AddObject(MeleeFighter fighter)
-    {
-        fighters.Add(fighter);
-    }
-    public void SetAllObjectActive()
-    {
-        if (fighters == null) { Debug.Log("NULL"); }
-        foreach (MeleeFighter fighter in fighters)
-        {
-            fighter.gameObject.SetActive(true);
-        }
-       
-    }
     
 }
