@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> enemyGameObjects = new List<GameObject>();
     public List<GameObject> blueGameObjects = new List<GameObject>();
     public bool isStarted=false;
-    protected AllLevelContainer levelContainer= new AllLevelContainer();
+    public AllLevelContainer levelContainer= new AllLevelContainer();
     public SceneLevel currentScene;
     public BattleManager battleManager;
     public static GameManager Instance { get { return _instance; } }
@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
             _instance = this;
         }
         levelContainer.AddAllScene();
-        currentScene = levelContainer.LevelList[1];
+        currentScene = levelContainer.LevelList[0];
 
     }
     // Start is called before the first frame update

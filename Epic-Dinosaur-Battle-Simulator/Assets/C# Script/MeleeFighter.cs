@@ -92,6 +92,8 @@ public class MeleeFighter : MonoBehaviour
                 isFighting = false;
             }
         }
+
+        
     }
     private void Move(string tag) 
     {

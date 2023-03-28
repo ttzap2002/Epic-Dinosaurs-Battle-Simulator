@@ -12,9 +12,9 @@ public class PlayButton : MonoBehaviour
     public void LetsPLay()
     {
 
-        //GameManager.Instance.SetAllObjectActive();
-        
 
+        GameManager.Instance.currentScene.SetObjectToScene();
+        
         foreach (GameObject f in (GameManager.Instance.blueGameObjects.Concat( GameManager.Instance.enemyGameObjects))) 
         {
             f.gameObject.AddComponent<MeleeFighter>();
