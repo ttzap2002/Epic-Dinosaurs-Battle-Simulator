@@ -5,11 +5,11 @@ public class SceneChanging : MonoBehaviour
 {
     public void Continents()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
     public void Sandbox()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(5);
     }
     public void Shop()
     {
@@ -22,12 +22,12 @@ public class SceneChanging : MonoBehaviour
 
     public void LvlChoice()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(2);
     }
 
     public void LevelBattleChoice()
     {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(3);
     }
 
     public void MainMenu()
