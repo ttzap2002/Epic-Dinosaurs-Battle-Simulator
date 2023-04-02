@@ -38,7 +38,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
 
         SetInstanceOfObject();
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
     private void SetInstanceOfObject() 

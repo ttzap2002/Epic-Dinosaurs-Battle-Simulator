@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -367,7 +367,6 @@ GameObject:
   - component: {fileID: 624082638}
   - component: {fileID: 624082637}
   - component: {fileID: 624082636}
-  - component: {fileID: 624082635}
   m_Layer: 5
   m_Name: Blue Money
   m_TagString: Untagged
@@ -375,18 +374,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &624082635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 624082634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64f853e2217e98646b74ad57e7da0173, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &624082636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1265,7 +1252,6 @@ GameObject:
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
   - component: {fileID: 963194230}
-  - component: {fileID: 963194231}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1365,18 +1351,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
---- !u!114 &963194231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eede0fac8234e4a4e851d7c17365f984, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &974784272
 GameObject:
   m_ObjectHideFlags: 0
@@ -1994,7 +1968,6 @@ GameObject:
   - component: {fileID: 1488542174}
   - component: {fileID: 1488542176}
   - component: {fileID: 1488542175}
-  - component: {fileID: 1488542177}
   m_Layer: 5
   m_Name: Enemy Money
   m_TagString: Untagged
@@ -2119,18 +2092,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1488542173}
   m_CullTransparentMesh: 1
---- !u!114 &1488542177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1488542173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64f853e2217e98646b74ad57e7da0173, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1513402195
 GameObject:
   m_ObjectHideFlags: 0
