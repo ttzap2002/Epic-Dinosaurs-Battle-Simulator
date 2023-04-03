@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1503,11 +1503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab716d9538ba53246b79419cc240c6e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 100
-  attack: 20
   target: {fileID: 1264023047}
-  radius: 5
-  hp: 100
 --- !u!114 &1032565343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1535,6 +1531,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 1
   cost: 20
+  speed: 20
+  attack: 20
+  radius: 5
+  hp: 100
 --- !u!114 &1032565345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1822,6 +1822,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   cost: 30
+  speed: 15
+  attack: 20
+  radius: 5
+  hp: 100
 --- !u!114 &1282390824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2604,6 +2608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouse: {fileID: 1395888378}
   Uiinformation: {fileID: 934855453}
+  draggableItem: {fileID: 1150982297}
   prefabGameObjects:
   - {fileID: 1282390815}
   - {fileID: 1032565333}

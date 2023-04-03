@@ -27,8 +27,6 @@ public class DestroyObjectOnClick : MonoBehaviour
                        blueMoneyUpdate(-objectToDestroy.GetComponent<CreatureStats>().cost);
             GameManager.Instance.blueGameObjects.Remove(objectToDestroy);
 
-
-
         }
 
         Destroy(objectToDestroy);   

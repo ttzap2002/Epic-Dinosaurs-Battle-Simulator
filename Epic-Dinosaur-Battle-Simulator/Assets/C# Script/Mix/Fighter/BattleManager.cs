@@ -5,34 +5,47 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
-    List<WhichSquare> enemyFighters;
-    List<WhichSquare> blueFighters;
-
-    public BattleManager(List<WhichSquare> enemyFighters, List<WhichSquare> blueFighters)
+    List<FighterPlacement> enemyFighters;
+    List<FighterPlacement> blueFighters;
+    int i = 0;
+    public BattleManager(List<FighterPlacement> enemyFighters, List<FighterPlacement> blueFighters)
     {
         EnemyFighters = enemyFighters;
         BlueFighters = blueFighters;
     }
 
-    public List<WhichSquare> EnemyFighters { get => enemyFighters; set => enemyFighters = value; }
-    public List<WhichSquare> BlueFighters { get => blueFighters; set => blueFighters = value; }
+    public List<FighterPlacement> EnemyFighters { get => enemyFighters; set => enemyFighters = value; }
+    public List<FighterPlacement> BlueFighters { get => blueFighters; set => blueFighters = value; }
 
-
-    public void React(bool isReactForBlue,GameObject obj) 
+    public void RemoveFromList(FighterPlacement g) 
     {
-        if(isReactForBlue) 
+        if (g.tag == "Blue")
         {
-            foreach(var fighter in blueFighters) 
-            {
-                fighter.TryChangeTarget(obj);
-            }
+            BlueFighters.Remove(g);
         }
-        else 
-        {
-            foreach(var fighter in enemyFighters) 
-            {
-                fighter.TryChangeTarget(obj);
-            }
-        }
+        else { EnemyFighters.Remove(g); }
     }
+
+    public void React(bool isReactForBlue,GameObject obj,MeleeFighter m) 
+    {
+        
+            if (isReactForBlue)
+            {
+                foreach (var fighter in blueFighters)
+                {
+                    fighter.TryChangeTarget(obj, m);
+                }
+            }
+            else
+            {
+                foreach (var fighter in enemyFighters)
+                {
+                    fighter.TryChangeTarget(obj, m);
+                    Debug.Log("pies");
+                }
+            }
+        }
+   
+        
+    
 }

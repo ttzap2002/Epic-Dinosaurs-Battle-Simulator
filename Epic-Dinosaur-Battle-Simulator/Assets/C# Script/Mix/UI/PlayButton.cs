@@ -13,15 +13,21 @@ public class PlayButton : MonoBehaviour
     {
 
 
-        GameManager.Instance.currentScene.SetObjectToScene();
+        //GameManager.Instance.currentScene.SetObjectToScene();
         
         foreach (GameObject f in (GameManager.Instance.blueGameObjects.Concat( GameManager.Instance.enemyGameObjects))) 
         {
             f.gameObject.AddComponent<MeleeFighter>();
             
         }
-     
-        Debug.Log("Pies");
+        GameManager.Instance.SetBattleManager();
+        Debug.Log("kotek");
+        Debug.Log(GameManager.Instance.battleManager.BlueFighters.Count); 
+        Debug.Log(GameManager.Instance.battleManager.EnemyFighters.Count);
+        Debug.Log("piesek");
+        Destroy(GameManager.Instance.draggableItem);
+        Destroy(GameManager.Instance.Uiinformation);
+
       
     }
 }

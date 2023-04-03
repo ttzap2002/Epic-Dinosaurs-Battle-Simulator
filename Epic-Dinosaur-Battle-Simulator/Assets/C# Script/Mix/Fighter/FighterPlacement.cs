@@ -4,13 +4,15 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class WhichSquare: MonoBehaviour
+public class FighterPlacement: MonoBehaviour
 {
     public int row;
     public int col;
     void Start()
     {
-        CheckWhichSquare();
+        row = CheckWhichSquare()[0];
+        col = CheckWhichSquare()[1];
+        
     }
 
     public int[] CheckWhichSquare() 
@@ -21,10 +23,8 @@ public class WhichSquare: MonoBehaviour
         return list;
     }
 
-    public void TryChangeTarget(GameObject obj)
+    public void TryChangeTarget(GameObject obj, MeleeFighter fighter)
     {
-        Debug.Log("pies");
-        MeleeFighter fighter =gameObject.GetComponent<MeleeFighter>();
         if (Vector3.Distance(transform.position, obj.transform.position) < Vector3.Distance(transform.position, fighter.target.transform.position))
         {
             fighter.target=obj;

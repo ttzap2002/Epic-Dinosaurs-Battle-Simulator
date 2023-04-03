@@ -8,24 +8,24 @@ using UnityEngine;
 public class MeleeFighter : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] private float speed = 25f;
-    [SerializeField] private float attack = 20f;
+
     private bool isFighting = false;
     int a = 1;
     public GameObject target = null;
-    public float radius = 5f;
-    public float hp = 100f;
+    private CreatureStats myStats = null;
+    private FighterPlacement fighter = null;
 
 
 
     private void Start()
     {
         //GameManager.Instance.Awake();
-        GetFirstTarget();
-        Debug.Log("pies");
+        //GetFirstTarget();
+        myStats = gameObject.GetComponent<CreatureStats>();
+        fighter = gameObject.GetComponent<FighterPlacement>();
     }
 
-    
+
 
     void Update()
     {
@@ -36,36 +36,39 @@ public class MeleeFighter : MonoBehaviour
         //Vector3 moveDirection = new Vector3(horizontal, 0f, vertical) * speed * Time.deltaTime;
 
         // przesuñ obiekt o wektor ruch
-
+      
         //Move(tag);
-        if (a % 3 == 0)
-        {
+        if (a%3==0)
+        { 
             if (target != null)
             {
-                
+            
                 if (isChangeOfSquare())
                 {
                     if (tag == "Blue")
                     {
-                        GameManager.Instance.battleManager.React(false, gameObject);
+                        GameManager.Instance.battleManager.React(false, gameObject,this);
                     }
                     else
                     {
-                        GameManager.Instance.battleManager.React(true, gameObject);
+                        GameManager.Instance.battleManager.React(true, gameObject,this);
                     }
-          
+
                 }
-                if (!isFighting) { SecondMove();  if (Vector3.Distance(transform.position, target.transform.position) < radius) { isFighting = true; }
+            
+                if (!isFighting)
+                {
+                    SecondMove(); if (Vector3.Distance(transform.position, target.transform.position) < myStats.radius) { isFighting = true; }
                 }
-                else if (isFighting) { DoDamage(); }
+
+                else if (isFighting) { Hit(target); }
 
             }
             else if (target == null) { GetFirstTarget(); }
-            //else { GetFirstTarget(); }
-           
         }
-        //transform.position += moveDirection;
-        a++;
+
+            //transform.position += moveDirection;
+            a++;
     }
 
     public void GetFirstTarget() { if (tag == "Blue") { target=FindNearbiestEnemy("Enemy",transform.position); }
@@ -81,54 +84,29 @@ public class MeleeFighter : MonoBehaviour
         else if (tag == "Blue") { myEnemy = FindNearbiestEnemy("Enemy", transform.position); Hit(myEnemy); }
     }
     private void Hit(GameObject myEnemy) 
-    {   
-        MeleeFighter m=null;
+    {
         if (myEnemy != null)
         {
-            m = myEnemy.GetComponent<MeleeFighter>();
-            m.hp -= attack;
-            if (m.hp <= 0) { 
-                GameObject.Destroy(myEnemy);
-                isFighting = false;
-            }
-        }
-
-        
-    }
-    private void Move(string tag) 
-    {
-        if (tag == "Enemy")
-        {
-            GameObject myEnemy = FindNearbiestEnemy("Blue", transform.position);
-            if (myEnemy != null)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, myEnemy.transform.position, Time.deltaTime * speed);
-            }
-        }
-        else if (tag == "Blue")
-        {
-
-            GameObject myEnemy = FindNearbiestEnemy("Enemy", transform.position);
-            if (myEnemy!=null)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, myEnemy.transform.position, Time.deltaTime * speed);
-            }
+            CreatureStats m = myEnemy.GetComponent<CreatureStats>();
+            m.hp -= myStats.attack;
+            if (m.hp <= 0) { isFighting = false; GameManager.Instance.battleManager.RemoveFromList(m.gameObject.GetComponent<FighterPlacement>()); Destroy(m.gameObject); }
         }
     }
+ 
 
     private void SecondMove()
     {
-        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * speed);
+        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * myStats.speed);
+ 
     }
-
-
-  
 
     private bool isChangeOfSquare()
     {
-        WhichSquare mySquare = gameObject.GetComponent<WhichSquare>();
-        if (mySquare.CheckWhichSquare()[0]!=mySquare.row || mySquare.CheckWhichSquare()[1] != mySquare.col) 
+
+        if (fighter.CheckWhichSquare()[0]!=fighter.row || fighter.CheckWhichSquare()[1] != fighter.col) 
         {
+            fighter.row = fighter.CheckWhichSquare()[0];
+            fighter.col = fighter.CheckWhichSquare()[1];
             return true;
         }
         return false;
@@ -146,8 +124,7 @@ public class MeleeFighter : MonoBehaviour
             {
                 min = distance;
                 ObjectReturn = obj;
-                Debug.Log(min);
-                if (min <= radius) 
+                if (min <= myStats.radius) 
                 {
                     isFighting = true;
                 }

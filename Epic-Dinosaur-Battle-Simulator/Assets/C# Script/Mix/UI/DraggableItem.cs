@@ -17,7 +17,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnBeginDrag(PointerEventData eventData)
     {
 
-        Debug.Log("beginDrag");
+
         clone = Instantiate(gameObject);
         clone.transform.SetParent(canvas.transform,false);
         if (clone.GetComponent<DraggableItem>() == null)

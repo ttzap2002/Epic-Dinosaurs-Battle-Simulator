@@ -23,8 +23,11 @@ public class BattleInformation : MonoBehaviour
     {
         enemyMoneyTxt = enemyMoney.GetComponent<TextMeshProUGUI>();
         enemyTroopsTxt = enemyTroops.GetComponent<TextMeshProUGUI>();
+        enemyTroopsTxt.text = $"0/{GameManager.Instance.currentScene.Troopslimit}";
         blueMoneyTxt = blueMoney.GetComponent<TextMeshProUGUI>();
         blueTroopsTxt = blueTroops.GetComponent<TextMeshProUGUI>();
+        blueTroopsTxt.text = $"0/{GameManager.Instance.currentScene.Troopslimit}";
+
     }
 
     public void enemyMoneyUpdate(int money) 

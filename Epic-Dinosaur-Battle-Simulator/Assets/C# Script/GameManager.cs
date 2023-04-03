@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public GameObject mouse;
     public GameObject Uiinformation;
+    public GameObject draggableItem;
     public List<GameObject> prefabGameObjects = new List<GameObject>();
     public List<GameObject> enemyGameObjects = new List<GameObject>();
     public List<GameObject> blueGameObjects = new List<GameObject>();
@@ -39,7 +40,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
        
-        SetBattleManager();
     }
     // Update is called once per frame
     void Update()
@@ -47,10 +47,10 @@ public class GameManager : MonoBehaviour
         
     }
 
-    void SetBattleManager() 
+    public void SetBattleManager() 
     {
-        List<WhichSquare> enemyFighters = prefabGameObjects.Select(x => x.GetComponent<WhichSquare>()).Where(x=>x.tag=="Enemy").ToList();
-        List<WhichSquare> blueFighters = prefabGameObjects.Select(x => x.GetComponent<WhichSquare>()).Where(x => x.tag == "Blue").ToList();
+        List<FighterPlacement> enemyFighters = enemyGameObjects.Select(x => x.GetComponent<FighterPlacement>()).ToList();
+        List<FighterPlacement> blueFighters = blueGameObjects.Select(x => x.GetComponent<FighterPlacement>()).ToList();
         battleManager=new BattleManager(enemyFighters, blueFighters);
 
     }
