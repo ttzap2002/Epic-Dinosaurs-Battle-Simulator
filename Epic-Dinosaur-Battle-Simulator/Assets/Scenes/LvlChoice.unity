@@ -551,8 +551,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 113578294}
-        m_TargetAssemblyTypeName: SceneChanging, Assembly-CSharp
+      - m_Target: {fileID: 397262941}
+        m_TargetAssemblyTypeName: LevelButton, Assembly-CSharp
         m_MethodName: LevelBattleChoice
         m_Mode: 1
         m_Arguments:

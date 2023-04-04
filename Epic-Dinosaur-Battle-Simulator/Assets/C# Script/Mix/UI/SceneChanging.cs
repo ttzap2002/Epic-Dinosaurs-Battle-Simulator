@@ -29,6 +29,7 @@ public class SceneChanging : MonoBehaviour
     public void LvlChoice()
     {
         GameManager.Instance.isContainRequireComponent= false;
+        GameManager.Instance.RefreshGameObjects();
         SceneManager.LoadScene(2);
     }
 
@@ -41,6 +42,7 @@ public class SceneChanging : MonoBehaviour
     public void MainMenu()
     {
         GameManager.Instance.isContainRequireComponent = false;
+        GameManager.Instance.RefreshGameObjects();
 
         SceneManager.LoadScene(0);
         GameManager.Instance.Awake();

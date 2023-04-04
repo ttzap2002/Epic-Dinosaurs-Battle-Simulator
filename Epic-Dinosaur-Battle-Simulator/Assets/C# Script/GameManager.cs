@@ -133,5 +133,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void RefreshGameObjects() 
+    {
+        blueGameObjects = new List<GameObject>();
+        enemyGameObjects = new List<GameObject>();
+    }
+
     
 }
