@@ -7,6 +7,7 @@ public class BattleManager : MonoBehaviour
 {
     List<FighterPlacement> enemyFighters;
     List<FighterPlacement> blueFighters;
+
     int i = 0;
     public BattleManager(List<FighterPlacement> enemyFighters, List<FighterPlacement> blueFighters)
     {
@@ -41,11 +42,10 @@ public class BattleManager : MonoBehaviour
                 foreach (var fighter in enemyFighters)
                 {
                     fighter.TryChangeTarget(obj, m);
-                    Debug.Log("pies");
                 }
             }
-        }
-   
+    }
         
+
     
 }

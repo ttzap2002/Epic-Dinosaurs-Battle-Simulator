@@ -10,7 +10,8 @@ public class SceneLevel
 {
     //List<GameObject> enemieslist;
     int money;
-    int troopslimit;
+    int troopsLimit;
+    int enemyTroopsLimit;
     static int id=-1;
     bool isunlocked;
     List<ObjectToDisplay> objectOnScenes;
@@ -26,18 +27,28 @@ public class SceneLevel
     }
 
     public int Money { get => money; set => money = value; }
-    public int Troopslimit { get => troopslimit; set => troopslimit = value; }
+    public int Troopslimit { get => troopsLimit; set => troopsLimit = value; }
     public static int Id { get => id;}
     public bool Isunlocked { get => isunlocked; set => isunlocked = value; }
+    public int EnemyTroopsLimit { get => enemyTroopsLimit; set => enemyTroopsLimit = value; }
+
     //public List<GameObject> Enemieslist { set => enemieslist = value; }
     private List<ObjectToDisplay> CreateObjectForScene(int id) 
     {
         List<ObjectToDisplay> _lobject=new List<ObjectToDisplay>();
-        if (id == 0) 
+        if (id == 1) 
         {
             _lobject = new List<ObjectToDisplay> { new ObjectToDisplay(0, 0, 40, 0), new ObjectToDisplay(20, 0, 30, 0), new ObjectToDisplay(20, 0, 40, 1), new ObjectToDisplay(10, 0, 40, 0) };
+      
 
         }
+        if (id == 2)
+        {
+            _lobject = new List<ObjectToDisplay> { new ObjectToDisplay(0, 0, 40, 1), new ObjectToDisplay(20, 0, 30, 0), new ObjectToDisplay(20, 0, 40, 1), new ObjectToDisplay(10, 0, 40, 0) };
+
+        }
+        if (id != 0) { enemyTroopsLimit = _lobject.Count; }
+        else if (id==0) { enemyTroopsLimit = 80;}
         return _lobject;
     }
 

@@ -21,6 +21,12 @@ public class AllLevelContainer
         SceneLevel Level1 = new SceneLevel(10000, 30);
         levelList.Add(Level1);
 
+        SceneLevel Level2 = new SceneLevel(20000, 20);
+        levelList.Add(Level2);
+
+        SceneLevel Level3 = new SceneLevel(30000, 25);
+        levelList.Add(Level3);
+
     }
 
 }

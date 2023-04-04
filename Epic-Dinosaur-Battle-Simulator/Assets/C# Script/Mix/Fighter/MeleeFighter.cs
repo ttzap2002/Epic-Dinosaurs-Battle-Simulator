@@ -5,13 +5,12 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-public class MeleeFighter : MonoBehaviour
+public class MeleeFighter : Fighter
 {
     // Start is called before the first frame update
 
-    private bool isFighting = false;
+    public bool isFighting = false;
     int a = 1;
-    public GameObject target = null;
     private CreatureStats myStats = null;
     private FighterPlacement fighter = null;
 
@@ -29,15 +28,6 @@ public class MeleeFighter : MonoBehaviour
 
     void Update()
     {
-
-        //float horizontal = Input.GetAxis("Horizontal"); // pobierz wartoœæ wciœniêtego klawisza w poziomie (A/D lub strza³ki)
-        //float vertical = Input.GetAxis("Vertical"); // pobierz wartoœæ wciœniêtego klawisza w pionie (W/S lub strza³ki)
-        // oblicz wektor ruchu na podstawie wciœniêtych klawiszy i prêdkoœci
-        //Vector3 moveDirection = new Vector3(horizontal, 0f, vertical) * speed * Time.deltaTime;
-
-        // przesuñ obiekt o wektor ruch
-      
-        //Move(tag);
         if (a%3==0)
         { 
             if (target != null)
@@ -49,19 +39,16 @@ public class MeleeFighter : MonoBehaviour
                     {
                         GameManager.Instance.battleManager.React(false, gameObject,this);
                     }
-                    else
+                    else if(tag=="Enemy")
                     {
                         GameManager.Instance.battleManager.React(true, gameObject,this);
                     }
-
                 }
-            
                 if (!isFighting)
                 {
-                    SecondMove(); if (Vector3.Distance(transform.position, target.transform.position) < myStats.radius) { isFighting = true; }
+                    SecondMove(); if (Vector3.Distance(transform.position, target.transform.position) < myStats.radius) { isFighting = true;  }
                 }
-
-                else if (isFighting) { Hit(target); }
+                else { Hit(target); }
 
             }
             else if (target == null) { GetFirstTarget(); }
@@ -71,25 +58,29 @@ public class MeleeFighter : MonoBehaviour
             a++;
     }
 
-    public void GetFirstTarget() { if (tag == "Blue") { target=FindNearbiestEnemy("Enemy",transform.position); }
+    public void GetFirstTarget() {
+        if (tag == "Blue") { target=FindNearbiestEnemy("Enemy",transform.position); }
         else { target=FindNearbiestEnemy("Blue",transform.position);}}
     public void setdisactive()
     {
         gameObject.SetActive(false);
     }
-    void DoDamage()
-    {
-        GameObject myEnemy;
-        if (tag == "Enemy") { myEnemy = FindNearbiestEnemy("Blue", transform.position); Hit(myEnemy); }
-        else if (tag == "Blue") { myEnemy = FindNearbiestEnemy("Enemy", transform.position); Hit(myEnemy); }
-    }
+  
     private void Hit(GameObject myEnemy) 
     {
-        if (myEnemy != null)
+        if (myEnemy == this.gameObject)
         {
-            CreatureStats m = myEnemy.GetComponent<CreatureStats>();
-            m.hp -= myStats.attack;
-            if (m.hp <= 0) { isFighting = false; GameManager.Instance.battleManager.RemoveFromList(m.gameObject.GetComponent<FighterPlacement>()); Destroy(m.gameObject); }
+            isFighting = false;
+            GetFirstTarget();
+        }
+        else
+        {
+            if (myEnemy != null)
+            {
+                CreatureStats m = myEnemy.GetComponent<CreatureStats>();
+                m.hp -= myStats.attack;
+                if (m.hp <= 0) { isFighting = false;GameManager.Instance.battleManager.RemoveFromList(m.gameObject.GetComponent<FighterPlacement>()); Destroy(m.gameObject); }
+            }
         }
     }
  
@@ -119,16 +110,19 @@ public class MeleeFighter : MonoBehaviour
         GameObject ObjectReturn = null;
         foreach(GameObject obj in GameObject.FindGameObjectsWithTag(tag)) 
         {
-            float distance = Vector3.Distance(obj.transform.position,vectorOfMyObj);
-            if (distance < min) 
+         
+            float distance = Vector3.Distance(obj.transform.position, vectorOfMyObj);
+            if (distance < min)
             {
                 min = distance;
                 ObjectReturn = obj;
-                if (min <= myStats.radius) 
+                if (min <= myStats.radius)
                 {
+
                     isFighting = true;
                 }
             }
+          
         }
         return ObjectReturn;
     }

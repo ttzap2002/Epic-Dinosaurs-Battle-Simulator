@@ -4,69 +4,133 @@ using Unity.VisualScripting;
 using UnityEditorInternal;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
+using static Unity.VisualScripting.Metadata;
+using TMPro;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    private int i=0;
+    private int i = 1;
+    private bool isRun = false;
+    public bool isContainRequireComponent = false;
+    private bool isFirst = true;
     private static GameManager _instance;
     public GameObject mouse;
     public GameObject Uiinformation;
     public GameObject draggableItem;
+    public GameObject endOfBattle;
     public List<GameObject> prefabGameObjects = new List<GameObject>();
     public List<GameObject> enemyGameObjects = new List<GameObject>();
     public List<GameObject> blueGameObjects = new List<GameObject>();
-    public bool isStarted=false;
-    public AllLevelContainer levelContainer= new AllLevelContainer();
+    public bool isStarted = false;
+    public AllLevelContainer levelContainer = new AllLevelContainer();
     public SceneLevel currentScene;
     public BattleManager battleManager;
     public static GameManager Instance { get { return _instance; } }
 
+    public bool IsRun { get => isRun; set => isRun = value; }
 
     public void Awake()
     {
         if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
+
+     
         }
         else
         {
             _instance = this;
+
         }
-        levelContainer.AddAllScene();
-        currentScene = levelContainer.LevelList[0];
+        
+        if (isFirst) 
+        {
+            levelContainer.AddAllScene();
+            isFirst = false;
+        }
+         SceneManager.sceneLoaded += OnSceneLoaded; 
+
+        DontDestroyOnLoad(gameObject);
+
 
     }
     // Start is called before the first frame update
     void Start()
     {
-       
+        
     }
     // Update is called once per frame
     void Update()
-    { 
-        
+    {
+        if (isRun)
+        {
+            if (battleManager.EnemyFighters.Count == 0 || battleManager.BlueFighters.Count == 0)
+            {
+                endOfBattle.SetActive(true);
+                var img = endOfBattle.GetComponentInChildren<Image>();
+                TextMeshProUGUI pro = img.GetComponentInChildren<TextMeshProUGUI>();
+                if(battleManager.EnemyFighters.Count == 0) 
+                {
+                    pro.text = "blue win";
+                }
+                else { pro.text = "red win"; }
+                
+                isRun = false;
+                enemyGameObjects = null;
+                blueGameObjects = null;
+            }
+        }
+
     }
 
-    public void SetBattleManager() 
+    public void SetBattleManager()
     {
         List<FighterPlacement> enemyFighters = enemyGameObjects.Select(x => x.GetComponent<FighterPlacement>()).ToList();
         List<FighterPlacement> blueFighters = blueGameObjects.Select(x => x.GetComponent<FighterPlacement>()).ToList();
-        battleManager=new BattleManager(enemyFighters, blueFighters);
+        battleManager = new BattleManager(enemyFighters, blueFighters);
 
     }
 
-    public void GameResume() 
+    public void GameResume()
     {
         Time.timeScale = 1f;
     }
-    public void GamePause() 
+    public void GamePause()
     {
         Time.timeScale = 0f;
     }
 
-    public void AddScene(int id) 
+    public void AddScene(int id)
     {
         currentScene = levelContainer.LevelList[id];
+    }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("kot");
+        SetNecessaryComponent();
+    }
+
+    public void SetNecessaryComponent()
+    {
+        if (isContainRequireComponent)
+        {
+            Uiinformation = GameObject.Find("Scene Information");
+            draggableItem = GameObject.Find("Canvas");
+            endOfBattle = GameObject.FindGameObjectWithTag("EndOfBattle");
+            mouse = GameObject.Find("MouseTarget");
+            Canvas canvas = GameObject.Find("AllPrefab").GetComponent<Canvas>();
+            prefabGameObjects = new List<GameObject>();
+            Debug.Log(canvas.transform.childCount);
+            for (int i = 0; i < canvas.transform.childCount; i++) // przechodzimy przez wszystkie dzieci Transform
+            {
+                Transform child = canvas.transform.GetChild(i);
+                prefabGameObjects.Add(child.gameObject); // dodajemy komponent GameObject dziecka do listy
+            }
+            endOfBattle.SetActive(false);
+            currentScene.SetObjectToScene();
+        }
     }
 
     

@@ -64,11 +64,12 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         {
             obj.tag = "Enemy";
             
-            if (GameManager.Instance.enemyGameObjects.Count >= GameManager.Instance.currentScene.Troopslimit) { Destroy(obj); }
+            if (GameManager.Instance.enemyGameObjects.Count >= GameManager.Instance.currentScene.EnemyTroopsLimit) { Destroy(obj); }
             else {
                 GameManager.Instance.Uiinformation.GetComponent<BattleInformation>().enemyTroopsUpdate(true);
                 GameManager.Instance.Uiinformation.GetComponent<BattleInformation>().enemyMoneyUpdate(cost);
-                GameManager.Instance.enemyGameObjects.Add(obj); }
+                GameManager.Instance.enemyGameObjects.Add(obj);
+            }
         }
         
     }

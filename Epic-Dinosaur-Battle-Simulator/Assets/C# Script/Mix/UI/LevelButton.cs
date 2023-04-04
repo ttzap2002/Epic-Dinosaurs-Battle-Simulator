@@ -1,13 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelButton : MonoBehaviour
 {
     [SerializeField] int SceneId;
 
-    public void SetScene() 
+
+    public void LevelBattleChoice()
     {
-        GameManager.Instance.currentScene = GameManager.Instance.levelContainer.LevelList[SceneId];
+        GameManager.Instance.isContainRequireComponent = true;
+        GameManager.Instance.AddScene(SceneId);
+        SceneManager.LoadScene("LVL");
+
+
     }
+
+
+
+
 }

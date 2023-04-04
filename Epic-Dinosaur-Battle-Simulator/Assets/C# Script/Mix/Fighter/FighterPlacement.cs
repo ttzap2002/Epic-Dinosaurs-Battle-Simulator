@@ -11,8 +11,7 @@ public class FighterPlacement: MonoBehaviour
     void Start()
     {
         row = CheckWhichSquare()[0];
-        col = CheckWhichSquare()[1];
-        
+        col = CheckWhichSquare()[1]; 
     }
 
     public int[] CheckWhichSquare() 
@@ -25,9 +24,11 @@ public class FighterPlacement: MonoBehaviour
 
     public void TryChangeTarget(GameObject obj, MeleeFighter fighter)
     {
+        
         if (Vector3.Distance(transform.position, obj.transform.position) < Vector3.Distance(transform.position, fighter.target.transform.position))
         {
             fighter.target=obj;
+         
         }
     }
 }
