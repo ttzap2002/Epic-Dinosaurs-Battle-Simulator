@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,6 +19,7 @@ public class SceneChanging : MonoBehaviour
     public void Exit()
     {
         Application.Quit();
+        //Debug.Log("Zamykam Apke");
     }
 
     public void LvlChoice()
