@@ -28,7 +28,6 @@ public class PlayButton : MonoBehaviour
         Debug.Log("piesek");
         Destroy(GameObject.Find(("Scene Information")));
         Destroy(GameObject.Find(("Canvas")));
-        Destroy(GameManager.Instance.draggableItem);
-        Destroy(GameManager.Instance.Uiinformation);
+        Destroy(GameManager.Instance.UI);
     }
 }

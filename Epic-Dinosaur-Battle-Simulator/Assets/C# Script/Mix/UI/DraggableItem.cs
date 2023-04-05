@@ -5,33 +5,55 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class DraggableItem : MonoBehaviour //IDragHandler, IEndDragHandler,IBeginDragHandler
 {
     public int fighterid;
-    public GameObject border;
-    private GameObject clone;
-    public Camera mainCamera;
-    public GameObject canvas;
-    public GameObject Uiinformation;
+    private bool isDragging = false;
+
+    private void Update()
+    {
+        Debug.Log("pies");
+        if (isDragging)
+        {
+            SetInstanceOfObject();
+        }
+    }
+
+    public void OnMouseDown()
+    {
+        isDragging = true;
+    }
+
+    public void OnMouseUp()
+    {
+        isDragging = false;
+    }
+
+    /*
+public GameObject border;
+private GameObject clone;
+public Camera mainCamera;
+public GameObject canvas;
+public GameObject Uiinformation;
+*/
+
+
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-
-
+        /*
         clone = Instantiate(gameObject);
         clone.transform.SetParent(canvas.transform,false);
         if (clone.GetComponent<DraggableItem>() == null)
         {
             clone.AddComponent<DraggableItem>(); 
-        }
+        }*/
     }
-
+    /*
     public void OnDrag(PointerEventData eventData)
     {
-
-    
+        transform.position = eventData.position;
         SetInstanceOfObject();
-
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -40,6 +62,9 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         SetInstanceOfObject();
         //Destroy(gameObject);
     }
+
+
+    */
 
     private void SetInstanceOfObject() 
     {
@@ -55,8 +80,8 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
           
             if (GameManager.Instance.blueGameObjects.Count >= GameManager.Instance.currentScene.Troopslimit) { Destroy(obj); }
             else {
-                GameManager.Instance.Uiinformation.GetComponent<BattleInformation>().blueTroopsUpdate(true);
-                GameManager.Instance.Uiinformation.GetComponent<BattleInformation>().blueMoneyUpdate(cost);
+                GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().blueTroopsUpdate(true);
+                GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().blueMoneyUpdate(cost);
                 GameManager.Instance.blueGameObjects.Add(obj); }
      
         }
@@ -66,8 +91,8 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             
             if (GameManager.Instance.enemyGameObjects.Count >= GameManager.Instance.currentScene.EnemyTroopsLimit) { Destroy(obj); }
             else {
-                GameManager.Instance.Uiinformation.GetComponent<BattleInformation>().enemyTroopsUpdate(true);
-                GameManager.Instance.Uiinformation.GetComponent<BattleInformation>().enemyMoneyUpdate(cost);
+                GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().enemyTroopsUpdate(true);
+                GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().enemyMoneyUpdate(cost);
                 GameManager.Instance.enemyGameObjects.Add(obj);
             }
         }

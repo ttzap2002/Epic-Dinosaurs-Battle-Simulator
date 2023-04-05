@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,9 +13,11 @@ public class SceneChanging : MonoBehaviour
     }
     public void Sandbox()
     {
-        GameManager.Instance.isContainRequireComponent = true;
+  
         SceneManager.LoadScene(5);
-        GameManager.Instance.currentScene = GameManager.Instance.levelContainer.LevelList[0];
+        GameManager.Instance.isContainRequireComponent = true;
+        GameManager.Instance.AddScene(0);
+    
     }
     public void Shop()
     {
@@ -41,10 +44,9 @@ public class SceneChanging : MonoBehaviour
 
     public void MainMenu()
     {
+        
         GameManager.Instance.isContainRequireComponent = false;
         GameManager.Instance.RefreshGameObjects();
-
         SceneManager.LoadScene(0);
-        GameManager.Instance.Awake();
     }
 }

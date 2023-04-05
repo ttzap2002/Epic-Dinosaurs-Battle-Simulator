@@ -12,18 +12,18 @@ public class DestroyObjectOnClick : MonoBehaviour
     {
         if(objectToDestroy.gameObject.tag == "Enemy") 
         {
-            GameManager.Instance.Uiinformation.GetComponent<BattleInformation>().
+            GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().
                 enemyTroopsUpdate(false);
-            GameManager.Instance.Uiinformation.GetComponent<BattleInformation>().
+            GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().
                 enemyMoneyUpdate(-objectToDestroy.GetComponent<CreatureStats>().cost);
             GameManager.Instance.enemyGameObjects.Remove(objectToDestroy);
 
         }
         else 
         {
-            GameManager.Instance.Uiinformation.GetComponent<BattleInformation>().
+            GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().
                blueTroopsUpdate(false);
-            GameManager.Instance.Uiinformation.GetComponent<BattleInformation>().
+            GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().
                        blueMoneyUpdate(-objectToDestroy.GetComponent<CreatureStats>().cost);
             GameManager.Instance.blueGameObjects.Remove(objectToDestroy);
 

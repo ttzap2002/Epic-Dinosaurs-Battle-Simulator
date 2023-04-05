@@ -17,9 +17,9 @@ public class GameManager : MonoBehaviour
     private bool isFirst = true;
     private static GameManager _instance;
     public GameObject mouse;
-    public GameObject Uiinformation;
-    public GameObject draggableItem;
+    public GameObject UI;
     public GameObject endOfBattle;
+    public GameObject draggable;
     public List<GameObject> prefabGameObjects = new List<GameObject>();
     public List<GameObject> enemyGameObjects = new List<GameObject>();
     public List<GameObject> blueGameObjects = new List<GameObject>();
@@ -116,9 +116,12 @@ public class GameManager : MonoBehaviour
     {
         if (isContainRequireComponent)
         {
-            Uiinformation = GameObject.Find("Scene Information");
-            draggableItem = GameObject.Find("Canvas");
-            endOfBattle = GameObject.FindGameObjectWithTag("EndOfBattle");
+            currentScene.EnemyTroopsLimit = 80;
+            draggable= GameObject.Find("Terrain");
+            UI = GameObject.Find("UI");
+            GameObject endobj = GameObject.FindGameObjectWithTag("EndOfBattle");
+            endobj.SetActive(true);
+            endOfBattle = endobj;
             mouse = GameObject.Find("MouseTarget");
             Canvas canvas = GameObject.Find("AllPrefab").GetComponent<Canvas>();
             prefabGameObjects = new List<GameObject>();
