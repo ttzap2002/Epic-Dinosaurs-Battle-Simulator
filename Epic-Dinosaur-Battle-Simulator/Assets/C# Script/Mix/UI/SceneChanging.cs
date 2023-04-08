@@ -21,7 +21,7 @@ public class SceneChanging : MonoBehaviour
     }
     public void Shop()
     {
-
+        SceneManager.LoadScene(7);
     }
     public void Exit()
     {
