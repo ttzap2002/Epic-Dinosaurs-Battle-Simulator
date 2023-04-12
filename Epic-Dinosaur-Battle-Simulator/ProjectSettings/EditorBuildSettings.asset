@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LvlChoice.unity
     guid: 9293384d6409d0c43a38159bd942447c
+  - enabled: 1
+    path: Assets/Scenes/Shop.unity
+    guid: 2bf37eb82a402db43aef3d9a21ff2985
   m_configObjects: {}
