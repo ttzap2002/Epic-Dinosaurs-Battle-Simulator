@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -10,12 +11,16 @@ public class DraggableItem : MonoBehaviour //IDragHandler, IEndDragHandler,IBegi
     public int fighterid;
     private bool isDragging = false;
 
+
     private void Update()
     {
         Debug.Log("pies");
         if (isDragging)
         {
-            SetInstanceOfObject();
+            if (isPossible())
+            {
+                SetInstanceOfObject();
+            }
         }
     }
 
@@ -27,6 +32,20 @@ public class DraggableItem : MonoBehaviour //IDragHandler, IEndDragHandler,IBegi
     public void OnMouseUp()
     {
         isDragging = false;
+    }
+
+
+    private bool isPossible() 
+    {
+        Vector3 vector = GameManager.Instance.mouse.transform.position;
+        foreach (GameObject g in GameManager.Instance.blueGameObjects.Concat(GameManager.Instance.enemyGameObjects)) 
+        {
+            if (Vector3.Distance(vector, g.transform.position) < 4) 
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     /*

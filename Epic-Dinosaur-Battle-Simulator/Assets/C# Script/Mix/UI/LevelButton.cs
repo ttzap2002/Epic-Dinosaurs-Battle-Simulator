@@ -14,8 +14,6 @@ public class LevelButton : MonoBehaviour
         GameManager.Instance.isContainRequireComponent = true;
         GameManager.Instance.AddScene(SceneId);
         SceneManager.LoadScene("LVL");
-
-
     }
 
 

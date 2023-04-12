@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditorInternal;
+
 using UnityEngine;
 using System.Linq;
 using UnityEngine.SceneManagement;
-using static Unity.VisualScripting.Metadata;
+
 using TMPro;
 using UnityEngine.UI;
 
@@ -116,7 +115,7 @@ public class GameManager : MonoBehaviour
     {
         if (isContainRequireComponent)
         {
-            currentScene.EnemyTroopsLimit = 80;
+        
             draggable= GameObject.Find("Terrain");
             UI = GameObject.Find("UI");
             GameObject endobj = GameObject.FindGameObjectWithTag("EndOfBattle");

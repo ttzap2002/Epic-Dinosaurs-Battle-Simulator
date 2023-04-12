@@ -59,8 +59,8 @@ public class MeleeFighter : Fighter
     }
 
     public void GetFirstTarget() {
-        if (tag == "Blue") { target=FindNearbiestEnemy("Enemy",transform.position); }
-        else { target=FindNearbiestEnemy("Blue",transform.position);}}
+        if (tag == "Blue") { target=FindNearestEnemy("Enemy",transform.position); }
+        else { target=FindNearestEnemy("Blue",transform.position);}}
     public void setdisactive()
     {
         gameObject.SetActive(false);
@@ -104,7 +104,7 @@ public class MeleeFighter : Fighter
     }
 
 
-    private GameObject FindNearbiestEnemy(string tag,Vector3 vectorOfMyObj)
+    private GameObject FindNearestEnemy(string tag,Vector3 vectorOfMyObj)
     {
         float min = Mathf.Infinity;
         GameObject ObjectReturn = null;
