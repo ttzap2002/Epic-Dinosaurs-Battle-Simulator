@@ -10,4 +10,13 @@ public class CreatureStats : MonoBehaviour
     public float attack = 20f;
     public float radius = 5f;
     public float hp = 100f;
+    public ScriptType behaviourScript;
+}
+
+
+public enum ScriptType 
+{
+    MeleeFighter,
+    Spawner
+
 }

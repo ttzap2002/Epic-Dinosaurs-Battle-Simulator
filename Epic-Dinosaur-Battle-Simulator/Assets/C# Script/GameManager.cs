@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour
     public GameObject mouse;
     public GameObject UI;
     public GameObject endOfBattle;
-    public GameObject draggable;
     public List<GameObject> prefabGameObjects = new List<GameObject>();
     public List<GameObject> enemyGameObjects = new List<GameObject>();
     public List<GameObject> blueGameObjects = new List<GameObject>();

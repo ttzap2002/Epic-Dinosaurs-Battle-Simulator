@@ -15,9 +15,15 @@ public class PlayButton : MonoBehaviour
         
         foreach (GameObject f in (GameManager.Instance.blueGameObjects.Concat( GameManager.Instance.enemyGameObjects))) 
         {
-            f.gameObject.AddComponent<MeleeFighter>();
-            Debug.Log(f);
-            
+            CreatureStats stats= f.GetComponent<CreatureStats>();
+            if (stats.behaviourScript == ScriptType.MeleeFighter)
+            {
+                f.gameObject.AddComponent<MeleeFighter>();
+            }
+            if (stats.behaviourScript == ScriptType.Spawner)
+            {
+                f.gameObject.AddComponent<SpawnerBehaviour>();
+            }            
         }
         
         GameManager.Instance.SetBattleManager();
@@ -29,5 +35,7 @@ public class PlayButton : MonoBehaviour
         Destroy(GameObject.Find(("Scene Information")));
         Destroy(GameObject.Find(("Canvas")));
         Destroy(GameManager.Instance.UI);
+        GameObject obj = GameObject.Find("Terrain");
+        GameObject.Destroy(obj.gameObject.GetComponent<DraggableItem>());
     }
 }
