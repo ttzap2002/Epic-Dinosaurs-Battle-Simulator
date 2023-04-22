@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public SceneLevel currentScene;
     public BattleManager battleManager;
     public GameObject draggable;
+    public int idTileForBackFromShop = 0; //int, przeznaczony do cofania ze sklepu. 0- oznacza menu i jest domyœlne. Jednak jak wyjdziesz z lvlu do sklepu, to wróci ciê do wyboru lvlu. z sandboxu do wyboru mapy itp
     public static GameManager Instance { get { return _instance; } }
 
     public bool IsRun { get => isRun; set => isRun = value; }

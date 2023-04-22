@@ -3904,6 +3904,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dec4930912a38541b44fe93793fc9e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menager: {fileID: 0}
+  idForShop: 0
 --- !u!1 &1241212073
 GameObject:
   m_ObjectHideFlags: 0
@@ -6657,6 +6659,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dec4930912a38541b44fe93793fc9e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menager: {fileID: 2104336518}
+  idForShop: 0
 --- !u!1 &2102282041 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3381745568533395701, guid: 205c313a2945b724f89c03a83e0314cb, type: 3}
@@ -6754,6 +6758,7 @@ MonoBehaviour:
   isStarted: 0
   battleManager: {fileID: 0}
   draggable: {fileID: 0}
+  idTileForBackFromShop: 0
 --- !u!4 &2104336519
 Transform:
   m_ObjectHideFlags: 0

@@ -5,6 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanging : MonoBehaviour
 {
+    public int idForShop = 0;
+    void Awake()
+    {
+        if(idForShop != 7)
+        {
+            GameManager.Instance.idTileForBackFromShop = idForShop;
+        }
+    }
+
     public void Continents()
     {
 

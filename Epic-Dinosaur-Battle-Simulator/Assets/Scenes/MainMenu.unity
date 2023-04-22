@@ -249,6 +249,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dec4930912a38541b44fe93793fc9e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menager: {fileID: 1830053499}
+  idForShop: 0
 --- !u!114 &53716161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1613,7 +1615,6 @@ MonoBehaviour:
   mouse: {fileID: 0}
   UI: {fileID: 0}
   endOfBattle: {fileID: 0}
-  draggable: {fileID: 0}
   prefabGameObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -1621,6 +1622,8 @@ MonoBehaviour:
   blueGameObjects: []
   isStarted: 0
   battleManager: {fileID: 0}
+  draggable: {fileID: 0}
+  idTileForBackFromShop: 0
 --- !u!4 &1830053500
 Transform:
   m_ObjectHideFlags: 0
