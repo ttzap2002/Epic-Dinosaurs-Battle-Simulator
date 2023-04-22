@@ -21,8 +21,8 @@ EditorBuildSettings:
     path: Assets/Scenes/LVL.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/Sandbox.unity
-    guid: 577511d31615c6b45852633d05c24909
+    path: Assets/Scenes/Sandbox 1.unity
+    guid: 5ed42636880e4f047a7890ac0dff4411
   - enabled: 1
     path: Assets/Scenes/LvlChoice.unity
     guid: 9293384d6409d0c43a38159bd942447c
