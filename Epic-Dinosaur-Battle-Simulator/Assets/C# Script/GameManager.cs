@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public AllLevelContainer levelContainer = new AllLevelContainer();
     public SceneLevel currentScene;
     public BattleManager battleManager;
+    public GameObject draggable;
     public static GameManager Instance { get { return _instance; } }
 
     public bool IsRun { get => isRun; set => isRun = value; }
