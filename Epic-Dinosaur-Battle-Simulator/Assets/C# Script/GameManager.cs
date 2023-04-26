@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -30,7 +31,7 @@ public class GameManager : MonoBehaviour
     public int numberOfShopScreen = 0; //int przeznaczony do wyboru, który element sklepu jest widoczny (czy aktualnie przegl¹dane s¹ dinozaury, mapy czy co). Numeracja: 0-dinozaury, 1-mapy, 2-pieni¹dze, 99-brak
     public int money = 10; // iloœæ posiadanej waluty przez gracza wykorzystywane do gry
     public DinoStats dinosaurStats; //klasa, posiadaj¹ca pocz¹tkowe statystyki ka¿dego dinozaura
-
+    public DynamicData dynamicData;
     public static GameManager Instance { get { return _instance; } }
 
     public bool IsRun { get => isRun; set => isRun = value; }
@@ -53,6 +54,7 @@ public class GameManager : MonoBehaviour
         {
             levelContainer.AddAllScene();
             dinosaurStats = new DinoStats();
+            dynamicData = new DynamicData(new List<int>(){ 0, 1, 1, 1 }, new List<int>() { 0, 1, 1, 1 }, new List<bool>() {false,true,false }, 100);
             isFirst = false;
         }
          SceneManager.sceneLoaded += OnSceneLoaded; 
@@ -61,6 +63,7 @@ public class GameManager : MonoBehaviour
 
 
     }
+
     // Start is called before the first frame update
     void Start()
     {
