@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     public BattleManager battleManager;
     public GameObject draggable;
     public int idTileForBackFromShop = 0; //int, przeznaczony do cofania ze sklepu. 0- oznacza menu i jest domyœlne. Jednak jak wyjdziesz z lvlu do sklepu, to wróci ciê do wyboru lvlu. z sandboxu do wyboru mapy itp
+    public int numberOfShopScreen = 0; //int przeznaczony do wyboru, który element sklepu jest widoczny (czy aktualnie przegl¹dane s¹ dinozaury, mapy czy co). Numeracja: 0-dinozaury, 1-mapy, 2-pieni¹dze, 99-brak
+
     public static GameManager Instance { get { return _instance; } }
 
     public bool IsRun { get => isRun; set => isRun = value; }
