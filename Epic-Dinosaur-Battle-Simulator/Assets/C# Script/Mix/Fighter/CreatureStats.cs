@@ -18,5 +18,4 @@ public enum ScriptType
 {
     MeleeFighter,
     Spawner
-
 }

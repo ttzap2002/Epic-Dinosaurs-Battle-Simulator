@@ -45,7 +45,14 @@ public class SceneLevel
         if (id == 2)
         {
             _lobject = new List<ObjectToDisplay> { new ObjectToDisplay(0, 0, 40, 1), new ObjectToDisplay(20, 0, 30, 0), new ObjectToDisplay(20, 0, 40, 1), new ObjectToDisplay(10, 0, 40, 0) };
-
+        }
+        if (id == 3)
+        {
+            _lobject = new List<ObjectToDisplay> { new ObjectToDisplay(0, 0, 40, 1), new ObjectToDisplay(40, 0, 30, 0), new ObjectToDisplay(20, 0, 40, 2), new ObjectToDisplay(50, 0, 40, 3),
+            new ObjectToDisplay(10, 0, 30, 1), new ObjectToDisplay(20, 0, 45, 2), new ObjectToDisplay(30, 0, 40, 1), new ObjectToDisplay(40, 0, 30, 0),
+            new ObjectToDisplay(4, 0, 36, 2), new ObjectToDisplay(20, 0, 20, 1), new ObjectToDisplay(13, 0, 47, 0), new ObjectToDisplay(31, 0, 37, 3),
+            new ObjectToDisplay(10, 0, 30, 1), new ObjectToDisplay(25, 0, 15.5f, 2), new ObjectToDisplay(31, 0, 36, 2), new ObjectToDisplay(10, 0, 0, 2)
+            };
         }
         if (id != 0) { enemyTroopsLimit = _lobject.Count; }
         else if (id==0) { enemyTroopsLimit = 80;}

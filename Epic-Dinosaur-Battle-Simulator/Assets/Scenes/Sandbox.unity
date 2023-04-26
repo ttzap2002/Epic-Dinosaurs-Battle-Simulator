@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2497,6 +2497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dec4930912a38541b44fe93793fc9e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idForShop: 0
 --- !u!1 &1264023047
 GameObject:
   m_ObjectHideFlags: 0
@@ -2584,6 +2585,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2201473843001953839, guid: 8f5724555dd48e341b7846926377ee18, type: 3}
   m_PrefabInstance: {fileID: 2201473841855575308}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1282390830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282390815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab716d9538ba53246b79419cc240c6e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1264023047}
+  isFighting: 0
 --- !u!1 &1384029622
 GameObject:
   m_ObjectHideFlags: 0
@@ -3898,6 +3913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dec4930912a38541b44fe93793fc9e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idForShop: 0
 --- !u!1 &2102282041 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3381745568533395701, guid: 205c313a2945b724f89c03a83e0314cb, type: 3}
@@ -3995,6 +4011,7 @@ MonoBehaviour:
   isStarted: 0
   battleManager: {fileID: 0}
   draggable: {fileID: 0}
+  idTileForBackFromShop: 0
 --- !u!4 &2104336519
 Transform:
   m_ObjectHideFlags: 0

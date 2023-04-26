@@ -14,5 +14,6 @@ public class DynamicData
     public List<int> Dinosaurs { get => dinosaurs; set => dinosaurs = value; }
     public List<bool> Terrain { get => terrain; set => terrain = value; }
     public int Fang { get => fang; set => fang = value; }
+
     
 }

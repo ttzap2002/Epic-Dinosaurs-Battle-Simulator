@@ -14,7 +14,7 @@ public class DraggableItem : MonoBehaviour //IDragHandler, IEndDragHandler,IBegi
 
     private void Update()
     {
-        Debug.Log("pies");
+        
         if (isDragging)
         {
             if (isPossible())

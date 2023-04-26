@@ -28,10 +28,7 @@ public class PlayButton : MonoBehaviour
         
         GameManager.Instance.SetBattleManager();
         GameManager.Instance.IsRun=true;
-        Debug.Log("kotek");
-        Debug.Log(GameManager.Instance.battleManager.BlueFighters.Count); 
-        Debug.Log(GameManager.Instance.battleManager.EnemyFighters.Count);
-        Debug.Log("piesek");
+
         Destroy(GameObject.Find(("Scene Information")));
         Destroy(GameObject.Find(("Canvas")));
         Destroy(GameManager.Instance.UI);

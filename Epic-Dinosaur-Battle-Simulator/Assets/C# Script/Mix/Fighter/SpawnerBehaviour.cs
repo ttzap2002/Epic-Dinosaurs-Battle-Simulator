@@ -23,6 +23,9 @@ public class SpawnerBehaviour : MonoBehaviour
             obj.transform.position = transform.position;
             if (gameObject.tag == "Blue") { obj.tag = "Blue"; GameManager.Instance.battleManager.BlueFighters.Add(obj.GetComponent<FighterPlacement>()); }
             else { obj.tag = "Enemy";GameManager.Instance.battleManager.EnemyFighters.Add(obj.GetComponent<FighterPlacement>()); }
+            CreatureStats c = obj.GetComponent<CreatureStats>();
+            if (c.behaviourScript == ScriptType.MeleeFighter) { obj.AddComponent<MeleeFighter>(); }
+            else if (c.behaviourScript == ScriptType.Spawner) { obj.AddComponent<SpawnerBehaviour>(); }
             obj.SetActive(true);
         }
         if(i% 100 == 0) 

@@ -19,9 +19,10 @@ public class MeleeFighter : Fighter
     private void Start()
     {
         //GameManager.Instance.Awake();
-        //GetFirstTarget();
+ 
         myStats = gameObject.GetComponent<CreatureStats>();
         fighter = gameObject.GetComponent<FighterPlacement>();
+        if (target is null) { GetFirstTarget(); }
     }
 
 
@@ -46,7 +47,7 @@ public class MeleeFighter : Fighter
                 }
                 if (!isFighting)
                 {
-                    SecondMove(); if (Vector3.Distance(transform.position, target.transform.position) < myStats.radius) { isFighting = true;  }
+                    Move(); if (Vector3.Distance(transform.position, target.transform.position) < myStats.radius) { isFighting = true;  }
                 }
                 else { Hit(target); }
 
@@ -85,7 +86,7 @@ public class MeleeFighter : Fighter
     }
  
 
-    private void SecondMove()
+    private void Move()
     {
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * myStats.speed);
  
