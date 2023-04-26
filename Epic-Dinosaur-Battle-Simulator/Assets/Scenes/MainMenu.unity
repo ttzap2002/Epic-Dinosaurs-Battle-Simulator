@@ -249,7 +249,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dec4930912a38541b44fe93793fc9e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menager: {fileID: 1830053499}
   idForShop: 0
 --- !u!114 &53716161
 MonoBehaviour:
@@ -329,7 +328,7 @@ RectTransform:
   - {fileID: 1533476564}
   - {fileID: 1275373731}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1624,6 +1623,8 @@ MonoBehaviour:
   battleManager: {fileID: 0}
   draggable: {fileID: 0}
   idTileForBackFromShop: 0
+  numberOfShopScreen: 0
+  money: 10
 --- !u!4 &1830053500
 Transform:
   m_ObjectHideFlags: 0
@@ -1637,7 +1638,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1830053501
 MonoBehaviour:

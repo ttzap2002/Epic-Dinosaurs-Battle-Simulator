@@ -17542,6 +17542,8 @@ MonoBehaviour:
   battleManager: {fileID: 0}
   draggable: {fileID: 0}
   idTileForBackFromShop: 0
+  numberOfShopScreen: 0
+  money: 10
 --- !u!4 &891185099
 Transform:
   m_ObjectHideFlags: 0
@@ -34074,6 +34076,7 @@ GameObject:
   - component: {fileID: 1608576092}
   - component: {fileID: 1608576094}
   - component: {fileID: 1608576093}
+  - component: {fileID: 1608576095}
   m_Layer: 5
   m_Name: Money
   m_TagString: Untagged
@@ -34198,6 +34201,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1608576091}
   m_CullTransparentMesh: 1
+--- !u!114 &1608576095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608576091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1caf56295483ec949a552610571de9ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textBox: {fileID: 1608576091}
 --- !u!1 &1609600574
 GameObject:
   m_ObjectHideFlags: 0
@@ -35939,7 +35955,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bd88755df8cd2346ad97f9bf3f2075a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idBackingScene: {fileID: 891185098}
 --- !u!1 &1676937827
 GameObject:
   m_ObjectHideFlags: 0

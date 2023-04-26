@@ -8,7 +8,7 @@ public class SceneChanging : MonoBehaviour
     public int idForShop = 0;
     void Awake()
     {
-        if(idForShop != 7)
+        if(idForShop != 7 && GameManager.Instance != null)
         {
             GameManager.Instance.idTileForBackFromShop = idForShop;
         }

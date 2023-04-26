@@ -39,7 +39,7 @@ public class BattleInformation : MonoBehaviour
 
     public void enemyTroopsUpdate(bool isAdd)
     {
-        Debug.Log(enemyTroopsTxt.text);
+        //Debug.Log(enemyTroopsTxt.text);
         int i = GameObject.FindGameObjectsWithTag("Enemy").Length;
         if (isAdd)
         {
