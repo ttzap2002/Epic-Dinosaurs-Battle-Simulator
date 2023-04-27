@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     public GameObject draggable;
     public int idTileForBackFromShop = 0; //int, przeznaczony do cofania ze sklepu. 0- oznacza menu i jest domyœlne. Jednak jak wyjdziesz z lvlu do sklepu, to wróci ciê do wyboru lvlu. z sandboxu do wyboru mapy itp
     public int numberOfShopScreen = 0; //int przeznaczony do wyboru, który element sklepu jest widoczny (czy aktualnie przegl¹dane s¹ dinozaury, mapy czy co). Numeracja: 0-dinozaury, 1-mapy, 2-pieni¹dze, 99-brak
-    public int money = 10; // iloœæ posiadanej waluty przez gracza wykorzystywane do gry
+    //public int money = 10; // iloœæ posiadanej waluty przez gracza wykorzystywane do gry // nie aktualne. aktualnie kasa jest w dynamic data
     public DinoStats dinosaurStats; //klasa, posiadaj¹ca pocz¹tkowe statystyki ka¿dego dinozaura
     public DynamicData dynamicData;
     public static GameManager Instance { get { return _instance; } }
@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
         {
             levelContainer.AddAllScene();
             dinosaurStats = new DinoStats();
-            dynamicData = new DynamicData(new List<int>(){ 0, 1, 1, 1 }, new List<int>() { 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0 }, new List<bool>() {false,true,false }, 100);
+            dynamicData = new DynamicData(new List<int>(){ 0, 1, 1, 1 }, new List<int>() { 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0 }, new List<bool>() {false,true,false }, 25000);
             isFirst = false;
         }
          SceneManager.sceneLoaded += OnSceneLoaded; 

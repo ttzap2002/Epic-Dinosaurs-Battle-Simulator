@@ -838,7 +838,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 59014442}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 366615141}
+        m_TargetAssemblyTypeName: DinoStatsForShop, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &59014442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1308,7 +1320,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 87167739}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1469819279}
+        m_TargetAssemblyTypeName: DinoStatsForShop, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &87167739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2193,7 +2217,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 136349492}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 212895910}
+        m_TargetAssemblyTypeName: DinoStatsForShop, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &136349492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2426,6 +2462,7 @@ MonoBehaviour:
   hp: {fileID: 763417247}
   speed: {fileID: 1711528746}
   price: {fileID: 485784880}
+  money: {fileID: 2051869586}
 --- !u!114 &155938472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3182,6 +3219,7 @@ MonoBehaviour:
   hp: {fileID: 1085941266}
   speed: {fileID: 100019661}
   price: {fileID: 1392050905}
+  money: {fileID: 2051869586}
 --- !u!114 &212895911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4487,6 +4525,7 @@ MonoBehaviour:
   hp: {fileID: 859276527}
   speed: {fileID: 524564379}
   price: {fileID: 1846989588}
+  money: {fileID: 2051869586}
 --- !u!114 &286381233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5722,6 +5761,7 @@ MonoBehaviour:
   hp: {fileID: 1219878468}
   speed: {fileID: 679556617}
   price: {fileID: 1425650431}
+  money: {fileID: 2051869586}
 --- !u!114 &330472378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6313,6 +6353,7 @@ MonoBehaviour:
   hp: {fileID: 1591788621}
   speed: {fileID: 1103879294}
   price: {fileID: 2128491015}
+  money: {fileID: 2051869586}
 --- !u!114 &366615142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7490,7 +7531,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 454779543}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1070255222}
+        m_TargetAssemblyTypeName: DinoStatsForShop, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &454779543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7866,6 +7919,7 @@ MonoBehaviour:
   hp: {fileID: 168716259}
   speed: {fileID: 17398711}
   price: {fileID: 582798291}
+  money: {fileID: 2051869586}
 --- !u!114 &485408915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8403,7 +8457,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 554723873}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 727775221}
+        m_TargetAssemblyTypeName: DinoStatsForShop, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &554723873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8636,6 +8702,7 @@ MonoBehaviour:
   hp: {fileID: 1738254481}
   speed: {fileID: 1833350005}
   price: {fileID: 768125405}
+  money: {fileID: 2051869586}
 --- !u!114 &576258421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8892,7 +8959,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 587965077}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 330472377}
+        m_TargetAssemblyTypeName: DinoStatsForShop, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &587965077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9087,7 +9166,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 599566785}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2102319613}
+        m_TargetAssemblyTypeName: DinoStatsForShop, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &599566785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9217,6 +9308,7 @@ MonoBehaviour:
   hp: {fileID: 1660888161}
   speed: {fileID: 1538248420}
   price: {fileID: 1664688071}
+  money: {fileID: 2051869586}
 --- !u!114 &661749178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10163,6 +10255,7 @@ MonoBehaviour:
   hp: {fileID: 1603235139}
   speed: {fileID: 2062065149}
   price: {fileID: 745182220}
+  money: {fileID: 2051869586}
 --- !u!114 &698802064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10479,6 +10572,7 @@ MonoBehaviour:
   hp: {fileID: 1163490797}
   speed: {fileID: 397746168}
   price: {fileID: 1084995519}
+  money: {fileID: 2051869586}
 --- !u!114 &727775222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12804,6 +12898,7 @@ MonoBehaviour:
   hp: {fileID: 1591029745}
   speed: {fileID: 1919252687}
   price: {fileID: 365093623}
+  money: {fileID: 2051869586}
 --- !u!114 &873922570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13076,7 +13171,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 881592366}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1258788278}
+        m_TargetAssemblyTypeName: DinoStatsForShop, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &881592366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13245,7 +13352,6 @@ MonoBehaviour:
   draggable: {fileID: 0}
   idTileForBackFromShop: 0
   numberOfShopScreen: 0
-  money: 0
 --- !u!4 &891185099
 Transform:
   m_ObjectHideFlags: 0
@@ -14116,7 +14222,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 942592715}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 576258420}
+        m_TargetAssemblyTypeName: DinoStatsForShop, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &942592715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14580,7 +14698,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1015441577}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 661749177}
+        m_TargetAssemblyTypeName: DinoStatsForShop, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1015441577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15056,7 +15186,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1050219991}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 698802063}
+        m_TargetAssemblyTypeName: DinoStatsForShop, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1050219991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15192,6 +15334,7 @@ MonoBehaviour:
   hp: {fileID: 205302917}
   speed: {fileID: 1279261466}
   price: {fileID: 814558646}
+  money: {fileID: 2051869586}
 --- !u!1 &1073817308
 GameObject:
   m_ObjectHideFlags: 0
@@ -16155,7 +16298,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1126852006}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1135398368}
+        m_TargetAssemblyTypeName: DinoStatsForShop, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1126852006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16253,6 +16408,7 @@ MonoBehaviour:
   hp: {fileID: 155884167}
   speed: {fileID: 928327139}
   price: {fileID: 664199248}
+  money: {fileID: 2051869586}
 --- !u!114 &1134632235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16350,6 +16506,7 @@ MonoBehaviour:
   hp: {fileID: 1455818913}
   speed: {fileID: 563839763}
   price: {fileID: 1580428760}
+  money: {fileID: 2051869586}
 --- !u!114 &1135398369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18332,7 +18489,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1232012763}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 286381232}
+        m_TargetAssemblyTypeName: DinoStatsForShop, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1232012763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18567,6 +18736,7 @@ MonoBehaviour:
   hp: {fileID: 1767309113}
   speed: {fileID: 57552055}
   price: {fileID: 1157170508}
+  money: {fileID: 2051869586}
 --- !u!114 &1250633383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18737,6 +18907,7 @@ MonoBehaviour:
   hp: {fileID: 1322135796}
   speed: {fileID: 1227257156}
   price: {fileID: 1215325193}
+  money: {fileID: 2051869586}
 --- !u!114 &1258788279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18931,7 +19102,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1266792797}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1984931959}
+        m_TargetAssemblyTypeName: DinoStatsForShop, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1266792797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20850,7 +21033,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1404077250}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 155938471}
+        m_TargetAssemblyTypeName: DinoStatsForShop, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1404077250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21798,7 +21993,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1466589356}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1250633382}
+        m_TargetAssemblyTypeName: DinoStatsForShop, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1466589356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21896,6 +22103,7 @@ MonoBehaviour:
   hp: {fileID: 208617043}
   speed: {fileID: 68318173}
   price: {fileID: 1713312304}
+  money: {fileID: 2051869586}
 --- !u!114 &1469819280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26965,6 +27173,7 @@ MonoBehaviour:
   hp: {fileID: 1383026165}
   speed: {fileID: 946860072}
   price: {fileID: 1432888886}
+  money: {fileID: 2051869586}
 --- !u!114 &1797933179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28096,7 +28305,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1884070558}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 485408914}
+        m_TargetAssemblyTypeName: DinoStatsForShop, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1884070558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28773,7 +28994,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1946192873}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 873922569}
+        m_TargetAssemblyTypeName: DinoStatsForShop, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1946192873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29157,6 +29390,7 @@ MonoBehaviour:
   hp: {fileID: 686687928}
   speed: {fileID: 934014327}
   price: {fileID: 1204729331}
+  money: {fileID: 2051869586}
 --- !u!114 &1984931960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29278,7 +29512,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1986151705}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1134632234}
+        m_TargetAssemblyTypeName: DinoStatsForShop, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1986151705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30244,6 +30490,7 @@ MonoBehaviour:
   hp: {fileID: 1149993702}
   speed: {fileID: 1470505136}
   price: {fileID: 1794772196}
+  money: {fileID: 2051869586}
 --- !u!114 &2102319614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30365,7 +30612,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2104914423}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1797933178}
+        m_TargetAssemblyTypeName: DinoStatsForShop, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2104914423
 MonoBehaviour:
   m_ObjectHideFlags: 0

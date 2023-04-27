@@ -12,7 +12,7 @@ public class MoneyOfPlayer : MonoBehaviour
     void Start()
     {
         moneyTxt = textBox.GetComponent<TextMeshProUGUI>();
-        moneyTxt.text = GameManager.Instance.money.ToString();
+        moneyTxt.text = GameManager.Instance.dynamicData.Money.ToString();
     }
 
     // Update is called once per frame
