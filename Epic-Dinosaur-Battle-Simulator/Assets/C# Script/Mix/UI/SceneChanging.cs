@@ -58,4 +58,9 @@ public class SceneChanging : MonoBehaviour
         GameManager.Instance.RefreshGameObjects();
         SceneManager.LoadScene(0);
     }
+
+    public void MapSelector()
+    {
+        SceneManager.LoadScene(6);
+    }
 }
