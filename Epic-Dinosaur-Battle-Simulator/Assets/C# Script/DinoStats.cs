@@ -27,9 +27,9 @@ public class DinoStats
 
     public DinoStats() 
     {
-        Dinosaurs.Add(new OneDinoStat("Allosaurus fragilis",5,5,5,500));
-        Dinosaurs.Add(new OneDinoStat("T-rex", 5, 5, 5, 500));
-        Dinosaurs.Add(new OneDinoStat("Spinozaur", 5, 5, 5, 500));
+        Dinosaurs.Add(new OneDinoStat("Allosaurus fragilis",10,5,5,500));
+        Dinosaurs.Add(new OneDinoStat("T-rex", 15, 16, 35, 1500));
+        Dinosaurs.Add(new OneDinoStat("Spinozaur", 25, 27, 45, 11500));
         Dinosaurs.Add(new OneDinoStat("Apatosaurus", 5, 5, 5, 500));
         Dinosaurs.Add(new OneDinoStat("Diplodocus", 5, 5, 5, 500));
         Dinosaurs.Add(new OneDinoStat("Barosaurus", 5, 5, 5, 500));

@@ -9,12 +9,12 @@ public class DynamicData
     List<bool> terrain = new List<bool>(); // odblokowane mapy dla sandboxu. true- gracz moze grac, false -nie moze
     int money; // jest to waluta in-game
 
-    public DynamicData(List<int> unlockLvls, List<int> dinosaurs, List<bool> terrain, int fang)
+    public DynamicData(List<int> unlockLvls, List<int> dinosaurs, List<bool> terrain, int money)
     {
         UnlockLvls = unlockLvls;
         Dinosaurs = dinosaurs;
         Terrain = terrain;
-        Fang = fang;
+        Money = money;
     }
 
     // w przyszlosci mozna dodac skorki dinozaurów
@@ -22,7 +22,7 @@ public class DynamicData
     public List<int> UnlockLvls { get => unlockLvls; set => unlockLvls = value; }
     public List<int> Dinosaurs { get => dinosaurs; set => dinosaurs = value; }
     public List<bool> Terrain { get => terrain; set => terrain = value; }
-    public int Fang { get => money; set => money = value; }
+    public int Money { get => money; set => money = value; }
 
     
 }
