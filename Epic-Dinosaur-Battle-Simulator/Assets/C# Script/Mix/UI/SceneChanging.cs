@@ -16,17 +16,14 @@ public class SceneChanging : MonoBehaviour
 
     public void Continents()
     {
-
         GameManager.Instance.isContainRequireComponent = false;
         SceneManager.LoadScene(1);
     }
     public void Sandbox()
     {
-  
         SceneManager.LoadScene(5);
         GameManager.Instance.isContainRequireComponent = true;
         GameManager.Instance.AddScene(0);
-    
     }
     public void Shop()
     {
@@ -48,12 +45,10 @@ public class SceneChanging : MonoBehaviour
     public void LevelBattleChoice()
     {
         SceneManager.LoadScene(3);
-
     }
 
     public void MainMenu()
     {
-        
         GameManager.Instance.isContainRequireComponent = false;
         GameManager.Instance.RefreshGameObjects();
         SceneManager.LoadScene(0);
@@ -61,6 +56,8 @@ public class SceneChanging : MonoBehaviour
 
     public void MapSelector()
     {
+        GameManager.Instance.isContainRequireComponent = false;
+        GameManager.Instance.RefreshGameObjects();
         SceneManager.LoadScene(6);
     }
 }
