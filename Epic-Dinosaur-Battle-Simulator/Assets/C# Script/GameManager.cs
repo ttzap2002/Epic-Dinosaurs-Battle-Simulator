@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
         {
             levelContainer.AddAllScene();
             dinosaurStats = new DinoStats();
-            dynamicData = new DynamicData(new List<int>(){ 0, 1, 1, 1 }, new List<int>() { 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0 }, new List<bool>() {false,true,false }, 25000);
+            dynamicData = new DynamicData(new List<int>(){ 0, 1, 1, 1 }, new List<int>() { 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0 }, new List<bool>() {true,true,false,false}, 25000);
             isFirst = false;
         }
          SceneManager.sceneLoaded += OnSceneLoaded; 
