@@ -237,7 +237,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 4172, y: -717}
+  m_AnchoredPosition: {x: 4172, y: -674}
   m_SizeDelta: {x: 160, y: 31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &32183184
@@ -1204,6 +1204,7 @@ MonoBehaviour:
   battleManager: {fileID: 0}
   draggable: {fileID: 0}
   idTileForBackFromShop: 0
+  numberOfShopScreen: 0
 --- !u!4 &631196569
 Transform:
   m_ObjectHideFlags: 0
@@ -1340,7 +1341,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 934, y: -248}
+  m_AnchoredPosition: {x: 934, y: -235}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1118066646
@@ -1838,7 +1839,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dec4930912a38541b44fe93793fc9e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menager: {fileID: 631196568}
   idForShop: 2
 --- !u!1 &1591032128
 GameObject:
