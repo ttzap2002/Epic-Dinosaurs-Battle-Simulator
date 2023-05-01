@@ -11,6 +11,7 @@ public class CreatureStats : MonoBehaviour
     public float radius = 5f;
     public float hp = 100f;
     public ScriptType behaviourScript;
+    public FightScript fightingScript;
 }
 
 
@@ -18,4 +19,12 @@ public enum ScriptType
 {
     MeleeFighter,
     Spawner
+}
+
+
+public enum FightScript 
+{
+    Traditional,//zwykle uderzenie
+    LongNeck
+
 }

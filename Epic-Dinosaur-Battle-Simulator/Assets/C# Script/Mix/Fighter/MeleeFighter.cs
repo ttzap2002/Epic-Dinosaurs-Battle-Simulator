@@ -13,7 +13,7 @@ public class MeleeFighter : Fighter
     int a = 1;
     private CreatureStats myStats = null;
     private FighterPlacement fighter = null;
-
+    private LongNeckFighting longNeckFighter = null;
 
 
     private void Start()
@@ -22,6 +22,7 @@ public class MeleeFighter : Fighter
  
         myStats = gameObject.GetComponent<CreatureStats>();
         fighter = gameObject.GetComponent<FighterPlacement>();
+       
         if (target is null) { GetFirstTarget(); }
     }
 
@@ -49,7 +50,23 @@ public class MeleeFighter : Fighter
                 {
                     Move(); if (Vector3.Distance(transform.position, target.transform.position) < myStats.radius) { isFighting = true;  }
                 }
-                else { Hit(target); }
+                else 
+                {
+                    if (myStats.fightingScript == FightScript.Traditional) 
+                    {
+                        Hit(target);
+                    }
+                    else 
+                    {
+                        if (myStats.fightingScript == FightScript.LongNeck && longNeckFighter is null)
+                        {
+                            longNeckFighter=gameObject.GetComponent<LongNeckFighting>();
+                        }
+                        longNeckFighter.HitAllEnemies(myStats.attack);
+                        Debug.Log("bije");
+                    }
+
+                }
 
             }
             else if (target == null) { GetFirstTarget(); }

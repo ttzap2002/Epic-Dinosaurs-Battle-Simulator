@@ -69,7 +69,7 @@ public class SceneLevel
             gameObj.gameObject.transform.position =new Vector3(obj.XAxis,obj.YAxis, obj.ZAxis);
             gameObj.tag = "Enemy";
             Object.Destroy(gameObj.gameObject.GetComponent<MeleeFighter>());
-
+            Object.Destroy(gameObj.gameObject.GetComponent<DestroyObjectOnClick>());
             GameManager.Instance.enemyGameObjects.Add(gameObj);
             gameObj.SetActive(true);
         }

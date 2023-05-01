@@ -7,6 +7,14 @@ public class LongNeckFighting : MonoBehaviour
     public float attackRange = 20f; // zasiêg ataku
     public float attackAngle = 135f; // k¹t ataku
     public LayerMask attackLayer; // warstwa obiektów, na których mo¿na zaatakowaæ
+   
+    private List<GameObject> Targets;
+    private bool isReadyToHit = false;
+
+    private void Start()
+    {
+        Targets = new List<GameObject>();
+    }
     private void Update()
     {
         // Pozycja dinozaura
@@ -38,7 +46,7 @@ public class LongNeckFighting : MonoBehaviour
             // Wykryto trafienie w obiekt
             if(hit.collider.gameObject.tag != this.gameObject.tag) 
             {
-                Debug.Log("Pies");
+                Targets.Add(hit.collider.gameObject);
             }
                
          
@@ -49,7 +57,8 @@ public class LongNeckFighting : MonoBehaviour
             // Wykryto trafienie w obiekt
             if (hit.collider.gameObject.tag != this.gameObject.tag)
             {
-                Debug.Log("Hit object: " + hit.collider.name);
+                Targets.Add(hit.collider.gameObject);
+
             }
         }
 
@@ -58,12 +67,28 @@ public class LongNeckFighting : MonoBehaviour
             // Wykryto trafienie w obiekt
             if (hit.collider.gameObject.tag != this.gameObject.tag)
             {
-                Debug.Log("Hit object: " + hit.collider.name);
+                Targets.Add(hit.collider.gameObject);
             }
         }
+
+       
+
         
     }
   
+
+    public void HitAllEnemies(float damage) 
+    {
+        if (Targets.Count > 0)
+        {
+            foreach (GameObject g in Targets)
+            {
+                CreatureStats c = g.GetComponent<CreatureStats>();
+                c.hp -= damage;
+                if (c.hp <= 0) { GameManager.Instance.battleManager.RemoveFromList(c.gameObject.GetComponent<FighterPlacement>()); Destroy(c.gameObject); }
+            }
+        }
+    }
     // Funkcja, która sprawdza, czy punkt znajduje siê wewn¹trz trójk¹ta
     private bool IsPointInsideTriangle(Vector3 pointA, Vector3 pointB, Vector3 pointC, Vector3 testPoint)
     {
