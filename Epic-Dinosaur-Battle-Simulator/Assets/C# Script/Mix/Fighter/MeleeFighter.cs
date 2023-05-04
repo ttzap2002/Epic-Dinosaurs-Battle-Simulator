@@ -14,7 +14,9 @@ public class MeleeFighter : Fighter
     private CreatureStats myStats = null;
     private FighterPlacement fighter = null;
     private LongNeckFighting longNeckFighter = null;
-
+    public float interval = 5.0f; // Czas w sekundach miêdzy wywo³aniami akcji
+    private float timer = 0.0f; // Zmienna do œledzenia czasu
+    [SerializeField] private float rotationSpeed = 5f;
 
     private void Start()
     {
@@ -24,15 +26,21 @@ public class MeleeFighter : Fighter
         fighter = gameObject.GetComponent<FighterPlacement>();
        
         if (target is null) { GetFirstTarget(); }
+        if (myStats.fightingScript == FightScript.LongNeck && longNeckFighter is null)
+        {
+            longNeckFighter = gameObject.GetComponent<LongNeckFighting>();
+            longNeckFighter.onNoTargets.AddListener(this.SetFightingStatusToFalse);
+        }
     }
 
 
 
     void Update()
     {
+        timer += Time.deltaTime;
         if (a%3==0)
         { 
-            if (target != null)
+            if (target != null && target!=gameObject)
             {
             
                 if (isChangeOfSquare())
@@ -48,32 +56,36 @@ public class MeleeFighter : Fighter
                 }
                 if (!isFighting)
                 {
-                    Move(); if (Vector3.Distance(transform.position, target.transform.position) < myStats.radius) { isFighting = true;  }
+                    Move(); if (Vector3.Distance(transform.position, target.transform.position) <= myStats.radius && Vector3.Distance(transform.position, target.transform.position)!=0) { isFighting = true;  }
                 }
                 else 
                 {
-                    if (myStats.fightingScript == FightScript.Traditional) 
+                    if (timer >= interval)
                     {
-                        Hit(target);
-                    }
-                    else 
-                    {
-                        if (myStats.fightingScript == FightScript.LongNeck && longNeckFighter is null)
+                        if (myStats.fightingScript == FightScript.Traditional)
                         {
-                            longNeckFighter=gameObject.GetComponent<LongNeckFighting>();
+                            Hit(target);
                         }
-                        longNeckFighter.HitAllEnemies(myStats.attack);
-                        Debug.Log("bije");
+                        else
+                        {
+                            if (!longNeckFighter.HitAllEnemies(myStats.attack))
+                            {
+                                isFighting = false;
+                            }
+                        }
+                        timer = 0f;
                     }
-
                 }
+         
 
             }
-            else if (target == null) { GetFirstTarget(); }
+            else { GetFirstTarget(); }
         }
 
-            //transform.position += moveDirection;
-            a++;
+
+        //transform.position += moveDirection;
+        a++;
+      
     }
 
     public void GetFirstTarget() {
@@ -83,7 +95,11 @@ public class MeleeFighter : Fighter
     {
         gameObject.SetActive(false);
     }
-  
+
+    public void SetFightingStatusToFalse()
+    {
+        isFighting = false;
+    }
     private void Hit(GameObject myEnemy) 
     {
         if (myEnemy == this.gameObject)
@@ -106,7 +122,10 @@ public class MeleeFighter : Fighter
     private void Move()
     {
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * myStats.speed);
- 
+        Vector3 directionToEnemy = (transform.position- target.transform.position).normalized;
+        Quaternion targetRotation = Quaternion.LookRotation(directionToEnemy);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+
     }
 
     private bool isChangeOfSquare()

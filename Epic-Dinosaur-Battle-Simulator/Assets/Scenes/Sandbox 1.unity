@@ -6971,6 +6971,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1050780943}
     m_Modifications:
     - target: {fileID: 1872857819210954644, guid: 8218ada0f9896b541843275852d8be29, type: 3}
+      propertyPath: hp
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1872857819210954644, guid: 8218ada0f9896b541843275852d8be29, type: 3}
       propertyPath: cost
       value: 50
       objectReference: {fileID: 0}
@@ -7115,3 +7119,19 @@ MonoBehaviour:
   attackLayer:
     serializedVersion: 2
     m_Bits: 64
+  ile: 0
+  onNoTargets:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: MeleeFighter, Assembly-CSharp
+        m_MethodName: SetFightingStatusToFalse
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

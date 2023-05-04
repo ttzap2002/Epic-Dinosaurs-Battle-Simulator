@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LongNeckFighting : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class LongNeckFighting : MonoBehaviour
     private List<GameObject> Targets;
     private bool isReadyToHit = false;
 
+    [SerializeField]private int ile = 0;
+    public UnityEvent onNoTargets;
     private void Start()
     {
         Targets = new List<GameObject>();
@@ -33,29 +36,32 @@ public class LongNeckFighting : MonoBehaviour
         Vector3 rightPoint = Quaternion.Euler(0, attackAngle, 0) * (-forward) * attackRange + position;
 
         // Rysowanie linii do punktów ataku (opcjonalnie)
-        Debug.DrawLine(leftPoint, rightPoint, Color.red);
-        Debug.DrawLine(position, leftPoint, Color.red);
-        Debug.DrawLine(position, rightPoint, Color.red);
-        
-        
+        //Debug.DrawLine(leftPoint, rightPoint, Color.red);
+        //Debug.DrawLine(position, leftPoint, Color.red);
+        //Debug.DrawLine(position, rightPoint, Color.red);
+        Debug.DrawRay(leftPoint, rightPoint - leftPoint, Color.red);
+        Debug.DrawRay(position, (leftPoint - position).normalized * attackRange, Color.green);
+        Debug.DrawRay(position, (rightPoint - position).normalized * attackRange, Color.green);
+       
+
         // Wykonanie raycastów do obiektów z warstwy attackLayer
         RaycastHit hit;
 
-        if (Physics.Raycast(position, (leftPoint - rightPoint).normalized, out hit, attackRange, attackLayer))
+        if (Physics.Raycast(leftPoint, (rightPoint - leftPoint), out hit, attackRange, attackLayer))
         {
             // Wykryto trafienie w obiekt
-            if(hit.collider.gameObject.tag != this.gameObject.tag) 
+            if(hit.collider.gameObject.tag != this.gameObject.tag && !Targets.Contains(hit.collider.gameObject)) 
             {
                 Targets.Add(hit.collider.gameObject);
             }
-               
+            Debug.Log("Pies");
          
         }
 
         if (Physics.Raycast(position, (leftPoint - position).normalized, out hit, attackRange, attackLayer))
         {
             // Wykryto trafienie w obiekt
-            if (hit.collider.gameObject.tag != this.gameObject.tag)
+            if (hit.collider.gameObject.tag != this.gameObject.tag && !Targets.Contains(hit.collider.gameObject))
             {
                 Targets.Add(hit.collider.gameObject);
 
@@ -65,30 +71,54 @@ public class LongNeckFighting : MonoBehaviour
         if (Physics.Raycast(position, (rightPoint - position).normalized, out hit, attackRange, attackLayer))
         {
             // Wykryto trafienie w obiekt
-            if (hit.collider.gameObject.tag != this.gameObject.tag)
+            if (hit.collider.gameObject.tag != this.gameObject.tag && !Targets.Contains(hit.collider.gameObject) )
             {
                 Targets.Add(hit.collider.gameObject);
             }
         }
 
-       
+        if (Targets.Count == 0)
+        {
+            onNoTargets.Invoke(); // Wywo³aj zdarzenie, gdy nie ma celów
+        }
 
+
+        ile = Targets.Count;
         
     }
-  
 
-    public void HitAllEnemies(float damage) 
+    public bool HitAllEnemies(float damage)
     {
         if (Targets.Count > 0)
         {
-            foreach (GameObject g in Targets)
+            for (int i = Targets.Count - 1; i >= 0; i--)
             {
+                GameObject g = Targets[i];
+                if (g == null)
+                {
+                    Targets.RemoveAt(i);
+                    continue;
+                }
                 CreatureStats c = g.GetComponent<CreatureStats>();
                 c.hp -= damage;
-                if (c.hp <= 0) { GameManager.Instance.battleManager.RemoveFromList(c.gameObject.GetComponent<FighterPlacement>()); Destroy(c.gameObject); }
+                if (c.hp <= 0)
+                {
+                    GameManager.Instance.battleManager.RemoveFromList(c.gameObject.GetComponent<FighterPlacement>());
+                    Targets.RemoveAt(i);
+                    Destroy(c.gameObject);
+                }
             }
         }
+        if (Targets.Count > 0) 
+        {
+            return true;
+        }
+        return false;
     }
+
+
+    
+       
     // Funkcja, która sprawdza, czy punkt znajduje siê wewn¹trz trójk¹ta
     private bool IsPointInsideTriangle(Vector3 pointA, Vector3 pointB, Vector3 pointC, Vector3 testPoint)
     {
