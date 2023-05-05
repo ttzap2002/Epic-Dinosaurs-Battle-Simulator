@@ -10,81 +10,86 @@ public class LongNeckFighting : MonoBehaviour
     public LayerMask attackLayer; // warstwa obiektów, na których mo¿na zaatakowaæ
    
     private List<GameObject> Targets;
-    private bool isReadyToHit = false;
+    private bool isReady = false;
 
     [SerializeField]private int ile = 0;
-    public UnityEvent onNoTargets;
+    public UnityAction onNoTargets;
+
+    public bool IsReady { get => isReady; set => isReady = value; }
+
     private void Start()
     {
         Targets = new List<GameObject>();
     }
     private void Update()
     {
-        // Pozycja dinozaura
-        Vector3 position = transform.position;
-
-        // Kierunek dinozaura
-        Vector3 forward = transform.forward;
-
-        // Punkt na przodzie zasiêgu ataku
-        Vector3 frontPoint = position + forward * attackRange;
-
-        // Punkt na lewej krawêdzi zasiêgu ataku
-        Vector3 leftPoint = Quaternion.Euler(0, -attackAngle, 0) * (-forward) * attackRange + position;
-
-        // Punkt na prawej krawêdzi zasiêgu ataku
-        Vector3 rightPoint = Quaternion.Euler(0, attackAngle, 0) * (-forward) * attackRange + position;
-
-        // Rysowanie linii do punktów ataku (opcjonalnie)
-        //Debug.DrawLine(leftPoint, rightPoint, Color.red);
-        //Debug.DrawLine(position, leftPoint, Color.red);
-        //Debug.DrawLine(position, rightPoint, Color.red);
-        Debug.DrawRay(leftPoint, rightPoint - leftPoint, Color.red);
-        Debug.DrawRay(position, (leftPoint - position).normalized * attackRange, Color.green);
-        Debug.DrawRay(position, (rightPoint - position).normalized * attackRange, Color.green);
-       
-
-        // Wykonanie raycastów do obiektów z warstwy attackLayer
-        RaycastHit hit;
-
-        if (Physics.Raycast(leftPoint, (rightPoint - leftPoint), out hit, attackRange, attackLayer))
+        if (isReady)
         {
-            // Wykryto trafienie w obiekt
-            if(hit.collider.gameObject.tag != this.gameObject.tag && !Targets.Contains(hit.collider.gameObject)) 
-            {
-                Targets.Add(hit.collider.gameObject);
-            }
-            Debug.Log("Pies");
-         
-        }
+            // Pozycja dinozaura
+            Vector3 position = transform.position;
 
-        if (Physics.Raycast(position, (leftPoint - position).normalized, out hit, attackRange, attackLayer))
-        {
-            // Wykryto trafienie w obiekt
-            if (hit.collider.gameObject.tag != this.gameObject.tag && !Targets.Contains(hit.collider.gameObject))
+            // Kierunek dinozaura
+            Vector3 forward = transform.forward;
+
+            // Punkt na przodzie zasiêgu ataku
+            Vector3 frontPoint = position + forward * attackRange;
+
+            // Punkt na lewej krawêdzi zasiêgu ataku
+            Vector3 leftPoint = Quaternion.Euler(0, -attackAngle, 0) * (-forward) * attackRange + position;
+
+            // Punkt na prawej krawêdzi zasiêgu ataku
+            Vector3 rightPoint = Quaternion.Euler(0, attackAngle, 0) * (-forward) * attackRange + position;
+
+            // Rysowanie linii do punktów ataku (opcjonalnie)
+            //Debug.DrawLine(leftPoint, rightPoint, Color.red);
+            //Debug.DrawLine(position, leftPoint, Color.red);
+            //Debug.DrawLine(position, rightPoint, Color.red);
+            Debug.DrawRay(leftPoint, rightPoint - leftPoint, Color.red);
+            Debug.DrawRay(position, (leftPoint - position).normalized * attackRange, Color.green);
+            Debug.DrawRay(position, (rightPoint - position).normalized * attackRange, Color.green);
+
+
+            // Wykonanie raycastów do obiektów z warstwy attackLayer
+            RaycastHit hit;
+
+            if (Physics.Raycast(leftPoint, (rightPoint - leftPoint), out hit, attackRange, attackLayer))
             {
-                Targets.Add(hit.collider.gameObject);
+                // Wykryto trafienie w obiekt
+                if (hit.collider.gameObject.tag != this.gameObject.tag && !Targets.Contains(hit.collider.gameObject))
+                {
+                    Targets.Add(hit.collider.gameObject);
+                }
+                Debug.Log("Pies");
 
             }
-        }
 
-        if (Physics.Raycast(position, (rightPoint - position).normalized, out hit, attackRange, attackLayer))
-        {
-            // Wykryto trafienie w obiekt
-            if (hit.collider.gameObject.tag != this.gameObject.tag && !Targets.Contains(hit.collider.gameObject) )
+            if (Physics.Raycast(position, (leftPoint - position).normalized, out hit, attackRange, attackLayer))
             {
-                Targets.Add(hit.collider.gameObject);
+                // Wykryto trafienie w obiekt
+                if (hit.collider.gameObject.tag != this.gameObject.tag && !Targets.Contains(hit.collider.gameObject))
+                {
+                    Targets.Add(hit.collider.gameObject);
+
+                }
             }
+
+            if (Physics.Raycast(position, (rightPoint - position).normalized, out hit, attackRange, attackLayer))
+            {
+                // Wykryto trafienie w obiekt
+                if (hit.collider.gameObject.tag != this.gameObject.tag && !Targets.Contains(hit.collider.gameObject))
+                {
+                    Targets.Add(hit.collider.gameObject);
+                }
+            }
+
+            if (Targets.Count == 0)
+            {
+                onNoTargets.Invoke(); // Wywo³aj zdarzenie, gdy nie ma celów
+            }
+
+
+            ile = Targets.Count;
         }
-
-        if (Targets.Count == 0)
-        {
-            onNoTargets.Invoke(); // Wywo³aj zdarzenie, gdy nie ma celów
-        }
-
-
-        ile = Targets.Count;
-        
     }
 
     public bool HitAllEnemies(float damage)

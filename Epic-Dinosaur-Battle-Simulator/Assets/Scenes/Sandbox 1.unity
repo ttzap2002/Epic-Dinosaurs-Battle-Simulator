@@ -3414,6 +3414,7 @@ MonoBehaviour:
   attack: 20
   radius: 5
   hp: 100
+  interval: 2
   behaviourScript: 0
   fightingScript: 0
 --- !u!114 &1032565345
@@ -4107,6 +4108,7 @@ MonoBehaviour:
   attack: 20
   radius: 5
   hp: 100
+  interval: 2
   behaviourScript: 0
   fightingScript: 0
 --- !u!114 &1282390824
@@ -6694,6 +6696,7 @@ MonoBehaviour:
   attack: 20
   radius: 5
   hp: 100
+  interval: 5
   behaviourScript: 1
   fightingScript: 0
 --- !u!114 &2102282048
@@ -6983,6 +6986,14 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1872857819210954644, guid: 8218ada0f9896b541843275852d8be29, type: 3}
+      propertyPath: attack
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1872857819210954644, guid: 8218ada0f9896b541843275852d8be29, type: 3}
+      propertyPath: interval
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1872857819210954644, guid: 8218ada0f9896b541843275852d8be29, type: 3}
       propertyPath: fightingScript
       value: 1
       objectReference: {fileID: 0}
@@ -7120,18 +7131,3 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   ile: 0
-  onNoTargets:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MeleeFighter, Assembly-CSharp
-        m_MethodName: SetFightingStatusToFalse
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2

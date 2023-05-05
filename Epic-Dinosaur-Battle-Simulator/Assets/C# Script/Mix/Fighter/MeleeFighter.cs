@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
@@ -14,7 +15,6 @@ public class MeleeFighter : Fighter
     private CreatureStats myStats = null;
     private FighterPlacement fighter = null;
     private LongNeckFighting longNeckFighter = null;
-    public float interval = 5.0f; // Czas w sekundach miêdzy wywo³aniami akcji
     private float timer = 0.0f; // Zmienna do œledzenia czasu
     [SerializeField] private float rotationSpeed = 5f;
 
@@ -29,11 +29,11 @@ public class MeleeFighter : Fighter
         if (myStats.fightingScript == FightScript.LongNeck && longNeckFighter is null)
         {
             longNeckFighter = gameObject.GetComponent<LongNeckFighting>();
-            longNeckFighter.onNoTargets.AddListener(this.SetFightingStatusToFalse);
+
+            longNeckFighter.onNoTargets += SetFightingStatusToFalse;
+            longNeckFighter.IsReady=true;
         }
     }
-
-
 
     void Update()
     {
@@ -60,7 +60,11 @@ public class MeleeFighter : Fighter
                 }
                 else 
                 {
-                    if (timer >= interval)
+                    if (Vector3.Distance(transform.position, target.transform.position) > myStats.radius) 
+                    {
+                        isFighting = false;
+                    }
+                    if (timer >= myStats.interval)
                     {
                         if (myStats.fightingScript == FightScript.Traditional)
                         {
@@ -99,6 +103,7 @@ public class MeleeFighter : Fighter
     public void SetFightingStatusToFalse()
     {
         isFighting = false;
+        Debug.Log("Done");
     }
     private void Hit(GameObject myEnemy) 
     {
