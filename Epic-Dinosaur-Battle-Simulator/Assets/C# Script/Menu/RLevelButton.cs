@@ -23,9 +23,12 @@ public class RLevelButton : MonoBehaviour
 
     public void LevelBattleChoice()
     {
-        GameManager.Instance.isContainRequireComponent = true;
-        GameManager.Instance.AddScene(SceneId);
-        SceneManager.LoadScene("LVL");
+        if (GameManager.Instance.dynamicData.UnlockLvls[continent] >= SceneId)
+        {
+            GameManager.Instance.isContainRequireComponent = true;
+            GameManager.Instance.AddScene(SceneId);
+            SceneManager.LoadScene("LVL");
+        }
     }
 
 }
