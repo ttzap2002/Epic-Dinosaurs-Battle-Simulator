@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     //public int money = 10; // iloœæ posiadanej waluty przez gracza wykorzystywane do gry // nie aktualne. aktualnie kasa jest w dynamic data
     public DinoStats dinosaurStats; //klasa, posiadaj¹ca pocz¹tkowe statystyki ka¿dego dinozaura
     public DynamicData dynamicData;
+    public Dictionary<string, bool> canISetWarrior = new Dictionary<string, bool>(); //Zmienna booli które decyduj¹ czy mo¿na stawiaæ jednostkê. Jeden false blokuje t¹ mo¿liwoœæ. Konkretne nazwy s¹ w starcie (pod awake)
     public static GameManager Instance { get { return _instance; } }
 
     public bool IsRun { get => isRun; set => isRun = value; }
@@ -67,7 +68,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        canISetWarrior.Add("Joystick", true); //zmienna dla naciœniêcia joysticka
+        canISetWarrior.Add("Warrior", true); //zmienna dla naciœniêcia paska z wyborem wojowników
     }
     // Update is called once per frame
     void Update()
