@@ -35,10 +35,10 @@ public class LongNeckFighting : MonoBehaviour
             Vector3 frontPoint = position + forward * attackRange;
 
             // Punkt na lewej krawêdzi zasiêgu ataku
-            Vector3 leftPoint = Quaternion.Euler(0, -attackAngle, 0) * (-forward) * attackRange + position;
+            Vector3 leftPoint = Quaternion.Euler(0, -attackAngle, 0) * (forward) * attackRange + position;
 
             // Punkt na prawej krawêdzi zasiêgu ataku
-            Vector3 rightPoint = Quaternion.Euler(0, attackAngle, 0) * (-forward) * attackRange + position;
+            Vector3 rightPoint = Quaternion.Euler(0, attackAngle, 0) * (forward) * attackRange + position;
 
             // Rysowanie linii do punktów ataku (opcjonalnie)
             //Debug.DrawLine(leftPoint, rightPoint, Color.red);

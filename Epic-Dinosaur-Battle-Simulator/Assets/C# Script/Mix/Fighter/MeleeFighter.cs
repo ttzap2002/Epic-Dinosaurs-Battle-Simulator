@@ -17,11 +17,14 @@ public class MeleeFighter : Fighter
     private LongNeckFighting longNeckFighter = null;
     private float timer = 0.0f; // Zmienna do œledzenia czasu
     [SerializeField] private float rotationSpeed = 5f;
+    private float basicx;
 
     private void Start()
     {
         //GameManager.Instance.Awake();
- 
+
+        basicx = transform.rotation.x;
+
         myStats = gameObject.GetComponent<CreatureStats>();
         fighter = gameObject.GetComponent<FighterPlacement>();
        
@@ -128,9 +131,15 @@ public class MeleeFighter : Fighter
     {
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * myStats.speed);
         Vector3 directionToEnemy = (transform.position- target.transform.position).normalized;
+        directionToEnemy = directionToEnemy.normalized;
+        
+        
         Quaternion targetRotation = Quaternion.LookRotation(directionToEnemy);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
-
+        Quaternion rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+        rotation.x = transform.rotation.x;
+        rotation.z = transform.rotation.z;
+        transform.rotation = rotation;
+        
     }
 
     private bool isChangeOfSquare()
