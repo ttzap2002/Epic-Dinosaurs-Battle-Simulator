@@ -17,7 +17,6 @@ public class DestroyObjectOnClick : MonoBehaviour
             GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().
                 enemyMoneyUpdate(-objectToDestroy.GetComponent<CreatureStats>().cost);
             GameManager.Instance.enemyGameObjects.Remove(objectToDestroy);
-
         }
         else 
         {

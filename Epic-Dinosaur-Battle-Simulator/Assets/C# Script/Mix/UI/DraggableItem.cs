@@ -38,6 +38,10 @@ public class DraggableItem : MonoBehaviour //IDragHandler, IEndDragHandler,IBegi
     private bool isPossible() 
     {
         Vector3 vector = GameManager.Instance.mouse.transform.position;
+        if (EventSystem.current.IsPointerOverGameObject()) 
+        {
+            return false;
+        }
         foreach (GameObject g in GameManager.Instance.blueGameObjects.Concat(GameManager.Instance.enemyGameObjects)) 
         {
             if (Vector3.Distance(vector, g.transform.position) < 4) 
@@ -88,10 +92,14 @@ public GameObject Uiinformation;
     private void SetInstanceOfObject() 
     {
         GameObject obj = Instantiate(GameManager.Instance.prefabGameObjects[fighterid]);
+        CreatureStats creature = obj.GetComponent<CreatureStats>();
+        creature.UpgradeStatLevel(GameManager.Instance.dynamicData.Dinosaurs[fighterid]-1);
         obj.SetActive(true);
-        int cost = obj.GetComponent<CreatureStats>().cost;
+        int cost = creature.cost;
+
         Destroy(obj.gameObject.GetComponent<MeleeFighter>());
-        obj.transform.position = GameManager.Instance.mouse.transform.position;
+        obj.transform.position = new Vector3(GameManager.Instance.mouse.transform.position.x,
+            creature.YAxis, GameManager.Instance.mouse.transform.position.z); 
       
         if (obj.transform.position.z > 50f)
         {
@@ -101,7 +109,8 @@ public GameObject Uiinformation;
             else {
                 GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().blueTroopsUpdate(true);
                 GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().blueMoneyUpdate(cost);
-                GameManager.Instance.blueGameObjects.Add(obj); }
+                GameManager.Instance.blueGameObjects.Add(obj); 
+            }
      
         }
         else

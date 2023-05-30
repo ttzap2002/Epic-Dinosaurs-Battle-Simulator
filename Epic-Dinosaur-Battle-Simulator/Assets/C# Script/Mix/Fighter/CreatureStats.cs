@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,8 +12,23 @@ public class CreatureStats : MonoBehaviour
     public float radius = 5f;
     public float hp = 100f;
     public float interval = 5.0f; // Czas w sekundach miêdzy wywo³aniami akcji
+    [SerializeField] private float yAxis;
+
     public ScriptType behaviourScript;
     public FightScript fightingScript;
+
+    public float YAxis { get => yAxis; set => yAxis = value; }
+
+    public void UpgradeStatLevel(int level)
+    {
+        attack *= (float)Math.Pow(1.1, level);
+        speed *= (float)Math.Pow(1.1, level);
+        hp *= (float)Math.Pow(1.1, level);
+    }
+
+
+
+
 }
 
 
