@@ -5,29 +5,33 @@ using UnityEngine;
 
 public class DestroyObjectOnClick : MonoBehaviour
 {
-    public GameObject objectToDestroy;
 
-   
+
+
+    private void Start()
+    {
+        Debug.Log(gameObject.transform.position);
+    }
     private void OnMouseDown()
     {
-        if(objectToDestroy.gameObject.tag == "Enemy") 
+        if(gameObject.tag == "Enemy") 
         {
             GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().
                 enemyTroopsUpdate(false);
             GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().
-                enemyMoneyUpdate(-objectToDestroy.GetComponent<CreatureStats>().cost);
-            GameManager.Instance.enemyGameObjects.Remove(objectToDestroy);
+                enemyMoneyUpdate(-gameObject.GetComponent<CreatureStats>().cost);
+            GameManager.Instance.enemyGameObjects.Remove(gameObject);
         }
         else 
         {
             GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().
                blueTroopsUpdate(false);
             GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().
-                       blueMoneyUpdate(-objectToDestroy.GetComponent<CreatureStats>().cost);
-            GameManager.Instance.blueGameObjects.Remove(objectToDestroy);
+                       blueMoneyUpdate(-gameObject.GetComponent<CreatureStats>().cost);
+            GameManager.Instance.blueGameObjects.Remove(gameObject);
 
         }
 
-        Destroy(objectToDestroy);   
+        Destroy(gameObject);   
     }
 }

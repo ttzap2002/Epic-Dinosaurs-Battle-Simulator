@@ -133,12 +133,25 @@ public class MeleeFighter : Fighter
         Vector3 directionToEnemy = (transform.position- target.transform.position).normalized;
         directionToEnemy = directionToEnemy.normalized;
         
+        if (!myStats.IsObligatoryToRotate)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(directionToEnemy);
+            Quaternion rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+            //rotation.x = transform.rotation.x;
+            //rotation.z = transform.rotation.z;
+            transform.rotation = rotation;
         
-        Quaternion targetRotation = Quaternion.LookRotation(directionToEnemy);
-        Quaternion rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
-        rotation.x = transform.rotation.x;
-        rotation.z = transform.rotation.z;
-        transform.rotation = rotation;
+        }
+        /*
+        else
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(directionToEnemy);
+            Quaternion rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+            rotation.x = transform.rotation.x;
+            rotation.y = -transform.rotation.y;
+            rotation.z = transform.rotation.z;
+            transform.rotation = rotation;
+        }*/
         
     }
 

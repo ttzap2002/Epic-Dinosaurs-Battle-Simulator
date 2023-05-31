@@ -14,7 +14,6 @@ public class DraggableItem : MonoBehaviour //IDragHandler, IEndDragHandler,IBegi
 
     private void Update()
     {
-        
         if (isDragging)
         {
             if (isPossible())
@@ -23,6 +22,7 @@ public class DraggableItem : MonoBehaviour //IDragHandler, IEndDragHandler,IBegi
             }
         }
     }
+
 
     public void OnMouseDown()
     {
@@ -33,7 +33,6 @@ public class DraggableItem : MonoBehaviour //IDragHandler, IEndDragHandler,IBegi
     {
         isDragging = false;
     }
-
 
     private bool isPossible() 
     {
@@ -103,28 +102,49 @@ public GameObject Uiinformation;
       
         if (obj.transform.position.z > 50f)
         {
-            obj.tag = "Blue";
-          
-            if (GameManager.Instance.blueGameObjects.Count >= GameManager.Instance.currentScene.Troopslimit) { Destroy(obj); }
-            else {
-                GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().blueTroopsUpdate(true);
-                GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().blueMoneyUpdate(cost);
-                GameManager.Instance.blueGameObjects.Add(obj); 
-            }
-     
+            SetObject("Blue", obj, cost,creature);
         }
         else
         {
-            obj.tag = "Enemy";
-            
+            SetObject("Enemy", obj, cost,creature);
+        }
+    }
+    private void SetObject(string type,GameObject obj,int cost,CreatureStats creature) 
+    {
+        obj.tag= type;
+
+        if (type == "Blue")
+        {
+            if (GameManager.Instance.blueGameObjects.Count >= GameManager.Instance.currentScene.Troopslimit) { Destroy(obj); }
+            else
+            {
+
+                GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().blueTroopsUpdate(true);
+                GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().blueMoneyUpdate(cost);
+                GameManager.Instance.blueGameObjects.Add(obj);
+                if (creature.IsObligatoryToRotate)
+                {
+                    obj.transform.rotation = new Quaternion(obj.transform.rotation.x, 180, obj.transform.rotation.z, obj.transform.rotation.w);
+
+                }
+            }
+        }
+        else 
+        {
             if (GameManager.Instance.enemyGameObjects.Count >= GameManager.Instance.currentScene.EnemyTroopsLimit) { Destroy(obj); }
-            else {
+            else
+            {
                 GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().enemyTroopsUpdate(true);
                 GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().enemyMoneyUpdate(cost);
                 GameManager.Instance.enemyGameObjects.Add(obj);
+                if (!creature.IsObligatoryToRotate) 
+                {
+                    obj.transform.rotation = new Quaternion(obj.transform.rotation.x, 180, obj.transform.rotation.z, obj.transform.rotation.w);
+
+                }
             }
         }
-        
+
     }
 
 

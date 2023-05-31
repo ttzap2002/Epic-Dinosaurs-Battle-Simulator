@@ -13,11 +13,14 @@ public class CreatureStats : MonoBehaviour
     public float hp = 100f;
     public float interval = 5.0f; // Czas w sekundach miêdzy wywo³aniami akcji
     [SerializeField] private float yAxis;
+    [SerializeField] private bool isObligatoryToRotate;
 
     public ScriptType behaviourScript;
     public FightScript fightingScript;
 
     public float YAxis { get => yAxis; set => yAxis = value; }
+    public bool IsObligatoryToRotate { get => isObligatoryToRotate; set => isObligatoryToRotate = value; }
+
 
     public void UpgradeStatLevel(int level)
     {
@@ -25,10 +28,6 @@ public class CreatureStats : MonoBehaviour
         speed *= (float)Math.Pow(1.1, level);
         hp *= (float)Math.Pow(1.1, level);
     }
-
-
-
-
 }
 
 
