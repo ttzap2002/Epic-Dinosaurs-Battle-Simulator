@@ -11,7 +11,6 @@ public class LongNeckFighting : MonoBehaviour
    
     private List<GameObject> Targets;
     private bool isReady = false;
-
     [SerializeField]private int ile = 0;
     public UnityAction onNoTargets;
 
@@ -108,7 +107,8 @@ public class LongNeckFighting : MonoBehaviour
                 c.hp -= damage;
                 if (c.hp <= 0)
                 {
-                    GameManager.Instance.battleManager.RemoveFromList(c.gameObject.GetComponent<FighterPlacement>());
+                    FighterPlacement fighter = c.gameObject.GetComponent<FighterPlacement>();
+                    GameManager.Instance.battleManager.RemoveFromList(fighter,fighter.row,fighter.col);
                     Targets.RemoveAt(i);
                     Destroy(c.gameObject);
                 }

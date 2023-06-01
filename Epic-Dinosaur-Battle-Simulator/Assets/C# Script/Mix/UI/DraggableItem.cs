@@ -96,7 +96,6 @@ public GameObject Uiinformation;
         obj.SetActive(true);
         int cost = creature.cost;
 
-        Destroy(obj.gameObject.GetComponent<MeleeFighter>());
         obj.transform.position = new Vector3(GameManager.Instance.mouse.transform.position.x,
             creature.YAxis, GameManager.Instance.mouse.transform.position.z); 
       

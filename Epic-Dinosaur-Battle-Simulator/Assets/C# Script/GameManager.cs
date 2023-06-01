@@ -67,18 +67,23 @@ public class GameManager : MonoBehaviour
     {
         canISetWarrior.Add("Joystick", true); //zmienna dla naciœniêcia joysticka
         canISetWarrior.Add("Warrior", true); //zmienna dla naciœniêcia paska z wyborem wojowników
+        
+
+
     }
+    /*
     // Update is called once per frame
     void Update()
     {
+        
         if (isRun)
         {
-            if (battleManager.EnemyFighters.Count == 0 || battleManager.BlueFighters.Count == 0)
+            if (battleManager.EnemyFighters.Length == 0 || battleManager.BlueFighters.Length == 0)
             {
                 endOfBattle.SetActive(true);
                 var img = endOfBattle.GetComponentInChildren<Image>();
                 TextMeshProUGUI pro = img.GetComponentInChildren<TextMeshProUGUI>();
-                if(battleManager.EnemyFighters.Count == 0) 
+                if(battleManager.EnemyFighters.Length.Equals(0)) 
                 {
                     pro.text = "blue win";
                 }
@@ -91,15 +96,45 @@ public class GameManager : MonoBehaviour
         }
 
     }
+    */
+    public void CheckIfEndOfBattle()
+    {
+        bool isEnemyFighterContainAnyFighter = battleManager.IsEnemyFighterContainAnyFighter();
+        if (!isEnemyFighterContainAnyFighter || !battleManager.IsBlueFighterContainAnyFighter()) 
+        {
+            endOfBattle.SetActive(true);
+            var img = endOfBattle.GetComponentInChildren<Image>();
+            TextMeshProUGUI pro = img.GetComponentInChildren<TextMeshProUGUI>();
+            if (!isEnemyFighterContainAnyFighter)
+            {
+                pro.text = "blue win";
+            }
+            else { pro.text = "red win"; }
+
+            isRun = false;
+            enemyGameObjects = null;
+            blueGameObjects = null;
+            battleManager.DestroyAllObject();
+        }
+        
+    }
 
     public void SetBattleManager()
     {
-        List<FighterPlacement> enemyFighters = enemyGameObjects.Select(x => x.GetComponent<FighterPlacement>()).ToList();
-        List<FighterPlacement> blueFighters = blueGameObjects.Select(x => x.GetComponent<FighterPlacement>()).ToList();
+        List<FighterPlacement>[,] enemyFighters = new List<FighterPlacement>[10, 10];
+        List<FighterPlacement>[,] blueFighters = new List<FighterPlacement>[10, 10];
+        for (int i = 0; i < 10; i++)
+        {
+            for (int j = 0; j < 10; j++)
+            {
+                enemyFighters[i, j] = new List<FighterPlacement>();
+                blueFighters[i, j] = new List<FighterPlacement>();
+            }
+        }
         battleManager = new BattleManager(enemyFighters, blueFighters);
 
     }
-
+    
     public void GameResume()
     {
         Time.timeScale = 1f;
@@ -132,6 +167,7 @@ public class GameManager : MonoBehaviour
             mouse = GameObject.Find("MouseTarget");
             Canvas canvas = GameObject.Find("AllPrefab").GetComponent<Canvas>();
             prefabGameObjects = new List<GameObject>();
+            SetBattleManager();
             Debug.Log(canvas.transform.childCount);
             for (int i = 0; i < canvas.transform.childCount; i++) // przechodzimy przez wszystkie dzieci Transform
             {
