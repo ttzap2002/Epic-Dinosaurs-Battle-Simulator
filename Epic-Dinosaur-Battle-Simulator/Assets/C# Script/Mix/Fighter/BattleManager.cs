@@ -122,14 +122,34 @@ public class BattleManager : MonoBehaviour
        {
             for(int i = list.Count - 1; i >= 0; i--) 
             {
-                list[i].gameObject.GetComponent<MeleeFighter>().IsActiveForBattle=false;           
+                CreatureStats c = list[i].gameObject.GetComponent<CreatureStats>();
+                if (c.behaviourScript == ScriptType.MeleeFighter) 
+                {
+                    list[i].gameObject.GetComponent<MeleeFighter>().IsActiveForBattle = false;
+
+                }
+                else 
+                {
+                    list[i].gameObject.GetComponent<SpawnerBehaviour>().IsReadyForFight = false;
+
+                }
             }
        }
        foreach (var list in BlueFighters)
        {
             for (int i = list.Count - 1; i >= 0; i--)
             {
-                list[i].gameObject.GetComponent<MeleeFighter>().IsActiveForBattle = false;
+                CreatureStats c = list[i].gameObject.GetComponent<CreatureStats>();
+                if (c.behaviourScript == ScriptType.MeleeFighter)
+                {
+                    list[i].gameObject.GetComponent<MeleeFighter>().IsActiveForBattle = false;
+
+                }
+                else
+                {
+                    list[i].gameObject.GetComponent<SpawnerBehaviour>().IsReadyForFight = false;
+
+                }
             }
         }
 
