@@ -7,7 +7,7 @@ public class CreatureStats : MonoBehaviour
 {
     public int index = 0;
     public int cost = 0;
-    public float speed = 25f;
+    [SerializeField]private float speed = 25f;
     public float attack = 20f;
     public float radius = 5f;
     public float hp = 100f;
@@ -20,7 +20,7 @@ public class CreatureStats : MonoBehaviour
 
     public float YAxis { get => yAxis; set => yAxis = value; }
     public bool IsObligatoryToRotate { get => isObligatoryToRotate; set => isObligatoryToRotate = value; }
-
+    public float Speed { get => speed; set => speed = value; }
 
     public void UpgradeStatLevel(int level)
     {

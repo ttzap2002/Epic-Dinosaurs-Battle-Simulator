@@ -47,7 +47,6 @@ public class BattleManager : MonoBehaviour
                 foreach(var fighter in listOfFighter) 
                 {
                     fighter.TryChangeTarget(obj, m);
-
                 }
             }
         }

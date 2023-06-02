@@ -14,15 +14,17 @@ public class MeleeFighter : Fighter
 
     public bool isFighting = false;
     int a = 1;
-    bool isActiveForBattle=false;
-    private CreatureStats myStats = null;
+    [SerializeField]bool isActiveForBattle=false;
+    protected CreatureStats myStats = null;
     private FighterPlacement fighter = null;
     private LongNeckFighting longNeckFighter = null;
     private float timer = 0.0f; // Zmienna do œledzenia czasu
-    [SerializeField] private float rotationSpeed = 5f;
+    [SerializeField] protected float rotationSpeed = 5f;
+    [SerializeField] private bool isResistForStunning;
     private float basicx;
 
     public bool IsActiveForBattle { get => isActiveForBattle; set => isActiveForBattle = value; }
+    public bool IsResistForStunning { get => isResistForStunning; set => isResistForStunning = value; }
 
     private void Start()
     {
@@ -43,7 +45,7 @@ public class MeleeFighter : Fighter
         }
     }
 
-    void Update()
+    protected virtual void Update()
     {
         if (isActiveForBattle)
         {
@@ -101,23 +103,32 @@ public class MeleeFighter : Fighter
             //transform.position += moveDirection;
             a++;
         }
-      
+        else if(GameManager.Instance.IsRun && !isResistForStunning) 
+        {
+            if (timer < 5f) 
+            {
+                timer += Time.deltaTime;
+            }
+            else 
+            {
+                timer = 0;
+                isActiveForBattle = true;
+            }
+
+        }
     }
 
     public void GetFirstTarget() {
         if (tag == "Blue") { target=FindNearestEnemy(transform.position); }
         else { target=FindNearestEnemy(transform.position);}}
-    public void setdisactive()
-    {
-        gameObject.SetActive(false);
-    }
+  
 
     public void SetFightingStatusToFalse()
     {
         isFighting = false;
         Debug.Log("Done");
     }
-    private void Hit(GameObject myEnemy) 
+    protected virtual void Hit(GameObject myEnemy) 
     {
         if (myEnemy == this.gameObject)
         {
@@ -142,9 +153,9 @@ public class MeleeFighter : Fighter
     }
  
 
-    private void Move()
+    protected virtual void Move()
     {
-        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * myStats.speed);
+        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * myStats.Speed);
         Vector3 directionToEnemy = (transform.position- target.transform.position).normalized;
         directionToEnemy = directionToEnemy.normalized;
         

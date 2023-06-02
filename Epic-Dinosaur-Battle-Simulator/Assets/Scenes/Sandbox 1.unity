@@ -455,7 +455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ed8cea137a4c6f4cbd6bfd1c9c99f76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fighterId: 1
+  fighterId: 4
 --- !u!114 &151638411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2709,8 +2709,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd317d2a16319d46985aa2f2b310f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 200
-  cost: 0
+  index: 3
+  cost: 500
   speed: 25
   attack: 20
   radius: 5
@@ -2779,7 +2779,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   isFighting: 0
+  isActiveForBattle: 0
   rotationSpeed: 5
+  isResistForStunning: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -4172,7 +4174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd317d2a16319d46985aa2f2b310f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 1
+  index: 4
   cost: 20
   speed: 50
   attack: 20
@@ -4202,6 +4204,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2297558768082561242, guid: 17318334f36c9a84c9ead655c8369a36, type: 3}
   m_PrefabInstance: {fileID: 2297558768712325763}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1032565350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032565333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f408767065bc42049b234209b6ea046a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  isFighting: 0
+  isActiveForBattle: 0
+  rotationSpeed: 5
+  isResistForStunning: 0
+  stunningProbability: 0.65
+  stunningProbAfterHit: 0.035
+  BasicSpeed: 50
 --- !u!1 &1050780939
 GameObject:
   m_ObjectHideFlags: 0
@@ -6681,7 +6703,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   isFighting: 0
+  isActiveForBattle: 0
   rotationSpeed: 5
+  isResistForStunning: 0
 --- !u!4 &1697827793 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5801487862589110096, guid: 8218ada0f9896b541843275852d8be29, type: 3}
@@ -8004,7 +8028,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   isFighting: 0
+  isActiveForBattle: 0
   rotationSpeed: 5
+  isResistForStunning: 0
 --- !u!1 &1999772363
 GameObject:
   m_ObjectHideFlags: 0
