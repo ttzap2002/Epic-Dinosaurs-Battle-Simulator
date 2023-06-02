@@ -59,6 +59,7 @@ public class DinoStatsForShop : MonoBehaviour
             speedTxt.text = $"{ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].speed, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino] - 1)} (+{ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].speed, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino]) - ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].speed, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino] - 1)})";
             priceTxt.text = ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].price, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino]).ToString();
             moneyTxt.text = GameManager.Instance.dynamicData.Money.ToString();
+            GameManager.Instance.dynamicData.Save();
         }
     }
 

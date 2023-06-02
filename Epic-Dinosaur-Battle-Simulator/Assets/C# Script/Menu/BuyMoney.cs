@@ -18,6 +18,7 @@ public class BuyMoney : MonoBehaviour
             GameManager.Instance.dynamicData.Money += int.Parse(gettingmoneyTxt.text);
             moneyTxt = money.GetComponent<TextMeshProUGUI>();
             moneyTxt.text = GameManager.Instance.dynamicData.Money.ToString();
+            GameManager.Instance.dynamicData.Save();
         }
     }
 

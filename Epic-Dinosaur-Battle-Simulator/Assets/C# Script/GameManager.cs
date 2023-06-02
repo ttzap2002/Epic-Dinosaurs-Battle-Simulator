@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     public DinoStats dinosaurStats; //klasa, posiadaj¹ca pocz¹tkowe statystyki ka¿dego dinozaura
     public DynamicData dynamicData;
     public Dictionary<string, bool> canISetWarrior = new Dictionary<string, bool>(); //Zmienna booli które decyduj¹ czy mo¿na stawiaæ jednostkê. Jeden false blokuje t¹ mo¿liwoœæ. Konkretne nazwy s¹ w starcie (pod awake)
+    
     public static GameManager Instance { get { return _instance; } }
 
     public bool IsRun { get => isRun; set => isRun = value; }
@@ -52,7 +53,8 @@ public class GameManager : MonoBehaviour
         {
             levelContainer.AddAllScene();
             dinosaurStats = new DinoStats();
-            dynamicData = new DynamicData(new List<int>(){ 80, 1, 1, 1 }, new List<int>() { 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0 }, new List<bool>() {true,true,false,false}, 25000);
+            //dynamicData = new DynamicData(new List<int>(){ 80, 1, 1, 1 }, new List<int>() { 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0 }, new List<bool>() {true,true,false,false}, 25000);
+            dynamicData = DynamicData.Load(isFirst);
             isFirst = false;
         }
          SceneManager.sceneLoaded += OnSceneLoaded; 

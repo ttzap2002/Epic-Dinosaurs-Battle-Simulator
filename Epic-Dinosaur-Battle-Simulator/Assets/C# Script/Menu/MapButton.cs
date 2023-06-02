@@ -36,6 +36,7 @@ public class MapButton : MonoBehaviour
             moneyTxt = money.GetComponent<TextMeshProUGUI>();
             moneyTxt.text = GameManager.Instance.dynamicData.Money.ToString();
             Destroy(button);
+            GameManager.Instance.dynamicData.Save();
         }
     }
 
