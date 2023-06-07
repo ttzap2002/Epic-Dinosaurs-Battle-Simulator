@@ -37,27 +37,30 @@ public class BattleManager : MonoBehaviour
         else { EnemyFighters.Remove(g); }
     }
     */
-    public void React(bool isReactForBlue,GameObject obj,MeleeFighter m) 
+    public void React(bool isReactForBlue,GameObject obj) 
     {
-        
-        if (isReactForBlue)
+        if (obj != null)
         {
-            foreach (var listOfFighter in blueFighters)
+
+            if (isReactForBlue)
             {
-                foreach(var fighter in listOfFighter) 
+                foreach (var listOfFighter in blueFighters)
                 {
-                    fighter.TryChangeTarget(obj, m);
+                    foreach (var fighter in listOfFighter)
+                    {
+                        fighter.TryChangeTarget(obj);
+                    }
                 }
             }
-        }
-        else
-        {
-            foreach (var listOfFighter in EnemyFighters)
+            else
             {
-                foreach (var fighter in listOfFighter)
+                foreach (var listOfFighter in EnemyFighters)
                 {
-                    fighter.TryChangeTarget(obj, m);
+                    foreach (var fighter in listOfFighter)
+                    {
+                        fighter.TryChangeTarget(obj);
 
+                    }
                 }
             }
         }

@@ -8,12 +8,19 @@ public class FighterPlacement: MonoBehaviour
 {
     public int row;
     public int col;
+    private MeleeFighter me;
     void Start()
     {
         row = CheckWhichSquare()[0];
         col = CheckWhichSquare()[1]; 
+        me=gameObject.GetComponent<MeleeFighter>();
     }
-
+    public void CreateForSpawner() 
+    {
+        row = CheckWhichSquare()[0];
+        col = CheckWhichSquare()[1];
+        me = gameObject.GetComponent<MeleeFighter>();
+    } 
     public int[] CheckWhichSquare() 
     {
         int[] list = new int[2];
@@ -22,13 +29,16 @@ public class FighterPlacement: MonoBehaviour
         return list;
     }
 
-    public void TryChangeTarget(GameObject obj, MeleeFighter fighter)
+    public void TryChangeTarget(GameObject obj)
     {
-        
-        if (Vector3.Distance(transform.position, obj.transform.position) < Vector3.Distance(transform.position, fighter.target.transform.position))
+        if (me.target != null)
         {
-            fighter.target=obj;
-         
+
+            if (Vector3.Distance(transform.position, obj.transform.position) < Vector3.Distance(transform.position, me.target.transform.position))
+            {
+                me.target = obj;
+            }
         }
+        
     }
 }

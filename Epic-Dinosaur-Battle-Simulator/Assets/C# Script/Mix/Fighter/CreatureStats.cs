@@ -12,6 +12,7 @@ public class CreatureStats : MonoBehaviour
     public float radius = 5f;
     public float hp = 100f;
     public float interval = 5.0f; // Czas w sekundach miêdzy wywo³aniami akcji
+    [SerializeField] private bool haveTailAttack;
     [SerializeField] private float yAxis;
     [SerializeField] private bool isObligatoryToRotate;
 
@@ -21,6 +22,7 @@ public class CreatureStats : MonoBehaviour
     public float YAxis { get => yAxis; set => yAxis = value; }
     public bool IsObligatoryToRotate { get => isObligatoryToRotate; set => isObligatoryToRotate = value; }
     public float Speed { get => speed; set => speed = value; }
+    public bool HaveTailAttack { get => haveTailAttack; set => haveTailAttack = value; }
 
     public void UpgradeStatLevel(int level)
     {

@@ -15,6 +15,6 @@ public class FighterIdForButton :MonoBehaviour
         DraggableItem draggableItem = draggableItemGO.AddComponent<DraggableItem>(); // dodanie komponentu DraggableItem
         draggableItem.fighterid = fighterId; // przypisanie fighterid
         GameManager.Instance.itemForDraggable = draggableItem;*/
-        GameManager.Instance.draggable.GetComponent<DraggableItem>().fighterid= fighterId;
+        GameManager.Instance.draggable.GetComponent<DraggableItem>().Fighterid= fighterId;
     }
 }

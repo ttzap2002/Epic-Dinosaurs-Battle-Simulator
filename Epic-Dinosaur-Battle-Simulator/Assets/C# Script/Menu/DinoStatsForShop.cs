@@ -43,10 +43,7 @@ public class DinoStatsForShop : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
 
-    }
 
     public void Buy()
     {

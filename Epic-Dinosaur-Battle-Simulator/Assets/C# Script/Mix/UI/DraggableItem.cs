@@ -8,9 +8,10 @@ using UnityEngine.EventSystems;
 
 public class DraggableItem : MonoBehaviour //IDragHandler, IEndDragHandler,IBeginDragHandler
 {
-    public int fighterid;
+    [SerializeField]private int fighterid=0;
     private bool isDragging = false;
 
+    public int Fighterid { get => fighterid; set => fighterid = value; }
 
     private void Update()
     {
@@ -40,6 +41,10 @@ public class DraggableItem : MonoBehaviour //IDragHandler, IEndDragHandler,IBegi
         if (EventSystem.current.IsPointerOverGameObject()) 
         {
             return false;
+        }
+        if(GameManager.Instance.blueGameObjects==null || GameManager.Instance.enemyGameObjects == null) 
+        {
+            return true;
         }
         foreach (GameObject g in GameManager.Instance.blueGameObjects.Concat(GameManager.Instance.enemyGameObjects)) 
         {

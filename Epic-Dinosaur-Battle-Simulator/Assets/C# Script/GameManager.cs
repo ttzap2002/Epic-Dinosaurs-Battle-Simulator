@@ -102,23 +102,28 @@ public class GameManager : MonoBehaviour
     public void CheckIfEndOfBattle()
     {
         bool isEnemyFighterContainAnyFighter = battleManager.IsEnemyFighterContainAnyFighter();
-        if (!isEnemyFighterContainAnyFighter || !battleManager.IsBlueFighterContainAnyFighter()) 
+        if (!isEnemyFighterContainAnyFighter || !battleManager.IsBlueFighterContainAnyFighter())
         {
-            endOfBattle.SetActive(true);
-            var img = endOfBattle.GetComponentInChildren<Image>();
-            TextMeshProUGUI pro = img.GetComponentInChildren<TextMeshProUGUI>();
-            if (!isEnemyFighterContainAnyFighter)
-            {
-                pro.text = "blue win";
-            }
-            else { pro.text = "red win"; }
-
-            isRun = false;
-            enemyGameObjects = null;
-            blueGameObjects = null;
-            battleManager.DestroyAllObject();
+            FinishGame(isEnemyFighterContainAnyFighter);
         }
-        
+
+    }
+
+    public void FinishGame(bool isEnemyFighterContainAnyFighter)
+    {
+        endOfBattle.SetActive(true);
+        var img = endOfBattle.GetComponentInChildren<Image>();
+        TextMeshProUGUI pro = img.GetComponentInChildren<TextMeshProUGUI>();
+        if (!isEnemyFighterContainAnyFighter)
+        {
+            pro.text = "blue win";
+        }
+        else { pro.text = "red win"; }
+
+        isRun = false;
+        enemyGameObjects = null;
+        blueGameObjects = null;
+        battleManager.DestroyAllObject();
     }
 
     public void SetBattleManager()

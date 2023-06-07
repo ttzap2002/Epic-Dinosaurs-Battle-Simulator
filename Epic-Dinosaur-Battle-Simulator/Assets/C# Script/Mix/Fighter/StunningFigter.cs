@@ -37,7 +37,7 @@ public class StunningFigter: MeleeFighter
         if (myEnemy == this.gameObject)
         {
             isFighting = false;
-            GetFirstTarget();
+            GetTarget();
         }
         else
         {
