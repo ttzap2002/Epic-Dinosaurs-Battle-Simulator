@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
 using System;
+using UnityEditorInternal;
+using System.Diagnostics;
 
 public class GameManager : MonoBehaviour
 {
@@ -33,7 +35,8 @@ public class GameManager : MonoBehaviour
     public DinoStats dinosaurStats; //klasa, posiadaj¹ca pocz¹tkowe statystyki ka¿dego dinozaura
     public DynamicData dynamicData;
     public Dictionary<string, bool> canISetWarrior = new Dictionary<string, bool>(); //Zmienna booli które decyduj¹ czy mo¿na stawiaæ jednostkê. Jeden false blokuje t¹ mo¿liwoœæ. Konkretne nazwy s¹ w starcie (pod awake)
-    
+    public int salaryForBattle;
+
     public static GameManager Instance { get { return _instance; } }
 
     public bool IsRun { get => isRun; set => isRun = value; }
@@ -124,6 +127,23 @@ public class GameManager : MonoBehaviour
         enemyGameObjects = null;
         blueGameObjects = null;
         battleManager.DestroyAllObject();
+        //Przydzielanie pieniedzy po bitwie
+        salaryForBattle = currentScene.Id;
+        if(salaryForBattle == 0)
+        {
+            System.Random random = new System.Random();
+            salaryForBattle = random.Next(100,201);
+        }
+        else
+        {
+            salaryForBattle = salaryForBattle % 80;
+            System.Random random = new System.Random();
+            salaryForBattle = random.Next(100 + salaryForBattle, (salaryForBattle * 3)+101);
+        }
+        dynamicData.Money += salaryForBattle;
+        UnityEngine.Debug.Log(salaryForBattle);
+        Instance.dynamicData.Save();
+        //koniec przydzielania piniazkow
     }
 
     public void SetBattleManager()
@@ -175,7 +195,7 @@ public class GameManager : MonoBehaviour
             Canvas canvas = GameObject.Find("AllPrefab").GetComponent<Canvas>();
             prefabGameObjects = new List<GameObject>();
             SetBattleManager();
-            Debug.Log(canvas.transform.childCount);
+            UnityEngine.Debug.Log(canvas.transform.childCount);
             for (int i = 0; i < canvas.transform.childCount; i++) // przechodzimy przez wszystkie dzieci Transform
             {
                 Transform child = canvas.transform.GetChild(i);
