@@ -11,22 +11,18 @@ public class PlayButton : MonoBehaviour
 
     public void LetsPLay()
     {
-        //GameManager.Instance.currentScene.SetObjectToScene();
-        //GameManager.Instance.SetBattleManager();
-        
-        CreateBattleManagerForBlue();
-        CreateBattleManagerForEnemy();
-       
-        GameManager.Instance.IsRun = true;
-        Destroy(GameObject.Find(("Scene Information")));
-        Destroy(GameObject.Find(("Canvas")));
-        Destroy(GameManager.Instance.UI);
-      
-        GameObject obj = GameObject.Find("Terrain");
-        GameObject.Destroy(obj.gameObject.GetComponent<DraggableItem>());
-        if(GameManager.Instance.blueGameObjects.Count==0 || GameManager.Instance.enemyGameObjects.Count == 0) 
+        if (GameManager.Instance.blueGameObjects.Count > 0 && GameManager.Instance.enemyGameObjects.Count > 0)
         {
-            GameManager.Instance.FinishGame(GameManager.Instance.enemyGameObjects.Count==0);
+            CreateBattleManagerForBlue();
+            CreateBattleManagerForEnemy();
+
+            GameManager.Instance.IsRun = true;
+            Destroy(GameObject.Find(("Scene Information")));
+            Destroy(GameObject.Find(("Canvas")));
+            Destroy(GameManager.Instance.UI);
+
+            GameObject obj = GameObject.Find("Terrain");
+            GameObject.Destroy(obj.gameObject.GetComponent<DraggableItem>());
         }
     }
 

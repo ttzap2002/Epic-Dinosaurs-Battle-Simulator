@@ -8,7 +8,7 @@ public class SpawnerBehaviour : MonoBehaviour
     private FighterPlacement fighter = null;
     private bool isReadyForFight = false;
 
-    int fighterspawn=1;
+    int fighterspawn=0;
     private int i = 0;
 
     public bool IsReadyForFight { get => isReadyForFight; set => isReadyForFight = value; }

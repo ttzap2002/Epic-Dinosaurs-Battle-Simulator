@@ -146,44 +146,65 @@ public class GameManager : MonoBehaviour
         bool isEnemyFighterContainAnyFighter = battleManager.IsEnemyFighterContainAnyFighter();
         if (!isEnemyFighterContainAnyFighter || !battleManager.IsBlueFighterContainAnyFighter())
         {
-            FinishGame(isEnemyFighterContainAnyFighter);
+            GetMoneyForLevel(FinishGame(isEnemyFighterContainAnyFighter));
         }
 
     }
 
-    public void FinishGame(bool isEnemyFighterContainAnyFighter)
+    public bool FinishGame(bool isEnemyFighterContainAnyFighter)
     {
         endOfBattle.SetActive(true);
         var img = endOfBattle.GetComponentInChildren<Image>();
         TextMeshProUGUI pro = img.GetComponentInChildren<TextMeshProUGUI>();
         if (!isEnemyFighterContainAnyFighter)
         {
-            pro.text = "blue win";
+            pro.text = "Player Blue is winner";
+            pro.color = Color.blue;
         }
-        else { pro.text = "red win"; }
+        else 
+        {
+            pro.text = "Player Red is winner";
+            pro.color = Color.red;
+        }
 
         isRun = false;
         enemyGameObjects = null;
         blueGameObjects = null;
         battleManager.DestroyAllObject();
-        //Przydzielanie pieniedzy po bitwie
+        return isEnemyFighterContainAnyFighter;
+    }
+
+    /// <summary>
+    /// Przydzielanie pieniedzy po bitwie
+    /// </summary>
+    /// <param name="isWin">Zmeinna, czy gracz wygral level</param>
+    private void GetMoneyForLevel(bool isWin)
+    {
         salaryForBattle = currentScene.Id;
-        if(salaryForBattle == 0)
+        if (salaryForBattle == 0)
         {
             System.Random random = new System.Random();
-            salaryForBattle = random.Next(100,201);
+            salaryForBattle = random.Next(70, 141);
+        }
+        else if (isWin)
+        {
+            salaryForBattle = salaryForBattle % 80;
+            System.Random random = new System.Random();
+            salaryForBattle = random.Next(100 + salaryForBattle, (salaryForBattle * 3) + 101);
         }
         else
         {
             salaryForBattle = salaryForBattle % 80;
             System.Random random = new System.Random();
-            salaryForBattle = random.Next(100 + salaryForBattle, (salaryForBattle * 3)+101);
+            salaryForBattle = random.Next(50 + salaryForBattle, (salaryForBattle * 2) + 51);
         }
         dynamicData.Money += salaryForBattle;
-        UnityEngine.Debug.Log(salaryForBattle);
+        UnityEngine.Debug.Log(salaryForBattle.ToString());
         Instance.dynamicData.Save();
-        //koniec przydzielania piniazkow
+        TextMeshProUGUI moneyInfoTxt = GameObject.Find("Money").GetComponent<TextMeshProUGUI>();
+        moneyInfoTxt.text = $"+{salaryForBattle.ToString()}";
     }
+
     /// <summary>
     /// Funkcja tworz¹ca battleManager, ustawia niezbedne pola 
     /// </summary>
