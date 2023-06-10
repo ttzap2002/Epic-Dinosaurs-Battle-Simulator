@@ -14,25 +14,63 @@ using System.Diagnostics;
 public class GameManager : MonoBehaviour
 {
     private int i = 1;
+    /// <summary>
+    /// Zmienna odpowiadaj¹ca za to czy bitwa siê rozpocze³a
+    /// </summary>
     private bool isRun = false;
+
     public bool isContainRequireComponent = false;
+    /// <summary>
+    /// isFirst zmienna do sprawdzenia czy GameManager zosta³ juz wywo³any
+    /// </summary>
     private bool isFirst = true;
+    /// <summary>
+    /// Instancja gameManager
+    /// </summary>
     private static GameManager _instance;
+
     public GameObject mouse;
     public GameObject UI;
+    /// <summary>
+    /// Ui Odpowiadaj¹ce za zakoñczenie bitwy
+    /// </summary>
     public GameObject endOfBattle;
+    /// <summary>
+    /// lista przechowuj¹ca wszyskie prefaby (wszystkich fighterów), potrzebna do stawiania nowych jednostek
+    /// </summary>
     public List<GameObject> prefabGameObjects = new List<GameObject>();
+    /// <summary>
+    /// lista przechowuj¹ca wszystkie obiekty gracza enemy
+    /// </summary>
     public List<GameObject> enemyGameObjects = new List<GameObject>();
+    /// <summary>
+    /// lista przechowuj¹ca wszystkie obiekty gracza blue
+    /// </summary>
     public List<GameObject> blueGameObjects = new List<GameObject>();
     public bool isStarted = false;
+    /// <summary>
+    /// Klasa przechowuj¹ca wszystkie lvle, wraz z odpowiedni¹ specyfikacj¹ dla ka¿dego lvl-u w tym sandbox
+    /// </summary>
     public AllLevelContainer levelContainer = new AllLevelContainer();
+    /// <summary>
+    /// Obecna level jaki jest 
+    /// </summary>
     public SceneLevel currentScene;
+    /// <summary>
+    /// klasa odpowiadaj¹ca za zarz¹dzanie bitw¹
+    /// </summary>
     public BattleManager battleManager;
+    /// <summary>
+    /// GameObject w unity do dodawawania/usuwania obiektów
+    /// </summary>
     public GameObject draggable;
     public int idTileForBackFromShop = 0; //int, przeznaczony do cofania ze sklepu. 0- oznacza menu i jest domyœlne. Jednak jak wyjdziesz z lvlu do sklepu, to wróci ciê do wyboru lvlu. z sandboxu do wyboru mapy itp
     public int numberOfShopScreen = 0; //int przeznaczony do wyboru, który element sklepu jest widoczny (czy aktualnie przegl¹dane s¹ dinozaury, mapy czy co). Numeracja: 0-dinozaury, 1-mapy, 2-pieni¹dze, 99-brak
     //public int money = 10; // iloœæ posiadanej waluty przez gracza wykorzystywane do gry // nie aktualne. aktualnie kasa jest w dynamic data
     public DinoStats dinosaurStats; //klasa, posiadaj¹ca pocz¹tkowe statystyki ka¿dego dinozaura
+    /// <summary>
+    /// przechowuje zmienne dynamiczne, konieczne do dobrego zarz¹dzania gr¹
+    /// </summary>
     public DynamicData dynamicData;
     public Dictionary<string, bool> canISetWarrior = new Dictionary<string, bool>(); //Zmienna booli które decyduj¹ czy mo¿na stawiaæ jednostkê. Jeden false blokuje t¹ mo¿liwoœæ. Konkretne nazwy s¹ w starcie (pod awake)
     public int salaryForBattle;
@@ -73,8 +111,6 @@ public class GameManager : MonoBehaviour
         canISetWarrior.Add("Joystick", true); //zmienna dla naciœniêcia joysticka
         canISetWarrior.Add("Warrior", true); //zmienna dla naciœniêcia paska z wyborem wojowników
         
-
-
     }
     /*
     // Update is called once per frame
@@ -102,6 +138,9 @@ public class GameManager : MonoBehaviour
 
     }
     */
+    /// <summary>
+    /// Funkcja sprawdzaj¹ca czy bitwa powinna siê zakoñczyæ
+    /// </summary>
     public void CheckIfEndOfBattle()
     {
         bool isEnemyFighterContainAnyFighter = battleManager.IsEnemyFighterContainAnyFighter();
@@ -145,7 +184,9 @@ public class GameManager : MonoBehaviour
         Instance.dynamicData.Save();
         //koniec przydzielania piniazkow
     }
-
+    /// <summary>
+    /// Funkcja tworz¹ca battleManager, ustawia niezbedne pola 
+    /// </summary>
     public void SetBattleManager()
     {
         List<FighterPlacement>[,] enemyFighters = new List<FighterPlacement>[10, 10];
@@ -171,16 +212,28 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
     }
 
+    /// <summary>
+    /// Funkcja która zmienia obecn¹ scene przydatna w szczególnoœci do przycisków przy lvl
+    /// </summary>
+    /// <param name="id"></param>
     public void AddScene(int id)
     {
         currentScene = levelContainer.LevelList[id];
     }
+
+    /// <summary>
+    /// Funckcja wywo³ywana przy zmianie scen
+    /// </summary>
+    /// <param name="scene"></param>
+    /// <param name="mode"></param>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        //Debug.Log("kot");
         SetNecessaryComponent();
     }
 
+    /// <summary>
+    /// Ustawia konieczne komponenty dla GameManagera (przy zmianie scen gameManager traci referencje)
+    /// </summary>
     public void SetNecessaryComponent()
     {
         if (isContainRequireComponent)
@@ -206,6 +259,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Ustawia obiekty gracza blue i enemy na nowe puste listy
+    /// </summary>
     public void RefreshGameObjects() 
     {
         blueGameObjects = new List<GameObject>();

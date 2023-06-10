@@ -10,8 +10,10 @@ using static UnityEngine.GraphicsBuffer;
 public class LongNeckFighting : AreaAttackFighter
 {
    
-   
-    [SerializeField]private int ile = 0;
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     public List<GameObject> ObjectsToHit()
     {
         // Pozycja dinozaura

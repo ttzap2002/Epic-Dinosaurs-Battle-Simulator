@@ -12,18 +12,35 @@ using UnityEngine.Experimental.Playables;
 public class MeleeFighter : Fighter
 {
     // Start is called before the first frame update
-
+    /// <summary>
+    /// zmienna odpowiadaj¹ca za to czy fighter jest w stanie walki
+    /// </summary>
     public bool isFighting = false;
     int a = 1;
+    /// <summary>
+    /// zmienna odpowiadaj¹ca za to czy fighter jest gotowy do bitwy (false na poczatku i kiedy jest oszolomiony)
+    /// </summary>
     [SerializeField]bool isActiveForBattle=false;
     protected CreatureStats myStats = null;
     private FighterPlacement fighter = null;
     private LongNeckFighting longNeckFighter = null;
     private float timer = 0.0f; // Zmienna do œledzenia czasu
+    /// <summary>
+    /// delegat przechowuj¹cy funkcje do atakowania szyj¹
+    /// </summary>
     Func<List<GameObject>> neckAttack;
+    /// <summary>
+    /// delegat przechowuj¹cy funkcje do atakowania ogonem
+    /// </summary>
     Func<List<GameObject>> tailAttack;
 
+    /// <summary>
+    /// zmienna do szybkosci rotacji
+    /// </summary>
     [SerializeField] protected float rotationSpeed = 5f;
+    /// <summary>
+    /// zmienna bool sprawdza czy obiekt jest odporny na oszo³omienie
+    /// </summary>
     [SerializeField] private bool isResistForStunning;
     private float basicx;
 

@@ -6,6 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class FighterPlacement: MonoBehaviour
 {
+    
     public int row;
     public int col;
     private MeleeFighter me;
