@@ -21,14 +21,14 @@ public class CreatureStats : MonoBehaviour
 
     public float YAxis { get => yAxis; set => yAxis = value; }
     public bool IsObligatoryToRotate { get => isObligatoryToRotate; set => isObligatoryToRotate = value; }
-    public float Speed { get => speed; set => speed = value; }
-    public bool HaveTailAttack { get => haveTailAttack; set => haveTailAttack = value; }
+    public float Speed { get => speed; set => speed = value; }    public bool HaveTailAttack { get => haveTailAttack; set => haveTailAttack = value; }
 
     public void UpgradeStatLevel(int level)
     {
         attack *= (float)Math.Pow(1.1, level);
         speed *= (float)Math.Pow(1.1, level);
         hp *= (float)Math.Pow(1.1, level);
+        
     }
 }
 
