@@ -58,40 +58,43 @@ public class LayEggsFighter :MonoBehaviour
 
     private void Update()
     {
-        if (isActiveForBattle) 
+        if (GameManager.Instance.IsRun)
         {
-            if (isChangeOfSquare())
+            if (isActiveForBattle)
             {
-                if (tag == "Blue")
+                if (isChangeOfSquare())
                 {
-                    GameManager.Instance.battleManager.React(false, gameObject);
-                }
-                else if (tag == "Enemy")
-                {
-                    GameManager.Instance.battleManager.React(true, gameObject);
-                }
-            }
-            if (!isLaying) 
-            {
-                Move();
-                if (transform.position == positionToReach) { isLaying = true; }
-            }
-            else 
-            {
-                timer += Time.deltaTime;
-                if (timer >= timeForLayEgg)
-                {
-                    if (GameManager.Instance.IsRun) 
+                    if (tag == "Blue")
                     {
-                        SetEgg();
+                        GameManager.Instance.battleManager.React(false, gameObject);
                     }
-                  
-                    timer = 0;
-                    isLaying = false;
-                    positionToReach = GetPositionToMove();
+                    else if (tag == "Enemy")
+                    {
+                        GameManager.Instance.battleManager.React(true, gameObject);
+                    }
                 }
-            }
+                if (!isLaying)
+                {
+                    Move();
+                    if (transform.position == positionToReach) { isLaying = true; }
+                }
+                else
+                {
+                    timer += Time.deltaTime;
+                    if (timer >= timeForLayEgg)
+                    {
+                        if (GameManager.Instance.IsRun)
+                        {
+                            SetEgg();
+                        }
 
+                        timer = 0;
+                        isLaying = false;
+                        positionToReach = GetPositionToMove();
+                    }
+                }
+
+            }
         }
     }
 

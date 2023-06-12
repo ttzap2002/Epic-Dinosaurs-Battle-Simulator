@@ -49,7 +49,7 @@ public class SpawnerBehaviour : MonoBehaviour
 
                 }
             }
-            if (i%100 == 0)
+            if (i%400 == 0)
             {
                 myStats.hp -= 10;
             }
