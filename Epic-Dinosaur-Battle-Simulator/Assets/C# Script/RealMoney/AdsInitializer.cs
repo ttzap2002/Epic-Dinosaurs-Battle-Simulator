@@ -3,9 +3,9 @@ using UnityEngine.Advertisements;
 
 public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener
 {
-    [SerializeField] string _androidGameId;
-    [SerializeField] string _iOSGameId;
-    [SerializeField] bool _testMode = true;
+    [SerializeField] public string _androidGameId;
+    [SerializeField] public string _iOSGameId;
+    [SerializeField] public bool _testMode = true;
     private string _gameId;
 
     void Awake()
