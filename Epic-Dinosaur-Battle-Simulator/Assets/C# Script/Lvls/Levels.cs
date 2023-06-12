@@ -13,13 +13,11 @@ public class SceneLevel
     int troopsLimit;
     int enemyTroopsLimit;
     int id;
-    bool isunlocked;
     List<ObjectToDisplay> objectOnScenes;
     public SceneLevel(int money, int troopslimit,int id)
     {
         Money = money;
         Troopslimit = troopslimit;
-        isunlocked = false;
         this.id=id;
         objectOnScenes= CreateObjectForScene(id);
 
@@ -29,7 +27,6 @@ public class SceneLevel
     public int Money { get => money; set => money = value; }
     public int Troopslimit { get => troopsLimit; set => troopsLimit = value; }
     public int Id { get => id;}
-    public bool Isunlocked { get => isunlocked; set => isunlocked = value; }
     public int EnemyTroopsLimit { get => enemyTroopsLimit; set => enemyTroopsLimit = value; }
 
     //public List<GameObject> Enemieslist { set => enemieslist = value; }

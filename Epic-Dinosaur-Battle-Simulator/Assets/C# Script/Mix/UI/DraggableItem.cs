@@ -95,9 +95,9 @@ public GameObject Uiinformation;
 
     private void SetInstanceOfObject() 
     {
-        GameObject obj = Instantiate(GameManager.Instance.prefabGameObjects[fighterid]);
+        GameObject obj = Instantiate(GameManager.Instance.prefabGameObjects[Fighterid]);
         CreatureStats creature = obj.GetComponent<CreatureStats>();
-        creature.UpgradeStatLevel(GameManager.Instance.dynamicData.Dinosaurs[fighterid]-1);
+        creature.UpgradeStatLevel(GameManager.Instance.dynamicData.Dinosaurs[Fighterid]-1);
         obj.SetActive(true);
         int cost = creature.cost;
 

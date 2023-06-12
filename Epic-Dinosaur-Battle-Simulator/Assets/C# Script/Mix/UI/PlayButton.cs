@@ -42,7 +42,11 @@ public class PlayButton : MonoBehaviour
             {
                 f.gameObject.GetComponent<SpawnerBehaviour>().IsReadyForFight=true;
             }
-            
+            if (stats.behaviourScript == ScriptType.EggLayer)
+            {
+                f.gameObject.GetComponent<LayEggsFighter>().IsActiveForBattle = true;
+            }
+
             GameManager.Instance.battleManager.EnemyFighters[fPlacement.row, fPlacement.col].Add(fPlacement);
             
         }
@@ -63,6 +67,10 @@ public class PlayButton : MonoBehaviour
             if (stats.behaviourScript == ScriptType.Spawner)
             {
                 f.gameObject.GetComponent<SpawnerBehaviour>().IsReadyForFight = true;
+            }
+            if (stats.behaviourScript == ScriptType.EggLayer)
+            {
+                f.gameObject.GetComponent<LayEggsFighter>().IsActiveForBattle = true;
             }
             GameManager.Instance.battleManager.BlueFighters[fPlacement.row, fPlacement.col].Add(fPlacement);
         }

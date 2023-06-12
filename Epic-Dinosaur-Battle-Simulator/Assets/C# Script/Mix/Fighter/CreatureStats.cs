@@ -36,7 +36,8 @@ public class CreatureStats : MonoBehaviour
 public enum ScriptType 
 {
     MeleeFighter,
-    Spawner
+    Spawner,
+    EggLayer
 }
 
 

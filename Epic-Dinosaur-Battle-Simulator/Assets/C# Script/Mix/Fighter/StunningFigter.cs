@@ -16,6 +16,11 @@ public class StunningFigter: MeleeFighter
     [SerializeField] private float BasicSpeed;
 
 
+    private void Start()
+    {
+        base.Start();
+    }
+
 
     protected override void Update()
     {

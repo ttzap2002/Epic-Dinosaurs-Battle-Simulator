@@ -22,8 +22,8 @@ public class MeleeFighter : Fighter
     /// </summary>
     [SerializeField]bool isActiveForBattle=false;
     protected CreatureStats myStats = null;
-    private FighterPlacement fighter = null;
-    private LongNeckFighting longNeckFighter = null;
+    protected FighterPlacement fighter = null;
+    protected LongNeckFighting longNeckFighter = null;
     private float timer = 0.0f; // Zmienna do œledzenia czasu
     /// <summary>
     /// delegat przechowuj¹cy funkcje do atakowania szyj¹
@@ -47,7 +47,7 @@ public class MeleeFighter : Fighter
     public bool IsActiveForBattle { get => isActiveForBattle; set => isActiveForBattle = value; }
     public bool IsResistForStunning { get => isResistForStunning; set => isResistForStunning = value; }
 
-    private void Start()
+    protected void Start()
     {
         //GameManager.Instance.Awake();
 
