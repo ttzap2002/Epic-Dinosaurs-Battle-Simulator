@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public DynamicData dynamicData;
     public Dictionary<string, bool> canISetWarrior = new Dictionary<string, bool>(); //Zmienna booli które decyduj¹ czy mo¿na stawiaæ jednostkê. Jeden false blokuje t¹ mo¿liwoœæ. Konkretne nazwy s¹ w starcie (pod awake)
-    public int salaryForBattle;
+    public int salaryForBattle; //zmienna posiaajaca info o zdobytych pieniazkach z bitwy
 
     public static GameManager Instance { get { return _instance; } }
 
@@ -98,11 +98,9 @@ public class GameManager : MonoBehaviour
             dynamicData = DynamicData.Load(isFirst);
             isFirst = false;
         }
-         SceneManager.sceneLoaded += OnSceneLoaded; 
+        SceneManager.sceneLoaded += OnSceneLoaded;
 
         DontDestroyOnLoad(gameObject);
-
-
     }
 
     // Start is called before the first frame update
@@ -110,7 +108,6 @@ public class GameManager : MonoBehaviour
     {
         canISetWarrior.Add("Joystick", true); //zmienna dla naciœniêcia joysticka
         canISetWarrior.Add("Warrior", true); //zmienna dla naciœniêcia paska z wyborem wojowników
-        
     }
     /*
     // Update is called once per frame
@@ -289,5 +286,5 @@ public class GameManager : MonoBehaviour
         enemyGameObjects = new List<GameObject>();
     }
 
-    
+
 }

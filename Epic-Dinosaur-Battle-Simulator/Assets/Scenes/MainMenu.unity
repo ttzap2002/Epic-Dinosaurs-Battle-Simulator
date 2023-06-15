@@ -470,6 +470,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 580470825}
   m_CullTransparentMesh: 1
+--- !u!1 &769048083
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 769048085}
+  - component: {fileID: 769048086}
+  m_Layer: 0
+  m_Name: AdMenager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &769048085
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769048083}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 552.7306, y: 260.69974, z: 84.84558}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &769048086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769048083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cec350177353ffa4a8a8f4dd8b459adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _androidGameId: 5311809
+  _iOSGameId: 5311808
+  _testMode: 1
 --- !u!1 &802544449
 GameObject:
   m_ObjectHideFlags: 0
@@ -630,6 +677,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 769048086}
+        m_TargetAssemblyTypeName: AdsInitializer, Assembly-CSharp
+        m_MethodName: HideBanner
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 53716160}
         m_TargetAssemblyTypeName: SceneChanging, Assembly-CSharp
         m_MethodName: MapSelector
@@ -899,6 +958,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 769048086}
+        m_TargetAssemblyTypeName: AdsInitializer, Assembly-CSharp
+        m_MethodName: HideBanner
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 53716160}
         m_TargetAssemblyTypeName: SceneChanging, Assembly-CSharp
         m_MethodName: Exit
@@ -1530,6 +1601,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 769048086}
+        m_TargetAssemblyTypeName: AdsInitializer, Assembly-CSharp
+        m_MethodName: HideBanner
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 53716160}
         m_TargetAssemblyTypeName: SceneChanging, Assembly-CSharp
         m_MethodName: Continents
@@ -1624,6 +1707,9 @@ MonoBehaviour:
   draggable: {fileID: 0}
   idTileForBackFromShop: 0
   numberOfShopScreen: 0
+  dynamicData:
+    battlesWithoutAds: 0
+  salaryForBattle: 0
 --- !u!4 &1830053500
 Transform:
   m_ObjectHideFlags: 0
@@ -1939,6 +2025,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 769048086}
+        m_TargetAssemblyTypeName: AdsInitializer, Assembly-CSharp
+        m_MethodName: HideBanner
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 53716160}
         m_TargetAssemblyTypeName: SceneChanging, Assembly-CSharp
         m_MethodName: Shop

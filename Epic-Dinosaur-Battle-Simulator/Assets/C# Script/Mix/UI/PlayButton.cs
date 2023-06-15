@@ -23,6 +23,7 @@ public class PlayButton : MonoBehaviour
 
             GameObject obj = GameObject.Find("Terrain");
             GameObject.Destroy(obj.gameObject.GetComponent<DraggableItem>());
+            GameManager.Instance.dynamicData.battlesWithoutAds++;
         }
     }
 
