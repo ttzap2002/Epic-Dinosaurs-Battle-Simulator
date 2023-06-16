@@ -17,13 +17,15 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Zmienna odpowiadaj¹ca za to czy bitwa siê rozpocze³a
     /// </summary>
-    private bool isRun = false;
+    [SerializeField] private bool isRun = false;
 
     public bool isContainRequireComponent = false;
     /// <summary>
     /// isFirst zmienna do sprawdzenia czy GameManager zosta³ juz wywo³any
     /// </summary>
-    private bool isFirst = true;
+    /// 
+    [SerializeField]
+    private bool isFirst;
     /// <summary>
     /// Instancja gameManager
     /// </summary>
@@ -89,8 +91,8 @@ public class GameManager : MonoBehaviour
         {
             _instance = this;
         }
-        
-        if (isFirst) 
+
+        if (isFirst)
         {
             levelContainer.AddAllScene();
             dinosaurStats = new DinoStats();
@@ -101,6 +103,8 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
 
         DontDestroyOnLoad(gameObject);
+
+
     }
 
     // Start is called before the first frame update
@@ -108,6 +112,7 @@ public class GameManager : MonoBehaviour
     {
         canISetWarrior.Add("Joystick", true); //zmienna dla naciœniêcia joysticka
         canISetWarrior.Add("Warrior", true); //zmienna dla naciœniêcia paska z wyborem wojowników
+
     }
     /*
     // Update is called once per frame
@@ -140,12 +145,23 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void CheckIfEndOfBattle()
     {
-        bool isEnemyFighterContainAnyFighter = battleManager.IsEnemyFighterContainAnyFighter();
-        if (!isEnemyFighterContainAnyFighter || !battleManager.IsBlueFighterContainAnyFighter())
+        bool isEnemyFighterContainAnyFighter = IsEnemyContainAnyFighter();
+        if (!isEnemyFighterContainAnyFighter || !IsBlueContainAnyFighter())
         {
             GetMoneyForLevel(FinishGame(isEnemyFighterContainAnyFighter));
         }
 
+    }
+
+
+    private bool IsEnemyContainAnyFighter()
+    {
+        return enemyGameObjects.Count > 0;
+    }
+
+    private bool IsBlueContainAnyFighter()
+    {
+        return blueGameObjects.Count > 0;
     }
 
     public bool FinishGame(bool isEnemyFighterContainAnyFighter)
@@ -158,7 +174,7 @@ public class GameManager : MonoBehaviour
             pro.text = "Player Blue is winner";
             pro.color = Color.blue;
         }
-        else 
+        else
         {
             pro.text = "Player Red is winner";
             pro.color = Color.red;
@@ -167,7 +183,7 @@ public class GameManager : MonoBehaviour
         isRun = false;
         enemyGameObjects = null;
         blueGameObjects = null;
-        battleManager.DestroyAllObject();
+        //battleManager.DestroyAllObject();
         return isEnemyFighterContainAnyFighter;
     }
 
@@ -220,14 +236,16 @@ public class GameManager : MonoBehaviour
         battleManager = new BattleManager(enemyFighters, blueFighters);
 
     }
-    
+
     public void GameResume()
     {
-        Time.timeScale = 1f;
+        isRun = true;
     }
     public void GamePause()
     {
-        Time.timeScale = 0f;
+        isRun = false;
+
+
     }
 
     /// <summary>
@@ -256,8 +274,8 @@ public class GameManager : MonoBehaviour
     {
         if (isContainRequireComponent)
         {
-        
-            draggable= GameObject.Find("Terrain");
+
+            draggable = GameObject.Find("Terrain");
             UI = GameObject.Find("UI");
             GameObject endobj = GameObject.FindGameObjectWithTag("EndOfBattle");
             endobj.SetActive(true);
@@ -280,7 +298,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Ustawia obiekty gracza blue i enemy na nowe puste listy
     /// </summary>
-    public void RefreshGameObjects() 
+    public void RefreshGameObjects()
     {
         blueGameObjects = new List<GameObject>();
         enemyGameObjects = new List<GameObject>();

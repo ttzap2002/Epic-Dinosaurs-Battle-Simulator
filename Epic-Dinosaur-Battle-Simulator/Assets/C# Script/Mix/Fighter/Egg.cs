@@ -25,17 +25,16 @@ public class Egg: MonoBehaviour
 
     private void Update()
     {
-        if(GameManager.Instance.IsRun) 
+        if (GameManager.Instance.IsRun)
         {
             if (timer >= 5)
             {
                 SetObject();
             }
-        }
-      
-        timer += Time.deltaTime;
-    }
+            timer += Time.deltaTime;
 
+        }
+    }
     private void SetObject()
     {
         GameObject obj = Instantiate(GameManager.Instance.prefabGameObjects[0]);

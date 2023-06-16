@@ -47,6 +47,10 @@ public class MeleeFighter : Fighter
     public bool IsActiveForBattle { get => isActiveForBattle; set => isActiveForBattle = value; }
     public bool IsResistForStunning { get => isResistForStunning; set => isResistForStunning = value; }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("pies");
+    }
     protected void Start()
     {
         //GameManager.Instance.Awake();
@@ -69,84 +73,89 @@ public class MeleeFighter : Fighter
 
     protected virtual void Update()
     {
-        if (isActiveForBattle)
+        if (GameManager.Instance.IsRun)
         {
-            timer += Time.deltaTime;
-
-            if (a % 3 == 0)
-            {
-                if (target != null && target != gameObject)
-                {
-
-                    if (isChangeOfSquare())
-                    {
-                        if (tag == "Blue")
-                        {
-                            GameManager.Instance.battleManager.React(false, gameObject);
-                        }
-                        else if (tag == "Enemy")
-                        {
-                            GameManager.Instance.battleManager.React(true, gameObject);
-                        }
-                    }
-                    if (!isFighting)
-                    {
-                        Move(); 
-                        if (Vector3.Distance(transform.position, target.transform.position) <= myStats.radius)
-                        { isFighting = true; }
-                    }
-                    else
-                    {
-
-                        if (Vector3.Distance(transform.position, target.transform.position) > myStats.radius)
-                        {
-                            isFighting = false;
-                        }
-                        if (timer >= myStats.interval)
-                        {
-                            if (myStats.fightingScript == FightScript.Traditional)
-                            {
-                                Hit(target);
-                            }
-                            else if (myStats.fightingScript == FightScript.LongNeck && !myStats.HaveTailAttack)
-                            {
-                                HitAllObjects(neckAttack.Invoke());   
-                            }
-                            else 
-                            {
-                                HitAllObjects(neckAttack.Invoke());
-                                HitAllObjects(tailAttack.Invoke());
-                            }
-                            timer = 0f;
-                        }
-                    }
-
-
-                }
-                else { GetTarget(); }
-            }
-
-
-            //transform.position += moveDirection;
-            a++;
-        }
-        else if(GameManager.Instance.IsRun && !isResistForStunning) 
-        {
-            if (timer < 5f) 
+            if (isActiveForBattle)
             {
                 timer += Time.deltaTime;
+
+                if (a % 3 == 0)
+                {
+                    if (target != null && target != gameObject)
+                    {
+
+                        if (isChangeOfSquare())
+                        {
+                            if (tag == "Blue")
+                            {
+                                GameManager.Instance.battleManager.React(false, gameObject);
+                            }
+                            else if (tag == "Enemy")
+                            {
+                                GameManager.Instance.battleManager.React(true, gameObject);
+                            }
+                        }
+                        if (!isFighting)
+                        {
+                            Move();
+                            if (Vector3.Distance(transform.position, target.transform.position) <= myStats.radius)
+                            { isFighting = true; }
+                        }
+                        else
+                        {
+
+                            if (Vector3.Distance(transform.position, target.transform.position) > myStats.radius)
+                            {
+                                isFighting = false;
+                            }
+                            if (timer >= myStats.interval)
+                            {
+                                if (myStats.fightingScript == FightScript.Traditional)
+                                {
+                                    Hit(target);
+                                }
+                                else if (myStats.fightingScript == FightScript.LongNeck && !myStats.HaveTailAttack)
+                                {
+                                    HitAllObjects(neckAttack.Invoke());
+                                }
+                                else
+                                {
+                                    HitAllObjects(neckAttack.Invoke());
+                                    HitAllObjects(tailAttack.Invoke());
+                                }
+                                timer = 0f;
+                            }
+                        }
+
+
+                    }
+                    else { GetTarget(); }
+                }
+
+
+                //transform.position += moveDirection;
+                a++;
             }
-            else 
+            else if (GameManager.Instance.IsRun && !isResistForStunning)
             {
-                timer = 0;
-                isActiveForBattle = true;
+                if (timer < 5f)
+                {
+                    timer += Time.deltaTime;
+                }
+                else
+                {
+                    timer = 0;
+                    isActiveForBattle = true;
+                }
             }
         }
     }
 
     public void GetTarget() {
         if (tag == "Blue") { target=FindNearestEnemy(GameManager.Instance.battleManager.EnemyFighters); }
-        else { target=FindNearestEnemy(GameManager.Instance.battleManager.BlueFighters);}}
+        else { target=FindNearestEnemy(GameManager.Instance.battleManager.BlueFighters);}
+    
+    }
   
 
     public void SetFightingStatusToFalse()
@@ -170,7 +179,16 @@ public class MeleeFighter : Fighter
                 m.hp -= myStats.attack;
                 if (m.hp <= 0) { 
                     isFighting = false;
-                    GameManager.Instance.battleManager.RemoveFromList(f,f.row,f.col); 
+                    GameManager.Instance.battleManager.RemoveFromList(f,f.row,f.col);
+                    if (tag == "Blue") 
+                    {
+                        GameManager.Instance.enemyGameObjects.Remove(myEnemy);
+                    }
+                    else 
+                    {
+                        GameManager.Instance.blueGameObjects.Remove(myEnemy);
+
+                    }
                     GameObject.Destroy(myEnemy); 
                     GameManager.Instance.CheckIfEndOfBattle();
                 }
@@ -189,6 +207,8 @@ public class MeleeFighter : Fighter
             {
                 isFighting = false;
                 GameManager.Instance.battleManager.RemoveFromList(f, f.row, f.col);
+                if (tag == "Blue") { GameManager.Instance.enemyGameObjects.Remove(obj); }
+                else { GameManager.Instance.blueGameObjects.Remove(obj); }
                 GameObject.Destroy(obj);
                 GameManager.Instance.CheckIfEndOfBattle();
             }
@@ -196,7 +216,7 @@ public class MeleeFighter : Fighter
     }
     }
  
-
+    
     protected virtual void Move()
     {
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * myStats.Speed);
@@ -212,7 +232,7 @@ public class MeleeFighter : Fighter
             transform.rotation = rotation;
         
         }
-        /*
+        
         else
         {
             Quaternion targetRotation = Quaternion.LookRotation(directionToEnemy);
@@ -221,9 +241,14 @@ public class MeleeFighter : Fighter
             rotation.y = -transform.rotation.y;
             rotation.z = transform.rotation.z;
             transform.rotation = rotation;
-        }*/
-        
+        }
+    
     }
+
+
+   
+   
+
 
     private bool isChangeOfSquare()
     {
@@ -241,6 +266,8 @@ public class MeleeFighter : Fighter
         return false;
     }
 
+
+    
     /*
     private GameObject FindNearestEnemy(string tag,Vector3 vectorOfMyObj)
     {
@@ -375,19 +402,30 @@ public class MeleeFighter : Fighter
     private GameObject FindNearestEnemy(List<FighterPlacement>[,] grid)
     {
         int maxDistance = Mathf.Max(grid.GetLength(0), grid.GetLength(1));
+        GameObject nearestEnemy = null;
+        float nearestDistance = float.MaxValue;
+
         for (int distance = 0; distance <= maxDistance; distance++)
         {
             GameObject enemy = FindEnemyInDistance(grid, distance);
             if (enemy != null)
             {
-                return enemy;
+                float currentDistance = Vector3.Distance(this.transform.position, enemy.transform.position);
+                if (currentDistance < nearestDistance)
+                {
+                    nearestDistance = currentDistance;
+                    nearestEnemy = enemy;
+                }
             }
         }
-        return null;
+        return nearestEnemy;
     }
 
     private GameObject FindEnemyInDistance(List<FighterPlacement>[,] grid, int distance)
     {
+        GameObject nearestEnemy = null;
+        float nearestDistance = float.MaxValue;
+
         for (int i = -distance; i <= distance; i++)
         {
             for (int j = -distance; j <= distance; j++)
@@ -402,13 +440,48 @@ public class MeleeFighter : Fighter
                 {
                     if (grid[newRow, newCol] != null && grid[newRow, newCol].Count > 0)
                     {
-                        return grid[newRow, newCol][0].gameObject;  // Assumes we're interested in any enemy at this position
+                        foreach (FighterPlacement fighterPlacement in grid[newRow, newCol])
+                        {
+                            float currentDistance = Vector3.Distance(this.transform.position, fighterPlacement.gameObject.transform.position);
+                            if (currentDistance < nearestDistance)
+                            {
+                                nearestDistance = currentDistance;
+                                nearestEnemy = fighterPlacement.gameObject;
+                            }
+                        }
                     }
                 }
             }
         }
-        return null;
+        return nearestEnemy;
     }
+
+
+
+
+
+    private List<GameObject> FindEnemiesInRadius(float radius)
+    {
+        List<GameObject> enemiesInRadius = new List<GameObject>();
+
+        // Pobieramy wszystkie kolizje w promieniu
+        Collider[] hits = Physics.OverlapSphere(transform.position, radius);
+
+        // Sprawdzamy ka¿d¹ kolizjê
+        foreach (var hit in hits)
+        {
+            // Sprawdzamy, czy kolizja nale¿y do wroga (na przyk³ad sprawdzaj¹c tag)
+            if (hit.gameObject.CompareTag("Enemy"))
+            {
+                enemiesInRadius.Add(hit.gameObject);
+            }
+        }
+
+        return enemiesInRadius;
+    }
+
+
+
 
 }
 

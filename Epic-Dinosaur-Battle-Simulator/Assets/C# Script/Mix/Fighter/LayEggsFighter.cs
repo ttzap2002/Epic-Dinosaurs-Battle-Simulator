@@ -13,21 +13,21 @@ public class LayEggsFighter :MonoBehaviour
     [SerializeField]private Vector3 positionToReach;
     private bool isLaying;
     [SerializeField] private int range;
-    FighterPlacement fighter;
-    CreatureStats myStats;
+    protected FighterPlacement fighter;
+    protected CreatureStats myStats;
     [SerializeField]private float timeForLayEgg;
     private float timer;
 
     public bool IsActiveForBattle { get => isActiveForBattle; set => isActiveForBattle = value; }
 
-    private void Start()
+    protected void Start()
     {
         fighter = GetComponent<FighterPlacement>();
         myStats = GetComponent<CreatureStats>();
         positionToReach = GetPositionToMove();
     }
 
-    private Vector3 GetPositionToMove()
+    protected virtual Vector3 GetPositionToMove()
     {
         bool checker = false;
         float x = 0f; 
