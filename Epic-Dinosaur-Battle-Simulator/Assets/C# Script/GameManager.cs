@@ -24,8 +24,7 @@ public class GameManager : MonoBehaviour
     /// isFirst zmienna do sprawdzenia czy GameManager zosta³ juz wywo³any
     /// </summary>
     /// 
-    [SerializeField]
-    private bool isFirst;
+    private static bool isFirst=true;
     /// <summary>
     /// Instancja gameManager
     /// </summary>
@@ -83,7 +82,8 @@ public class GameManager : MonoBehaviour
 
     public void Awake()
     {
-        if (_instance != null && _instance != this)
+        
+        if (_instance != null && _instance!=this)
         {
             Destroy(this.gameObject);
         }
@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
         {
             _instance = this;
         }
-
+        
         if (isFirst)
         {
             levelContainer.AddAllScene();

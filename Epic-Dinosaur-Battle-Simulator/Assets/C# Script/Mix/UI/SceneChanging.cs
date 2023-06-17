@@ -21,9 +21,10 @@ public class SceneChanging : MonoBehaviour
     }
     public void Sandbox()
     {
-        SceneManager.LoadScene(5);
         GameManager.Instance.isContainRequireComponent = true;
         GameManager.Instance.AddScene(0);
+        SceneManager.LoadScene(5);
+    
     }
     public void Shop()
     {

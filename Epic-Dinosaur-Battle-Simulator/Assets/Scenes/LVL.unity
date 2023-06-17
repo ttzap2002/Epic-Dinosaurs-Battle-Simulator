@@ -2213,71 +2213,13 @@ RectTransform:
   - {fileID: 528901352}
   - {fileID: 1520507661}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &1013158965
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1013158967}
-  - component: {fileID: 1013158966}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1013158966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1013158965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aacd2c023ec23724ab5dd30ce83b473d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isContainRequireComponent: 0
-  mouse: {fileID: 1656600789}
-  UI: {fileID: 0}
-  endOfBattle: {fileID: 1296849301}
-  prefabGameObjects:
-  - {fileID: 1999892022}
-  - {fileID: 1808734846}
-  enemyGameObjects: []
-  blueGameObjects: []
-  isStarted: 0
-  battleManager: {fileID: 0}
-  draggable: {fileID: 0}
-  idTileForBackFromShop: 0
-  numberOfShopScreen: 0
---- !u!4 &1013158967
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1013158965}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.253401, y: 10.696603, z: -13.199536}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1055534962
 GameObject:
   m_ObjectHideFlags: 0
@@ -2344,7 +2286,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1060249424
 GameObject:
@@ -3250,7 +3192,7 @@ RectTransform:
   - {fileID: 422126641}
   - {fileID: 1904424571}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3286,7 +3228,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1334543347
 GameObject:
@@ -3539,6 +3481,9 @@ MonoBehaviour:
   radius: 5
   hp: 100
   interval: 5
+  haveTailAttack: 0
+  yAxis: 0
+  isObligatoryToRotate: 0
   behaviourScript: 1
   fightingScript: 0
 --- !u!114 &1340600504
@@ -3553,7 +3498,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5710c8e537873614b951bece9a721f07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToDestroy: {fileID: 1340600501}
 --- !u!1 &1375546974
 GameObject:
   m_ObjectHideFlags: 0
@@ -3723,7 +3667,7 @@ RectTransform:
   m_Children:
   - {fileID: 1519055365}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4823,7 +4767,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1672400216
 GameObject:
@@ -5223,6 +5167,9 @@ MonoBehaviour:
   radius: 5
   hp: 100
   interval: 5
+  haveTailAttack: 0
+  yAxis: 0
+  isObligatoryToRotate: 0
   behaviourScript: 0
   fightingScript: 0
 --- !u!114 &1808734850
@@ -5237,7 +5184,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5710c8e537873614b951bece9a721f07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToDestroy: {fileID: 1808734846}
 --- !u!114 &1808734851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5252,7 +5198,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1305570199}
   isFighting: 0
+  isActiveForBattle: 0
   rotationSpeed: 5
+  isResistForStunning: 0
 --- !u!1 &1812231805
 GameObject:
   m_ObjectHideFlags: 0
@@ -5575,7 +5523,6 @@ MonoBehaviour:
   attackLayer:
     serializedVersion: 2
     m_Bits: 64
-  ile: 0
 --- !u!1 &1904424570
 GameObject:
   m_ObjectHideFlags: 0
@@ -6367,6 +6314,9 @@ MonoBehaviour:
   radius: 5
   hp: 100
   interval: 5
+  haveTailAttack: 0
+  yAxis: 0
+  isObligatoryToRotate: 0
   behaviourScript: 0
   fightingScript: 0
 --- !u!114 &1999892025
@@ -6381,7 +6331,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5710c8e537873614b951bece9a721f07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToDestroy: {fileID: 1999892022}
 --- !u!1 &2091278923
 GameObject:
   m_ObjectHideFlags: 0
