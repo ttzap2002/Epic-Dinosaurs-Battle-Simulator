@@ -23,6 +23,7 @@ public class SceneChanging : MonoBehaviour
     {
         GameManager.Instance.isContainRequireComponent = true;
         GameManager.Instance.AddScene(0);
+        GameManager.Instance.RefreshGameObjects();
         SceneManager.LoadScene(5);
     
     }
