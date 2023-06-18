@@ -15,6 +15,7 @@ public class DynamicData
     List<bool> terrain = new List<bool>(); // odblokowane mapy dla sandboxu. true- gracz moze grac, false -nie moze
     int money; // jest to waluta in-game
     public int battlesWithoutAds = 0; // ile bitew ostatnich nie mia³o wymuszonej reklamy (pomijalnej)
+    static List<int> StartLvls = new List<int>() { 2, 1, 1, 1 }; //Poziomy ktore sa odblokowane na start (stworzone wylacznie w celu zmiany jednej listy zamiast kilku)
 
     private DynamicData() 
     {
@@ -56,7 +57,7 @@ public class DynamicData
     }
     private static object OdczytajBin(string nazwa)
     {
-        DynamicData zespol = new DynamicData(new List<int>() { 80, 1, 1, 1 }, new List<int>() { 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0 }, new List<bool>() { true, true, false, false }, 25000);
+        DynamicData zespol = new DynamicData(DynamicData.StartLvls, new List<int>() { 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0 }, new List<bool>() { true, true, false, false }, 25000);
         try
         {
             FileStream fs = new FileStream($"{nazwa}.bin", FileMode.Open); //zrobiæ na try, wrazie jakby pierwszy raz uruchamiano grê
@@ -76,7 +77,7 @@ public class DynamicData
         }
         catch (FileNotFoundException ex)
         {
-            zespol = new DynamicData(new List<int>() { 80, 1, 1, 1 }, new List<int>() { 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0 }, new List<bool>() { true, true, false, false }, 25000);
+            zespol = new DynamicData(DynamicData.StartLvls, new List<int>() { 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0 }, new List<bool>() { true, true, false, false }, 25000);
         }
         return zespol;
     }
@@ -96,7 +97,7 @@ public class DynamicData
         }
         else
         {
-            returner = new DynamicData(new List<int>() { 80, 1, 1, 1 }, new List<int>() { 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0 }, new List<bool>() { true, true, false, false }, 25000);
+            returner = new DynamicData(DynamicData.StartLvls, new List<int>() { 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0 }, new List<bool>() { true, true, false, false }, 25000);
         }
         return returner;
     }
