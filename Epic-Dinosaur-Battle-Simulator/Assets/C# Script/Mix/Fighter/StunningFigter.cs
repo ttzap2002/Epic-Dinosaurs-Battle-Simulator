@@ -55,18 +55,7 @@ public class StunningFigter: MeleeFighter
                 if (m.hp <= 0)
                 {
                     isFighting = false;
-                    GameManager.Instance.battleManager.RemoveFromList(f, f.row, f.col);
-                    if (tag == "Blue")
-                    {
-                        GameManager.Instance.enemyGameObjects.Remove(myEnemy);
-                    }
-                    else
-                    {
-                        GameManager.Instance.blueGameObjects.Remove(myEnemy);
-
-                    }
-                    Destroy(myEnemy);
-                    GameManager.Instance.CheckIfEndOfBattle();
+                    DestroyEnemy(myEnemy, f);
                 }
             }
         }

@@ -527,6 +527,7 @@ MonoBehaviour:
   target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
+  ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
   stunningProbability: 0.65
@@ -755,6 +756,7 @@ MonoBehaviour:
   target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
+  ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
 --- !u!114 &70942739
@@ -1546,6 +1548,7 @@ MonoBehaviour:
   target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
+  ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
 --- !u!114 &258890394
@@ -1945,6 +1948,7 @@ MonoBehaviour:
   target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
+  ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
 --- !u!114 &406138982
@@ -2262,7 +2266,7 @@ RectTransform:
   - {fileID: 488007941}
   - {fileID: 1197362918}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2435,6 +2439,7 @@ MonoBehaviour:
   target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
+  ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
 --- !u!114 &435813907
@@ -2584,6 +2589,7 @@ MonoBehaviour:
   target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
+  ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
   stunningProbability: 0.65
@@ -3165,6 +3171,7 @@ MonoBehaviour:
   target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
+  ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
   stunningProbability: 0.65
@@ -3478,6 +3485,7 @@ MonoBehaviour:
   target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
+  ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
   stunningProbability: 0.65
@@ -3994,7 +4002,7 @@ RectTransform:
   m_Children:
   - {fileID: 1567952424}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4541,7 +4549,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &757573224
 MonoBehaviour:
@@ -5168,6 +5176,7 @@ MonoBehaviour:
   target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
+  ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
   stunningProbability: 0.65
@@ -5851,6 +5860,7 @@ MonoBehaviour:
   target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
+  ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
   stunningProbability: 0.65
@@ -6016,10 +6026,9 @@ RectTransform:
   - {fileID: 1613739228}
   - {fileID: 467083637}
   - {fileID: 2011403979}
-  - {fileID: 1905205699}
+  - {fileID: 1398808261}
   - {fileID: 1851641939}
   - {fileID: 670391801}
-  - {fileID: 1398808261}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6703,7 +6712,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1294917348
 PrefabInstance:
@@ -6841,6 +6850,7 @@ MonoBehaviour:
   target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
+  ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
   stunningProbability: 0.65
@@ -6966,7 +6976,7 @@ RectTransform:
   - {fileID: 934855457}
   - {fileID: 1150982301}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -7015,7 +7025,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1398808260
 GameObject:
@@ -7053,7 +7063,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1050780943}
-  m_RootOrder: 20
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1398808262
 MonoBehaviour:
@@ -7664,7 +7674,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1524582669
 GameObject:
@@ -8196,6 +8206,7 @@ MonoBehaviour:
   target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
+  ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
   stunningProbability: 0.65
@@ -8430,6 +8441,7 @@ MonoBehaviour:
   target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
+  ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 1
 --- !u!1 &1682482145
@@ -8689,6 +8701,7 @@ MonoBehaviour:
   target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
+  ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
   stunningProbability: 0.65
@@ -8790,7 +8803,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1724561863
 GameObject:
@@ -9184,6 +9197,7 @@ MonoBehaviour:
   target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
+  ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
   stunningProbability: 0.65
@@ -9824,11 +9838,11 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1050780943}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a067c70fa964895469af3591bc9f4eb1, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a067c70fa964895469af3591bc9f4eb1, type: 3}
       propertyPath: m_LocalScale.x
@@ -9844,11 +9858,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a067c70fa964895469af3591bc9f4eb1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -507
+      value: 91.25006
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a067c70fa964895469af3591bc9f4eb1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -236
+      value: 16.75
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a067c70fa964895469af3591bc9f4eb1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9892,11 +9906,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a067c70fa964895469af3591bc9f4eb1, type: 3}
---- !u!4 &1905205699 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a067c70fa964895469af3591bc9f4eb1, type: 3}
-  m_PrefabInstance: {fileID: 1905205698}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1905205700 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a067c70fa964895469af3591bc9f4eb1, type: 3}
@@ -9929,6 +9938,7 @@ MonoBehaviour:
   target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
+  ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
   stunningProbability: 0.65
@@ -10155,6 +10165,7 @@ MonoBehaviour:
   target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
+  ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
 --- !u!1 &1999772363
@@ -10415,6 +10426,7 @@ MonoBehaviour:
   target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
+  ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
   stunningProbability: 0.65
@@ -10566,7 +10578,7 @@ RectTransform:
   m_Children:
   - {fileID: 1759283259}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

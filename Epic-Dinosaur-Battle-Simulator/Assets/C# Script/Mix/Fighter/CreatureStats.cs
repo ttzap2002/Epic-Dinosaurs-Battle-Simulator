@@ -37,7 +37,8 @@ public enum ScriptType
 {
     MeleeFighter,
     Spawner,
-    EggLayer
+    EggLayer,
+    Egg
 }
 
 

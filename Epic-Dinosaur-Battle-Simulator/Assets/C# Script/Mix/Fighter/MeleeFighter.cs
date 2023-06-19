@@ -24,6 +24,8 @@ public class MeleeFighter : Fighter
     protected CreatureStats myStats = null;
     protected FighterPlacement fighter = null;
     protected LongNeckFighting longNeckFighter = null;
+    [SerializeField]
+    protected bool ifEatEggImmediately;
     private float timer = 0.0f; // Zmienna do œledzenia czasu
     /// <summary>
     /// delegat przechowuj¹cy funkcje do atakowania szyj¹
@@ -176,24 +178,38 @@ public class MeleeFighter : Fighter
             {
                 CreatureStats m = myEnemy.GetComponent<CreatureStats>();
                 FighterPlacement f = myEnemy.GetComponent<FighterPlacement>();
+                if(m.behaviourScript==ScriptType.Egg) 
+                {
+                    if (ifEatEggImmediately) 
+                    {
+                        isFighting = false;
+                        DestroyEnemy(myEnemy, f);
+                    }
+                }
                 m.hp -= myStats.attack;
-                if (m.hp <= 0) { 
+                if (m.hp <= 0)
+                {
                     isFighting = false;
-                    GameManager.Instance.battleManager.RemoveFromList(f,f.row,f.col);
-                    if (tag == "Blue") 
-                    {
-                        GameManager.Instance.enemyGameObjects.Remove(myEnemy);
-                    }
-                    else 
-                    {
-                        GameManager.Instance.blueGameObjects.Remove(myEnemy);
-
-                    }
-                    GameObject.Destroy(myEnemy); 
-                    GameManager.Instance.CheckIfEndOfBattle();
+                    DestroyEnemy(myEnemy, f);
                 }
             }
         }
+    }
+
+    protected void DestroyEnemy(GameObject myEnemy, FighterPlacement f)
+    {
+        GameManager.Instance.battleManager.RemoveFromList(f, f.row, f.col);
+        if (tag == "Blue")
+        {
+            GameManager.Instance.enemyGameObjects.Remove(myEnemy);
+        }
+        else
+        {
+            GameManager.Instance.blueGameObjects.Remove(myEnemy);
+
+        }
+        GameObject.Destroy(myEnemy);
+        GameManager.Instance.CheckIfEndOfBattle();
     }
 
     private void HitAllObjects(List<GameObject> ObjectsToHit) 
@@ -206,14 +222,9 @@ public class MeleeFighter : Fighter
             if (m.hp <= 0)
             {
                 isFighting = false;
-                GameManager.Instance.battleManager.RemoveFromList(f, f.row, f.col);
-                if (tag == "Blue") { GameManager.Instance.enemyGameObjects.Remove(obj); }
-                else { GameManager.Instance.blueGameObjects.Remove(obj); }
-                GameObject.Destroy(obj);
-                GameManager.Instance.CheckIfEndOfBattle();
+                DestroyEnemy(obj, f);
             }
-
-    }
+        }
     }
  
     

@@ -116,7 +116,7 @@ public class LayEggsFighter :MonoBehaviour
 
     private void SetEgg()
     {
-        GameObject obj = Instantiate(GameManager.Instance.prefabGameObjects[6]);
+        GameObject obj = Instantiate(GameManager.Instance.prefabGameObjects[19]);
         obj.SetActive(true);
         obj.tag = tag;
         obj.transform.position = transform.position;
