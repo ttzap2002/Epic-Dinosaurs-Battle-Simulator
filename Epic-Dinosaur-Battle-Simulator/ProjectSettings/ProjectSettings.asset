@@ -811,7 +811,8 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   webGLPowerPreference: 2
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Android: ENABLE_UNITYMESHSIMPLIFIER
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
