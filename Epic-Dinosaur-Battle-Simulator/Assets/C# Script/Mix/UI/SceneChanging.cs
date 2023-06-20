@@ -27,6 +27,25 @@ public class SceneChanging : MonoBehaviour
         SceneManager.LoadScene(5);
     
     }
+
+    public void SetMapOne()
+    {
+        GameManager.Instance.currentMap = GameManager.Instance.mapContainer.MapList[0];
+    }
+    public void SetMapSecond()
+    {
+        GameManager.Instance.currentMap = GameManager.Instance.mapContainer.MapList[1];
+    }
+    public void SetMapthird()
+    {
+        GameManager.Instance.currentMap = GameManager.Instance.mapContainer.MapList[2];
+    }
+    public void SetMapfourth()
+    {
+        GameManager.Instance.currentMap = GameManager.Instance.mapContainer.MapList[3];
+    }
+
+
     public void Shop()
     {
         SceneManager.LoadScene(7);

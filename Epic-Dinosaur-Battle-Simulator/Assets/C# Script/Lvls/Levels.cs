@@ -63,7 +63,6 @@ public class SceneLevel
             GameObject gameObj = GameObject.Instantiate(GameManager.Instance.prefabGameObjects[obj.PrefabId]);
             gameObj.gameObject.transform.position =new Vector3(obj.XAxis,obj.YAxis, obj.ZAxis);
             gameObj.tag = "Enemy";
-            Object.Destroy(gameObj.gameObject.GetComponent<MeleeFighter>());
             Object.Destroy(gameObj.gameObject.GetComponent<DestroyObjectOnClick>());
             gameObj.gameObject.GetComponent<CreatureStats>().UpgradeStatLevel(obj.Lvl-1);
             GameManager.Instance.enemyGameObjects.Add(gameObj);

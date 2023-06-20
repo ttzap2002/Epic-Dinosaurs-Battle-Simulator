@@ -48,11 +48,17 @@ public class GameManager : MonoBehaviour
     /// lista przechowuj¹ca wszystkie obiekty gracza blue
     /// </summary>
     public List<GameObject> blueGameObjects = new List<GameObject>();
+
+    public List<GameObject> obstaclesObjects= new List<GameObject>();
     public bool isStarted = false;
     /// <summary>
     /// Klasa przechowuj¹ca wszystkie lvle, wraz z odpowiedni¹ specyfikacj¹ dla ka¿dego lvl-u w tym sandbox
     /// </summary>
     public AllLevelContainer levelContainer = new AllLevelContainer();
+
+    public AllMapContainer mapContainer= new AllMapContainer();
+
+    public Map currentMap;
     /// <summary>
     /// Obecna level jaki jest 
     /// </summary>
@@ -257,6 +263,11 @@ public class GameManager : MonoBehaviour
         currentScene = levelContainer.LevelList[id];
     }
 
+    public void ChangeMap(int id)
+    {
+        currentMap = mapContainer.MapList[id];
+    }
+
     /// <summary>
     /// Funckcja wywo³ywana przy zmianie scen
     /// </summary>
@@ -282,7 +293,9 @@ public class GameManager : MonoBehaviour
             endOfBattle = endobj;
             mouse = GameObject.Find("MouseTarget");
             Canvas canvas = GameObject.Find("AllPrefab").GetComponent<Canvas>();
+            Canvas obstaclesCanvas = GameObject.Find("Obstacles").GetComponent<Canvas>();
             prefabGameObjects = new List<GameObject>();
+            obstaclesObjects= new List<GameObject>();
             SetBattleManager();
             UnityEngine.Debug.Log(canvas.transform.childCount);
             for (int i = 0; i < canvas.transform.childCount; i++) // przechodzimy przez wszystkie dzieci Transform
@@ -290,8 +303,16 @@ public class GameManager : MonoBehaviour
                 Transform child = canvas.transform.GetChild(i);
                 prefabGameObjects.Add(child.gameObject); // dodajemy komponent GameObject dziecka do listy
             }
+            for (int i = 0; i < obstaclesCanvas.transform.childCount; i++) // przechodzimy przez wszystkie dzieci Transform
+            {
+                Transform child = obstaclesCanvas.transform.GetChild(i);
+                obstaclesObjects.Add(child.gameObject); // dodajemy komponent GameObject dziecka do listy
+            }
+
+
             endOfBattle.SetActive(false);
             currentScene.SetObjectToScene();
+            currentMap.SetObjectToScene();
         }
     }
 

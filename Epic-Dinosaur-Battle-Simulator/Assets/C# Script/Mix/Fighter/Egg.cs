@@ -39,9 +39,8 @@ public class Egg: MonoBehaviour
     }
     private void SetObject()
     {
-        GameObject obj = Instantiate(GameManager.Instance.prefabGameObjects[0]);
+        GameObject obj = Instantiate(GameManager.Instance.prefabGameObjects[RandomIdOfDino()]);
         obj.tag = tag;
-        
         CreatureStats c = obj.GetComponent<CreatureStats>();
         obj.transform.position = new Vector3(transform.position.x,c.YAxis,transform.position.z);
         if (c.behaviourScript == ScriptType.MeleeFighter) { obj.GetComponent<MeleeFighter>().IsActiveForBattle = true; }
@@ -66,94 +65,103 @@ public class Egg: MonoBehaviour
 
     int RandomIdOfDino()
     {
-        GameObject obj = Instantiate(GameManager.Instance.prefabGameObjects[0]);
-        obj.tag = tag;
         if (tag == "Enemy" && GameManager.Instance.currentScene.Id != 0)
         {
-            System.Random random = new System.Random();
-            int randomNumber = random.Next(1, 67); // Wygeneruj liczbę od 1 do 66 (67 jest wyłączone)
-            if(randomNumber <=33)
+            return ReturnIdOfObjectForNonSandboxEnemy();
+        }
+        else
+        {
+            return ReturnIdOfObjectInOtherSituation();
+        }
+    }
+
+    private int ReturnIdOfObjectInOtherSituation()
+    {
+        int SumOfProbabilities = Egg.Probability.Sum();
+        if (SumOfProbabilities == 0)
+        {
+            int id = 0;
+            foreach (int item in GameManager.Instance.dynamicData.Dinosaurs)
             {
-                if(randomNumber <=18)
-                {
-                    if (randomNumber <= 7)
-                        return 0;
-                    else if(randomNumber <= 10)
-                        return 1;
-                    else if(randomNumber == 11)
-                        return 2;
-                    else
-                        return 3;
-                }
+                if (GameManager.Instance.dynamicData.Dinosaurs[id] == 0 && id != 20)
+                    Egg.Probability[id] = 0;
+                else if (GameManager.Instance.dynamicData.Dinosaurs[id] == 1 && id != 20)
+                    Egg.Probability[id] = 5;
+                else if (id != 20)
+                    Egg.Probability[id] = 5 + ((int)((GameManager.Instance.dynamicData.Dinosaurs[id] - 1) / 3));
                 else
-                {
-                    if (randomNumber <= 21)
-                        return 4;
-                    else if (randomNumber <= 22)
-                        return 5;
-                    else if (randomNumber <= 29)
-                        return 6;
-                    else if (randomNumber <= 32)
-                        return 7;
-                    else
-                        return 8;
-                }
+                    Egg.Probability[id] = 0;
+                id++;
+            }
+        }
+        System.Random random = new System.Random();
+        int randomNumber = random.Next(0, SumOfProbabilities); // Wygeneruj liczbę od 1 do 66 (67 jest wyłączone)
+        int returner = 0;
+        while (randomNumber - Egg.Probability[returner] > 0)
+        {
+            randomNumber = -Egg.Probability[returner];
+            returner++;
+        }
+        return returner;
+    }
+
+    private int ReturnIdOfObjectForNonSandboxEnemy()
+    {
+        System.Random random = new System.Random();
+        int randomNumber = random.Next(1, 67); // Wygeneruj liczbę od 1 do 66 (67 jest wyłączone)
+        if (randomNumber <= 33)
+        {
+            if (randomNumber <= 18)
+            {
+                if (randomNumber <= 7)
+                    return 0;
+                else if (randomNumber <= 10)
+                    return 1;
+                else if (randomNumber == 11)
+                    return 2;
+                else
+                    return 3;
             }
             else
             {
-                if(randomNumber <= 51)
-                {
-                    if (randomNumber <= 40)
-                        return 9;
-                    else if (randomNumber <= 43)
-                        return 10;
-                    else if (randomNumber == 44)
-                        return 11;
-                    else
-                        return 12;
-                }
+                if (randomNumber <= 21)
+                    return 4;
+                else if (randomNumber <= 22)
+                    return 5;
+                else if (randomNumber <= 29)
+                    return 6;
+                else if (randomNumber <= 32)
+                    return 7;
                 else
-                {
-                    if (randomNumber <= 54)
-                        return 13;
-                    else if (randomNumber == 55)
-                        return 14;
-                    else if (randomNumber <= 62)
-                        return 15;
-                    else if(randomNumber <=65)
-                        return 16;
-                    else
-                        return 17;
-                }
+                    return 8;
             }
         }
         else
         {
-            if(Egg.Probability.Length == 0)
+            if (randomNumber <= 51)
             {
-                int id = 0;
-                foreach (int item in GameManager.Instance.dynamicData.Dinosaurs)
-                {
-                    if (GameManager.Instance.dynamicData.Dinosaurs[id] == 0 && id != 20)
-                        Egg.Probability[id] = 0;
-                    else if (GameManager.Instance.dynamicData.Dinosaurs[id] == 1 && id != 20)
-                        Egg.Probability[id] = 5;
-                    else if (id != 20)
-                        Egg.Probability[id] = 5 + ((int)((GameManager.Instance.dynamicData.Dinosaurs[id] - 1) / 3));
-                    else
-                        Egg.Probability[id] = 0;
-                    id++;
-                }
+                if (randomNumber <= 40)
+                    return 9;
+                else if (randomNumber <= 43)
+                    return 10;
+                else if (randomNumber == 44)
+                    return 11;
+                else
+                    return 12;
             }
-            System.Random random = new System.Random();
-            int randomNumber = random.Next(0, Egg.Probability.Sum()); // Wygeneruj liczbę od 1 do 66 (67 jest wyłączone)
-            int returner = 0;
-            while (randomNumber - Egg.Probability[returner] > 0)
+            else
             {
-                randomNumber =- Egg.Probability[returner];
-                returner++;
+                if (randomNumber <= 54)
+                    return 13;
+                else if (randomNumber == 55)
+                    return 14;
+                else if (randomNumber <= 62)
+                    return 15;
+                else if (randomNumber <= 65)
+                    return 16;
+                else
+                    return 17;
             }
-            return returner;
         }
     }
 }

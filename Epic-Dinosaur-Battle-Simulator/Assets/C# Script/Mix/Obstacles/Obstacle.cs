@@ -1,55 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using Unity.VisualScripting;
-using UnityEngine;
 
-public class Obstacle: MonoBehaviour
+
+public class Obstacle
 {
-    private ListToCheck[] list;
-    private int range;
+    float xAxis;
+    float yAxis;
+    float zAxis;
+    int prefabId;
 
-
-    private void Update()
+    public Obstacle(float xAxis, float yAxis, float zAxis, int prefabId)
     {
-        if (GameManager.Instance.IsRun)
-        {
-            CheckIfAnyTroopInvade();
-        }
+        XAxis = xAxis;
+        YAxis = yAxis;
+        ZAxis = zAxis;
+        PrefabId = prefabId;
     }
 
-    private void CheckIfAnyTroopInvade()
-    {
-        foreach(var item in list)
-        {
-            CheckIfAnyTroopInSquareHasToChangeSquare(item);
-        }
-    }
-
-    private void CheckIfAnyTroopInSquareHasToChangeSquare(ListToCheck item)
-    {
-        foreach (var k in GameManager.Instance.battleManager.EnemyFighters[item.row, item.col])
-        {
-            if (Vector3.Distance(transform.position, k.transform.position) <= 5)
-            {
-                //zrob cos
-            }
-        }
-
-        foreach (var k in GameManager.Instance.battleManager.BlueFighters[item.row, item.col])
-        {
-            if (Vector3.Distance(transform.position, k.transform.position) <= 5)
-            {
-                //zrob cos
-            }
-        }
-    }
+    public float XAxis { get => xAxis; set => xAxis = value; }
+    public float YAxis { get => yAxis; set => yAxis = value; }
+    public float ZAxis { get => zAxis; set => zAxis = value; }
+    public int PrefabId { get => prefabId; set => prefabId = value; }
 }
 
-public struct ListToCheck{
-    public int row;
-    public int col;
-} 
