@@ -61,6 +61,7 @@ public class Settings : MonoBehaviour
 
     public void TurnOnOffMusic()
     {
-
+        GameManager.Instance.dynamicData.WantMusic = !GameManager.Instance.dynamicData.WantMusic;
+        GameManager.Instance.dynamicData.Save();
     }
 }

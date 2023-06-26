@@ -16,10 +16,12 @@ public class DynamicData
     int money; // jest to waluta in-game
     public int battlesWithoutAds = 0; // ile bitew ostatnich nie mia³o wymuszonej reklamy (pomijalnej)
     static List<int> StartLvls = new List<int>() { 2, 1, 1, 1 }; //Poziomy ktore sa odblokowane na start (stworzone wylacznie w celu zmiany jednej listy zamiast kilku)
+    public bool wantMusic = true;
 
     private DynamicData() 
     {
         battlesWithoutAds = 0;
+        WantMusic = true;
     }
 
     public DynamicData(List<int> unlockLvls, List<int> dinosaurs, List<bool> terrain, int money) : this()
@@ -36,6 +38,7 @@ public class DynamicData
     public List<int> Dinosaurs { get => dinosaurs; set => dinosaurs = value; }
     public List<bool> Terrain { get => terrain; set => terrain = value; }
     public int Money { get => money; set => money = value; }
+    public bool WantMusic { get => wantMusic; set => wantMusic = value; }
 
     private void ZapiszBin(string nazwa)
     {
