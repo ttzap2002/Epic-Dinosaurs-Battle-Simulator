@@ -94,23 +94,24 @@ public class Egg: MonoBehaviour
             int id = 0;
             foreach (int item in GameManager.Instance.dynamicData.Dinosaurs)
             {
-                if (GameManager.Instance.dynamicData.Dinosaurs[id] == 0 && id != 20)
-                    Egg.Probability[id] = 0;
-                else if (GameManager.Instance.dynamicData.Dinosaurs[id] == 1 && id != 20)
-                    Egg.Probability[id] = 5;
-                else if (id != 20)
-                    Egg.Probability[id] = 5 + ((int)((GameManager.Instance.dynamicData.Dinosaurs[id] - 1) / 3));
+                if (item == 0 && id != 18 && id != 19)
+                    Egg.Probability[id] = 1;
+                else if (item == 1 && id != 18 && id != 19)
+                    Egg.Probability[id] = 10;
+                else if (id != 18 && id != 19)
+                    Egg.Probability[id] = 10 + ((int)((item - 1) / 3));
                 else
                     Egg.Probability[id] = 0;
                 id++;
             }
+            SumOfProbabilities = Egg.Probability.Sum();
         }
         System.Random random = new System.Random();
-        int randomNumber = random.Next(0, SumOfProbabilities); // Wygeneruj liczbę od 1 do 66 (67 jest wyłączone)
+        int randomNumber = random.Next(0, SumOfProbabilities+1);
         int returner = 0;
         while (randomNumber - Egg.Probability[returner] > 0)
         {
-            randomNumber = -Egg.Probability[returner];
+            randomNumber -= Egg.Probability[returner];
             returner++;
         }
         return returner;
