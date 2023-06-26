@@ -128,7 +128,7 @@ public class MeleeFighter : Fighter
                                 timer = 0f;
                             }
                         }
-
+                        Rotate();
 
                     }
                     else { GetTarget(); }
@@ -231,9 +231,15 @@ public class MeleeFighter : Fighter
     protected virtual void Move()
     {
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * myStats.Speed);
-        Vector3 directionToEnemy = (transform.position- target.transform.position).normalized;
+     
+    
+    }
+
+    protected void Rotate() 
+    {
+        Vector3 directionToEnemy = (transform.position - target.transform.position).normalized;
         directionToEnemy = directionToEnemy.normalized;
-        
+
         if (!myStats.IsObligatoryToRotate)
         {
             Quaternion targetRotation = Quaternion.LookRotation(directionToEnemy);
@@ -241,9 +247,9 @@ public class MeleeFighter : Fighter
             //rotation.x = transform.rotation.x;
             //rotation.z = transform.rotation.z;
             transform.rotation = rotation;
-        
+
         }
-        
+
         else
         {
             Quaternion targetRotation = Quaternion.LookRotation(directionToEnemy);
@@ -253,10 +259,7 @@ public class MeleeFighter : Fighter
             rotation.z = transform.rotation.z;
             transform.rotation = rotation;
         }
-    
     }
-
-
    
    
 

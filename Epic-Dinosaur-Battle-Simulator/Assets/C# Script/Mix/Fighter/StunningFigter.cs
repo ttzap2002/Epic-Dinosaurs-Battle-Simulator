@@ -24,12 +24,15 @@ public class StunningFigter: MeleeFighter
 
     protected override void Update()
     {
-        base.Update();
-        if (IsActiveForBattle) 
+        if (GameManager.Instance.IsRun)
         {
-            if (!isHitFirstTime)
+            base.Update();
+            if (IsActiveForBattle)
             {
-                myStats.Speed += 0.1f;
+                if (!isHitFirstTime)
+                {
+                    myStats.Speed += 0.1f;
+                }
             }
         }
        

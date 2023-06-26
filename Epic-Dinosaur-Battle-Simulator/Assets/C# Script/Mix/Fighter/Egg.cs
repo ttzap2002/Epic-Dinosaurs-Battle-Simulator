@@ -29,6 +29,17 @@ public class Egg: MonoBehaviour
     {
         if (GameManager.Instance.IsRun)
         {
+            if(timer > 0.1f) 
+            {
+                if (tag == "Blue")
+                {
+                    GameManager.Instance.battleManager.React(false, gameObject);
+                }
+                else if (tag == "Enemy")
+                {
+                    GameManager.Instance.battleManager.React(true, gameObject);
+                }
+            }
             if (timer >= 5)
             {
                 SetObject();

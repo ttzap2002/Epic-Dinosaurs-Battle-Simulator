@@ -24,51 +24,58 @@ public class SpawnerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isReadyForFight)
+        if (GameManager.Instance.IsRun)
         {
-            if (timer >= 5)
+            if (isReadyForFight)
             {
-                GameObject obj = Instantiate(GameManager.Instance.prefabGameObjects[fighterspawn]);
-              
-                obj.transform.position = transform.position;
-
-                CreatureStats c = obj.GetComponent<CreatureStats>();
-           
-                if (c.behaviourScript == ScriptType.MeleeFighter) { obj.GetComponent<MeleeFighter>().IsActiveForBattle = true; }
-                else if (c.behaviourScript == ScriptType.Spawner) { obj.AddComponent<SpawnerBehaviour>(); }
-                FighterPlacement f = obj.gameObject.GetComponent<FighterPlacement>();
-                f.CreateForSpawner();
-                obj.SetActive(true);
-                timer = 0;
-                if (gameObject.tag == "Blue") { obj.tag = "Blue"; GameManager.Instance.battleManager.BlueFighters[fighter.row, fighter.col].Add(f); GameManager.Instance.blueGameObjects.Add(obj);
-                    GameManager.Instance.battleManager.React(false, obj.gameObject);
-
-                }
-                else { obj.tag = "Enemy"; GameManager.Instance.battleManager.EnemyFighters[fighter.row, fighter.col].Add(f); GameManager.Instance.enemyGameObjects.Add(obj);
-                    GameManager.Instance.battleManager.React(true, obj.gameObject);
-
-                }
-            }
-            if (i%400 == 0)
-            {
-                myStats.hp -= 10;
-            }
-            if (myStats.hp <= 0)
-            {
-                if (tag == "Blue")
+                if (timer >= 5)
                 {
-                    GameManager.Instance.blueGameObjects.Remove(gameObject);
-                }
-                else
-                {
-                    GameManager.Instance.enemyGameObjects.Remove(gameObject);
-                }
+                    GameObject obj = Instantiate(GameManager.Instance.prefabGameObjects[fighterspawn]);
 
-                GameManager.Instance.battleManager.RemoveFromList(gameObject.GetComponent<FighterPlacement>(), fighter.row, fighter.col);
-                Destroy(gameObject);
+                    obj.transform.position = transform.position;
+
+                    CreatureStats c = obj.GetComponent<CreatureStats>();
+
+                    if (c.behaviourScript == ScriptType.MeleeFighter) { obj.GetComponent<MeleeFighter>().IsActiveForBattle = true; }
+                    else if (c.behaviourScript == ScriptType.Spawner) { obj.AddComponent<SpawnerBehaviour>(); }
+                    FighterPlacement f = obj.gameObject.GetComponent<FighterPlacement>();
+                    f.CreateForSpawner();
+                    obj.SetActive(true);
+                    timer = 0;
+                    if (gameObject.tag == "Blue")
+                    {
+                        obj.tag = "Blue"; GameManager.Instance.battleManager.BlueFighters[fighter.row, fighter.col].Add(f); GameManager.Instance.blueGameObjects.Add(obj);
+                        GameManager.Instance.battleManager.React(false, obj.gameObject);
+
+                    }
+                    else
+                    {
+                        obj.tag = "Enemy"; GameManager.Instance.battleManager.EnemyFighters[fighter.row, fighter.col].Add(f); GameManager.Instance.enemyGameObjects.Add(obj);
+                        GameManager.Instance.battleManager.React(true, obj.gameObject);
+
+                    }
+                }
+                if (i % 400 == 0)
+                {
+                    myStats.hp -= 10;
+                }
+                if (myStats.hp <= 0)
+                {
+                    if (tag == "Blue")
+                    {
+                        GameManager.Instance.blueGameObjects.Remove(gameObject);
+                    }
+                    else
+                    {
+                        GameManager.Instance.enemyGameObjects.Remove(gameObject);
+                    }
+
+                    GameManager.Instance.battleManager.RemoveFromList(gameObject.GetComponent<FighterPlacement>(), fighter.row, fighter.col);
+                    Destroy(gameObject);
+                }
+                timer += Time.deltaTime;
+                i++;
             }
-            timer += Time.deltaTime;
-            i++;
         }
     }
 }
