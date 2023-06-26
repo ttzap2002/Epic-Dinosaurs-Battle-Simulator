@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -684,27 +684,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5710c8e537873614b951bece9a721f07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &51938857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 51938855}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f408767065bc42049b234209b6ea046a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  isFighting: 0
-  isActiveForBattle: 0
-  ifEatEggImmediately: 0
-  rotationSpeed: 5
-  isResistForStunning: 0
-  stunningProbability: 0.65
-  stunningProbAfterHit: 0.05
-  BasicSpeed: 10
 --- !u!114 &51938858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -756,6 +735,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &51938861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 51938855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab716d9538ba53246b79419cc240c6e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  isFighting: 0
+  isActiveForBattle: 0
+  ifEatEggImmediately: 0
+  rotationSpeed: 5
+  isResistForStunning: 0
 --- !u!1 &53068393
 GameObject:
   m_ObjectHideFlags: 0
@@ -2299,11 +2296,11 @@ MonoBehaviour:
   radius: 5
   hp: 1000
   interval: 5
-  haveTailAttack: 1
+  haveTailAttack: 0
   yAxis: 0
   isObligatoryToRotate: 0
   behaviourScript: 0
-  fightingScript: 1
+  fightingScript: 0
 --- !u!114 &406138981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2322,40 +2319,6 @@ MonoBehaviour:
   ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
---- !u!114 &406138982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 406138978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3c195ad931d2da41a42f5abd561267a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackRange: 20
-  attackAngle: 135
-  attackLayer:
-    serializedVersion: 2
-    m_Bits: 64
---- !u!114 &406138983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 406138978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0150a35ea5821204984810a6dcef2691, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackRange: 20
-  attackAngle: 135
-  attackLayer:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!114 &406138984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2778,23 +2741,6 @@ MonoBehaviour:
   attackLayer:
     serializedVersion: 2
     m_Bits: 64
---- !u!114 &435813905
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 435813901}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3c195ad931d2da41a42f5abd561267a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackRange: 20
-  attackAngle: 135
-  attackLayer:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!114 &435813906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2945,27 +2891,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5710c8e537873614b951bece9a721f07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &467083640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 467083638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f408767065bc42049b234209b6ea046a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  isFighting: 0
-  isActiveForBattle: 0
-  ifEatEggImmediately: 0
-  rotationSpeed: 5
-  isResistForStunning: 0
-  stunningProbability: 0.65
-  stunningProbAfterHit: 0.05
-  BasicSpeed: 10
 --- !u!114 &467083641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3017,6 +2942,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &467083644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 467083638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89f1163b479f97644bff9850d1b8fa0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positionToReach: {x: 0, y: 0, z: 0}
+  range: 10
+  timeForLayEgg: 5
 --- !u!1001 &488007940
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3577,9 +3517,9 @@ MonoBehaviour:
   isActiveForBattle: 0
   ifEatEggImmediately: 0
   rotationSpeed: 5
-  isResistForStunning: 0
+  isResistForStunning: 1
   stunningProbability: 0.65
-  stunningProbAfterHit: 0.05
+  stunningProbAfterHit: 0.01
   BasicSpeed: 10
 --- !u!114 &568777656
 MonoBehaviour:
@@ -3892,8 +3832,8 @@ MonoBehaviour:
   ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
-  stunningProbability: 0.65
-  stunningProbAfterHit: 0.05
+  stunningProbability: 0.55
+  stunningProbAfterHit: 0.035
   BasicSpeed: 10
 --- !u!114 &597893630
 MonoBehaviour:
@@ -6086,8 +6026,8 @@ MonoBehaviour:
   ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
-  stunningProbability: 0.65
-  stunningProbAfterHit: 0.05
+  stunningProbability: 0.6
+  stunningProbAfterHit: 0.03
   BasicSpeed: 10
 --- !u!114 &881810818
 MonoBehaviour:
@@ -6925,8 +6865,8 @@ MonoBehaviour:
   ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
-  stunningProbability: 0.65
-  stunningProbAfterHit: 0.05
+  stunningProbability: 0.025
+  stunningProbAfterHit: 0.025
   BasicSpeed: 10
 --- !u!114 &1022507581
 MonoBehaviour:
@@ -7915,7 +7855,7 @@ MonoBehaviour:
   ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
-  stunningProbability: 0.65
+  stunningProbability: 0.4
   stunningProbAfterHit: 0.05
   BasicSpeed: 10
 --- !u!114 &1294917354
@@ -9442,8 +9382,8 @@ MonoBehaviour:
   ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
-  stunningProbability: 0.65
-  stunningProbAfterHit: 0.05
+  stunningProbability: 0.25
+  stunningProbAfterHit: 0
   BasicSpeed: 10
 --- !u!114 &1613739232
 MonoBehaviour:
@@ -10430,11 +10370,11 @@ MonoBehaviour:
   target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
-  ifEatEggImmediately: 0
+  ifEatEggImmediately: 1
   rotationSpeed: 5
   isResistForStunning: 0
-  stunningProbability: 0.65
-  stunningProbAfterHit: 0.05
+  stunningProbability: 0.3
+  stunningProbAfterHit: 0
   BasicSpeed: 10
 --- !u!114 &1747327026
 MonoBehaviour:
@@ -12064,27 +12004,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5710c8e537873614b951bece9a721f07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2011403982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2011403980}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f408767065bc42049b234209b6ea046a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  isFighting: 0
-  isActiveForBattle: 0
-  ifEatEggImmediately: 0
-  rotationSpeed: 5
-  isResistForStunning: 0
-  stunningProbability: 0.65
-  stunningProbAfterHit: 0.05
-  BasicSpeed: 10
 --- !u!114 &2011403983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12136,6 +12055,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2011403986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011403980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89f1163b479f97644bff9850d1b8fa0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positionToReach: {x: 0, y: 0, z: 0}
+  range: 15
+  timeForLayEgg: 5
 --- !u!1 &2041865769
 GameObject:
   m_ObjectHideFlags: 0

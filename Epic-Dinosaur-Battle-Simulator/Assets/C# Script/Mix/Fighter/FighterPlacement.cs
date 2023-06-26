@@ -54,6 +54,6 @@ public class FighterPlacement: MonoBehaviour
                 me.target = obj;
             }
         }
-        
+  
     }
 }

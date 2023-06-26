@@ -9,9 +9,13 @@ using UnityEngine;
 
 public class ObstacleBehaviour: MonoBehaviour
 {
-    private ListToCheck[] list;
+    private SquaresToCheck[] list;
     private int range;
 
+    private void Start()
+    {
+        SetListOfSquaresToCheck();
+    }
 
     private void Update()
     {
@@ -29,11 +33,11 @@ public class ObstacleBehaviour: MonoBehaviour
         }
     }
 
-    private void CheckIfAnyTroopInSquareHasToChangeSquare(ListToCheck item)
+    private void CheckIfAnyTroopInSquareHasToChangeSquare(SquaresToCheck item)
     {
         foreach (var k in GameManager.Instance.battleManager.EnemyFighters[item.row, item.col])
         {
-            if (Vector3.Distance(transform.position, k.transform.position) <= 5)
+            if (Vector3.Distance(transform.position, k.transform.position) <= range)
             {
                 //zrob cos
             }
@@ -41,15 +45,40 @@ public class ObstacleBehaviour: MonoBehaviour
 
         foreach (var k in GameManager.Instance.battleManager.BlueFighters[item.row, item.col])
         {
-            if (Vector3.Distance(transform.position, k.transform.position) <= 5)
+            if (Vector3.Distance(transform.position, k.transform.position) <= range)
             {
                 //zrob cos
             }
         }
     }
+
+
+    private void SetListOfSquaresToCheck() 
+    {
+        List<SquaresToCheck> listtemporary = new List<SquaresToCheck>();
+        listtemporary.Add(new SquaresToCheck((int)(transform.position.x / 10),
+        (int)(transform.position.z / 10)));
+        int a = 10;
+        for(int i = 0; i < 4;i++) 
+        {
+
+        }
+
+
+
+    }
+
+
+
 }
 
-public struct ListToCheck{
+public struct SquaresToCheck{
     public int row;
     public int col;
+
+    public SquaresToCheck(int row,int col) 
+    {
+        this.row = row;
+        this.col = col;
+    }
 } 
