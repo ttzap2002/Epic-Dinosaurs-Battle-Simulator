@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleManager : MonoBehaviour
+public class BattleManager :MonoBehaviour
 {
     //List<FighterPlacement> enemyFighters;
     //List<FighterPlacement> blueFighters;
 
     List<FighterPlacement>[,] enemyFighters= new List<FighterPlacement>[10,10];
     List<FighterPlacement>[,] blueFighters = new List<FighterPlacement>[10, 10];
-
+    int[] kosmoceraptorsCount=new int[2] { 0,0 };
     int i = 0;
     
     public BattleManager(List<FighterPlacement>[,] enemyFighters, List<FighterPlacement>[,] blueFighters)
@@ -25,6 +25,7 @@ public class BattleManager : MonoBehaviour
 
     public List<FighterPlacement>[,] EnemyFighters { get => enemyFighters; set => enemyFighters = value; }
     public List<FighterPlacement>[,] BlueFighters { get => blueFighters; set => blueFighters = value; }
+    public int[] KosmoceraptorsCount { get => kosmoceraptorsCount; set => kosmoceraptorsCount = value; }
 
     //przestarza³a wersja
     /*

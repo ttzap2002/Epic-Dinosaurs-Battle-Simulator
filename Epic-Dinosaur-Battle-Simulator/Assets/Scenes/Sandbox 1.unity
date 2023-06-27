@@ -952,7 +952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd317d2a16319d46985aa2f2b310f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
+  index: 2
   cost: 12
   speed: 25
   attack: 20
@@ -2289,7 +2289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd317d2a16319d46985aa2f2b310f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
+  index: 3
   cost: 0
   speed: 25
   attack: 1000
@@ -9397,7 +9397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd317d2a16319d46985aa2f2b310f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
+  index: 14
   cost: 0
   speed: 25
   attack: 20
@@ -9574,7 +9574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd317d2a16319d46985aa2f2b310f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
+  index: 1
   cost: 0
   speed: 25
   attack: 20
@@ -10388,7 +10388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd317d2a16319d46985aa2f2b310f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
+  index: 13
   cost: 0
   speed: 25
   attack: 20
@@ -10427,6 +10427,27 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1747327029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747327023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cf8757742f8e084f92f179c91b3bcac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  isFighting: 0
+  isActiveForBattle: 0
+  ifEatEggImmediately: 0
+  rotationSpeed: 5
+  isResistForStunning: 0
+  stunningProbability: 0.3
+  stunningProbAfterHit: 0
+  BasicSpeed: 25
 --- !u!1 &1759283258
 GameObject:
   m_ObjectHideFlags: 0

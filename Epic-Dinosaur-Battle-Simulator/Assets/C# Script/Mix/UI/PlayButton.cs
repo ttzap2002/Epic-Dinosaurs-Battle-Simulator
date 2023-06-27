@@ -49,7 +49,7 @@ public class PlayButton : MonoBehaviour
             }
 
             GameManager.Instance.battleManager.EnemyFighters[fPlacement.row, fPlacement.col].Add(fPlacement);
-            
+            if (stats.index == 14) { GameManager.Instance.battleManager.KosmoceraptorsCount[1]++; }
         }
     }
 
@@ -74,6 +74,8 @@ public class PlayButton : MonoBehaviour
                 f.gameObject.GetComponent<LayEggsFighter>().IsActiveForBattle = true;
             }
             GameManager.Instance.battleManager.BlueFighters[fPlacement.row, fPlacement.col].Add(fPlacement);
+            if (stats.index == 14) { GameManager.Instance.battleManager.KosmoceraptorsCount[0]++; }
+
         }
     }
 }

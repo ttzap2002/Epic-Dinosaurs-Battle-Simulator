@@ -10,10 +10,10 @@ using UnityEngine;
 public class StunningFigter: MeleeFighter
 {
 
-    [SerializeField] private float stunningProbability;
+    [SerializeField] protected float stunningProbability;
     [SerializeField] private float stunningProbAfterHit;
-    private bool isHitFirstTime=false;
-    [SerializeField] private float BasicSpeed;
+    protected bool isHitFirstTime=false;
+    [SerializeField] protected float BasicSpeed;
 
 
     private void Start()
@@ -65,7 +65,7 @@ public class StunningFigter: MeleeFighter
 
       
     }
-    void Stunning(GameObject myEnemy, CreatureStats m)
+    protected virtual void Stunning(GameObject myEnemy, CreatureStats m)
     {
         if (!isHitFirstTime)
         {
@@ -80,7 +80,7 @@ public class StunningFigter: MeleeFighter
             m.hp -= myStats.attack;
         }
     }
-    private void IfStunningEnemy(GameObject myEnemy, CreatureStats m,float probability)
+    protected void IfStunningEnemy(GameObject myEnemy, CreatureStats m,float probability)
     {
         System.Random r = new System.Random();
         float result = (float)r.Next(0, 10000) / 10000;
