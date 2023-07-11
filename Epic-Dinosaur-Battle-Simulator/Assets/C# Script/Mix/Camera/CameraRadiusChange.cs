@@ -12,6 +12,7 @@ public class CameraRadiusChange : MonoBehaviour
 
     void Update()
     {
+        //Debug.Log($"{Input.touchCount == 1} {Input.GetTouch(0).phase == TouchPhase.Moved} {GameManager.Instance.IsRun} {CamJoystick.isNotClicked}");
         if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Moved && GameManager.Instance.IsRun && CamJoystick.isNotClicked /*&& !camera.IsUnityNull()*/)
         {
             // Pobierz pozycjê dotyku na ekranie
