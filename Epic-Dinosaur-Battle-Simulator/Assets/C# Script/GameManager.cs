@@ -239,7 +239,7 @@ public class GameManager : MonoBehaviour
                 blueFighters[i, j] = new List<FighterPlacement>();
             }
         }
-        battleManager = new BattleManager(enemyFighters, blueFighters);
+        battleManager.Initialize(enemyFighters, blueFighters);
 
     }
 
@@ -294,6 +294,7 @@ public class GameManager : MonoBehaviour
             mouse = GameObject.Find("MouseTarget");
             Canvas canvas = GameObject.Find("AllPrefab").GetComponent<Canvas>();
             Canvas obstaclesCanvas = GameObject.Find("Obstacles").GetComponent<Canvas>();
+            this.battleManager  = GameObject.Find("BattleManager").GetComponent<BattleManager>();
             prefabGameObjects = new List<GameObject>();
             obstaclesObjects= new List<GameObject>();
             SetBattleManager();

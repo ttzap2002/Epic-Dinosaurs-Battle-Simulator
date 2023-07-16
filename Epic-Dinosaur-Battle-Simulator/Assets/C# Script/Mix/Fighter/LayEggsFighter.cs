@@ -62,21 +62,22 @@ public class LayEggsFighter :MonoBehaviour
         {
             if (isActiveForBattle)
             {
-                if (isChangeOfSquare())
-                {
-                    if (tag == "Blue")
-                    {
-                        GameManager.Instance.battleManager.React(false, gameObject);
-                    }
-                    else if (tag == "Enemy")
-                    {
-                        GameManager.Instance.battleManager.React(true, gameObject);
-                    }
-                }
+                
                 if (!isLaying)
                 {
                     Move();
                     if (transform.position == positionToReach) { isLaying = true; }
+                    if (isChangeOfSquare())
+                    {
+                        if (tag == "Blue")
+                        {
+                            GameManager.Instance.battleManager.React(false, gameObject);
+                        }
+                        else if (tag == "Enemy")
+                        {
+                            GameManager.Instance.battleManager.React(true, gameObject);
+                        }
+                    }
                 }
                 else
                 {

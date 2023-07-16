@@ -813,6 +813,7 @@ PlayerSettings:
   webGLPowerPreference: 2
   scriptingDefineSymbols:
     Android: ENABLE_UNITYMESHSIMPLIFIER
+    Standalone: ENABLE_UNITYMESHSIMPLIFIER
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}

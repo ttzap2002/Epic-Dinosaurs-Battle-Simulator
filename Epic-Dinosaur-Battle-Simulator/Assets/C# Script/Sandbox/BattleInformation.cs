@@ -43,6 +43,14 @@ public class BattleInformation : MonoBehaviour
 
     }
 
+    public float[] GetMoney() 
+    {
+        float[] getMoney = new float[2];
+        float.TryParse(blueMoneyTxt.text, out getMoney[0]);
+        float.TryParse(enemyMoneyTxt.text, out getMoney[1]);
+        return getMoney;
+    }
+
     public void enemyMoneyUpdate(int money) 
     {
 

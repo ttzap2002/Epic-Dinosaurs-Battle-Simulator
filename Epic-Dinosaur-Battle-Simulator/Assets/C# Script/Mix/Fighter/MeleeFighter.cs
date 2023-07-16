@@ -1,13 +1,7 @@
-using Assets.C__Script;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Net.Sockets;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Experimental.Playables;
+
 
 public class MeleeFighter : Fighter
 {
@@ -49,9 +43,19 @@ public class MeleeFighter : Fighter
     public bool IsActiveForBattle { get => isActiveForBattle; set => isActiveForBattle = value; }
     public bool IsResistForStunning { get => isResistForStunning; set => isResistForStunning = value; }
 
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("pies");
+        if (!isFighting)
+        {
+            Rigidbody otherRb = other.gameObject.GetComponent<Rigidbody>();
+            if (otherRb != null)
+            {
+                Vector3 pushDirection = other.transform.position - transform.position;
+                Vector3 newDirection = Quaternion.Euler(0, 90, 0) * pushDirection; // Rotate push direction by 90 degrees
+                otherRb.AddForce(newDirection.normalized * 0.5f, ForceMode.Impulse);
+            }
+        }
     }
     protected void Start()
     {
@@ -85,23 +89,23 @@ public class MeleeFighter : Fighter
                 {
                     if (target != null && target != gameObject)
                     {
-
-                        if (isChangeOfSquare())
-                        {
-                            if (tag == "Blue")
-                            {
-                                GameManager.Instance.battleManager.React(false, gameObject);
-                            }
-                            else if (tag == "Enemy")
-                            {
-                                GameManager.Instance.battleManager.React(true, gameObject);
-                            }
-                        }
                         if (!isFighting)
                         {
                             Move();
+                            if (isChangeOfSquare())
+                            {
+                                if (tag == "Blue")
+                                {
+                                    GameManager.Instance.battleManager.React(false, gameObject);
+                                }
+                                else if (tag == "Enemy")
+                                {
+                                    GameManager.Instance.battleManager.React(true, gameObject);
+                                }
+                            }
                             if (Vector3.Distance(transform.position, target.transform.position) <= myStats.radius)
                             { isFighting = true; }
+
                         }
                         else
                         {
@@ -128,7 +132,7 @@ public class MeleeFighter : Fighter
                                 timer = 0f;
                             }
                         }
-                        Rotate();
+                        //Rotate();
 
                     }
                     else { GetTarget(); }

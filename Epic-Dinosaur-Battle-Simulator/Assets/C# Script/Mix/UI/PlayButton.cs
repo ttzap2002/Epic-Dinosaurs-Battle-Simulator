@@ -15,9 +15,13 @@ public class PlayButton : MonoBehaviour
         {
             CreateBattleManagerForBlue();
             CreateBattleManagerForEnemy();
-
+      
             GameManager.Instance.IsRun = true;
-            Destroy(GameObject.Find(("Scene Information")));
+            GameManager.Instance.battleManager.SetCourutine();
+            GameObject objScene = GameObject.Find(("Scene Information"));
+            BattleInformation uiInfo = objScene.GetComponent<BattleInformation>();
+            GameManager.Instance.battleManager.MoneySum=uiInfo.GetMoney();
+            Destroy(objScene);
             Destroy(GameObject.Find(("Canvas")));
             Destroy(GameManager.Instance.UI);
 
