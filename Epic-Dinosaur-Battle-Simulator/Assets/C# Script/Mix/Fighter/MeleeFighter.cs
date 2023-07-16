@@ -14,7 +14,7 @@ public class MeleeFighter : Fighter
     /// <summary>
     /// zmienna odpowiadaj¹ca za to czy fighter jest gotowy do bitwy (false na poczatku i kiedy jest oszolomiony)
     /// </summary>
-    [SerializeField]bool isActiveForBattle=false;
+    [SerializeField] bool isActiveForBattle = false;
     protected CreatureStats myStats = null;
     protected FighterPlacement fighter = null;
     protected LongNeckFighting longNeckFighter = null;
@@ -65,13 +65,13 @@ public class MeleeFighter : Fighter
 
         myStats = gameObject.GetComponent<CreatureStats>();
         fighter = gameObject.GetComponent<FighterPlacement>();
-       
+
         //if (target is null) { GetFirstTarget(); }
         if (myStats.fightingScript == FightScript.LongNeck && longNeckFighter is null)
         {
             neckAttack = gameObject.GetComponent<LongNeckFighting>().ObjectsToHit;
         }
-        if (myStats.HaveTailAttack) 
+        if (myStats.HaveTailAttack)
         {
             tailAttack = gameObject.GetComponent<TailAttacKFighter>().ObjectsToHitByTail;
         }
@@ -79,6 +79,7 @@ public class MeleeFighter : Fighter
 
     protected virtual void Update()
     {
+        UnityEngine.Profiling.Profiler.BeginSample("MeleeFighter");
         if (GameManager.Instance.IsRun)
         {
             if (isActiveForBattle)
@@ -94,14 +95,10 @@ public class MeleeFighter : Fighter
                             Move();
                             if (isChangeOfSquare())
                             {
-                                if (tag == "Blue")
-                                {
-                                    GameManager.Instance.battleManager.React(false, gameObject);
-                                }
-                                else if (tag == "Enemy")
-                                {
-                                    GameManager.Instance.battleManager.React(true, gameObject);
-                                }
+                                bool isLessThan40 = GameManager.Instance.blueGameObjects.Count +
+                                    GameManager.Instance.enemyGameObjects.Count < 40 ;
+                                SetReactForOpponents(isLessThan40);
+                              
                             }
                             if (Vector3.Distance(transform.position, target.transform.position) <= myStats.radius)
                             { isFighting = true; }
@@ -155,21 +152,22 @@ public class MeleeFighter : Fighter
                 }
             }
         }
+        UnityEngine.Profiling.Profiler.EndSample();
     }
 
     public void GetTarget() {
-        if (tag == "Blue") { target=FindNearestEnemy(GameManager.Instance.battleManager.EnemyFighters); }
-        else { target=FindNearestEnemy(GameManager.Instance.battleManager.BlueFighters);}
-    
+        if (tag == "Blue") { target = FindNearestEnemy(GameManager.Instance.battleManager.EnemyFighters); }
+        else { target = FindNearestEnemy(GameManager.Instance.battleManager.BlueFighters); }
+
     }
-  
+
 
     public void SetFightingStatusToFalse()
     {
         isFighting = false;
         Debug.Log("Done");
     }
-    protected virtual void Hit(GameObject myEnemy) 
+    protected virtual void Hit(GameObject myEnemy)
     {
         if (myEnemy == this.gameObject)
         {
@@ -182,9 +180,9 @@ public class MeleeFighter : Fighter
             {
                 CreatureStats m = myEnemy.GetComponent<CreatureStats>();
                 FighterPlacement f = myEnemy.GetComponent<FighterPlacement>();
-                if(m.behaviourScript==ScriptType.Egg) 
+                if (m.behaviourScript == ScriptType.Egg)
                 {
-                    if (ifEatEggImmediately) 
+                    if (ifEatEggImmediately)
                     {
                         isFighting = false;
                         DestroyEnemy(myEnemy, f);
@@ -216,10 +214,10 @@ public class MeleeFighter : Fighter
         GameManager.Instance.CheckIfEndOfBattle();
     }
 
-    private void HitAllObjects(List<GameObject> ObjectsToHit) 
+    private void HitAllObjects(List<GameObject> ObjectsToHit)
     {
-        foreach(GameObject obj in ObjectsToHit)
-        { 
+        foreach (GameObject obj in ObjectsToHit)
+        {
             CreatureStats m = obj.GetComponent<CreatureStats>();
             FighterPlacement f = obj.GetComponent<FighterPlacement>();
             m.hp -= myStats.attack;
@@ -230,16 +228,16 @@ public class MeleeFighter : Fighter
             }
         }
     }
- 
-    
+
+
     protected virtual void Move()
     {
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * myStats.Speed);
-     
-    
+
+
     }
 
-    protected void Rotate() 
+    protected void Rotate()
     {
         Vector3 directionToEnemy = (transform.position - target.transform.position).normalized;
         directionToEnemy = directionToEnemy.normalized;
@@ -264,15 +262,15 @@ public class MeleeFighter : Fighter
             transform.rotation = rotation;
         }
     }
-   
-   
+
+
 
 
     private bool isChangeOfSquare()
     {
         int[] result = fighter.CheckWhichSquare();
-        if (result[0]!=fighter.row || result[1] != fighter.col)
-        { 
+        if (result[0] != fighter.row || result[1] != fighter.col)
+        {
             if (tag == "Blue") { GameManager.Instance.battleManager.BlueFighters[fighter.row, fighter.col].Remove(fighter); }
             else { GameManager.Instance.battleManager.EnemyFighters[fighter.row, fighter.col].Remove(fighter); }
             fighter.row = result[0];
@@ -285,7 +283,38 @@ public class MeleeFighter : Fighter
     }
 
 
-    
+    private void SetReactForOpponents (bool isLessThan40)
+    {
+        if (isLessThan40)
+        {
+            SetReact();
+        }
+        else { 
+            System.Random r = new System.Random();
+            int complexity = GameManager.Instance.enemyGameObjects.Count
+                * GameManager.Instance.blueGameObjects.Count*2;
+            double result = 800 / complexity;
+
+            double probability = r.NextDouble();
+            if(probability < result) {SetReact(); }
+            
+        }
+
+    }
+
+    private void SetReact()
+    {
+        if (tag == "Blue")
+        {
+            GameManager.Instance.battleManager.React(false, gameObject);
+        }
+        else if (tag == "Enemy")
+        {
+            GameManager.Instance.battleManager.React(true, gameObject);
+        }
+    }
+
+
     /*
     private GameObject FindNearestEnemy(string tag,Vector3 vectorOfMyObj)
     {

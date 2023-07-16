@@ -16,20 +16,23 @@ public class Egg: MonoBehaviour
     static int[] Probability = new int[20];
 
     private int i = 0;
-
+    private bool isFirstCall;
     public bool IsReadyForFight { get => isReadyForFight; set => isReadyForFight = value; }
 
     void Start()
     {
         myStats = gameObject.GetComponent<CreatureStats>();
         fighter = gameObject.GetComponent<FighterPlacement>();
+        isFirstCall=true;
     }
 
     private void Update()
     {
         if (GameManager.Instance.IsRun)
         {
-            if(timer > 0.1f) 
+            int sumOfObject=GameManager.Instance.enemyGameObjects.Count()
+                + GameManager.Instance.blueGameObjects.Count();
+            if(timer > 0.1f && isFirstCall && sumOfObject<100) 
             {
                 if (tag == "Blue")
                 {
@@ -39,6 +42,7 @@ public class Egg: MonoBehaviour
                 {
                     GameManager.Instance.battleManager.React(true, gameObject);
                 }
+                isFirstCall = false;
             }
             if (timer >= 5)
             {

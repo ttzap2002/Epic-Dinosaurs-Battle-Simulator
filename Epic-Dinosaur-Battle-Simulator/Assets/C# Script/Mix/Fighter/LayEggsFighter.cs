@@ -69,14 +69,9 @@ public class LayEggsFighter :MonoBehaviour
                     if (transform.position == positionToReach) { isLaying = true; }
                     if (isChangeOfSquare())
                     {
-                        if (tag == "Blue")
-                        {
-                            GameManager.Instance.battleManager.React(false, gameObject);
-                        }
-                        else if (tag == "Enemy")
-                        {
-                            GameManager.Instance.battleManager.React(true, gameObject);
-                        }
+                        bool isLessThan40 = GameManager.Instance.blueGameObjects.Count +
+                                    GameManager.Instance.enemyGameObjects.Count < 40;
+                        SetReactForOpponents(isLessThan40);
                     }
                 }
                 else
@@ -131,5 +126,38 @@ public class LayEggsFighter :MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, positionToReach, Time.deltaTime * myStats.Speed);
 
     }
+
+    private void SetReactForOpponents(bool isLessThan40)
+    {
+        if (isLessThan40)
+        {
+            SetReact();
+        }
+        else
+        {
+            System.Random r = new System.Random();
+            int complexity = GameManager.Instance.enemyGameObjects.Count
+                * GameManager.Instance.blueGameObjects.Count * 2;
+            double result = 800 / complexity;
+
+            double probability = r.NextDouble();
+            if (probability < result) { SetReact(); }
+
+        }
+
+    }
+
+    private void SetReact()
+    {
+        if (tag == "Blue")
+        {
+            GameManager.Instance.battleManager.React(false, gameObject);
+        }
+        else if (tag == "Enemy")
+        {
+            GameManager.Instance.battleManager.React(true, gameObject);
+        }
+    }
+
 }
 
