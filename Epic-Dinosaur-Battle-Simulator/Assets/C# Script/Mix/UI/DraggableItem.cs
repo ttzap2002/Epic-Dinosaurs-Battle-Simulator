@@ -96,10 +96,11 @@ public GameObject Uiinformation;
     private void SetInstanceOfObject() 
     {
         GameObject obj = Instantiate(GameManager.Instance.prefabGameObjects[Fighterid]);
-        CreatureStats creature = obj.GetComponent<CreatureStats>();
+        FighterPlacement creature = obj.GetComponent<FighterPlacement>();
+        creature.CreateForSpawner();
         creature.UpgradeStatLevel(GameManager.Instance.dynamicData.Dinosaurs[Fighterid]-1);
         obj.SetActive(true);
-        int cost = creature.cost;
+        int cost = creature.stats.price;
 
         obj.transform.position = new Vector3(GameManager.Instance.mouse.transform.position.x,
             creature.YAxis, GameManager.Instance.mouse.transform.position.z); 
@@ -113,7 +114,7 @@ public GameObject Uiinformation;
             SetObject("Enemy", obj, cost,creature);
         }
     }
-    private void SetObject(string type,GameObject obj,int cost,CreatureStats creature) 
+    private void SetObject(string type,GameObject obj,int cost,FighterPlacement creature) 
     {
         obj.tag= type;
 

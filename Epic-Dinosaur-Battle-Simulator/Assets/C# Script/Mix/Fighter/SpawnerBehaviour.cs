@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SpawnerBehaviour : MonoBehaviour
 {
-    private CreatureStats myStats = null;
+    private FighterPlacement myStats = null;
     private FighterPlacement fighter = null;
     private bool isReadyForFight = false;
 
@@ -17,7 +17,7 @@ public class SpawnerBehaviour : MonoBehaviour
 
     void Start()
     {
-        myStats= gameObject.GetComponent<CreatureStats>();
+        myStats= gameObject.GetComponent<FighterPlacement>();
         fighter= gameObject.GetComponent<FighterPlacement>();
     }
 
@@ -34,32 +34,30 @@ public class SpawnerBehaviour : MonoBehaviour
 
                     obj.transform.position = transform.position;
 
-                    CreatureStats c = obj.GetComponent<CreatureStats>();
-
-                    if (c.behaviourScript == ScriptType.MeleeFighter) { obj.GetComponent<MeleeFighter>().IsActiveForBattle = true; }
-                    else if (c.behaviourScript == ScriptType.Spawner) { obj.AddComponent<SpawnerBehaviour>(); }
                     FighterPlacement f = obj.gameObject.GetComponent<FighterPlacement>();
+                    if (f.behaviourScript == ScriptType.MeleeFighter) { obj.GetComponent<MeleeFighter>().IsActiveForBattle = true; }
+                    else if (f.behaviourScript == ScriptType.Spawner) { obj.AddComponent<SpawnerBehaviour>(); }
                     f.CreateForSpawner();
                     obj.SetActive(true);
                     timer = 0;
                     if (gameObject.tag == "Blue")
                     {
                         obj.tag = "Blue"; GameManager.Instance.battleManager.BlueFighters[fighter.row, fighter.col].Add(f); GameManager.Instance.blueGameObjects.Add(obj);
-                        GameManager.Instance.battleManager.React(false, obj.gameObject);
+                        GameManager.Instance.battleManager.React(false, f);
 
                     }
                     else
                     {
                         obj.tag = "Enemy"; GameManager.Instance.battleManager.EnemyFighters[fighter.row, fighter.col].Add(f); GameManager.Instance.enemyGameObjects.Add(obj);
-                        GameManager.Instance.battleManager.React(true, obj.gameObject);
+                        GameManager.Instance.battleManager.React(true, f);
 
                     }
                 }
                 if (i % 400 == 0)
                 {
-                    myStats.hp -= 10;
+                    fighter.stats.hp -= 10;
                 }
-                if (myStats.hp <= 0)
+                if (fighter.stats.hp <= 0)
                 {
                     if (tag == "Blue")
                     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class MeleeFighter : Fighter
+public class MeleeFighter : MonoBehaviour
 {
     // Start is called before the first frame update
     /// <summary>
@@ -15,7 +15,7 @@ public class MeleeFighter : Fighter
     /// zmienna odpowiadaj¹ca za to czy fighter jest gotowy do bitwy (false na poczatku i kiedy jest oszolomiony)
     /// </summary>
     [SerializeField] bool isActiveForBattle = false;
-    protected CreatureStats myStats = null;
+
     protected FighterPlacement fighter = null;
     protected LongNeckFighting longNeckFighter = null;
     [SerializeField]
@@ -63,15 +63,14 @@ public class MeleeFighter : Fighter
 
         basicx = transform.rotation.x;
 
-        myStats = gameObject.GetComponent<CreatureStats>();
         fighter = gameObject.GetComponent<FighterPlacement>();
 
-        //if (target is null) { GetFirstTarget(); }
-        if (myStats.fightingScript == FightScript.LongNeck && longNeckFighter is null)
+        //if (fighter.target is null) { GetFirstTarget(); }
+        if (fighter.fightingScript == FightScript.LongNeck && longNeckFighter is null)
         {
             neckAttack = gameObject.GetComponent<LongNeckFighting>().ObjectsToHit;
         }
-        if (myStats.HaveTailAttack)
+        if (fighter.HaveTailAttack)
         {
             tailAttack = gameObject.GetComponent<TailAttacKFighter>().ObjectsToHitByTail;
         }
@@ -88,7 +87,7 @@ public class MeleeFighter : Fighter
 
                 if (a % 3 == 0)
                 {
-                    if (target != null && target != gameObject)
+                    if (fighter.target != null && fighter.target != fighter)
                     {
                         if (!isFighting)
                         {
@@ -100,24 +99,24 @@ public class MeleeFighter : Fighter
                                 SetReactForOpponents(isLessThan40);
                               
                             }
-                            if (Vector3.Distance(transform.position, target.transform.position) <= myStats.radius)
+                            if (Vector3.Distance(transform.position, fighter.target.transform.position) <= fighter.radius)
                             { isFighting = true; }
 
                         }
                         else
                         {
 
-                            if (Vector3.Distance(transform.position, target.transform.position) > myStats.radius)
+                            if (Vector3.Distance(transform.position, fighter.target.transform.position) > fighter.radius)
                             {
                                 isFighting = false;
                             }
-                            if (timer >= myStats.interval)
+                            if (timer >= fighter.interval)
                             {
-                                if (myStats.fightingScript == FightScript.Traditional)
+                                if (fighter.fightingScript == FightScript.Traditional)
                                 {
-                                    Hit(target);
+                                    Hit(fighter.target);
                                 }
-                                else if (myStats.fightingScript == FightScript.LongNeck && !myStats.HaveTailAttack)
+                                else if (fighter.fightingScript == FightScript.LongNeck && !fighter.HaveTailAttack)
                                 {
                                     HitAllObjects(neckAttack.Invoke());
                                 }
@@ -156,8 +155,8 @@ public class MeleeFighter : Fighter
     }
 
     public void GetTarget() {
-        if (tag == "Blue") { target = FindNearestEnemy(GameManager.Instance.battleManager.EnemyFighters); }
-        else { target = FindNearestEnemy(GameManager.Instance.battleManager.BlueFighters); }
+        if (tag == "Blue") { fighter.target = FindNearestEnemy(GameManager.Instance.battleManager.EnemyFighters); }
+        else { fighter.target = FindNearestEnemy(GameManager.Instance.battleManager.BlueFighters); }
 
     }
 
@@ -167,9 +166,9 @@ public class MeleeFighter : Fighter
         isFighting = false;
         Debug.Log("Done");
     }
-    protected virtual void Hit(GameObject myEnemy)
+    protected virtual void Hit(FighterPlacement myEnemy)
     {
-        if (myEnemy == this.gameObject)
+        if (myEnemy == fighter)
         {
             isFighting = false;
             GetTarget();
@@ -178,39 +177,39 @@ public class MeleeFighter : Fighter
         {
             if (myEnemy != null)
             {
-                CreatureStats m = myEnemy.GetComponent<CreatureStats>();
                 FighterPlacement f = myEnemy.GetComponent<FighterPlacement>();
-                if (m.behaviourScript == ScriptType.Egg)
+                if (f.behaviourScript == ScriptType.Egg)
                 {
                     if (ifEatEggImmediately)
                     {
                         isFighting = false;
-                        DestroyEnemy(myEnemy, f);
+                        DestroyEnemy(f);
                     }
                 }
-                m.hp -= myStats.attack;
-                if (m.hp <= 0)
+                f.stats.hp -= fighter.stats.attack;
+                if (f.stats.hp <= 0)
                 {
                     isFighting = false;
-                    DestroyEnemy(myEnemy, f);
+                    DestroyEnemy(f);
                 }
             }
         }
     }
 
-    protected void DestroyEnemy(GameObject myEnemy, FighterPlacement f)
+    protected void DestroyEnemy(FighterPlacement f)
     {
         GameManager.Instance.battleManager.RemoveFromList(f, f.row, f.col);
         if (tag == "Blue")
         {
-            GameManager.Instance.enemyGameObjects.Remove(myEnemy);
+            GameManager.Instance.enemyGameObjects.Remove(f.gameObject);
         }
         else
         {
-            GameManager.Instance.blueGameObjects.Remove(myEnemy);
+            GameManager.Instance.blueGameObjects.Remove(f.gameObject);
 
         }
-        GameObject.Destroy(myEnemy);
+        f.gameObject.SetActive(false);
+        f.isAlive = false;
         GameManager.Instance.CheckIfEndOfBattle();
     }
 
@@ -218,13 +217,12 @@ public class MeleeFighter : Fighter
     {
         foreach (GameObject obj in ObjectsToHit)
         {
-            CreatureStats m = obj.GetComponent<CreatureStats>();
             FighterPlacement f = obj.GetComponent<FighterPlacement>();
-            m.hp -= myStats.attack;
-            if (m.hp <= 0)
+            f.stats.hp -= fighter.stats.attack;
+            if (f.stats.hp <= 0)
             {
                 isFighting = false;
-                DestroyEnemy(obj, f);
+                DestroyEnemy(f);
             }
         }
     }
@@ -232,17 +230,17 @@ public class MeleeFighter : Fighter
 
     protected virtual void Move()
     {
-        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * myStats.Speed);
+        transform.position = Vector3.MoveTowards(transform.position, fighter.target.transform.position, Time.deltaTime * fighter.stats.speed);
 
 
     }
 
     protected void Rotate()
     {
-        Vector3 directionToEnemy = (transform.position - target.transform.position).normalized;
+        Vector3 directionToEnemy = (transform.position - fighter.target.transform.position).normalized;
         directionToEnemy = directionToEnemy.normalized;
 
-        if (!myStats.IsObligatoryToRotate)
+        if (!fighter.IsObligatoryToRotate)
         {
             Quaternion targetRotation = Quaternion.LookRotation(directionToEnemy);
             Quaternion rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
@@ -306,11 +304,11 @@ public class MeleeFighter : Fighter
     {
         if (tag == "Blue")
         {
-            GameManager.Instance.battleManager.React(false, gameObject);
+            GameManager.Instance.battleManager.React(false, fighter);
         }
         else if (tag == "Enemy")
         {
-            GameManager.Instance.battleManager.React(true, gameObject);
+            GameManager.Instance.battleManager.React(true, fighter);
         }
     }
 
@@ -328,7 +326,7 @@ public class MeleeFighter : Fighter
             {
                 min = distance;
                 ObjectReturn = obj;
-                if (min <= myStats.radius)
+                if (min <= fighter.stats.radius)
                 {
 
                     isFighting = true;
@@ -356,7 +354,7 @@ public class MeleeFighter : Fighter
             {
                 min = distance;
                 ObjectReturn = obj;
-                if (min <= myStats.radius)
+                if (min <= fighter.stats.radius)
                 {
 
                     isFighting = true;
@@ -446,15 +444,15 @@ public class MeleeFighter : Fighter
         return obj;
     }
     */
-    private GameObject FindNearestEnemy(List<FighterPlacement>[,] grid)
+    private FighterPlacement FindNearestEnemy(List<FighterPlacement>[,] grid)
     {
         int maxDistance = Mathf.Max(grid.GetLength(0), grid.GetLength(1));
-        GameObject nearestEnemy = null;
+        FighterPlacement nearestEnemy = null;
         float nearestDistance = float.MaxValue;
 
         for (int distance = 0; distance <= maxDistance; distance++)
         {
-            GameObject enemy = FindEnemyInDistance(grid, distance);
+            FighterPlacement enemy = FindEnemyInDistance(grid, distance);
             if (enemy != null)
             {
                 float currentDistance = Vector3.Distance(this.transform.position, enemy.transform.position);
@@ -468,9 +466,9 @@ public class MeleeFighter : Fighter
         return nearestEnemy;
     }
 
-    private GameObject FindEnemyInDistance(List<FighterPlacement>[,] grid, int distance)
+    private FighterPlacement FindEnemyInDistance(List<FighterPlacement>[,] grid, int distance)
     {
-        GameObject nearestEnemy = null;
+        FighterPlacement nearestEnemy = null;
         float nearestDistance = float.MaxValue;
 
         for (int i = -distance; i <= distance; i++)
@@ -493,7 +491,7 @@ public class MeleeFighter : Fighter
                             if (currentDistance < nearestDistance)
                             {
                                 nearestDistance = currentDistance;
-                                nearestEnemy = fighterPlacement.gameObject;
+                                nearestEnemy = fighterPlacement; 
                             }
                         }
                     }

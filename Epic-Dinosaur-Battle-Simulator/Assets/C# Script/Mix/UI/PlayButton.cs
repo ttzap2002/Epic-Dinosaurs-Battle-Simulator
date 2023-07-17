@@ -35,7 +35,7 @@ public class PlayButton : MonoBehaviour
     {
         foreach (GameObject f in (GameManager.Instance.enemyGameObjects))
         {
-            CreatureStats stats = f.GetComponent<CreatureStats>();
+            FighterPlacement stats = f.GetComponent<FighterPlacement>();
             FighterPlacement fPlacement = f.GetComponent<FighterPlacement>();
 
             if (stats.behaviourScript == ScriptType.MeleeFighter)
@@ -61,7 +61,7 @@ public class PlayButton : MonoBehaviour
     {
         foreach (GameObject f in (GameManager.Instance.blueGameObjects))
         {
-            CreatureStats stats = f.GetComponent<CreatureStats>();
+            FighterPlacement stats = f.GetComponent<FighterPlacement>();
             FighterPlacement fPlacement = f.GetComponent<FighterPlacement>();
 
             if (stats.behaviourScript == ScriptType.MeleeFighter)

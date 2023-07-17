@@ -14,7 +14,7 @@ public class LayEggsFighter :MonoBehaviour
     private bool isLaying;
     [SerializeField] private int range;
     protected FighterPlacement fighter;
-    protected CreatureStats myStats;
+    protected FighterPlacement myStats;
     [SerializeField]private float timeForLayEgg;
     private float timer;
 
@@ -23,7 +23,7 @@ public class LayEggsFighter :MonoBehaviour
     protected void Start()
     {
         fighter = GetComponent<FighterPlacement>();
-        myStats = GetComponent<CreatureStats>();
+        myStats = GetComponent<FighterPlacement>();
         positionToReach = GetPositionToMove();
     }
 
@@ -123,7 +123,7 @@ public class LayEggsFighter :MonoBehaviour
 
     private void Move()
     {
-        transform.position = Vector3.MoveTowards(transform.position, positionToReach, Time.deltaTime * myStats.Speed);
+        transform.position = Vector3.MoveTowards(transform.position, positionToReach, Time.deltaTime * fighter.stats.speed);
 
     }
 
@@ -151,11 +151,11 @@ public class LayEggsFighter :MonoBehaviour
     {
         if (tag == "Blue")
         {
-            GameManager.Instance.battleManager.React(false, gameObject);
+            GameManager.Instance.battleManager.React(false, fighter);
         }
         else if (tag == "Enemy")
         {
-            GameManager.Instance.battleManager.React(true, gameObject);
+            GameManager.Instance.battleManager.React(true, fighter);
         }
     }
 

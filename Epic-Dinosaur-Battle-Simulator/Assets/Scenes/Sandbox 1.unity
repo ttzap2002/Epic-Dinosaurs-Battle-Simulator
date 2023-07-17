@@ -696,18 +696,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd317d2a16319d46985aa2f2b310f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
-  cost: 0
-  speed: 25
-  attack: 20
-  radius: 5
-  hp: 100
-  interval: 5
-  haveTailAttack: 0
-  yAxis: 0
-  isObligatoryToRotate: 1
-  behaviourScript: 0
-  fightingScript: 0
 --- !u!114 &51938859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -722,6 +710,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 0
   col: 0
+  target: {fileID: 0}
+  isAlive: 1
+  index: 0
+  radius: 0
+  interval: 5
+  haveTailAttack: 0
+  yAxis: 0
+  isObligatoryToRotate: 0
+  behaviourScript: 0
+  fightingScript: 0
 --- !u!65 &51938860
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -747,7 +745,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab716d9538ba53246b79419cc240c6e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
   ifEatEggImmediately: 0
@@ -922,7 +919,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab716d9538ba53246b79419cc240c6e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
   ifEatEggImmediately: 0
@@ -952,18 +948,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd317d2a16319d46985aa2f2b310f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 2
-  cost: 12
-  speed: 25
-  attack: 20
-  radius: 5
-  hp: 100
-  interval: 5
-  haveTailAttack: 0
-  yAxis: 0
-  isObligatoryToRotate: 0
-  behaviourScript: 0
-  fightingScript: 0
 --- !u!114 &70942741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -978,6 +962,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 0
   col: 0
+  target: {fileID: 0}
+  isAlive: 1
+  index: 2
+  radius: 0
+  interval: 5
+  haveTailAttack: 0
+  yAxis: 0
+  isObligatoryToRotate: 0
+  behaviourScript: 0
+  fightingScript: 0
 --- !u!65 &70942742
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1931,6 +1925,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 0
   col: 0
+  target: {fileID: 0}
+  isAlive: 1
+  index: 0
+  radius: 0
+  interval: 5
+  haveTailAttack: 0
+  yAxis: 0
+  isObligatoryToRotate: 0
+  behaviourScript: 0
+  fightingScript: 0
 --- !u!114 &258890390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1989,7 +1993,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab716d9538ba53246b79419cc240c6e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
   ifEatEggImmediately: 0
@@ -2007,18 +2010,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd317d2a16319d46985aa2f2b310f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
-  cost: 0
-  speed: 25
-  attack: 1000
-  radius: 5
-  hp: 1000
-  interval: 5
-  haveTailAttack: 1
-  yAxis: 0
-  isObligatoryToRotate: 0
-  behaviourScript: 0
-  fightingScript: 1
 --- !u!65 &258890395
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2365,18 +2356,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd317d2a16319d46985aa2f2b310f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 3
-  cost: 0
-  speed: 25
-  attack: 1000
-  radius: 5
-  hp: 1000
-  interval: 5
-  haveTailAttack: 0
-  yAxis: 0
-  isObligatoryToRotate: 0
-  behaviourScript: 0
-  fightingScript: 0
 --- !u!114 &406138981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2389,7 +2368,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab716d9538ba53246b79419cc240c6e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
   ifEatEggImmediately: 0
@@ -2421,6 +2399,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 0
   col: 0
+  target: {fileID: 0}
+  isAlive: 1
+  index: 3
+  radius: 0
+  interval: 5
+  haveTailAttack: 0
+  yAxis: 0
+  isObligatoryToRotate: 0
+  behaviourScript: 0
+  fightingScript: 0
 --- !u!65 &406138986
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2788,6 +2776,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 0
   col: 0
+  target: {fileID: 0}
+  isAlive: 1
+  index: 4
+  radius: 0
+  interval: 5
+  haveTailAttack: 0
+  yAxis: 0
+  isObligatoryToRotate: 0
+  behaviourScript: 0
+  fightingScript: 0
 --- !u!114 &435813903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2829,7 +2827,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab716d9538ba53246b79419cc240c6e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
   ifEatEggImmediately: 0
@@ -2847,18 +2844,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd317d2a16319d46985aa2f2b310f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
-  cost: 0
-  speed: 25
-  attack: 1000
-  radius: 5
-  hp: 1000
-  interval: 5
-  haveTailAttack: 0
-  yAxis: 0
-  isObligatoryToRotate: 0
-  behaviourScript: 0
-  fightingScript: 1
 --- !u!65 &435813908
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2979,18 +2964,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd317d2a16319d46985aa2f2b310f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
-  cost: 0
-  speed: 25
-  attack: 20
-  radius: 5
-  hp: 100
-  interval: 5
-  haveTailAttack: 0
-  yAxis: 0
-  isObligatoryToRotate: 1
-  behaviourScript: 0
-  fightingScript: 0
 --- !u!114 &467083642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3005,6 +2978,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 0
   col: 0
+  target: {fileID: 0}
+  isAlive: 1
+  index: 0
+  radius: 0
+  interval: 5
+  haveTailAttack: 0
+  yAxis: 0
+  isObligatoryToRotate: 0
+  behaviourScript: 0
+  fightingScript: 0
 --- !u!65 &467083643
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3588,7 +3571,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f408767065bc42049b234209b6ea046a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
   ifEatEggImmediately: 0
@@ -3609,18 +3591,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd317d2a16319d46985aa2f2b310f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
-  cost: 0
-  speed: 25
-  attack: 20
-  radius: 5
-  hp: 100
-  interval: 5
-  haveTailAttack: 0
-  yAxis: 0
-  isObligatoryToRotate: 1
-  behaviourScript: 0
-  fightingScript: 0
 --- !u!114 &568777657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3635,6 +3605,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 0
   col: 0
+  target: {fileID: 0}
+  isAlive: 1
+  index: 0
+  radius: 0
+  interval: 5
+  haveTailAttack: 0
+  yAxis: 0
+  isObligatoryToRotate: 0
+  behaviourScript: 0
+  fightingScript: 0
 --- !u!65 &568777658
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3902,7 +3882,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f408767065bc42049b234209b6ea046a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
   ifEatEggImmediately: 0
@@ -3923,18 +3902,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd317d2a16319d46985aa2f2b310f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
-  cost: 0
-  speed: 25
-  attack: 20
-  radius: 5
-  hp: 100
-  interval: 5
-  haveTailAttack: 0
-  yAxis: 0
-  isObligatoryToRotate: 1
-  behaviourScript: 0
-  fightingScript: 0
 --- !u!114 &597893631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3949,6 +3916,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 0
   col: 0
+  target: {fileID: 0}
+  isAlive: 1
+  index: 0
+  radius: 0
+  interval: 5
+  haveTailAttack: 0
+  yAxis: 0
+  isObligatoryToRotate: 0
+  behaviourScript: 0
+  fightingScript: 0
 --- !u!65 &597893632
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4478,18 +4455,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd317d2a16319d46985aa2f2b310f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
-  cost: 0
-  speed: 25
-  attack: 20
-  radius: 5
-  hp: 100
-  interval: 8
-  haveTailAttack: 0
-  yAxis: 0
-  isObligatoryToRotate: 0
-  behaviourScript: 0
-  fightingScript: 0
 --- !u!114 &670391803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4504,6 +4469,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 0
   col: 0
+  target: {fileID: 0}
+  isAlive: 1
+  index: 0
+  radius: 0
+  interval: 5
+  haveTailAttack: 0
+  yAxis: 0
+  isObligatoryToRotate: 0
+  behaviourScript: 0
+  fightingScript: 0
 --- !u!114 &670391804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6142,7 +6117,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f408767065bc42049b234209b6ea046a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
   ifEatEggImmediately: 0
@@ -6163,18 +6137,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd317d2a16319d46985aa2f2b310f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
-  cost: 0
-  speed: 25
-  attack: 20
-  radius: 5
-  hp: 100
-  interval: 5
-  haveTailAttack: 0
-  yAxis: 0
-  isObligatoryToRotate: 1
-  behaviourScript: 0
-  fightingScript: 0
 --- !u!114 &881810819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6189,6 +6151,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 0
   col: 0
+  target: {fileID: 0}
+  isAlive: 1
+  index: 0
+  radius: 0
+  interval: 5
+  haveTailAttack: 0
+  yAxis: 0
+  isObligatoryToRotate: 0
+  behaviourScript: 0
+  fightingScript: 0
 --- !u!65 &881810820
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6981,7 +6953,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f408767065bc42049b234209b6ea046a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
   ifEatEggImmediately: 0
@@ -7002,18 +6973,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd317d2a16319d46985aa2f2b310f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
-  cost: 0
-  speed: 25
-  attack: 20
-  radius: 5
-  hp: 100
-  interval: 5
-  haveTailAttack: 0
-  yAxis: 0
-  isObligatoryToRotate: 1
-  behaviourScript: 0
-  fightingScript: 0
 --- !u!114 &1022507582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7028,6 +6987,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 0
   col: 0
+  target: {fileID: 0}
+  isAlive: 1
+  index: 0
+  radius: 0
+  interval: 5
+  haveTailAttack: 0
+  yAxis: 0
+  isObligatoryToRotate: 0
+  behaviourScript: 0
+  fightingScript: 0
 --- !u!65 &1022507583
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7935,6 +7904,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 0
   col: 0
+  target: {fileID: 0}
+  isAlive: 1
+  index: 0
+  radius: 0
+  interval: 5
+  haveTailAttack: 0
+  yAxis: 0
+  isObligatoryToRotate: 0
+  behaviourScript: 0
+  fightingScript: 0
 --- !u!114 &1294917352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7947,18 +7926,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd317d2a16319d46985aa2f2b310f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
-  cost: 0
-  speed: 25
-  attack: 20
-  radius: 5
-  hp: 100
-  interval: 5
-  haveTailAttack: 0
-  yAxis: 0
-  isObligatoryToRotate: 1
-  behaviourScript: 0
-  fightingScript: 0
 --- !u!114 &1294917353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7971,7 +7938,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f408767065bc42049b234209b6ea046a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
   ifEatEggImmediately: 0
@@ -8231,6 +8197,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 0
   col: 0
+  target: {fileID: 0}
+  isAlive: 1
+  index: 0
+  radius: 0
+  interval: 5
+  haveTailAttack: 0
+  yAxis: 0
+  isObligatoryToRotate: 0
+  behaviourScript: 0
+  fightingScript: 0
 --- !u!114 &1398808265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8243,18 +8219,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd317d2a16319d46985aa2f2b310f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
-  cost: 0
-  speed: 25
-  attack: 20
-  radius: 5
-  hp: 100
-  interval: 5
-  haveTailAttack: 0
-  yAxis: 0
-  isObligatoryToRotate: 0
-  behaviourScript: 2
-  fightingScript: 0
 --- !u!65 &1398808266
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9499,7 +9463,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f408767065bc42049b234209b6ea046a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
   ifEatEggImmediately: 0
@@ -9520,18 +9483,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd317d2a16319d46985aa2f2b310f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 14
-  cost: 0
-  speed: 25
-  attack: 20
-  radius: 5
-  hp: 100
-  interval: 5
-  haveTailAttack: 0
-  yAxis: 0
-  isObligatoryToRotate: 1
-  behaviourScript: 0
-  fightingScript: 0
 --- !u!114 &1613739233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9546,6 +9497,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 0
   col: 0
+  target: {fileID: 0}
+  isAlive: 1
+  index: 0
+  radius: 0
+  interval: 5
+  haveTailAttack: 0
+  yAxis: 0
+  isObligatoryToRotate: 0
+  behaviourScript: 0
+  fightingScript: 0
 --- !u!65 &1613739234
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9673,6 +9634,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 0
   col: 0
+  target: {fileID: 0}
+  isAlive: 1
+  index: 1
+  radius: 5
+  interval: 5
+  haveTailAttack: 0
+  yAxis: 0
+  isObligatoryToRotate: 0
+  behaviourScript: 0
+  fightingScript: 0
 --- !u!114 &1668684868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9697,18 +9668,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd317d2a16319d46985aa2f2b310f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 1
-  cost: 0
-  speed: 25
-  attack: 20
-  radius: 5
-  hp: 100
-  interval: 5
-  haveTailAttack: 0
-  yAxis: 0
-  isObligatoryToRotate: 1
-  behaviourScript: 0
-  fightingScript: 0
 --- !u!65 &1668684870
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9734,7 +9693,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab716d9538ba53246b79419cc240c6e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
   ifEatEggImmediately: 0
@@ -9994,7 +9952,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f408767065bc42049b234209b6ea046a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
   ifEatEggImmediately: 0
@@ -10015,18 +9972,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd317d2a16319d46985aa2f2b310f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
-  cost: 0
-  speed: 25
-  attack: 20
-  radius: 5
-  hp: 100
-  interval: 5
-  haveTailAttack: 0
-  yAxis: 0
-  isObligatoryToRotate: 1
-  behaviourScript: 0
-  fightingScript: 0
 --- !u!114 &1682815745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10041,6 +9986,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 0
   col: 0
+  target: {fileID: 0}
+  isAlive: 1
+  index: 0
+  radius: 0
+  interval: 5
+  haveTailAttack: 0
+  yAxis: 0
+  isObligatoryToRotate: 0
+  behaviourScript: 0
+  fightingScript: 0
 --- !u!65 &1682815746
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10490,7 +10445,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f408767065bc42049b234209b6ea046a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
   ifEatEggImmediately: 1
@@ -10511,18 +10465,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd317d2a16319d46985aa2f2b310f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 13
-  cost: 0
-  speed: 25
-  attack: 20
-  radius: 5
-  hp: 100
-  interval: 5
-  haveTailAttack: 0
-  yAxis: 0
-  isObligatoryToRotate: 1
-  behaviourScript: 0
-  fightingScript: 0
 --- !u!114 &1747327027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10537,6 +10479,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 0
   col: 0
+  target: {fileID: 0}
+  isAlive: 1
+  index: 0
+  radius: 0
+  interval: 5
+  haveTailAttack: 0
+  yAxis: 0
+  isObligatoryToRotate: 0
+  behaviourScript: 0
+  fightingScript: 0
 --- !u!65 &1747327028
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10562,7 +10514,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cf8757742f8e084f92f179c91b3bcac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
   ifEatEggImmediately: 0
@@ -11248,18 +11199,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd317d2a16319d46985aa2f2b310f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 2
-  cost: 100
-  speed: 25
-  attack: 20
-  radius: 5
-  hp: 100
-  interval: 5
-  haveTailAttack: 0
-  yAxis: 0
-  isObligatoryToRotate: 0
-  behaviourScript: 1
-  fightingScript: 0
 --- !u!114 &1851641942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11274,6 +11213,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 0
   col: 0
+  target: {fileID: 0}
+  isAlive: 1
+  index: 0
+  radius: 0
+  interval: 5
+  haveTailAttack: 0
+  yAxis: 0
+  isObligatoryToRotate: 0
+  behaviourScript: 0
+  fightingScript: 0
 --- !u!114 &1851641943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11553,7 +11502,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f408767065bc42049b234209b6ea046a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
   ifEatEggImmediately: 0
@@ -11574,18 +11522,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd317d2a16319d46985aa2f2b310f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
-  cost: 0
-  speed: 25
-  attack: 20
-  radius: 5
-  hp: 100
-  interval: 5
-  haveTailAttack: 0
-  yAxis: 0
-  isObligatoryToRotate: 1
-  behaviourScript: 0
-  fightingScript: 0
 --- !u!114 &1905205704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11600,6 +11536,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 0
   col: 0
+  target: {fileID: 0}
+  isAlive: 1
+  index: 0
+  radius: 0
+  interval: 5
+  haveTailAttack: 0
+  yAxis: 0
+  isObligatoryToRotate: 0
+  behaviourScript: 0
+  fightingScript: 0
 --- !u!65 &1905205705
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11787,6 +11733,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 0
   col: 0
+  target: {fileID: 0}
+  isAlive: 1
+  index: 0
+  radius: 5
+  interval: 5
+  haveTailAttack: 0
+  yAxis: 0
+  isObligatoryToRotate: 0
+  behaviourScript: 0
+  fightingScript: 0
 --- !u!114 &1946807844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11799,18 +11755,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd317d2a16319d46985aa2f2b310f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
-  cost: 12
-  speed: 5
-  attack: 20
-  radius: 5
-  hp: 100
-  interval: 5
-  haveTailAttack: 0
-  yAxis: 0
-  isObligatoryToRotate: 0
-  behaviourScript: 0
-  fightingScript: 0
 --- !u!1 &1946807845 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1121063750183690423, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
@@ -11865,7 +11809,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab716d9538ba53246b79419cc240c6e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   isFighting: 0
   isActiveForBattle: 0
   ifEatEggImmediately: 0
@@ -12253,18 +12196,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd317d2a16319d46985aa2f2b310f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
-  cost: 0
-  speed: 25
-  attack: 20
-  radius: 5
-  hp: 100
-  interval: 5
-  haveTailAttack: 0
-  yAxis: 0
-  isObligatoryToRotate: 1
-  behaviourScript: 0
-  fightingScript: 0
 --- !u!114 &2011403984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12279,6 +12210,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 0
   col: 0
+  target: {fileID: 0}
+  isAlive: 1
+  index: 0
+  radius: 0
+  interval: 5
+  haveTailAttack: 0
+  yAxis: 0
+  isObligatoryToRotate: 0
+  behaviourScript: 0
+  fightingScript: 0
 --- !u!65 &2011403985
 BoxCollider:
   m_ObjectHideFlags: 0

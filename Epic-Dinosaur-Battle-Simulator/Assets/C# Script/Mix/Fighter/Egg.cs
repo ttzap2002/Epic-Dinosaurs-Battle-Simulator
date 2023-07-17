@@ -10,7 +10,7 @@ using UnityEngine;
 public class Egg: MonoBehaviour
 {
     private float timer;
-    private CreatureStats myStats = null;
+    private FighterPlacement myStats = null;
     private FighterPlacement fighter = null;
     private bool isReadyForFight = false;
     static int[] Probability = new int[20];
@@ -21,7 +21,7 @@ public class Egg: MonoBehaviour
 
     void Start()
     {
-        myStats = gameObject.GetComponent<CreatureStats>();
+        myStats = gameObject.GetComponent<FighterPlacement>();
         fighter = gameObject.GetComponent<FighterPlacement>();
         isFirstCall=true;
     }
@@ -36,11 +36,11 @@ public class Egg: MonoBehaviour
             {
                 if (tag == "Blue")
                 {
-                    GameManager.Instance.battleManager.React(false, gameObject);
+                    GameManager.Instance.battleManager.React(false, fighter);
                 }
                 else if (tag == "Enemy")
                 {
-                    GameManager.Instance.battleManager.React(true, gameObject);
+                    GameManager.Instance.battleManager.React(true, fighter);
                 }
                 isFirstCall = false;
             }
@@ -56,7 +56,7 @@ public class Egg: MonoBehaviour
     {
         GameObject obj = Instantiate(GameManager.Instance.prefabGameObjects[RandomIdOfDino()]);
         obj.tag = tag;
-        CreatureStats c = obj.GetComponent<CreatureStats>();
+        FighterPlacement c = obj.GetComponent<FighterPlacement>();
         obj.transform.position = new Vector3(transform.position.x,c.YAxis,transform.position.z);
         if (c.behaviourScript == ScriptType.MeleeFighter) { obj.GetComponent<MeleeFighter>().IsActiveForBattle = true; }
         else if (c.behaviourScript == ScriptType.Spawner) { obj.AddComponent<SpawnerBehaviour>(); }

@@ -54,7 +54,7 @@ public class BattleManager :MonoBehaviour
         else { EnemyFighters.Remove(g); }
     }
     */
-    public void React(bool isReactForBlue,GameObject obj) 
+    public void React(bool isReactForBlue,FighterPlacement obj) 
     {
         if (obj != null)
         {
@@ -145,7 +145,7 @@ public class BattleManager :MonoBehaviour
        {
             for(int i = list.Count - 1; i >= 0; i--) 
             {
-                CreatureStats c = list[i].gameObject.GetComponent<CreatureStats>();
+                FighterPlacement c = list[i].gameObject.GetComponent<FighterPlacement>();
                 if (c.behaviourScript == ScriptType.MeleeFighter) 
                 {
                     list[i].gameObject.GetComponent<MeleeFighter>().IsActiveForBattle = false;
@@ -162,7 +162,7 @@ public class BattleManager :MonoBehaviour
        {
             for (int i = list.Count - 1; i >= 0; i--)
             {
-                CreatureStats c = list[i].gameObject.GetComponent<CreatureStats>();
+                FighterPlacement c = list[i].gameObject.GetComponent<FighterPlacement>();
                 if (c.behaviourScript == ScriptType.MeleeFighter)
                 {
                     list[i].gameObject.GetComponent<MeleeFighter>().IsActiveForBattle = false;

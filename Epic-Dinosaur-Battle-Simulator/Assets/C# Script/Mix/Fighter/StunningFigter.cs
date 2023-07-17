@@ -31,7 +31,7 @@ public class StunningFigter: MeleeFighter
             {
                 if (!isHitFirstTime)
                 {
-                    myStats.Speed += 0.1f;
+                    fighter.stats.speed += 1;
                 }
             }
         }
@@ -40,7 +40,7 @@ public class StunningFigter: MeleeFighter
 
 
    
-    protected override void Hit(GameObject myEnemy)
+    protected override void Hit(FighterPlacement myEnemy)
     {
         if (myEnemy == this.gameObject)
         {
@@ -52,41 +52,39 @@ public class StunningFigter: MeleeFighter
             if (myEnemy != null)
             {
 
-                CreatureStats m = myEnemy.GetComponent<CreatureStats>();
-                FighterPlacement f = myEnemy.GetComponent<FighterPlacement>();
-                Stunning(myEnemy, m);
-                if (m.hp <= 0)
+                Stunning(myEnemy);
+                if (fighter.stats.hp <= 0)
                 {
                     isFighting = false;
-                    DestroyEnemy(myEnemy, f);
+                    DestroyEnemy(myEnemy);
                 }
             }
         }
 
       
     }
-    protected virtual void Stunning(GameObject myEnemy, CreatureStats m)
+    protected virtual void Stunning(FighterPlacement myenemy)
     {
         if (!isHitFirstTime)
         {
-            IfStunningEnemy(myEnemy, m, stunningProbability);
-            m.hp -= myStats.attack * (float)Math.Log10(myStats.Speed);
+            IfStunningEnemy(myenemy,stunningProbability);
+            myenemy.stats.hp -= fighter.stats.attack * (int)Math.Log10(fighter.stats.speed);
             isHitFirstTime = true;
-            myStats.Speed = BasicSpeed;
+            fighter.stats.speed = GameManager.Instance.dinosaurStats.Dinosaurs[fighter.index].speed;
         }
         else
         {
-            IfStunningEnemy(myEnemy, m, stunningProbAfterHit);
-            m.hp -= myStats.attack;
+            IfStunningEnemy( myenemy, stunningProbAfterHit);
+            myenemy.stats.hp -= fighter.stats.attack;
         }
     }
-    protected void IfStunningEnemy(GameObject myEnemy, CreatureStats m,float probability)
+    protected void IfStunningEnemy(FighterPlacement myEnemy,float probability)
     {
         System.Random r = new System.Random();
         float result = (float)r.Next(0, 10000) / 10000;
         if (result <= probability)
         {
-            if (m.behaviourScript != ScriptType.Spawner)
+            if (myEnemy.behaviourScript != ScriptType.Spawner)
             {
                 MeleeFighter fighter = myEnemy.GetComponent<MeleeFighter>();
                 if (!fighter.IsResistForStunning) 
