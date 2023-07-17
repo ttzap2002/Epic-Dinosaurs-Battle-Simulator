@@ -56,7 +56,7 @@ public class StunningFigter: MeleeFighter
                 if (fighter.stats.hp <= 0)
                 {
                     isFighting = false;
-                    DestroyEnemy(myEnemy);
+                    myEnemy.Destroyme();
                 }
             }
         }

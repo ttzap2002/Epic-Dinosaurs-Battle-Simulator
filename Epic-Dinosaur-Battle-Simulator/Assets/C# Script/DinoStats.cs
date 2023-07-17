@@ -7,10 +7,10 @@ public class OneDinoStat
     public string name;
     public int attack;
     public int hp;
-    public int speed;
+    public float speed;
     public int price;
 
-    public OneDinoStat(string name, int attack, int hp, int speed, int price)
+    public OneDinoStat(string name, int attack, int hp, float speed, int price)
     {
         this.name = name;
         this.attack = attack;
@@ -44,7 +44,7 @@ public class DinoStats
         Dinosaurs.Add(new OneDinoStat("Kosmoceratops", 5, 5, 5, 500));
         Dinosaurs.Add(new OneDinoStat("Ornitholestes hermanni", 0, 5, 5, 500));
         Dinosaurs.Add(new OneDinoStat("Sinornithosaurus", 0, 5, 5, 500));
-        Dinosaurs.Add(new OneDinoStat("Anchiornis", 0, 5, 5, 500));
+        Dinosaurs.Add(new OneDinoStat("Anchiornis", 0, 5, 5f, 500));
         Dinosaurs.Add(new OneDinoStat("Nest of eggs", 0, 5, 5, 500));
         Dinosaurs.Add(new OneDinoStat("Egg", 0, 5, 5, 500));
 

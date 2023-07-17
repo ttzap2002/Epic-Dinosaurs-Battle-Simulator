@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-
+using UnityEngine.AI;
+using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public class MeleeFighter : MonoBehaviour
 {
@@ -39,7 +42,7 @@ public class MeleeFighter : MonoBehaviour
     /// </summary>
     [SerializeField] private bool isResistForStunning;
     private float basicx;
-
+    [SerializeField]private NavMeshAgent agent;
     public bool IsActiveForBattle { get => isActiveForBattle; set => isActiveForBattle = value; }
     public bool IsResistForStunning { get => isResistForStunning; set => isResistForStunning = value; }
 
@@ -60,7 +63,7 @@ public class MeleeFighter : MonoBehaviour
     protected void Start()
     {
         //GameManager.Instance.Awake();
-
+        
         basicx = transform.rotation.x;
 
         fighter = gameObject.GetComponent<FighterPlacement>();
@@ -74,12 +77,17 @@ public class MeleeFighter : MonoBehaviour
         {
             tailAttack = gameObject.GetComponent<TailAttacKFighter>().ObjectsToHitByTail;
         }
+        agent=gameObject.GetComponent<NavMeshAgent>();
+        if (agent != null)
+        {
+            agent.Warp(transform.position);
+        }
     }
 
     protected virtual void Update()
     {
         UnityEngine.Profiling.Profiler.BeginSample("MeleeFighter");
-        if (GameManager.Instance.IsRun)
+        if (GameManager.Instance.IsRun && fighter.isAlive)
         {
             if (isActiveForBattle)
             {
@@ -87,7 +95,8 @@ public class MeleeFighter : MonoBehaviour
 
                 if (a % 3 == 0)
                 {
-                    if (fighter.target != null && fighter.target != fighter)
+                    if (fighter.target != null && fighter.target != fighter 
+                        && fighter.target.isAlive)
                     {
                         if (!isFighting)
                         {
@@ -128,7 +137,7 @@ public class MeleeFighter : MonoBehaviour
                                 timer = 0f;
                             }
                         }
-                        //Rotate();
+                        Rotate();
 
                     }
                     else { GetTarget(); }
@@ -183,35 +192,20 @@ public class MeleeFighter : MonoBehaviour
                     if (ifEatEggImmediately)
                     {
                         isFighting = false;
-                        DestroyEnemy(f);
+                        f.Destroyme();
                     }
                 }
                 f.stats.hp -= fighter.stats.attack;
                 if (f.stats.hp <= 0)
                 {
                     isFighting = false;
-                    DestroyEnemy(f);
+                    f.Destroyme();
                 }
             }
         }
     }
 
-    protected void DestroyEnemy(FighterPlacement f)
-    {
-        GameManager.Instance.battleManager.RemoveFromList(f, f.row, f.col);
-        if (tag == "Blue")
-        {
-            GameManager.Instance.enemyGameObjects.Remove(f.gameObject);
-        }
-        else
-        {
-            GameManager.Instance.blueGameObjects.Remove(f.gameObject);
-
-        }
-        f.gameObject.SetActive(false);
-        f.isAlive = false;
-        GameManager.Instance.CheckIfEndOfBattle();
-    }
+    
 
     private void HitAllObjects(List<GameObject> ObjectsToHit)
     {
@@ -222,7 +216,7 @@ public class MeleeFighter : MonoBehaviour
             if (f.stats.hp <= 0)
             {
                 isFighting = false;
-                DestroyEnemy(f);
+                f.Destroyme();
             }
         }
     }
@@ -230,8 +224,8 @@ public class MeleeFighter : MonoBehaviour
 
     protected virtual void Move()
     {
-        transform.position = Vector3.MoveTowards(transform.position, fighter.target.transform.position, Time.deltaTime * fighter.stats.speed);
-
+   
+        agent.SetDestination(fighter.target.transform.position);
 
     }
 

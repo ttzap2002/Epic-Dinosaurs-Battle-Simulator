@@ -60,7 +60,7 @@ public class DynamicData
     }
     private static object OdczytajBin(string nazwa)
     {
-        DynamicData zespol = new DynamicData(DynamicData.StartLvls, new List<int>() { 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0 }, new List<bool>() { true, true, false, false }, 25000);
+        DynamicData zespol = new DynamicData(DynamicData.StartLvls, new List<int>() { 1, 1, 1, 1, 1, 1, 1, 1,1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, new List<bool>() { true, true, false, false }, 25000);
         try
         {
             FileStream fs = new FileStream($"{nazwa}.bin", FileMode.Open); //zrobiæ na try, wrazie jakby pierwszy raz uruchamiano grê
@@ -80,7 +80,7 @@ public class DynamicData
         }
         catch (FileNotFoundException ex)
         {
-            zespol = new DynamicData(DynamicData.StartLvls, new List<int>() { 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0 }, new List<bool>() { true, true, false, false }, 25000);
+            zespol = new DynamicData(DynamicData.StartLvls, new List<int>() { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, new List<bool>() { true, true, false, false }, 25000);
         }
         return zespol;
     }

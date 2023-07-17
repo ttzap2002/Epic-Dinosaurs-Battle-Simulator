@@ -47,6 +47,68 @@ public class FighterPlacement: MonoBehaviour
         return list;
     }
 
+
+    public void Destroyme() 
+    {
+        if (isAlive)
+        {
+            GameManager.Instance.battleManager.RemoveFromList(this, row, col);
+            if (tag == "Blue")
+            {
+                GameManager.Instance.blueGameObjects.Remove(gameObject);
+            }
+            else
+            {
+                GameManager.Instance.enemyGameObjects.Remove(gameObject);
+
+            }
+          
+
+            InformDelegate(false);
+
+            RefreshStats(gameObject);
+
+            gameObject.SetActive(false);
+
+            GameManager.Instance.CheckIfEndOfBattle();
+        }
+    }
+
+    public void InformDelegate(bool isAdd)
+    {
+
+        if (tag == "Blue")
+        {
+            if (isAdd)
+            {
+                GameManager.Instance.battleManager.MoneySum[0] += stats.price;
+            }
+            else 
+            {
+                GameManager.Instance.battleManager.MoneySum[0] -= stats.price;
+
+            }
+        }
+        else {
+            if (isAdd)
+            {
+                GameManager.Instance.battleManager.MoneySum[1] += stats.price;
+            }
+            else
+            {
+                GameManager.Instance.battleManager.MoneySum[1] -= stats.price;
+
+            }        
+        }
+        GameManager.Instance.battleManager.Delegate();
+    }
+
+    public void RefreshStats(GameObject obj) 
+    {
+        isAlive = false;
+        stats = GameManager.Instance.dinosaurStats.Dinosaurs[index];
+        GameManager.Instance.battleManager.poolingList[index].Add(obj);
+    }
     public void TryChangeTarget(FighterPlacement obj)
     {
         if (target!=null)
@@ -62,9 +124,13 @@ public class FighterPlacement: MonoBehaviour
 
     public void UpgradeStatLevel(int level)
     {
-        stats.attack *= (int)Math.Pow(1.1, level);
-        stats.speed += (int)Math.Log(1.1*level);
-        stats.hp *= (int)Math.Pow(1.1, level);
+        if (level > 0) 
+        {
+            stats.attack *= (int)Math.Pow(1.1, level);
+            stats.speed += (int)Math.Log(1.1 * level);
+            stats.hp *= (int)Math.Pow(1.1, level);
+        }
+  
 
     }
 }

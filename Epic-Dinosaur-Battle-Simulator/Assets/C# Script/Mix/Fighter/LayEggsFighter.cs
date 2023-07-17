@@ -14,7 +14,7 @@ public class LayEggsFighter :MonoBehaviour
     private bool isLaying;
     [SerializeField] private int range;
     protected FighterPlacement fighter;
-    protected FighterPlacement myStats;
+
     [SerializeField]private float timeForLayEgg;
     private float timer;
 
@@ -23,7 +23,7 @@ public class LayEggsFighter :MonoBehaviour
     protected void Start()
     {
         fighter = GetComponent<FighterPlacement>();
-        myStats = GetComponent<FighterPlacement>();
+
         positionToReach = GetPositionToMove();
     }
 
@@ -42,7 +42,7 @@ public class LayEggsFighter :MonoBehaviour
             checker = CheckIfInCircle(x,z);
         }
   
-        return new Vector3(x, myStats.YAxis, z);
+        return new Vector3(x, fighter.YAxis, z);
     }
 
     private bool CheckIfInCircle(float x,float z) 
@@ -56,7 +56,7 @@ public class LayEggsFighter :MonoBehaviour
         return false;
     }
 
-    private void Update()
+    protected void Update()
     {
         if (GameManager.Instance.IsRun)
         {
@@ -112,7 +112,12 @@ public class LayEggsFighter :MonoBehaviour
 
     private void SetEgg()
     {
-        GameObject obj = Instantiate(GameManager.Instance.prefabGameObjects[19]);
+
+        //GameObject obj = Instantiate(GameManager.Instance.prefabGameObjects[19]
+        //);
+        List<GameObject> poolList= GameManager.Instance.battleManager.poolingList[19];
+        GameObject obj = poolList[poolList.Count - 1];
+        poolList.Remove(obj);
         obj.SetActive(true);
         obj.tag = tag;
         obj.transform.position = transform.position;

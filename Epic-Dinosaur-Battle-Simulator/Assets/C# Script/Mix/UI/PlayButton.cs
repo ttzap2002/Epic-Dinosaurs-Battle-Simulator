@@ -16,18 +16,26 @@ public class PlayButton : MonoBehaviour
             CreateBattleManagerForBlue();
             CreateBattleManagerForEnemy();
       
-            GameManager.Instance.IsRun = true;
+           
             GameManager.Instance.battleManager.SetCourutine();
             GameObject objScene = GameObject.Find(("Scene Information"));
             BattleInformation uiInfo = objScene.GetComponent<BattleInformation>();
             GameManager.Instance.battleManager.MoneySum=uiInfo.GetMoney();
             Destroy(objScene);
             Destroy(GameObject.Find(("Canvas")));
-            Destroy(GameManager.Instance.UI);
+           
+            Destroy(GameObject.Find("Buttons"));
+            Destroy(objScene);
 
+            GameObject progressbar = GameObject.Find(("RedArmy"));
+            progressbar.GetComponent<Image>().enabled = true;
+            GameObject.Find(("ProgressBar")).GetComponent<Image>().enabled = true;
+            GameManager.Instance.battleManager.SetDelegate(GameObject.Find(("RedArmy")));
+            GameManager.Instance.battleManager.Delegate();
             GameObject obj = GameObject.Find("Terrain");
             GameObject.Destroy(obj.gameObject.GetComponent<DraggableItem>());
             GameManager.Instance.dynamicData.battlesWithoutAds++;
+            GameManager.Instance.IsRun = true;
         }
     }
 
@@ -46,15 +54,32 @@ public class PlayButton : MonoBehaviour
             if (stats.behaviourScript == ScriptType.Spawner)
             {
                 f.gameObject.GetComponent<SpawnerBehaviour>().IsReadyForFight=true;
+                /*
+                GameObject obj = Instantiate(GameManager.Instance.prefabGameObjects[19]);
+                FighterPlacement eggFighter = obj.GetComponent<FighterPlacement>();
+                obj.SetActive(false);
+                eggFighter.isAlive = false;
+                GameManager.Instance.battleManager.poolingList[19].Add(obj);*/
             }
             if (stats.behaviourScript == ScriptType.EggLayer)
             {
                 f.gameObject.GetComponent<LayEggsFighter>().IsActiveForBattle = true;
+                AddEggToPool();
+
             }
 
             GameManager.Instance.battleManager.EnemyFighters[fPlacement.row, fPlacement.col].Add(fPlacement);
             if (stats.index == 14) { GameManager.Instance.battleManager.KosmoceraptorsCount[1]++; }
         }
+    }
+
+    private static void AddEggToPool()
+    {
+        GameObject obj = Instantiate(GameManager.Instance.prefabGameObjects[19]);
+        FighterPlacement eggFighter = obj.GetComponent<FighterPlacement>();
+        obj.SetActive(false);
+        eggFighter.isAlive = false;
+        GameManager.Instance.battleManager.poolingList[19].Add(obj);
     }
 
     private void CreateBattleManagerForBlue()
@@ -76,6 +101,8 @@ public class PlayButton : MonoBehaviour
             if (stats.behaviourScript == ScriptType.EggLayer)
             {
                 f.gameObject.GetComponent<LayEggsFighter>().IsActiveForBattle = true;
+                //Tworze isntancje jajka i dodaje do zbiornika
+                AddEggToPool();
             }
             GameManager.Instance.battleManager.BlueFighters[fPlacement.row, fPlacement.col].Add(fPlacement);
             if (stats.index == 14) { GameManager.Instance.battleManager.KosmoceraptorsCount[0]++; }

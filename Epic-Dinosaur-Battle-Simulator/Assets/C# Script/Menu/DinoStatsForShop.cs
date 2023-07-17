@@ -31,13 +31,13 @@ public class DinoStatsForShop : MonoBehaviour
         {
             attackTxt.text = $"{ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].attack, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino] - 1)} (+{ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].attack, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino]) - ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].attack, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino] - 1)})";
             hpTxt.text = $"{ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].hp, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino] - 1)} (+{ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].hp, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino]) - ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].hp, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino] - 1)})";
-            speedTxt.text = $"{ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].speed, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino] - 1)} (+{ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].speed, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino]) - ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].speed, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino] - 1)})";
+            speedTxt.text = $"{FloatReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].speed, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino] - 1)} (+{FloatReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].speed, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino]) - FloatReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].speed, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino] - 1)})";
         }
         else
         {
             attackTxt.text = $"{ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].attack, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino])}";
             hpTxt.text = ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].hp, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino]).ToString();
-            speedTxt.text = ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].speed, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino]).ToString();
+            speedTxt.text = FloatReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].speed, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino]).ToString();
         }
         priceTxt.text = ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].price, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino]).ToString();
     }
@@ -53,7 +53,7 @@ public class DinoStatsForShop : MonoBehaviour
             GameManager.Instance.dynamicData.Dinosaurs[indexOfDino] += 1;
             attackTxt.text = $"{ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].attack, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino] - 1)} (+{ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].attack, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino]) - ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].attack, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino] - 1)})";
             hpTxt.text = $"{ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].hp, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino] - 1)} (+{ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].hp, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino]) - ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].hp, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino] - 1)})";
-            speedTxt.text = $"{ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].speed, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino] - 1)} (+{ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].speed, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino]) - ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].speed, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino] - 1)})";
+            speedTxt.text = $"{FloatReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].speed, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino] - 1)} (+{FloatReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].speed, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino]) - FloatReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].speed, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino] - 1)})";
             priceTxt.text = ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[indexOfDino].price, GameManager.Instance.dynamicData.Dinosaurs[indexOfDino]).ToString();
             moneyTxt.text = GameManager.Instance.dynamicData.Money.ToString();
             GameManager.Instance.dynamicData.Save();
@@ -61,4 +61,6 @@ public class DinoStatsForShop : MonoBehaviour
     }
 
     int ReturnerValue(int value, int power) => (int)(value * Math.Pow(1.1, power));
+    int FloatReturnerValue(float value, int power) => (int)(value * Math.Pow(1.1, power));
+
 }

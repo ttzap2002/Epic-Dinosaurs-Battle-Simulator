@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.Purchasing;
@@ -29,19 +30,34 @@ public class BattleManager :MonoBehaviour
       0.25f,0.5f, 0.5f,0.25f,1.5f,2.0f,2.0f,1.5f
     };
 
+    public List<GameObject>[] poolingList=new List<GameObject>[20];
 
+    public delegate void changeProgressBar();
+    public changeProgressBar Delegate;
     int i = 0;
 
     public void Initialize(List<FighterPlacement>[,] enemyFighters, List<FighterPlacement>[,] blueFighters)
     {
         this.enemyFighters = enemyFighters;
         this.blueFighters = blueFighters;
-        powerValue = new float[2] { 0, 0 };
+        for(int i=0;i<20;i++) 
+        {
+            poolingList[i]=new List<GameObject>(); 
+        }
+        PowerValue = new float[2] { 0, 0 };
+       
+
+    }
+
+    public void SetDelegate(GameObject obj) 
+    {
+        Delegate=obj.GetComponent<ProgressBar>().ChangeProgressBar;
     }
     public List<FighterPlacement>[,] EnemyFighters { get => enemyFighters; set => enemyFighters = value; }
     public List<FighterPlacement>[,] BlueFighters { get => blueFighters; set => blueFighters = value; }
     public int[] KosmoceraptorsCount { get => kosmoceraptorsCount; set => kosmoceraptorsCount = value; }
     public float[] MoneySum { get => moneySum; set => moneySum = value; }
+    public float[] PowerValue { get => powerValue; set => powerValue = value; }
 
     //przestarza³a wersja
     /*
@@ -199,7 +215,7 @@ public class BattleManager :MonoBehaviour
             stopwatch.Stop();
             long ticks = stopwatch.ElapsedTicks;
             double timeInMicroseconds = (double)ticks / Stopwatch.Frequency * 1000000;
-            UnityEngine.Debug.Log($"{powerValue[0]}  i {powerValue[1]} czas wykonywania {timeInMicroseconds}");
+            UnityEngine.Debug.Log($"{PowerValue[0]}  i {PowerValue[1]} czas wykonywania {timeInMicroseconds}");
             yield return new WaitForSeconds(3.0f);
         }
         yield return null;  // czekaj na nastêpny krok, jeœli GameManager.Instance.IsRun jest fa³szywy
@@ -256,8 +272,8 @@ public class BattleManager :MonoBehaviour
             blueResult= 1000;
         }
 
-        powerValue[0] = blueResult;
-        powerValue[1] = enemyResult;
+        PowerValue[0] = blueResult;
+        PowerValue[1] = enemyResult;
     }
 
 
