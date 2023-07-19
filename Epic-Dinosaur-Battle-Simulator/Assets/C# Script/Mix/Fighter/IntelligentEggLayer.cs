@@ -53,7 +53,7 @@ public class IntelligentEggLayer : LayEggsFighter
     private Vector3 IfGoOrStay(int[] check)
     {
         System.Random randomZ = new System.Random();
-        float zAxis = randomZ.Next(10000*check[0],10000* check[1])/1000;
+        float zAxis = randomZ.Next(1000*check[0],1000* check[1])/1000;
 
         Vector3 vector = new Vector3(transform.position.x, fighter.YAxis, zAxis);
         return vector;
