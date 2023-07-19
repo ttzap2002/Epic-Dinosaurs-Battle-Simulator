@@ -14,6 +14,7 @@ public class BattleManager :MonoBehaviour
 
     List<FighterPlacement>[,] enemyFighters= new List<FighterPlacement>[10,10];
     List<FighterPlacement>[,] blueFighters = new List<FighterPlacement>[10, 10];
+    static int[] Probability = new int[20];
     int[] kosmoceraptorsCount=new int[2] { 0,0 };
     /// <summary>
     /// zmienna potrzebna do ogarniecia stosunku mojewojska kontra wroga
@@ -234,7 +235,108 @@ public class BattleManager :MonoBehaviour
 
 
 
+    public static int RandomIdOfDino(string tag)
+    {
+        if (tag == "Enemy" && GameManager.Instance.currentScene.Id != 0)
+        {
+            return ReturnIdOfObjectForNonSandboxEnemy();
+        }
+        else
+        {
+            return ReturnIdOfObjectInOtherSituation();
+        }
+    }
 
+    private static int ReturnIdOfObjectInOtherSituation()
+    {
+        int SumOfProbabilities = BattleManager.Probability.Sum();
+        if (SumOfProbabilities == 0)
+        {
+            int id = 0;
+            foreach (int item in GameManager.Instance.dynamicData.Dinosaurs)
+            {
+                if (item == 0 && id != 18 && id != 19)
+                    BattleManager.Probability[id] = 1;
+                else if (item == 1 && id != 18 && id != 19)
+                    BattleManager.Probability[id] = 10;
+                else if (id != 18 && id != 19)
+                    BattleManager.Probability[id] = 10 + ((int)((item - 1) / 3));
+                else
+                    BattleManager.Probability[id] = 0;
+                id++;
+            }
+            SumOfProbabilities = BattleManager.Probability.Sum();
+        }
+        System.Random random = new System.Random();
+        int randomNumber = random.Next(0, SumOfProbabilities + 1);
+        int returner = 0;
+        while (randomNumber - BattleManager.Probability[returner] > 0)
+        {
+            randomNumber -= BattleManager.Probability[returner];
+            returner++;
+        }
+        return returner;
+    }
+
+    private static int ReturnIdOfObjectForNonSandboxEnemy()
+    {
+        System.Random random = new System.Random();
+        int randomNumber = random.Next(1, 67); // Wygeneruj liczbê od 1 do 66 (67 jest wy³¹czone)
+        if (randomNumber <= 33)
+        {
+            if (randomNumber <= 18)
+            {
+                if (randomNumber <= 7)
+                    return 0;
+                else if (randomNumber <= 10)
+                    return 1;
+                else if (randomNumber == 11)
+                    return 2;
+                else
+                    return 3;
+            }
+            else
+            {
+                if (randomNumber <= 21)
+                    return 4;
+                else if (randomNumber <= 22)
+                    return 5;
+                else if (randomNumber <= 29)
+                    return 6;
+                else if (randomNumber <= 32)
+                    return 7;
+                else
+                    return 8;
+            }
+        }
+        else
+        {
+            if (randomNumber <= 51)
+            {
+                if (randomNumber <= 40)
+                    return 9;
+                else if (randomNumber <= 43)
+                    return 10;
+                else if (randomNumber == 44)
+                    return 11;
+                else
+                    return 12;
+            }
+            else
+            {
+                if (randomNumber <= 54)
+                    return 13;
+                else if (randomNumber == 55)
+                    return 14;
+                else if (randomNumber <= 62)
+                    return 15;
+                else if (randomNumber <= 65)
+                    return 16;
+                else
+                    return 17;
+            }
+        }
+    }
 
     private void MaKeValueForIntelligentLayerFighter()
     {

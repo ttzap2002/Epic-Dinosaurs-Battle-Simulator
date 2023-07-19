@@ -13,7 +13,6 @@ public class Egg: MonoBehaviour
     private FighterPlacement myStats = null;
     private FighterPlacement fighter = null;
     private bool isReadyForFight = false;
-    static int[] Probability = new int[20];
 
     private int i = 0;
     private bool isFirstCall;
@@ -46,7 +45,7 @@ public class Egg: MonoBehaviour
             }
             if (timer >= 5)
             {
-                SetObject(RandomIdOfDino());
+                SetObject(BattleManager.RandomIdOfDino(tag));
                 timer = 0;
             }
             timer += Time.deltaTime;
@@ -117,107 +116,4 @@ public class Egg: MonoBehaviour
         f.InformDelegate(true);
     }
 
-    int RandomIdOfDino()
-    {
-        if (tag == "Enemy" && GameManager.Instance.currentScene.Id != 0)
-        {
-            return ReturnIdOfObjectForNonSandboxEnemy();
-        }
-        else
-        {
-            return ReturnIdOfObjectInOtherSituation();
-        }
-    }
-
-    private int ReturnIdOfObjectInOtherSituation()
-    {
-        int SumOfProbabilities = Egg.Probability.Sum();
-        if (SumOfProbabilities == 0)
-        {
-            int id = 0;
-            foreach (int item in GameManager.Instance.dynamicData.Dinosaurs)
-            {
-                if (item == 0 && id != 18 && id != 19)
-                    Egg.Probability[id] = 1;
-                else if (item == 1 && id != 18 && id != 19)
-                    Egg.Probability[id] = 10;
-                else if (id != 18 && id != 19)
-                    Egg.Probability[id] = 10 + ((int)((item - 1) / 3));
-                else
-                    Egg.Probability[id] = 0;
-                id++;
-            }
-            SumOfProbabilities = Egg.Probability.Sum();
-        }
-        System.Random random = new System.Random();
-        int randomNumber = random.Next(0, SumOfProbabilities+1);
-        int returner = 0;
-        while (randomNumber - Egg.Probability[returner] > 0)
-        {
-            randomNumber -= Egg.Probability[returner];
-            returner++;
-        }
-        return returner;
-    }
-
-    private int ReturnIdOfObjectForNonSandboxEnemy()
-    {
-        System.Random random = new System.Random();
-        int randomNumber = random.Next(1, 67); // Wygeneruj liczbę od 1 do 66 (67 jest wyłączone)
-        if (randomNumber <= 33)
-        {
-            if (randomNumber <= 18)
-            {
-                if (randomNumber <= 7)
-                    return 0;
-                else if (randomNumber <= 10)
-                    return 1;
-                else if (randomNumber == 11)
-                    return 2;
-                else
-                    return 3;
-            }
-            else
-            {
-                if (randomNumber <= 21)
-                    return 4;
-                else if (randomNumber <= 22)
-                    return 5;
-                else if (randomNumber <= 29)
-                    return 6;
-                else if (randomNumber <= 32)
-                    return 7;
-                else
-                    return 8;
-            }
-        }
-        else
-        {
-            if (randomNumber <= 51)
-            {
-                if (randomNumber <= 40)
-                    return 9;
-                else if (randomNumber <= 43)
-                    return 10;
-                else if (randomNumber == 44)
-                    return 11;
-                else
-                    return 12;
-            }
-            else
-            {
-                if (randomNumber <= 54)
-                    return 13;
-                else if (randomNumber == 55)
-                    return 14;
-                else if (randomNumber <= 62)
-                    return 15;
-                else if (randomNumber <= 65)
-                    return 16;
-                else
-                    return 17;
-            }
-        }
-    }
 }
-
