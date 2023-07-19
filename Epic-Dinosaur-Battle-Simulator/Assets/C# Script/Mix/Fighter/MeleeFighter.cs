@@ -42,7 +42,7 @@ public class MeleeFighter : MonoBehaviour
     /// </summary>
     [SerializeField] private bool isResistForStunning;
     private float basicx;
-    [SerializeField]private NavMeshAgent agent;
+ 
     public bool IsActiveForBattle { get => isActiveForBattle; set => isActiveForBattle = value; }
     public bool IsResistForStunning { get => isResistForStunning; set => isResistForStunning = value; }
 
@@ -77,11 +77,7 @@ public class MeleeFighter : MonoBehaviour
         {
             tailAttack = gameObject.GetComponent<TailAttacKFighter>().ObjectsToHitByTail;
         }
-        agent=gameObject.GetComponent<NavMeshAgent>();
-        if (agent != null)
-        {
-            agent.Warp(transform.position);
-        }
+       
     }
 
     protected virtual void Update()
@@ -100,7 +96,6 @@ public class MeleeFighter : MonoBehaviour
                     {
                         if (!isFighting)
                         {
-                            Move();
                             if (isChangeOfSquare())
                             {
                                 bool isLessThan40 = GameManager.Instance.blueGameObjects.Count +
@@ -109,7 +104,10 @@ public class MeleeFighter : MonoBehaviour
                               
                             }
                             if (Vector3.Distance(transform.position, fighter.target.transform.position) <= fighter.radius)
-                            { isFighting = true; }
+                            {
+                                fighter.Agent.speed = 0;
+                                isFighting = true;
+                            }
 
                         }
                         else
@@ -147,7 +145,7 @@ public class MeleeFighter : MonoBehaviour
                 //transform.position += moveDirection;
                 a++;
             }
-            else if (GameManager.Instance.IsRun && !isResistForStunning)
+            else if (!isResistForStunning)
             {
                 if (timer < 5f)
                 {
@@ -166,7 +164,8 @@ public class MeleeFighter : MonoBehaviour
     public void GetTarget() {
         if (tag == "Blue") { fighter.target = FindNearestEnemy(GameManager.Instance.battleManager.EnemyFighters); }
         else { fighter.target = FindNearestEnemy(GameManager.Instance.battleManager.BlueFighters); }
-
+        fighter.ChangeDestination(fighter.target.transform.position);
+        fighter.Agent.speed = fighter.stats.speed;
     }
 
 
@@ -221,14 +220,14 @@ public class MeleeFighter : MonoBehaviour
         }
     }
 
-
+    /*
     protected virtual void Move()
     {
    
         agent.SetDestination(fighter.target.transform.position);
 
     }
-
+*/
     protected void Rotate()
     {
         Vector3 directionToEnemy = (transform.position - fighter.target.transform.position).normalized;
@@ -254,10 +253,6 @@ public class MeleeFighter : MonoBehaviour
             transform.rotation = rotation;
         }
     }
-
-
-
-
     private bool isChangeOfSquare()
     {
         int[] result = fighter.CheckWhichSquare();
@@ -273,8 +268,6 @@ public class MeleeFighter : MonoBehaviour
         }
         return false;
     }
-
-
     private void SetReactForOpponents (bool isLessThan40)
     {
         if (isLessThan40)
@@ -293,7 +286,6 @@ public class MeleeFighter : MonoBehaviour
         }
 
     }
-
     private void SetReact()
     {
         if (tag == "Blue")
@@ -305,8 +297,6 @@ public class MeleeFighter : MonoBehaviour
             GameManager.Instance.battleManager.React(true, fighter);
         }
     }
-
-
     /*
     private GameObject FindNearestEnemy(string tag,Vector3 vectorOfMyObj)
     {
@@ -494,11 +484,6 @@ public class MeleeFighter : MonoBehaviour
         }
         return nearestEnemy;
     }
-
-
-
-
-
     private List<GameObject> FindEnemiesInRadius(float radius)
     {
         List<GameObject> enemiesInRadius = new List<GameObject>();
@@ -518,9 +503,6 @@ public class MeleeFighter : MonoBehaviour
 
         return enemiesInRadius;
     }
-
-
-
 
 }
 

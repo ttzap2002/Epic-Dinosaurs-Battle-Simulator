@@ -10,7 +10,7 @@ using static UnityEngine.GraphicsBuffer;
 public class LayEggsFighter :MonoBehaviour
 {
     private bool isActiveForBattle;
-    [SerializeField]private Vector3 positionToReach;
+    [SerializeField]protected Vector3 positionToReach;
     private bool isLaying;
     [SerializeField] private int range;
     protected FighterPlacement fighter;

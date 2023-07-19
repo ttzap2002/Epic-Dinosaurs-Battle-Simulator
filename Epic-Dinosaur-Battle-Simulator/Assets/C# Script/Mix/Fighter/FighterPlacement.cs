@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Unity.Services.Analytics.Internal;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
+using UnityEngine.AI;
 using static UnityEngine.GraphicsBuffer;
 
 public class FighterPlacement: MonoBehaviour
@@ -20,6 +22,7 @@ public class FighterPlacement: MonoBehaviour
     [SerializeField] private bool haveTailAttack;
     [SerializeField] private float yAxis;
     [SerializeField] private bool isObligatoryToRotate;
+    [SerializeField] private NavMeshAgent agent;
 
     public ScriptType behaviourScript;
     public FightScript fightingScript;
@@ -27,11 +30,18 @@ public class FighterPlacement: MonoBehaviour
     public float YAxis { get => yAxis; set => yAxis = value; }
     public bool IsObligatoryToRotate { get => isObligatoryToRotate; set => isObligatoryToRotate = value; }
     public bool HaveTailAttack { get => haveTailAttack; set => haveTailAttack = value; }
+    public NavMeshAgent Agent { get => agent; set => agent = value; }
+
     void Start()
     {
         row = CheckWhichSquare()[0];
         col = CheckWhichSquare()[1];
         stats = GameManager.Instance.dinosaurStats.Dinosaurs[index];
+        Agent = gameObject.GetComponent<NavMeshAgent>();
+        if (Agent != null)
+        {
+            Agent.Warp(transform.position);
+        }
     }
     public void CreateForSpawner() 
     {
@@ -116,12 +126,16 @@ public class FighterPlacement: MonoBehaviour
             if (Vector3.Distance(transform.position, obj.transform.position) < Vector3.Distance(transform.position, target.transform.position))
             {
                 target = obj;
+                Agent.SetDestination(obj.transform.position);
             }
         }
   
     }
     
-
+    public void ChangeDestination(Vector3 vector) 
+    {
+        Agent.SetDestination(vector);
+    }
     public void UpgradeStatLevel(int level)
     {
         if (level > 0) 

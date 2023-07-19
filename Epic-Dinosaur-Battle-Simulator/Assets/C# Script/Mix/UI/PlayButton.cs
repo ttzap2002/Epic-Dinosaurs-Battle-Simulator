@@ -17,7 +17,7 @@ public class PlayButton : MonoBehaviour
             CreateBattleManagerForEnemy();
       
            
-            GameManager.Instance.battleManager.SetCourutine();
+         
             GameObject objScene = GameObject.Find(("Scene Information"));
             BattleInformation uiInfo = objScene.GetComponent<BattleInformation>();
             GameManager.Instance.battleManager.MoneySum=uiInfo.GetMoney();
@@ -36,6 +36,7 @@ public class PlayButton : MonoBehaviour
             GameObject.Destroy(obj.gameObject.GetComponent<DraggableItem>());
             GameManager.Instance.dynamicData.battlesWithoutAds++;
             GameManager.Instance.IsRun = true;
+            GameManager.Instance.battleManager.SetCourutine();
         }
     }
 
