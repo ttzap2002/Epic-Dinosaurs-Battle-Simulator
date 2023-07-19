@@ -6,6 +6,15 @@ using UnityEngine.EventSystems;
 public class FighterIdForButton :MonoBehaviour
 {
     [SerializeField] private int fighterId;
+    [SerializeField] private GameObject padlock;
+
+    private void Start()
+    {
+        if(GameManager.Instance.dynamicData.Dinosaurs[fighterId]> 0 && padlock != null)
+        {
+            padlock.SetActive(false);
+        }
+    }
 
     public void Click() 
     {
