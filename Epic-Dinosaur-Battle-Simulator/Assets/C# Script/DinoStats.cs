@@ -9,6 +9,7 @@ public class OneDinoStat
     public int hp;
     public float speed;
     public int price;
+    public string description;
 
     public OneDinoStat(string name, int attack, int hp, float speed, int price)
     {
@@ -18,7 +19,13 @@ public class OneDinoStat
         this.speed = speed;
         this.price = price;
     }
+
+    public OneDinoStat(string name, int attack, int hp, float speed, int price, string description) : this(name, attack, hp, speed, price)
+    {
+        this.description = description;
+    }
 }
+
 public class DinoStats
 {
     private List<OneDinoStat> dinosaurs = new List<OneDinoStat>();
@@ -47,6 +54,5 @@ public class DinoStats
         Dinosaurs.Add(new OneDinoStat("Anchiornis", 0, 5, 5f, 500));
         Dinosaurs.Add(new OneDinoStat("Nest of eggs", 0, 5, 5, 500));
         Dinosaurs.Add(new OneDinoStat("Egg", 0, 5, 5, 500));
-
     }
 }
