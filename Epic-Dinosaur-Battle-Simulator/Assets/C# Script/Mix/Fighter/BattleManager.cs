@@ -378,6 +378,17 @@ public class BattleManager :MonoBehaviour
         PowerValue[1] = enemyResult;
     }
 
+    public void Clear() 
+    {
 
+        foreach (GameObject obj in GameManager.Instance.enemyGameObjects.Concat(GameManager.Instance.blueGameObjects)) 
+        {
+            obj.SetActive(false);
+            poolingList[obj.GetComponent<FighterPlacement>().index].Add(obj);
+        }
+        BattleInformation b = GameManager.Instance.UI.GetComponentInChildren<BattleInformation>();
+        b.RefreshMoney();
+
+    }
 
 }

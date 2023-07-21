@@ -94,7 +94,15 @@ public class BattleInformation : MonoBehaviour
             $"{GameManager.Instance.currentScene.Troopslimit}";
         }
     }
-
+    public void RefreshMoney() 
+    {
+        blueTroopsTxt.text = "0/80";
+        enemyTroopsTxt.text = "0/80";
+        enemyMoneyTxt.text = "0";
+        blueMoneyTxt.text = "0";
+        enemymoney = 0;
+        bmoney = 0;
+    }
 
 
 }
