@@ -15010,7 +15010,7 @@ MonoBehaviour:
   target: {fileID: 0}
   isAlive: 1
   index: 0
-  radius: 3
+  radius: 5
   interval: 5
   haveTailAttack: 0
   yAxis: 0

@@ -195,7 +195,7 @@ public class MeleeFighter : MonoBehaviour
                     }
                 }
                 f.Hp -= fighter.stats.attack;
-                if (f.stats.hp <= 0)
+                if (f.Hp <= 0)
                 {
                     isFighting = false;
                     f.Destroyme();
@@ -211,8 +211,8 @@ public class MeleeFighter : MonoBehaviour
         foreach (GameObject obj in ObjectsToHit)
         {
             FighterPlacement f = obj.GetComponent<FighterPlacement>();
-            f.stats.hp -= fighter.stats.attack;
-            if (f.stats.hp <= 0)
+            f.Hp -= fighter.stats.attack;
+            if (f.Hp <= 0)
             {
                 isFighting = false;
                 f.Destroyme();
