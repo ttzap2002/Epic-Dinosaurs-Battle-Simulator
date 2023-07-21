@@ -391,4 +391,12 @@ public class BattleManager :MonoBehaviour
 
     }
 
+    public void GameResume()
+    {
+        GameManager.Instance.IsRun = true;
+    }
+    public void GamePause()
+    {
+        GameManager.Instance.IsRun = false;
+    }
 }

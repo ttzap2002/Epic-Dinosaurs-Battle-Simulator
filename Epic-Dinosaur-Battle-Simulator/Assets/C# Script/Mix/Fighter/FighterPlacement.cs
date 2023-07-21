@@ -18,7 +18,8 @@ public class FighterPlacement: MonoBehaviour
     public OneDinoStat stats;
     public int index = 0;
     public float radius = 5f;
-    public float interval = 5.0f; 
+    public float interval = 5.0f;
+    private int hp;
     [SerializeField] private bool haveTailAttack;
     [SerializeField] private float yAxis;
     [SerializeField] private bool isObligatoryToRotate;
@@ -31,6 +32,7 @@ public class FighterPlacement: MonoBehaviour
     public bool IsObligatoryToRotate { get => isObligatoryToRotate; set => isObligatoryToRotate = value; }
     public bool HaveTailAttack { get => haveTailAttack; set => haveTailAttack = value; }
     public NavMeshAgent Agent { get => agent; set => agent = value; }
+    public int Hp { get => hp; set => hp = value; }
 
     void Start()
     {
@@ -42,6 +44,7 @@ public class FighterPlacement: MonoBehaviour
         {
             Agent.Warp(transform.position);
         }
+        Hp = stats.hp;
     }
     public void CreateForSpawner() 
     {

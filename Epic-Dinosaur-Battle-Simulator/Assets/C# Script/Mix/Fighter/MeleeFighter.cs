@@ -194,7 +194,7 @@ public class MeleeFighter : MonoBehaviour
                         f.Destroyme();
                     }
                 }
-                f.stats.hp -= fighter.stats.attack;
+                f.Hp -= fighter.stats.attack;
                 if (f.stats.hp <= 0)
                 {
                     isFighting = false;
