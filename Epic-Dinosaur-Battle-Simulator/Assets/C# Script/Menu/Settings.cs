@@ -32,11 +32,6 @@ public class Settings : MonoBehaviour
         Application.OpenURL("https://mistybytes.com/privacy-policy/");
     }
 
-    public void Statute()
-    {
-
-    }
-
     public void Store()
     {
         if (Application.platform == RuntimePlatform.Android)
