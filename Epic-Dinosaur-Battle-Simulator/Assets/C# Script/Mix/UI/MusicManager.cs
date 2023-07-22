@@ -4,11 +4,24 @@ public class MusicManager : MonoBehaviour
 {
     public AudioSource audioSource;
     public AudioClip[] musicClips;
+    int randomIndex;
+    private bool wasMusicDisgusted;
 
     void Start()
     {
         // Przy starcie, wywo³ujemy funkcjê do losowego odtwarzania muzyki
         PlayRandomMusic();
+        wasMusicDisgusted = GameManager.Instance.dynamicData.WantMusic;
+    }
+
+    void Update()
+    {
+        OnAudioClipRead();
+        if (wasMusicDisgusted == GameManager.Instance.dynamicData.WantMusic)
+        {
+            PlayRandomMusic();
+            wasMusicDisgusted = GameManager.Instance.dynamicData.WantMusic;
+        }
     }
 
     public void PlayRandomMusic()
@@ -22,7 +35,7 @@ public class MusicManager : MonoBehaviour
         if(GameManager.Instance.dynamicData.WantMusic)
         {
             // Losowo wybieramy utwór z tablicy musicClips
-            int randomIndex = Random.Range(0, musicClips.Length);
+            randomIndex = Random.Range(0, musicClips.Length);
             AudioClip randomClip = musicClips[randomIndex];
 
             // Przypisujemy wybrany utwór do AudioSource i odtwarzamy
@@ -43,5 +56,24 @@ public class MusicManager : MonoBehaviour
     {
         // Zatrzymujemy odtwarzanie muzyki
         audioSource.Stop();
+    }
+
+    // Ta funkcja jest wywo³ywana po zakoñczeniu odtwarzania dŸwiêku
+    void OnAudioClipRead()
+    {
+        if(!GameManager.Instance.dynamicData.WantMusic)
+        {
+            StopMusic();
+        }
+        else if (!audioSource.isPlaying)
+        {
+            // Jeœli dŸwiêk siê zakoñczy³, inkrementujemy indeks utworu i odtwarzamy kolejny
+            randomIndex = (randomIndex + 1) % musicClips.Length;
+            AudioClip randomClip = musicClips[randomIndex];
+
+            // Przypisujemy wybrany utwór do AudioSource i odtwarzamy
+            audioSource.clip = randomClip;
+            PlayMusic();
+        }
     }
 }

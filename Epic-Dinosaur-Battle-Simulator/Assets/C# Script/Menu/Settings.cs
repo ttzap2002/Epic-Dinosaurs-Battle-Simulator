@@ -5,7 +5,7 @@ using UnityEngine;
 public class Settings : MonoBehaviour
 {
     public GameObject settingsBox;
-    public MusicManager manager;
+    //public MusicManager manager;
     // Start is called before the first frame update
     void Start()
     {
@@ -59,6 +59,6 @@ public class Settings : MonoBehaviour
     {
         GameManager.Instance.dynamicData.WantMusic = !GameManager.Instance.dynamicData.WantMusic;
         GameManager.Instance.dynamicData.Save();
-        manager.PlayRandomMusic();
+        //manager.PlayRandomMusic();
     }
 }
