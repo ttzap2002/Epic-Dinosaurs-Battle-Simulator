@@ -64,14 +64,16 @@ public class FighterPlacement: MonoBehaviour
         col = CheckWhichSquare()[1];
         OneDinoStat stats = GameManager.Instance.dinosaurStats.Dinosaurs[index];
         agent = gameObject.GetComponent<NavMeshAgent>();
-        if (Agent != null)
+        if (agent != null)
         {
             agent.Warp(transform.position);
+            agent.speed = stats.speed;
+
         }
         speed = stats.speed;
         attack = stats.attack;
         price = stats.price;
-        agent.speed = stats.speed;
+    
     } 
     public int[] CheckWhichSquare() 
     {
@@ -170,7 +172,6 @@ public class FighterPlacement: MonoBehaviour
         if (level > 0) 
         {
             attack *= (int)Math.Pow(1.1, level);
-            speed += (int)Math.Log(1.1 * level);
             hp *= (int)Math.Pow(1.1, level);
         }
   

@@ -391,12 +391,59 @@ public class BattleManager :MonoBehaviour
 
     }
 
+
+
     public void GameResume()
     {
-        GameManager.Instance.IsRun = true;
+        if (!GameManager.Instance.IsRun) 
+        {
+            GameManager.Instance.IsRun = true;
+            SetSpeedForPreviousSpeed();
+        }
     }
+
     public void GamePause()
     {
-        GameManager.Instance.IsRun = false;
+        if (GameManager.Instance.IsRun)
+        {
+            GameManager.Instance.IsRun = false;
+            SetSpeedToZero();
+        }
     }
+
+    private void SetSpeedToZero()
+    {
+        foreach(List<FighterPlacement> flist in enemyFighters) 
+        {
+            foreach(FighterPlacement fighter in flist) 
+            {
+                fighter.Agent.speed= 0;
+            }
+        }
+        foreach (List<FighterPlacement> flist in blueFighters)
+        {
+            foreach (FighterPlacement fighter in flist)
+            {
+                fighter.Agent.speed = 0;
+            }
+        }
+    }
+    private void SetSpeedForPreviousSpeed()
+    {
+        foreach (List<FighterPlacement> flist in enemyFighters)
+        {
+            foreach (FighterPlacement fighter in flist)
+            {
+                fighter.Agent.speed = fighter.Speed;
+            }
+        }
+        foreach (List<FighterPlacement> flist in blueFighters)
+        {
+            foreach (FighterPlacement fighter in flist)
+            {
+                fighter.Agent.speed = fighter.Speed;
+            }
+        }
+    }
+
 }

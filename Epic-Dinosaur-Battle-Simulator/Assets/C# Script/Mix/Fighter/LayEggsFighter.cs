@@ -17,13 +17,13 @@ public class LayEggsFighter :MonoBehaviour
 
     [SerializeField]private float timeForLayEgg;
     private float timer;
-
+    private bool isSetDestination=true;
     public bool IsActiveForBattle { get => isActiveForBattle; set => isActiveForBattle = value; }
 
     protected void Start()
     {
         fighter = GetComponent<FighterPlacement>();
-
+        transform.position = new Vector3 (transform.position.x,fighter.YAxis,transform.position.z);
         positionToReach = GetPositionToMove();
     }
 
@@ -65,14 +65,21 @@ public class LayEggsFighter :MonoBehaviour
                 
                 if (!isLaying)
                 {
-                    Move();
-                    if (transform.position == positionToReach) { isLaying = true; }
+                    
+                  
+                    if (transform.position.x == positionToReach.x && transform.position.z==positionToReach.z) 
+                    { isLaying = true; }
                     if (isChangeOfSquare())
                     {
                         bool isLessThan40 = GameManager.Instance.blueGameObjects.Count +
                                     GameManager.Instance.enemyGameObjects.Count < 40;
                         SetReactForOpponents(isLessThan40);
                     }
+                    if (isSetDestination)
+                    {
+                        Move();
+                    }
+
                 }
                 else
                 {
@@ -82,6 +89,7 @@ public class LayEggsFighter :MonoBehaviour
                         if (GameManager.Instance.IsRun)
                         {
                             SetEgg();
+                            isSetDestination = true;
                         }
 
                         timer = 0;
@@ -128,8 +136,8 @@ public class LayEggsFighter :MonoBehaviour
 
     private void Move()
     {
-        transform.position = Vector3.MoveTowards(transform.position, positionToReach, Time.deltaTime * fighter.Speed);
-
+        fighter.Agent.SetDestination(positionToReach);
+        isSetDestination = false;
     }
 
     private void SetReactForOpponents(bool isLessThan40)
