@@ -128,7 +128,7 @@ public class LayEggsFighter :MonoBehaviour
 
     private void Move()
     {
-        transform.position = Vector3.MoveTowards(transform.position, positionToReach, Time.deltaTime * fighter.stats.speed);
+        transform.position = Vector3.MoveTowards(transform.position, positionToReach, Time.deltaTime * fighter.Speed);
 
     }
 

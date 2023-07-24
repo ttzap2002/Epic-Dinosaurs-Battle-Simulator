@@ -83,6 +83,9 @@ public class GameManager : MonoBehaviour
     public Dictionary<string, bool> canISetWarrior = new Dictionary<string, bool>(); //Zmienna booli które decyduj¹ czy mo¿na stawiaæ jednostkê. Jeden false blokuje t¹ mo¿liwoœæ. Konkretne nazwy s¹ w starcie (pod awake)
     public int salaryForBattle; //zmienna posiaajaca info o zdobytych pieniazkach z bitwy
 
+    public double f=0f;
+
+    public Stopwatch time=new Stopwatch();
     public static GameManager Instance { get { return _instance; } }
 
     public bool IsRun { get => isRun; set => isRun = value; }
@@ -156,6 +159,8 @@ public class GameManager : MonoBehaviour
         if (!isEnemyFighterContainAnyFighter || !IsBlueContainAnyFighter())
         {
             GetMoneyForLevel(FinishGame(isEnemyFighterContainAnyFighter));
+            time.Stop();
+            UnityEngine.Debug.Log($"{f / time.Elapsed.TotalSeconds}");
         }
 
     }

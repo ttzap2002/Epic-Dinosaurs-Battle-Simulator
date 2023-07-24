@@ -13,20 +13,17 @@ public class PlayButton : MonoBehaviour
     {
         if (GameManager.Instance.blueGameObjects.Count > 0 && GameManager.Instance.enemyGameObjects.Count > 0)
         {
+
+            GameManager.Instance.time.Start();
             CreateBattleManagerForBlue();
             CreateBattleManagerForEnemy();
-      
-           
-         
             GameObject objScene = GameObject.Find(("Scene Information"));
             BattleInformation uiInfo = objScene.GetComponent<BattleInformation>();
             GameManager.Instance.battleManager.MoneySum=uiInfo.GetMoney();
             Destroy(objScene);
             Destroy(GameObject.Find(("Canvas")));
-           
             Destroy(GameObject.Find("Buttons"));
             Destroy(objScene);
-
             GameObject progressbar = GameObject.Find(("RedArmy"));
             progressbar.GetComponent<Image>().enabled = true;
             GameObject.Find(("ProgressBar")).GetComponent<Image>().enabled = true;
@@ -37,6 +34,7 @@ public class PlayButton : MonoBehaviour
             GameManager.Instance.dynamicData.battlesWithoutAds++;
             GameManager.Instance.IsRun = true;
             GameManager.Instance.battleManager.SetCourutine();
+
         }
     }
 

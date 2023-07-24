@@ -100,7 +100,7 @@ public GameObject Uiinformation;
         creature.CreateForSpawner();
         creature.UpgradeStatLevel(GameManager.Instance.dynamicData.Dinosaurs[Fighterid]-1);
         obj.SetActive(true);
-        int cost = creature.stats.price;
+        int cost = creature.Price;
 
         obj.transform.position = new Vector3(GameManager.Instance.mouse.transform.position.x,
             creature.YAxis, GameManager.Instance.mouse.transform.position.z); 

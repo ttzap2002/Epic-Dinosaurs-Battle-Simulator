@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -847,7 +847,7 @@ MonoBehaviour:
   target: {fileID: 0}
   isAlive: 1
   index: 2
-  radius: 0
+  radius: 5
   interval: 5
   haveTailAttack: 0
   yAxis: 0
@@ -877,7 +877,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 70942736}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 1.5
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -2576,18 +2576,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
   m_PrefabInstance: {fileID: 853859973}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &406138980
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 406138978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dd317d2a16319d46985aa2f2b310f0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &406138981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2634,14 +2622,14 @@ MonoBehaviour:
   target: {fileID: 0}
   isAlive: 1
   index: 3
-  radius: 0
+  radius: 10
   interval: 5
   haveTailAttack: 0
   yAxis: 0
   isObligatoryToRotate: 0
   agent: {fileID: 0}
   behaviourScript: 0
-  fightingScript: 0
+  fightingScript: 1
 --- !u!65 &406138986
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2664,10 +2652,10 @@ NavMeshAgent:
   m_GameObject: {fileID: 406138978}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 1.5
   m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
+  m_Acceleration: 0
+  avoidancePriority: 20
   m_AngularSpeed: 0
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
@@ -2676,7 +2664,24 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 3
+--- !u!114 &406138988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406138978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0150a35ea5821204984810a6dcef2691, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 10
+  attackAngle: 135
+  attackLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &407945663
 GameObject:
   m_ObjectHideFlags: 0
@@ -3298,6 +3303,28 @@ MonoBehaviour:
   positionToReach: {x: 0, y: 0, z: 0}
   range: 10
   timeForLayEgg: 5
+--- !u!195 &467083645
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 467083638}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1001 &488007940
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15548,6 +15575,28 @@ MonoBehaviour:
   positionToReach: {x: 0, y: 0, z: 0}
   range: 0
   timeForLayEgg: 8
+--- !u!195 &2011403987
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011403980}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 0
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &2041865769
 GameObject:
   m_ObjectHideFlags: 0

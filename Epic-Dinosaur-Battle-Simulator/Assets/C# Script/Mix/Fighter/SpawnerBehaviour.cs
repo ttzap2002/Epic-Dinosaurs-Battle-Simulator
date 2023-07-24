@@ -55,9 +55,9 @@ public class SpawnerBehaviour : MonoBehaviour
                 }
                 if (i % 400 == 0)
                 {
-                    fighter.stats.hp -= 10;
+                    fighter.Hp -= 10;
                 }
-                if (fighter.stats.hp <= 0)
+                if (fighter.Hp <= 0)
                 {
                     if (tag == "Blue")
                     {

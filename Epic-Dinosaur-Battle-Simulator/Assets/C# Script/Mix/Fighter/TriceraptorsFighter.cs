@@ -15,25 +15,25 @@ public class TriceraptorsFighter:StunningFigter
             base.IfStunningEnemy(myEnemy,stunningProbability);
             if (tag == "Blue")
             {
-                myEnemy.stats.hp -= myEnemy.stats.attack * (int)Math.Log10(myEnemy.stats.speed) * (int)Math.Pow(1.1f, GameManager.Instance.battleManager.KosmoceraptorsCount[0]);
+                myEnemy.Hp -= fighter.Attack * (int)Math.Log10(fighter.Speed) * (int)Math.Pow(1.1f, GameManager.Instance.battleManager.KosmoceraptorsCount[0]);
             }
             else 
             {
-                myEnemy.stats.hp -= myEnemy.stats.attack * (int)Math.Log10(myEnemy.stats.speed) * (int)Math.Pow(1.1f, GameManager.Instance.battleManager.KosmoceraptorsCount[1]);
+                myEnemy.Hp -= fighter.Attack * (int)Math.Log10(fighter.Speed) * (int)Math.Pow(1.1f, GameManager.Instance.battleManager.KosmoceraptorsCount[1]);
 
             }
             isHitFirstTime = true;
-            fighter.stats.speed = GameManager.Instance.dinosaurStats.Dinosaurs[fighter.index].speed;
+            fighter.Speed = GameManager.Instance.dinosaurStats.Dinosaurs[fighter.index].speed;
         }
         else
         {
             if (tag == "Blue")
             {
-                myEnemy.stats.hp -= myEnemy.stats.attack * (int)Math.Pow(1.1f, GameManager.Instance.battleManager.KosmoceraptorsCount[0]);
+                myEnemy.Hp -= fighter.Attack * (int)Math.Pow(1.1f, GameManager.Instance.battleManager.KosmoceraptorsCount[0]);
             }
             else
             {
-                myEnemy.stats.hp -= myEnemy.stats.attack * (int)Math.Pow(1.1f, GameManager.Instance.battleManager.KosmoceraptorsCount[1]);
+                myEnemy.Hp -= fighter.Attack * (int)Math.Pow(1.1f, GameManager.Instance.battleManager.KosmoceraptorsCount[1]);
 
             }
         }

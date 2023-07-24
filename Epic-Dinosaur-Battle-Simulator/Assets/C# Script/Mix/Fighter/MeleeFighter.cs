@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
@@ -82,7 +83,8 @@ public class MeleeFighter : MonoBehaviour
 
     protected virtual void Update()
     {
-        UnityEngine.Profiling.Profiler.BeginSample("MeleeFighter");
+  
+       
         if (GameManager.Instance.IsRun && fighter.isAlive)
         {
             if (isActiveForBattle)
@@ -98,10 +100,30 @@ public class MeleeFighter : MonoBehaviour
                         {
                             if (isChangeOfSquare())
                             {
+                                
                                 bool isLessThan40 = GameManager.Instance.blueGameObjects.Count +
-                                    GameManager.Instance.enemyGameObjects.Count < 40 ;
-                                SetReactForOpponents(isLessThan40);
-                              
+                                    GameManager.Instance.enemyGameObjects.Count < 40;
+                                Stopwatch watch = Stopwatch.StartNew();
+                                
+                                if (CheckIfNoticeIsRedundant()) 
+                                {
+                                    //DoNothing
+                                    
+                                }
+                                else 
+                                {
+                                    SetReact();
+                                    //SetReactForOpponents(isLessThan40);
+                                }
+                                
+                                SetReact();
+                                watch.Stop();
+                                GameManager.Instance.f += watch.Elapsed.TotalSeconds;
+
+
+                                //SetReactForOpponents(isLessThan40);
+
+
                             }
                             if (Vector3.Distance(transform.position, fighter.target.transform.position) <= fighter.radius)
                             {
@@ -143,7 +165,7 @@ public class MeleeFighter : MonoBehaviour
 
 
                 //transform.position += moveDirection;
-                a++;
+             
             }
             else if (!isResistForStunning)
             {
@@ -157,22 +179,85 @@ public class MeleeFighter : MonoBehaviour
                     isActiveForBattle = true;
                 }
             }
+            a++;
+            if (a % 40 == 0) 
+            {
+                fighter.Agent.SetDestination(fighter.target.transform.position);
+            }
+         
         }
-        UnityEngine.Profiling.Profiler.EndSample();
+        
     }
 
+    /// <summary>
+    /// Sprawdza czy informacja o zmianie kwadratu ma jakiekolwiek znaczenie
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="NotImplementedException"></exception>
+    private bool CheckIfNoticeIsRedundant()
+    {
+        int row= fighter.row;
+        int col= fighter.col;
+        if (tag == "Blue")
+        {
+            if (row > 0 && col > 1 && row < 9)
+            {
+
+                return (GameManager.Instance.battleManager.BlueFighters[row, col].Count > 0
+                && GameManager.Instance.battleManager.BlueFighters[row + 1, col].Count > 0
+                && GameManager.Instance.battleManager.BlueFighters[row - 1, col].Count > 0)
+                || GameManager.Instance.battleManager.BlueFighters[row, col - 1].Count > 0
+                || GameManager.Instance.battleManager.BlueFighters[row - 1, col - 1].Count > 0
+                || GameManager.Instance.battleManager.BlueFighters[row + 1, col - 1].Count > 0
+                || GameManager.Instance.battleManager.BlueFighters[row, col - 2].Count > 0
+                || GameManager.Instance.battleManager.BlueFighters[row - 1, col - 2].Count > 0
+                || GameManager.Instance.battleManager.BlueFighters[row + 1, col - 2].Count > 0;
+            }
+            else
+            {
+                return GameManager.Instance.battleManager.EnemyFighters[row, col].Count > 0;
+            }
+
+        }
+        else 
+        {
+            if (row > 0 && col < 8 && row<9)
+            {
+                return (GameManager.Instance.battleManager.EnemyFighters[row, col].Count > 0
+                    && GameManager.Instance.battleManager.EnemyFighters[row + 1, col].Count > 0
+                    && GameManager.Instance.battleManager.EnemyFighters[row - 1, col].Count > 0)
+                    || GameManager.Instance.battleManager.EnemyFighters[row , col + 1].Count > 0
+                    || GameManager.Instance.battleManager.EnemyFighters[row + 1, col + 1].Count > 0
+                    || GameManager.Instance.battleManager.EnemyFighters[row - 1, col + 1].Count > 0
+                    || GameManager.Instance.battleManager.EnemyFighters[row , col + 2].Count > 0
+                    || GameManager.Instance.battleManager.EnemyFighters[row + 1, col + 2].Count > 0
+                    || GameManager.Instance.battleManager.EnemyFighters[row - 1, col + 2].Count > 0;
+            }
+            else 
+            {
+                return GameManager.Instance.battleManager.EnemyFighters[row, col].Count > 0;
+            }
+        }
+        
+    }
+
+
+
     public void GetTarget() {
+
+
         if (tag == "Blue") { fighter.target = FindNearestEnemy(GameManager.Instance.battleManager.EnemyFighters); }
         else { fighter.target = FindNearestEnemy(GameManager.Instance.battleManager.BlueFighters); }
+     
         fighter.ChangeDestination(fighter.target.transform.position);
-        fighter.Agent.speed = fighter.stats.speed;
+        fighter.Agent.speed = fighter.Speed;
     }
 
 
     public void SetFightingStatusToFalse()
     {
         isFighting = false;
-        Debug.Log("Done");
+        UnityEngine.Debug.Log("Done");
     }
     protected virtual void Hit(FighterPlacement myEnemy)
     {
@@ -194,7 +279,7 @@ public class MeleeFighter : MonoBehaviour
                         f.Destroyme();
                     }
                 }
-                f.Hp -= fighter.stats.attack;
+                f.Hp -= fighter.Attack;
                 if (f.Hp <= 0)
                 {
                     isFighting = false;
@@ -211,7 +296,7 @@ public class MeleeFighter : MonoBehaviour
         foreach (GameObject obj in ObjectsToHit)
         {
             FighterPlacement f = obj.GetComponent<FighterPlacement>();
-            f.Hp -= fighter.stats.attack;
+            f.Hp -= fighter.Attack;
             if (f.Hp <= 0)
             {
                 isFighting = false;
@@ -290,6 +375,7 @@ public class MeleeFighter : MonoBehaviour
     {
         if (tag == "Blue")
         {
+
             GameManager.Instance.battleManager.React(false, fighter);
         }
         else if (tag == "Enemy")
@@ -297,6 +383,33 @@ public class MeleeFighter : MonoBehaviour
             GameManager.Instance.battleManager.React(true, fighter);
         }
     }
+
+    private int[] CheckWithRowCheck() 
+    {
+        int a = 0;
+        int b = 0;
+        int row=fighter.row;
+        if(tag=="Blue")
+        for(int i = 0; i < row; i++) 
+        {
+            if (GameManager.Instance.battleManager.BlueFighters[row,i].Count>0) 
+            {
+                a=i;
+            }
+        }
+        for(int j = 9; j > row; j--) 
+        {
+            if (GameManager.Instance.battleManager.BlueFighters[row, j].Count > 0)
+            {
+                b = j; 
+            }
+
+        }
+        return null;
+    }
+
+
+
     /*
     private GameObject FindNearestEnemy(string tag,Vector3 vectorOfMyObj)
     {

@@ -31,7 +31,7 @@ public class StunningFigter: MeleeFighter
             {
                 if (!isHitFirstTime)
                 {
-                    fighter.stats.speed += 1;
+                    fighter.Speed += 0.1f;
                 }
             }
         }
@@ -53,7 +53,7 @@ public class StunningFigter: MeleeFighter
             {
 
                 Stunning(myEnemy);
-                if (fighter.stats.hp <= 0)
+                if (fighter.Price <= 0)
                 {
                     isFighting = false;
                     myEnemy.Destroyme();
@@ -68,14 +68,14 @@ public class StunningFigter: MeleeFighter
         if (!isHitFirstTime)
         {
             IfStunningEnemy(myenemy,stunningProbability);
-            myenemy.stats.hp -= fighter.stats.attack * (int)Math.Log10(fighter.stats.speed);
+            myenemy.Hp -= fighter.Hp * (int)Math.Log10(fighter.Price);
             isHitFirstTime = true;
-            fighter.stats.speed = GameManager.Instance.dinosaurStats.Dinosaurs[fighter.index].speed;
+            fighter.Speed = GameManager.Instance.dinosaurStats.Dinosaurs[fighter.index].speed;
         }
         else
         {
             IfStunningEnemy( myenemy, stunningProbAfterHit);
-            myenemy.stats.hp -= fighter.stats.attack;
+            myenemy.Hp -= fighter.Attack;
         }
     }
     protected void IfStunningEnemy(FighterPlacement myEnemy,float probability)

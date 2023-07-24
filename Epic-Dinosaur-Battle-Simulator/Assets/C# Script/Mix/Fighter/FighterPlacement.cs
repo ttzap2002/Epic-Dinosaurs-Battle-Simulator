@@ -6,6 +6,7 @@ using Unity.Services.Analytics.Internal;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Purchasing;
 using static UnityEngine.GraphicsBuffer;
 
 public class FighterPlacement: MonoBehaviour
@@ -15,11 +16,14 @@ public class FighterPlacement: MonoBehaviour
     public int col;
     public FighterPlacement target;
     public bool isAlive;
-    public OneDinoStat stats;
+  
     public int index = 0;
     public float radius = 5f;
     public float interval = 5.0f;
+    private float speed;
+    private int attack;
     private int hp;
+    private int price;
     [SerializeField] private bool haveTailAttack;
     [SerializeField] private float yAxis;
     [SerializeField] private bool isObligatoryToRotate;
@@ -33,24 +37,41 @@ public class FighterPlacement: MonoBehaviour
     public bool HaveTailAttack { get => haveTailAttack; set => haveTailAttack = value; }
     public NavMeshAgent Agent { get => agent; set => agent = value; }
     public int Hp { get => hp; set => hp = value; }
+    public float Speed { get => speed; set => speed = value; }
+    public int Attack { get => attack; set => attack = value; }
+    public int Price { get => price; set => price = value; }
 
     void Start()
     {
         row = CheckWhichSquare()[0];
         col = CheckWhichSquare()[1];
-        stats = GameManager.Instance.dinosaurStats.Dinosaurs[index];
-        Agent = gameObject.GetComponent<NavMeshAgent>();
+        OneDinoStat stats = GameManager.Instance.dinosaurStats.Dinosaurs[index];
+        agent = gameObject.GetComponent<NavMeshAgent>();
         if (Agent != null)
         {
-            Agent.Warp(transform.position);
+            agent.Warp(transform.position);
         }
-        Hp = stats.hp;
+        hp = stats.hp;
+        Debug.Log(stats.speed);
+        speed = stats.speed;
+        attack = stats.attack;
+        price = stats.price;
+        agent.speed = stats.speed;
     }
     public void CreateForSpawner() 
     {
         row = CheckWhichSquare()[0];
         col = CheckWhichSquare()[1];
-        stats = GameManager.Instance.dinosaurStats.Dinosaurs[index];
+        OneDinoStat stats = GameManager.Instance.dinosaurStats.Dinosaurs[index];
+        agent = gameObject.GetComponent<NavMeshAgent>();
+        if (Agent != null)
+        {
+            agent.Warp(transform.position);
+        }
+        speed = stats.speed;
+        attack = stats.attack;
+        price = stats.price;
+        agent.speed = stats.speed;
     } 
     public int[] CheckWhichSquare() 
     {
@@ -94,22 +115,25 @@ public class FighterPlacement: MonoBehaviour
         {
             if (isAdd)
             {
-                GameManager.Instance.battleManager.MoneySum[0] += stats.price;
+                GameManager.Instance.battleManager.MoneySum[0] +=
+                    GameManager.Instance.dinosaurStats.Dinosaurs[index].price;
             }
             else 
             {
-                GameManager.Instance.battleManager.MoneySum[0] -= stats.price;
-
+                GameManager.Instance.battleManager.MoneySum[0] -=
+                    GameManager.Instance.dinosaurStats.Dinosaurs[index].price;
             }
         }
         else {
             if (isAdd)
             {
-                GameManager.Instance.battleManager.MoneySum[1] += stats.price;
+                GameManager.Instance.battleManager.MoneySum[1] +=
+                    GameManager.Instance.dinosaurStats.Dinosaurs[index].price;
             }
             else
             {
-                GameManager.Instance.battleManager.MoneySum[1] -= stats.price;
+                GameManager.Instance.battleManager.MoneySum[1] -=
+                    GameManager.Instance.dinosaurStats.Dinosaurs[index].price;
 
             }        
         }
@@ -119,7 +143,9 @@ public class FighterPlacement: MonoBehaviour
     public void RefreshStats(GameObject obj) 
     {
         isAlive = false;
-        stats = GameManager.Instance.dinosaurStats.Dinosaurs[index];
+        hp = GameManager.Instance.dinosaurStats.Dinosaurs[index].hp;
+        speed = GameManager.Instance.dinosaurStats.Dinosaurs[index].speed;
+        
         GameManager.Instance.battleManager.poolingList[index].Add(obj);
     }
     public void TryChangeTarget(FighterPlacement obj)
@@ -143,9 +169,9 @@ public class FighterPlacement: MonoBehaviour
     {
         if (level > 0) 
         {
-            stats.attack *= (int)Math.Pow(1.1, level);
-            stats.speed += (int)Math.Log(1.1 * level);
-            stats.hp *= (int)Math.Pow(1.1, level);
+            attack *= (int)Math.Pow(1.1, level);
+            speed += (int)Math.Log(1.1 * level);
+            hp *= (int)Math.Pow(1.1, level);
         }
   
 
