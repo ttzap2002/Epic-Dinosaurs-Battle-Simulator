@@ -43,25 +43,34 @@ public class FighterPlacement: MonoBehaviour
 
     void Awake()
     {
-        row = CheckWhichSquare()[0];
-        col = CheckWhichSquare()[1];
+        
         OneDinoStat stats = GameManager.Instance.dinosaurStats.Dinosaurs[index];
-        agent = gameObject.GetComponent<NavMeshAgent>();
-        if (Agent != null)
-        {
-            agent.Warp(transform.position);
-        }
+        
         hp = stats.hp;
         Debug.Log(stats.speed);
         speed = stats.speed;
         attack = stats.attack;
         price = stats.price;
-        agent.speed = stats.speed;
+       
 
         if (!(GameManager.Instance.currentScene.Id!=0 && tag=="Enemy")) 
         {
             UpgradeStatLevel(GameManager.Instance.dynamicData.Dinosaurs[index] - 1);
         }
+    }
+
+
+    private void Start()
+    {
+        row = CheckWhichSquare()[0];
+        col = CheckWhichSquare()[1];
+        agent = gameObject.GetComponent<NavMeshAgent>();
+        if (Agent != null)
+        {
+            agent.Warp(transform.position);
+        }
+        agent.speed = speed;
+
     }
     public void CreateForSpawner()
     {
