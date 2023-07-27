@@ -22,7 +22,7 @@ public class PlayButton : MonoBehaviour
             GameManager.Instance.battleManager.MoneySum=uiInfo.GetMoney();
             Destroy(objScene);
             Destroy(GameObject.Find(("Canvas")));
-            Destroy(GameObject.Find("Buttons"));
+            (GameObject.Find("Buttons")).SetActive(false);
             Destroy(objScene);
             GameObject progressbar = GameObject.Find(("RedArmy"));
             progressbar.GetComponent<Image>().enabled = true;
