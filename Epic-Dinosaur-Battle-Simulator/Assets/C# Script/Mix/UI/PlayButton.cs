@@ -14,7 +14,7 @@ public class PlayButton : MonoBehaviour
         if (GameManager.Instance.blueGameObjects.Count > 0 && GameManager.Instance.enemyGameObjects.Count > 0)
         {
 
-            GameManager.Instance.time.Start();
+          
             CreateBattleManagerForBlue();
             CreateBattleManagerForEnemy();
             GameObject objScene = GameObject.Find(("Scene Information"));

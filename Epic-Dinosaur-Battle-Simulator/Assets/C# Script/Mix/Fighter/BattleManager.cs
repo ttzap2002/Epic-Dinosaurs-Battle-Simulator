@@ -7,31 +7,31 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.Purchasing;
 
-public class BattleManager :MonoBehaviour
+public class BattleManager : MonoBehaviour
 {
     //List<FighterPlacement> enemyFighters;
     //List<FighterPlacement> blueFighters;
 
-    List<FighterPlacement>[,] enemyFighters= new List<FighterPlacement>[10,10];
+    List<FighterPlacement>[,] enemyFighters = new List<FighterPlacement>[10, 10];
     List<FighterPlacement>[,] blueFighters = new List<FighterPlacement>[10, 10];
     static int[] Probability = new int[20];
-    int[] kosmoceraptorsCount=new int[2] { 0,0 };
+    int[] kosmoceraptorsCount = new int[2] { 0, 0 };
     /// <summary>
     /// zmienna potrzebna do ogarniecia stosunku mojewojska kontra wroga
     /// </summary>
-    float[] moneySum = new float[2] { 0f,0f};
+    float[] moneySum = new float[2] { 0f, 0f };
     private float timer = 0f;
     /// <summary>
     /// zmienna która okreœla moc gêstoœci centrum w rozumieniu takim ze im wieksze tym d³u¿ej bitwa bedzie trwaæ
     /// </summary>
     private float[] powerValue;
 
-    private float[] parameter=new float[16]
+    private float[] parameter = new float[16]
     { -1.5f,-2.0f, -2.0f,-1.5f,-0.25f,-0.5f,-0.5f,-0.25f,
       0.25f,0.5f, 0.5f,0.25f,1.5f,2.0f,2.0f,1.5f
     };
 
-    public List<GameObject>[] poolingList=new List<GameObject>[20];
+    public List<GameObject>[] poolingList = new List<GameObject>[20];
 
     public delegate void changeProgressBar();
     public changeProgressBar Delegate;
@@ -41,18 +41,18 @@ public class BattleManager :MonoBehaviour
     {
         this.enemyFighters = enemyFighters;
         this.blueFighters = blueFighters;
-        for(int i=0;i<20;i++) 
+        for (int i = 0; i < 20; i++)
         {
-            poolingList[i]=new List<GameObject>(); 
+            poolingList[i] = new List<GameObject>();
         }
         PowerValue = new float[2] { 0, 0 };
-       
+
 
     }
 
-    public void SetDelegate(GameObject obj) 
+    public void SetDelegate(GameObject obj)
     {
-        Delegate=obj.GetComponent<ProgressBar>().ChangeProgressBar;
+        Delegate = obj.GetComponent<ProgressBar>().ChangeProgressBar;
     }
     public List<FighterPlacement>[,] EnemyFighters { get => enemyFighters; set => enemyFighters = value; }
     public List<FighterPlacement>[,] BlueFighters { get => blueFighters; set => blueFighters = value; }
@@ -71,7 +71,7 @@ public class BattleManager :MonoBehaviour
         else { EnemyFighters.Remove(g); }
     }
     */
-    public void React(bool isReactForBlue,FighterPlacement obj) 
+    public void React(bool isReactForBlue, FighterPlacement obj)
     {
         if (obj != null)
         {
@@ -100,19 +100,19 @@ public class BattleManager :MonoBehaviour
         }
     }
 
-    public void RemoveFromList(FighterPlacement g,int row,int col)
+    public void RemoveFromList(FighterPlacement g, int row, int col)
     {
-        
+
         if (g.tag == "Blue")
         {
-            for (int i = BlueFighters[row, col].Count-1; i >= 0; i--)
+            for (int i = BlueFighters[row, col].Count - 1; i >= 0; i--)
             {
                 if (BlueFighters[row, col][i] == g)
                 {
                     BlueFighters[row, col].RemoveAt(i);
                 }
             }
-           
+
         }
         else
         {
@@ -126,21 +126,21 @@ public class BattleManager :MonoBehaviour
         }
     }
 
-    public void MakeMoney() 
+    public void MakeMoney()
     {
 
     }
 
-    public bool IsEnemyFighterContainAnyFighter() 
+    public bool IsEnemyFighterContainAnyFighter()
     {
-       foreach(var list in EnemyFighters) 
-       {
-            if (list.Count > 0) 
+        foreach (var list in EnemyFighters)
+        {
+            if (list.Count > 0)
             {
                 return true;
             }
-       }
-       return false;
+        }
+        return false;
     }
 
     public bool IsBlueFighterContainAnyFighter()
@@ -155,28 +155,28 @@ public class BattleManager :MonoBehaviour
         return false;
     }
 
-    public void DestroyAllObject() 
+    public void DestroyAllObject()
     {
 
-       foreach(var list in EnemyFighters) 
-       {
-            for(int i = list.Count - 1; i >= 0; i--) 
+        foreach (var list in EnemyFighters)
+        {
+            for (int i = list.Count - 1; i >= 0; i--)
             {
                 FighterPlacement c = list[i].gameObject.GetComponent<FighterPlacement>();
-                if (c.behaviourScript == ScriptType.MeleeFighter) 
+                if (c.behaviourScript == ScriptType.MeleeFighter)
                 {
                     list[i].gameObject.GetComponent<MeleeFighter>().IsActiveForBattle = false;
 
                 }
-                else 
+                else
                 {
                     list[i].gameObject.GetComponent<SpawnerBehaviour>().IsReadyForFight = false;
 
                 }
             }
-       }
-       foreach (var list in BlueFighters)
-       {
+        }
+        foreach (var list in BlueFighters)
+        {
             for (int i = list.Count - 1; i >= 0; i--)
             {
                 FighterPlacement c = list[i].gameObject.GetComponent<FighterPlacement>();
@@ -194,7 +194,7 @@ public class BattleManager :MonoBehaviour
         }
 
     }
-    public void SetCourutine() 
+    public void SetCourutine()
     {
         StartCoroutine(UpdateCoroutine());
     }
@@ -205,11 +205,11 @@ public class BattleManager :MonoBehaviour
     }
     private IEnumerator UpdateCoroutine()
     {
-      
+
 
         while (GameManager.Instance.IsRun)
         {
-           
+
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
             MaKeValueForIntelligentLayerFighter();
@@ -220,7 +220,7 @@ public class BattleManager :MonoBehaviour
             yield return new WaitForSeconds(3.0f);
         }
         yield return null;  // czekaj na nastêpny krok, jeœli GameManager.Instance.IsRun jest fa³szywy
-        
+
     }
 
 
@@ -360,32 +360,51 @@ public class BattleManager :MonoBehaviour
         {
             enemyResult = enemyResult + enemyCount * (enemyCount + blueCount) / blueCount;
         }
-        catch 
+        catch
         {
             enemyResult = 1000;
         }
         try
         {
             blueResult = blueResult + blueCount * (enemyCount + blueCount) / enemyCount;
-        
+
         }
-        catch 
+        catch
         {
-            blueResult= 1000;
+            blueResult = 1000;
         }
 
         PowerValue[0] = blueResult;
         PowerValue[1] = enemyResult;
     }
 
-    public void Clear() 
+    public void Clear()
     {
 
-        foreach (GameObject obj in GameManager.Instance.enemyGameObjects.Concat(GameManager.Instance.blueGameObjects)) 
+        foreach (GameObject obj in GameManager.Instance.enemyGameObjects)
         {
             obj.SetActive(false);
             poolingList[obj.GetComponent<FighterPlacement>().index].Add(obj);
+            
         }
+        foreach (GameObject obj in GameManager.Instance.blueGameObjects)
+        {
+            obj.SetActive(false);
+            poolingList[obj.GetComponent<FighterPlacement>().index].Add(obj);
+            
+        }
+        GameManager.Instance.blueGameObjects.Clear();
+        GameManager.Instance.enemyGameObjects.Clear();
+
+        for (int i = 0; i < 10; i++)
+        {
+            for (int j = 0; j < 10; j++)
+            {
+                enemyFighters[i, j] = new List<FighterPlacement>();
+                blueFighters[i, j] = new List<FighterPlacement>();
+            }
+        }
+
         BattleInformation b = GameManager.Instance.UI.GetComponentInChildren<BattleInformation>();
         b.RefreshMoney();
 
@@ -395,7 +414,7 @@ public class BattleManager :MonoBehaviour
 
     public void GameResume()
     {
-        if (!GameManager.Instance.IsRun) 
+        if (!GameManager.Instance.IsRun)
         {
             GameManager.Instance.IsRun = true;
             SetSpeedForPreviousSpeed();
@@ -413,11 +432,11 @@ public class BattleManager :MonoBehaviour
 
     private void SetSpeedToZero()
     {
-        foreach(List<FighterPlacement> flist in enemyFighters) 
+        foreach (List<FighterPlacement> flist in enemyFighters)
         {
-            foreach(FighterPlacement fighter in flist) 
+            foreach (FighterPlacement fighter in flist)
             {
-                fighter.Agent.speed= 0;
+                fighter.Agent.speed = 0;
             }
         }
         foreach (List<FighterPlacement> flist in blueFighters)

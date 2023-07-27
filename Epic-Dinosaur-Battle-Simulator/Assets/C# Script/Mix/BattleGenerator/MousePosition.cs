@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MousePosition : MonoBehaviour
 {
-    void Update()
+    public void ChangeMousePosition()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if(Physics.Raycast(ray,out RaycastHit raycasthit)) 

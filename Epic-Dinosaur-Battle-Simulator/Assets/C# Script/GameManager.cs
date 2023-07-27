@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private static GameManager _instance;
 
-    public GameObject mouse;
+    public MousePosition mouse;
     public GameObject UI;
     /// <summary>
     /// Ui Odpowiadaj¹ce za zakoñczenie bitwy
@@ -288,7 +288,7 @@ public class GameManager : MonoBehaviour
             GameObject endobj = GameObject.FindGameObjectWithTag("EndOfBattle");
             endobj.SetActive(true);
             endOfBattle = endobj;
-            mouse = GameObject.Find("MouseTarget");
+            mouse = GameObject.Find("MouseTarget").GetComponent<MousePosition>();
             Canvas canvas = GameObject.Find("AllPrefab").GetComponent<Canvas>();
             Canvas obstaclesCanvas = GameObject.Find("Obstacles").GetComponent<Canvas>();
             this.battleManager  = GameObject.Find("BattleManager").GetComponent<BattleManager>();

@@ -17,9 +17,11 @@ public class DraggableItem : MonoBehaviour //IDragHandler, IEndDragHandler,IBegi
     {
         if (isDragging)
         {
-            if (isPossible())
+            GameManager.Instance.mouse.ChangeMousePosition();
+            Vector3 vector = GameManager.Instance.mouse.transform.position;
+            if (isPossible(vector))
             {
-                SetInstanceOfObject();
+                SetInstanceOfObject(vector);
             }
         }
     }
@@ -28,6 +30,7 @@ public class DraggableItem : MonoBehaviour //IDragHandler, IEndDragHandler,IBegi
     public void OnMouseDown()
     {
         isDragging = true;
+        
     }
 
     public void OnMouseUp()
@@ -35,9 +38,8 @@ public class DraggableItem : MonoBehaviour //IDragHandler, IEndDragHandler,IBegi
         isDragging = false;
     }
 
-    private bool isPossible() 
+    private bool isPossible(Vector3 vector) 
     {
-        Vector3 vector = GameManager.Instance.mouse.transform.position;
         if (EventSystem.current.IsPointerOverGameObject()) 
         {
             return false;
@@ -93,17 +95,18 @@ public GameObject Uiinformation;
 
     */
 
-    private void SetInstanceOfObject() 
+    private void SetInstanceOfObject(Vector3 vector) 
     {
         GameObject obj = Instantiate(GameManager.Instance.prefabGameObjects[Fighterid]);
         FighterPlacement creature = obj.GetComponent<FighterPlacement>();
-        creature.CreateForSpawner();
-        creature.UpgradeStatLevel(GameManager.Instance.dynamicData.Dinosaurs[Fighterid]-1);
+        //creature.CreateForSpawner();
+ 
         obj.SetActive(true);
+       
         int cost = creature.Price;
 
-        obj.transform.position = new Vector3(GameManager.Instance.mouse.transform.position.x,
-            creature.YAxis, GameManager.Instance.mouse.transform.position.z); 
+        obj.transform.position = new Vector3(vector.x,
+            creature.YAxis, vector.z); 
       
         if (obj.transform.position.z > 50f)
         {
@@ -113,6 +116,7 @@ public GameObject Uiinformation;
         {
             SetObject("Enemy", obj, cost,creature);
         }
+        
     }
     private void SetObject(string type,GameObject obj,int cost,FighterPlacement creature) 
     {

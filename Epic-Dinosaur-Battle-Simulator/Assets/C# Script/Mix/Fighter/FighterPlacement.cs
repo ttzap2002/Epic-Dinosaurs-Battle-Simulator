@@ -41,7 +41,7 @@ public class FighterPlacement: MonoBehaviour
     public int Attack { get => attack; set => attack = value; }
     public int Price { get => price; set => price = value; }
 
-    void Start()
+    void Awake()
     {
         row = CheckWhichSquare()[0];
         col = CheckWhichSquare()[1];
@@ -57,8 +57,13 @@ public class FighterPlacement: MonoBehaviour
         attack = stats.attack;
         price = stats.price;
         agent.speed = stats.speed;
+
+        if (!(GameManager.Instance.currentScene.Id!=0 && tag=="Enemy")) 
+        {
+            UpgradeStatLevel(GameManager.Instance.dynamicData.Dinosaurs[index] - 1);
+        }
     }
-    public void CreateForSpawner() 
+    public void CreateForSpawner()
     {
         row = CheckWhichSquare()[0];
         col = CheckWhichSquare()[1];
@@ -73,8 +78,18 @@ public class FighterPlacement: MonoBehaviour
         speed = stats.speed;
         attack = stats.attack;
         price = stats.price;
-    
-    } 
+        Upgrade();
+
+    }
+
+    private void Upgrade()
+    {
+        if (!(GameManager.Instance.currentScene.Id != 0 && tag == "Enemy"))
+        {
+            UpgradeStatLevel(GameManager.Instance.dynamicData.Dinosaurs[index] - 1);
+        }
+    }
+
     public int[] CheckWhichSquare() 
     {
         int[] list = new int[2];
