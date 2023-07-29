@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 
 public class DraggableItem : MonoBehaviour //IDragHandler, IEndDragHandler,IBeginDragHandler
 {
-    [SerializeField]private int fighterid=0;
+    [SerializeField] private int fighterid = 0;
     private bool isDragging = false;
 
     public int Fighterid { get => fighterid; set => fighterid = value; }
@@ -30,7 +30,7 @@ public class DraggableItem : MonoBehaviour //IDragHandler, IEndDragHandler,IBegi
     public void OnMouseDown()
     {
         isDragging = true;
-        
+
     }
 
     public void OnMouseUp()
@@ -38,19 +38,20 @@ public class DraggableItem : MonoBehaviour //IDragHandler, IEndDragHandler,IBegi
         isDragging = false;
     }
 
-    private bool isPossible(Vector3 vector) 
+    private bool isPossible(Vector3 vector)
     {
-        if (EventSystem.current.IsPointerOverGameObject()) 
+        if (EventSystem.current.IsPointerOverGameObject())
         {
             return false;
         }
-        if(GameManager.Instance.blueGameObjects==null || GameManager.Instance.enemyGameObjects == null) 
+        if (GameManager.Instance.blueGameObjects == null || GameManager.Instance.enemyGameObjects == null)
         {
             return true;
         }
-        foreach (GameObject g in GameManager.Instance.blueGameObjects.Concat(GameManager.Instance.enemyGameObjects)) 
+
+        foreach (GameObject g in GameManager.Instance.blueGameObjects.Concat(GameManager.Instance.enemyGameObjects))
         {
-            if (Vector3.Distance(vector, g.transform.position) < 4) 
+            if (Vector3.Distance(vector, g.transform.position) < 4)
             {
                 return false;
             }
@@ -95,32 +96,32 @@ public GameObject Uiinformation;
 
     */
 
-    private void SetInstanceOfObject(Vector3 vector) 
+    private void SetInstanceOfObject(Vector3 vector)
     {
         GameObject obj = Instantiate(GameManager.Instance.prefabGameObjects[Fighterid]);
         FighterPlacement creature = obj.GetComponent<FighterPlacement>();
         //creature.CreateForSpawner();
- 
+
         obj.SetActive(true);
-       
+
         int cost = creature.Price;
 
         obj.transform.position = new Vector3(vector.x,
-            creature.YAxis, vector.z); 
-      
+            creature.YAxis, vector.z);
+
         if (obj.transform.position.z > 50f)
         {
-            SetObject("Blue", obj, cost,creature);
+            SetObject("Blue", obj, cost, creature);
         }
         else
         {
-            SetObject("Enemy", obj, cost,creature);
+            SetObject("Enemy", obj, cost, creature);
         }
-        
+
     }
-    private void SetObject(string type,GameObject obj,int cost,FighterPlacement creature) 
+    private void SetObject(string type, GameObject obj, int cost, FighterPlacement creature)
     {
-        obj.tag= type;
+        obj.tag = type;
 
         if (type == "Blue")
         {
@@ -138,7 +139,7 @@ public GameObject Uiinformation;
                 }
             }
         }
-        else 
+        else
         {
             if (GameManager.Instance.enemyGameObjects.Count >= GameManager.Instance.currentScene.EnemyTroopsLimit) { Destroy(obj); }
             else
@@ -146,7 +147,7 @@ public GameObject Uiinformation;
                 GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().enemyTroopsUpdate(true);
                 GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().enemyMoneyUpdate(cost);
                 GameManager.Instance.enemyGameObjects.Add(obj);
-                if (!creature.IsObligatoryToRotate) 
+                if (!creature.IsObligatoryToRotate)
                 {
                     obj.transform.rotation = new Quaternion(obj.transform.rotation.x, 180, obj.transform.rotation.z, obj.transform.rotation.w);
 

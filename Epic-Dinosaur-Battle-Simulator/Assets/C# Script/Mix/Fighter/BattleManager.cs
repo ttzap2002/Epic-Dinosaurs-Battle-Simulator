@@ -100,6 +100,42 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    public void ReactInParticularSquare(bool isReactForBlue, FighterPlacement obj, int[] colToCheck)
+    {
+        if (obj != null)
+        {
+
+            if (isReactForBlue)
+            {
+
+                for (int i = obj.row; i < 10; i++)
+                {
+                    for (int j = colToCheck[0]; j <= colToCheck[1]; j++)
+                    {
+                        foreach (var fighter in blueFighters[i, j])
+                        {
+                            fighter.TryChangeTarget(obj);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for (int i = obj.row; i < 10; i++)
+                {
+                    for (int j = colToCheck[0]; j <= colToCheck[1]; j++)
+                    {
+                        foreach (var fighter in enemyFighters[i, j])
+                        {
+                            fighter.TryChangeTarget(obj);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
     public void RemoveFromList(FighterPlacement g, int row, int col)
     {
 

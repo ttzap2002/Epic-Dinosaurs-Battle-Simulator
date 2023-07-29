@@ -83,8 +83,6 @@ public class MeleeFighter : MonoBehaviour
 
     protected virtual void Update()
     {
-  
-       
         if (GameManager.Instance.IsRun && fighter.isAlive)
         {
             if (isActiveForBattle)
@@ -112,11 +110,11 @@ public class MeleeFighter : MonoBehaviour
                                 }
                                 else 
                                 {
-                                    SetReact();
+                                    SetReactForParticularSquares(CreateSquaresForAllEnemy());
+                                    //SetReact();
                                     //SetReactForOpponents(isLessThan40);
                                 }
                                 
-                                SetReact();
                                 watch.Stop();
                                 GameManager.Instance.f += watch.Elapsed.TotalSeconds;
 
@@ -202,7 +200,6 @@ public class MeleeFighter : MonoBehaviour
         {
             if (row > 0 && col > 1 && row < 9)
             {
-
                 return (GameManager.Instance.battleManager.BlueFighters[row, col].Count > 0
                 && GameManager.Instance.battleManager.BlueFighters[row + 1, col].Count > 0
                 && GameManager.Instance.battleManager.BlueFighters[row - 1, col].Count > 0)
@@ -241,7 +238,28 @@ public class MeleeFighter : MonoBehaviour
         
     }
 
+    private int[] CreateSquaresForAllEnemy() 
+    {
+        int[] rowCol= new int[2]{0,9};
+        int row = fighter.row;
+        for(int i = 0; i <= fighter.col; i++) 
+        {
+            if (GameManager.Instance.battleManager.BlueFighters[row, i].Count > 0) 
+            {
+                rowCol[0] = i;
+            }
+        }
 
+        for (int j = 9; j >= fighter.col; j--)
+        {
+            if (GameManager.Instance.battleManager.BlueFighters[row, j].Count > 0)
+            {
+                rowCol[1] = j;
+            }
+        }
+        return rowCol;
+
+    }
 
     public void GetTarget() {
 
@@ -384,29 +402,21 @@ public class MeleeFighter : MonoBehaviour
         }
     }
 
-    private int[] CheckWithRowCheck() 
-    {
-        int a = 0;
-        int b = 0;
-        int row=fighter.row;
-        if(tag=="Blue")
-        for(int i = 0; i < row; i++) 
-        {
-            if (GameManager.Instance.battleManager.BlueFighters[row,i].Count>0) 
-            {
-                a=i;
-            }
-        }
-        for(int j = 9; j > row; j--) 
-        {
-            if (GameManager.Instance.battleManager.BlueFighters[row, j].Count > 0)
-            {
-                b = j; 
-            }
 
+    private void SetReactForParticularSquares(int[] squareToCheck)
+    {
+        if (tag == "Blue")
+        {
+
+            GameManager.Instance.battleManager.ReactInParticularSquare(false, fighter, squareToCheck);
         }
-        return null;
+        else if (tag == "Enemy")
+        {
+            GameManager.Instance.battleManager.ReactInParticularSquare(true, fighter, squareToCheck);
+        }
     }
+
+   
 
 
 

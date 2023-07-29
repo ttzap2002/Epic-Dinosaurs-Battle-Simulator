@@ -32,6 +32,7 @@ public class StunningFigter: MeleeFighter
                 if (!isHitFirstTime)
                 {
                     fighter.Speed += 0.1f;
+                    fighter.Agent.speed += 0.1f;
                 }
             }
         }
@@ -53,7 +54,7 @@ public class StunningFigter: MeleeFighter
             {
 
                 Stunning(myEnemy);
-                if (fighter.Price <= 0)
+                if (fighter.Hp <= 0)
                 {
                     isFighting = false;
                     myEnemy.Destroyme();

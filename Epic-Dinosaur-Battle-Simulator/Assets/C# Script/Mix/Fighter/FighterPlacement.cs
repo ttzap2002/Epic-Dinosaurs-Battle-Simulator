@@ -20,9 +20,9 @@ public class FighterPlacement: MonoBehaviour
     public int index = 0;
     public float radius = 5f;
     public float interval = 5.0f;
-    private float speed;
-    private int attack;
-    private int hp;
+    [SerializeField] private float speed;
+    [SerializeField] private int attack;
+    [SerializeField] private int hp;
     private int price;
     [SerializeField] private bool haveTailAttack;
     [SerializeField] private float yAxis;
