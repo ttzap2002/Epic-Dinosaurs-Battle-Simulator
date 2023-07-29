@@ -1,27 +1,31 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MusicManager : MonoBehaviour
 {
-    public AudioSource audioSource;
-    public AudioClip[] musicClips;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip[] musicClips;
+    public static float musicIntense;
     int randomIndex;
     private bool wasMusicDisgusted;
 
     void Start()
     {
         // Przy starcie, wywo³ujemy funkcjê do losowego odtwarzania muzyki
-        PlayRandomMusic();
         wasMusicDisgusted = GameManager.Instance.dynamicData.WantMusic;
+        MusicManager.musicIntense = GameManager.Instance.dynamicData.musicIntense;
+        ImplementIntense();
+        PlayRandomMusic();
     }
 
     void Update()
     {
-        OnAudioClipRead();
-        if (wasMusicDisgusted == GameManager.Instance.dynamicData.WantMusic)
+        if (wasMusicDisgusted != GameManager.Instance.dynamicData.WantMusic)
         {
-            PlayRandomMusic();
             wasMusicDisgusted = GameManager.Instance.dynamicData.WantMusic;
         }
+        OnAudioClipRead();
     }
 
     public void PlayRandomMusic()
@@ -65,15 +69,25 @@ public class MusicManager : MonoBehaviour
         {
             StopMusic();
         }
-        else if (!audioSource.isPlaying)
+        else
         {
-            // Jeœli dŸwiêk siê zakoñczy³, inkrementujemy indeks utworu i odtwarzamy kolejny
-            randomIndex = (randomIndex + 1) % musicClips.Length;
-            AudioClip randomClip = musicClips[randomIndex];
+            if (!audioSource.isPlaying)
+            {
+                // Jeœli dŸwiêk siê zakoñczy³, inkrementujemy indeks utworu i odtwarzamy kolejny
+                randomIndex = (randomIndex + 1) % musicClips.Length;
+                AudioClip randomClip = musicClips[randomIndex];
 
-            // Przypisujemy wybrany utwór do AudioSource i odtwarzamy
-            audioSource.clip = randomClip;
-            PlayMusic();
+                // Przypisujemy wybrany utwór do AudioSource i odtwarzamy
+                audioSource.clip = randomClip;
+                PlayMusic();
+            }
+            if(SceneManager.GetActiveScene().name == "MainMenu")
+                ImplementIntense();
         }
+    }
+
+    public void ImplementIntense()
+    {
+        audioSource.volume = MusicManager.musicIntense;
     }
 }

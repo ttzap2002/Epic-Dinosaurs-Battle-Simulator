@@ -17,6 +17,7 @@ public class DynamicData
     public int battlesWithoutAds = 0; // ile bitew ostatnich nie mia³o wymuszonej reklamy (pomijalnej)
     static List<int> StartLvls = new List<int>() { 2, 1, 1, 1 }; //Poziomy ktore sa odblokowane na start (stworzone wylacznie w celu zmiany jednej listy zamiast kilku)
     public bool wantMusic = true;
+    public float musicIntense = 0.15f;
 
     private DynamicData() 
     {

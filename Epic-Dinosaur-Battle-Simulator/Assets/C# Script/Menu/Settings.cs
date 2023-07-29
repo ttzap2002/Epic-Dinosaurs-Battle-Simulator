@@ -1,14 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Settings : MonoBehaviour
 {
     public GameObject settingsBox;
+    [SerializeField] private Slider intenseSlider;
     //public MusicManager manager;
     // Start is called before the first frame update
     void Start()
     {
+        intenseSlider.value = GameManager.Instance.dynamicData.musicIntense;
+        if (GameManager.Instance.dynamicData.WantMusic)
+            intenseSlider.gameObject.SetActive(true);
+        else
+            intenseSlider.gameObject.SetActive(false);
         settingsBox.SetActive(false);
     }
 
@@ -59,6 +66,17 @@ public class Settings : MonoBehaviour
     {
         GameManager.Instance.dynamicData.WantMusic = !GameManager.Instance.dynamicData.WantMusic;
         GameManager.Instance.dynamicData.Save();
+        if (GameManager.Instance.dynamicData.WantMusic)
+            intenseSlider.gameObject.SetActive(true);
+        else
+            intenseSlider.gameObject.SetActive(false);
         //manager.PlayRandomMusic();
+    }
+
+    public void ReadIntenseOfMusic()
+    {
+        MusicManager.musicIntense = intenseSlider.value;
+        GameManager.Instance.dynamicData.musicIntense = intenseSlider.value;
+        GameManager.Instance.dynamicData.Save();
     }
 }
