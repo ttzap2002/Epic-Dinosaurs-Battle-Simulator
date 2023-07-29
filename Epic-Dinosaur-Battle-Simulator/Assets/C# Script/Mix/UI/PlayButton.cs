@@ -50,6 +50,11 @@ public class PlayButton : MonoBehaviour
                 f.GetComponent<MeleeFighter>().IsActiveForBattle =true;
 
             }
+            if (stats.behaviourScript == ScriptType.Yaverlandia)
+            {
+                f.GetComponent<MeleeFighter>().IsActiveForBattle = false;
+                f.GetComponent<YaverlandiaFighter>().IsActiveForBattle = true;
+            }
             if (stats.behaviourScript == ScriptType.Spawner)
             {
                 f.gameObject.GetComponent<SpawnerBehaviour>().IsReadyForFight=true;
@@ -96,6 +101,11 @@ public class PlayButton : MonoBehaviour
             if (stats.behaviourScript == ScriptType.Spawner)
             {
                 f.gameObject.GetComponent<SpawnerBehaviour>().IsReadyForFight = true;
+            }
+            if (stats.behaviourScript == ScriptType.Yaverlandia)
+            {
+                f.GetComponent<MeleeFighter>().IsActiveForBattle = false;
+                f.GetComponent<YaverlandiaFighter>().IsActiveForBattle = true;
             }
             if (stats.behaviourScript == ScriptType.EggLayer)
             {

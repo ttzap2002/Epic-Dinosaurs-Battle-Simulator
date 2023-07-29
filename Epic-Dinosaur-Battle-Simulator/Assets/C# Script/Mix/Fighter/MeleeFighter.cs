@@ -43,10 +43,11 @@ public class MeleeFighter : MonoBehaviour
     /// </summary>
     [SerializeField] private bool isResistForStunning;
     private float basicx;
- 
+    [SerializeField] private float timeWaitngDuringStunning=5.0f;
+
     public bool IsActiveForBattle { get => isActiveForBattle; set => isActiveForBattle = value; }
     public bool IsResistForStunning { get => isResistForStunning; set => isResistForStunning = value; }
-
+    public float TimeWaitngDuringStunning { get => timeWaitngDuringStunning; set => timeWaitngDuringStunning = value; }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -136,6 +137,7 @@ public class MeleeFighter : MonoBehaviour
                             if (Vector3.Distance(transform.position, fighter.target.transform.position) > fighter.radius)
                             {
                                 isFighting = false;
+                                fighter.Agent.speed = fighter.Speed;
                             }
                             if (timer >= fighter.interval)
                             {
@@ -167,7 +169,7 @@ public class MeleeFighter : MonoBehaviour
             }
             else if (!isResistForStunning)
             {
-                if (timer < 5f)
+                if (timer < timeWaitngDuringStunning)
                 {
                     timer += Time.deltaTime;
                 }
@@ -178,7 +180,7 @@ public class MeleeFighter : MonoBehaviour
                 }
             }
             a++;
-            if (a % 40 == 0) 
+            if (a % 40 == 0 && fighter.target!=null) 
             {
                 fighter.Agent.SetDestination(fighter.target.transform.position);
             }

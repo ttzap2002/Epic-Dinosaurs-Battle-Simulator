@@ -604,7 +604,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a067c70fa964895469af3591bc9f4eb1, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a067c70fa964895469af3591bc9f4eb1, type: 3}
       propertyPath: m_LocalScale.x
@@ -719,7 +719,7 @@ MonoBehaviour:
   target: {fileID: 0}
   isAlive: 1
   index: 12
-  radius: 0
+  radius: 4
   interval: 5
   speed: 0
   attack: 0
@@ -760,6 +760,7 @@ MonoBehaviour:
   ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
+  timeWaitngDuringStunning: 0
 --- !u!195 &51938862
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -809,6 +810,7 @@ MonoBehaviour:
   ifEatEggImmediately: 1
   rotationSpeed: 5
   isResistForStunning: 1
+  timeWaitngDuringStunning: 0
 --- !u!114 &70942739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2259,6 +2261,7 @@ MonoBehaviour:
   ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
+  timeWaitngDuringStunning: 0
 --- !u!114 &258890394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2650,6 +2653,7 @@ MonoBehaviour:
   ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
+  timeWaitngDuringStunning: 0
 --- !u!114 &406138984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2714,7 +2718,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 1.5
   m_Speed: 3.5
-  m_Acceleration: 0
+  m_Acceleration: 8
   avoidancePriority: 20
   m_AngularSpeed: 0
   m_StoppingDistance: 0
@@ -3159,6 +3163,7 @@ MonoBehaviour:
   ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
+  timeWaitngDuringStunning: 0
 --- !u!114 &435813907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3215,7 +3220,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a067c70fa964895469af3591bc9f4eb1, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a067c70fa964895469af3591bc9f4eb1, type: 3}
       propertyPath: m_LocalScale.x
@@ -3330,7 +3335,7 @@ MonoBehaviour:
   target: {fileID: 0}
   isAlive: 1
   index: 15
-  radius: 0
+  radius: 3
   interval: 5
   speed: 0
   attack: 0
@@ -3957,9 +3962,11 @@ MonoBehaviour:
   ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 1
+  timeWaitngDuringStunning: 0
   stunningProbability: 0.01
   stunningProbAfterHit: 0.01
   BasicSpeed: 10
+  acceleration: 0
 --- !u!114 &568777656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4297,9 +4304,11 @@ MonoBehaviour:
   ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
+  timeWaitngDuringStunning: 10000
   stunningProbability: 0.55
   stunningProbAfterHit: 0.035
   BasicSpeed: 10
+  acceleration: 0.2
 --- !u!114 &597893630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4338,7 +4347,7 @@ MonoBehaviour:
   yAxis: 0
   isObligatoryToRotate: 0
   agent: {fileID: 0}
-  behaviourScript: 0
+  behaviourScript: 4
   fightingScript: 0
 --- !u!65 &597893632
 BoxCollider:
@@ -4375,6 +4384,21 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &597893634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597893627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 456a2532bb74f214e86fb9b0ceda99c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positionToReach: {x: 0, y: 0, z: 0}
+  range: 3
+  timeForLayEgg: 2
 --- !u!1 &607660098
 GameObject:
   m_ObjectHideFlags: 0
@@ -7142,9 +7166,11 @@ MonoBehaviour:
   ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
+  timeWaitngDuringStunning: 0
   stunningProbability: 0.6
   stunningProbAfterHit: 0.03
   BasicSpeed: 10
+  acceleration: 0
 --- !u!114 &881810818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7683,6 +7709,211 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 937201447}
   m_CullTransparentMesh: 1
+--- !u!1001 &945029614
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1050780943}
+    m_Modifications:
+    - target: {fileID: -6938986035272928436, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -6158515111683921670, guid: 26a5ea023529de54e9b69e178a00178f, type: 3}
+    - target: {fileID: -6938986035272928436, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2534369429329791824, guid: 3df6b34caa19ddb4f94447846ca1f8e4, type: 3}
+    - target: {fileID: -4216859302048453862, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -572.1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -242
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -22.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4039961571090422050, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
+      propertyPath: m_Name
+      value: Allosaurus fragilis
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
+--- !u!4 &945029615 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
+  m_PrefabInstance: {fileID: 945029614}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &945029616 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1121063750183690423, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
+  m_PrefabInstance: {fileID: 945029614}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &945029617 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
+  m_PrefabInstance: {fileID: 945029614}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &945029618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945029616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5710c8e537873614b951bece9a721f07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!195 &945029619
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945029617}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 1.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 0
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 0
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &945029620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945029617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1d8efb9e42321a42943e295339110e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  row: 0
+  col: 0
+  target: {fileID: 0}
+  isAlive: 1
+  index: 2
+  radius: 5
+  interval: 5
+  speed: 0
+  attack: 0
+  hp: 0
+  haveTailAttack: 0
+  yAxis: 0
+  isObligatoryToRotate: 0
+  agent: {fileID: 0}
+  behaviourScript: 0
+  fightingScript: 0
+--- !u!114 &945029621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945029617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dd317d2a16319d46985aa2f2b310f0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &945029622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945029617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5710c8e537873614b951bece9a721f07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &945029623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945029617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab716d9538ba53246b79419cc240c6e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFighting: 0
+  isActiveForBattle: 0
+  ifEatEggImmediately: 0
+  rotationSpeed: 5
+  isResistForStunning: 0
+  timeWaitngDuringStunning: 0
+--- !u!65 &945029624
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945029617}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 3, z: 4}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &960035033
 GameObject:
   m_ObjectHideFlags: 0
@@ -8630,9 +8861,11 @@ MonoBehaviour:
   ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
+  timeWaitngDuringStunning: 0
   stunningProbability: 0.025
   stunningProbAfterHit: 0.025
   BasicSpeed: 10
+  acceleration: 0
 --- !u!114 &1022507581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8800,7 +9033,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1946807841}
+  - {fileID: 945029615}
   - {fileID: 1668684865}
   - {fileID: 70942737}
   - {fileID: 406138979}
@@ -8812,12 +9045,12 @@ RectTransform:
   - {fileID: 1682815740}
   - {fileID: 1022507577}
   - {fileID: 568777652}
+  - {fileID: 1398808261}
   - {fileID: 51938854}
   - {fileID: 1747327022}
   - {fileID: 1613739228}
   - {fileID: 467083637}
   - {fileID: 2011403979}
-  - {fileID: 1398808261}
   - {fileID: 1851641939}
   - {fileID: 670391801}
   - {fileID: 936375115}
@@ -10207,9 +10440,11 @@ MonoBehaviour:
   ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
+  timeWaitngDuringStunning: 0
   stunningProbability: 0.4
   stunningProbAfterHit: 0.05
   BasicSpeed: 10
+  acceleration: 0
 --- !u!114 &1294917354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10516,7 +10751,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1050780943}
-  m_RootOrder: 17
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1398808262
 MonoBehaviour:
@@ -10562,7 +10797,7 @@ MonoBehaviour:
   target: {fileID: 0}
   isAlive: 1
   index: 17
-  radius: 0
+  radius: 3
   interval: 5
   speed: 0
   attack: 0
@@ -11969,7 +12204,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a067c70fa964895469af3591bc9f4eb1, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a067c70fa964895469af3591bc9f4eb1, type: 3}
       propertyPath: m_LocalScale.x
@@ -12072,9 +12307,11 @@ MonoBehaviour:
   ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
+  timeWaitngDuringStunning: 0
   stunningProbability: 0.25
   stunningProbAfterHit: 0.025
   BasicSpeed: 10
+  acceleration: 0
 --- !u!114 &1613739232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12104,7 +12341,7 @@ MonoBehaviour:
   target: {fileID: 0}
   isAlive: 1
   index: 14
-  radius: 0
+  radius: 3
   interval: 5
   speed: 0
   attack: 0
@@ -12455,6 +12692,7 @@ MonoBehaviour:
   ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 1
+  timeWaitngDuringStunning: 0
 --- !u!195 &1668684872
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -12875,6 +13113,7 @@ MonoBehaviour:
   ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
+  timeWaitngDuringStunning: 0
 --- !u!1 &1710311187
 GameObject:
   m_ObjectHideFlags: 0
@@ -13289,7 +13528,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a067c70fa964895469af3591bc9f4eb1, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a067c70fa964895469af3591bc9f4eb1, type: 3}
       propertyPath: m_LocalScale.x
@@ -13392,9 +13631,11 @@ MonoBehaviour:
   ifEatEggImmediately: 1
   rotationSpeed: 5
   isResistForStunning: 0
+  timeWaitngDuringStunning: 0
   stunningProbability: 0.3
   stunningProbAfterHit: 0
   BasicSpeed: 10
+  acceleration: 0
 --- !u!114 &1747327026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13424,7 +13665,7 @@ MonoBehaviour:
   target: {fileID: 0}
   isAlive: 1
   index: 13
-  radius: 0
+  radius: 3
   interval: 5
   speed: 0
   attack: 0
@@ -13465,9 +13706,11 @@ MonoBehaviour:
   ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
+  timeWaitngDuringStunning: 0
   stunningProbability: 0.3
   stunningProbAfterHit: 0
   BasicSpeed: 25
+  acceleration: 0
 --- !u!195 &1747327030
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -14783,7 +15026,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1050780943}
+    m_TransformParent: {fileID: 1668684865}
     m_Modifications:
     - target: {fileID: -8748000162394727473, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
       propertyPath: m_NavMeshLayer
@@ -14955,19 +15198,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -352.9
+      value: 47.969997
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -217.9
+      value: 13.770001
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 50.4
+      value: 10.080001
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -15868,6 +16123,7 @@ MonoBehaviour:
   ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
+  timeWaitngDuringStunning: 0
 --- !u!114 &1946807850
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -16200,7 +16456,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a067c70fa964895469af3591bc9f4eb1, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a067c70fa964895469af3591bc9f4eb1, type: 3}
       propertyPath: m_LocalScale.x
@@ -16303,7 +16559,7 @@ MonoBehaviour:
   target: {fileID: 0}
   isAlive: 1
   index: 16
-  radius: 0
+  radius: 3
   interval: 5
   speed: 0
   attack: 0

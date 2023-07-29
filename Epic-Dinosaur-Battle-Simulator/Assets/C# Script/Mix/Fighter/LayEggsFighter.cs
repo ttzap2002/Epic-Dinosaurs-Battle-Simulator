@@ -16,14 +16,13 @@ public class LayEggsFighter :MonoBehaviour
     protected FighterPlacement fighter;
 
     [SerializeField]private float timeForLayEgg;
-    private float timer;
+    protected float timer;
     private bool isSetDestination=true;
     public bool IsActiveForBattle { get => isActiveForBattle; set => isActiveForBattle = value; }
 
     protected void Start()
     {
         fighter = GetComponent<FighterPlacement>();
-        transform.position = new Vector3 (transform.position.x,fighter.YAxis,transform.position.z);
         positionToReach = GetPositionToMove();
     }
 
@@ -65,8 +64,6 @@ public class LayEggsFighter :MonoBehaviour
                 
                 if (!isLaying)
                 {
-                    
-                  
                     if (transform.position.x == positionToReach.x && transform.position.z==positionToReach.z) 
                     { isLaying = true; }
                     if (isChangeOfSquare())
@@ -118,20 +115,35 @@ public class LayEggsFighter :MonoBehaviour
         return false;
     }
 
-    private void SetEgg()
+    protected virtual void SetEgg()
     {
 
         //GameObject obj = Instantiate(GameManager.Instance.prefabGameObjects[19]
         //);
         List<GameObject> poolList= GameManager.Instance.battleManager.poolingList[19];
-        GameObject obj = poolList[poolList.Count - 1];
-        poolList.Remove(obj);
-        obj.SetActive(true);
-        obj.tag = tag;
-        obj.transform.position = transform.position;
-        FighterPlacement f = obj.GetComponent<FighterPlacement>();
-        if (tag == "Blue") { GameManager.Instance.battleManager.BlueFighters[fighter.row, fighter.col].Add(f); GameManager.Instance.blueGameObjects.Add(obj); }
-        else { GameManager.Instance.battleManager.EnemyFighters[fighter.row, fighter.col].Add(f); GameManager.Instance.enemyGameObjects.Add(obj); }
+        if (poolList.Count > 0) 
+        {
+            GameObject obj = poolList[poolList.Count - 1];
+            poolList.Remove(obj);
+            obj.SetActive(true);
+            obj.tag = tag;
+            obj.transform.position = transform.position;
+            FighterPlacement f = obj.GetComponent<FighterPlacement>();
+            if (tag == "Blue") { GameManager.Instance.battleManager.BlueFighters[fighter.row, fighter.col].Add(f); GameManager.Instance.blueGameObjects.Add(obj); }
+            else { GameManager.Instance.battleManager.EnemyFighters[fighter.row, fighter.col].Add(f); GameManager.Instance.enemyGameObjects.Add(obj); }
+
+        }
+        else 
+        {
+            GameObject obj = Instantiate(GameManager.Instance.prefabGameObjects[19]);
+            obj.SetActive(true);
+            obj.tag = tag;
+            obj.transform.position = transform.position;
+            FighterPlacement f = obj.GetComponent<FighterPlacement>();
+            if (tag == "Blue") { GameManager.Instance.battleManager.BlueFighters[fighter.row, fighter.col].Add(f); GameManager.Instance.blueGameObjects.Add(obj); }
+            else { GameManager.Instance.battleManager.EnemyFighters[fighter.row, fighter.col].Add(f); GameManager.Instance.enemyGameObjects.Add(obj); }
+        }
+      
     }
 
     private void Move()

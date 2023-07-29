@@ -209,7 +209,8 @@ public enum ScriptType
     MeleeFighter,
     Spawner,
     EggLayer,
-    Egg
+    Egg,
+    Yaverlandia
 }
 
 

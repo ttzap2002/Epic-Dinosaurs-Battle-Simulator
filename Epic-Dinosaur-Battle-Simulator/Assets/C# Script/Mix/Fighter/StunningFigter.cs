@@ -14,6 +14,7 @@ public class StunningFigter: MeleeFighter
     [SerializeField] private float stunningProbAfterHit;
     protected bool isHitFirstTime=false;
     [SerializeField] protected float BasicSpeed;
+    [SerializeField] private float acceleration;
 
 
     private void Start()
@@ -31,8 +32,8 @@ public class StunningFigter: MeleeFighter
             {
                 if (!isHitFirstTime)
                 {
-                    fighter.Speed += 0.1f;
-                    fighter.Agent.speed += 0.1f;
+                    fighter.Speed += acceleration;
+                    fighter.Agent.speed += acceleration;
                 }
             }
         }
@@ -72,6 +73,7 @@ public class StunningFigter: MeleeFighter
             myenemy.Hp -= fighter.Hp * (int)Math.Log10(fighter.Price);
             isHitFirstTime = true;
             fighter.Speed = GameManager.Instance.dinosaurStats.Dinosaurs[fighter.index].speed;
+            fighter.Agent.speed = GameManager.Instance.dinosaurStats.Dinosaurs[fighter.index].speed;
         }
         else
         {
