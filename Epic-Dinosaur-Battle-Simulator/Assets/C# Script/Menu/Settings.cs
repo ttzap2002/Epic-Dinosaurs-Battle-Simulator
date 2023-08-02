@@ -7,6 +7,7 @@ public class Settings : MonoBehaviour
 {
     public GameObject settingsBox;
     [SerializeField] private Slider intenseSlider;
+    [SerializeField] private GameObject menuBox;
     //public MusicManager manager;
     // Start is called before the first frame update
     void Start()
@@ -27,11 +28,13 @@ public class Settings : MonoBehaviour
 
     public void ShowSettings()
     {
+        menuBox.SetActive(false);
         settingsBox.SetActive(true);
     }
 
     public void HideSettings()
     {
+        menuBox.SetActive(true);
         settingsBox.SetActive(false);
     }
 
