@@ -98,11 +98,24 @@ public GameObject Uiinformation;
 
     private void SetInstanceOfObject(Vector3 vector)
     {
-        GameObject obj = Instantiate(GameManager.Instance.prefabGameObjects[Fighterid]);
+        GameObject obj = null;
+        if (GameManager.Instance.battleManager.poolingList[Fighterid].Count > 0
+            && GameManager.Instance.battleManager.poolingList[Fighterid] != null)
+        {
+            List<GameObject> list = GameManager.Instance.battleManager.poolingList[Fighterid];
+            obj = list[list.Count - 1];
+            list.Remove(obj);
+        }
+        else 
+        {
+            obj = Instantiate(GameManager.Instance.prefabGameObjects[Fighterid]);
+        }
+
+      
         FighterPlacement creature = obj.GetComponent<FighterPlacement>();
         //creature.CreateForSpawner();
 
-        obj.SetActive(true);
+  
 
         int cost = creature.Price;
 
@@ -117,7 +130,7 @@ public GameObject Uiinformation;
         {
             SetObject("Enemy", obj, cost, creature);
         }
-
+        obj.SetActive(true);
     }
     private void SetObject(string type, GameObject obj, int cost, FighterPlacement creature)
     {

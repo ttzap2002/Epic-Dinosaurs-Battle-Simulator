@@ -2,6 +2,7 @@ using System;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneChanging : MonoBehaviour
 {
@@ -19,12 +20,14 @@ public class SceneChanging : MonoBehaviour
         GameManager.Instance.isContainRequireComponent = false;
         SceneManager.LoadScene(1);
     }
-    public void Sandbox()
+    public void Sandbox(bool isRefresh=true)
     {
         GameManager.Instance.isContainRequireComponent = true;
         GameManager.Instance.AddScene(0);
         GameManager.Instance.RefreshGameObjects();
         SceneManager.LoadScene(5);
+
+        
     
     }
 
@@ -81,4 +84,6 @@ public class SceneChanging : MonoBehaviour
         GameManager.Instance.RefreshGameObjects();
         SceneManager.LoadScene(6);
     }
+
+
 }

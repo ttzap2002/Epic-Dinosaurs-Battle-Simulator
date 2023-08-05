@@ -83,7 +83,11 @@ public class GameManager : MonoBehaviour
     public Dictionary<string, bool> canISetWarrior = new Dictionary<string, bool>(); //Zmienna booli które decyduj¹ czy mo¿na stawiaæ jednostkê. Jeden false blokuje t¹ mo¿liwoœæ. Konkretne nazwy s¹ w starcie (pod awake)
     public int salaryForBattle; //zmienna posiaajaca info o zdobytych pieniazkach z bitwy
 
+    public List<ObjectToDisplay> temporaryObjectsToDisplay = new List<ObjectToDisplay>();
+
     public double f=0f;
+
+    public LevelReminder objectPositions;
 
     public Stopwatch time=new Stopwatch();
     public static GameManager Instance { get { return _instance; } }
@@ -319,9 +323,31 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void RefreshGameObjects()
     {
+        
         blueGameObjects = new List<GameObject>();
         enemyGameObjects = new List<GameObject>();
+        
+    }
+}
+
+
+public class LevelReminder 
+{
+    List<ObjectToDisplay> temporaryObjectsToDisplayForBlue;
+    List<ObjectToDisplay> temporaryObjectsToDisplayForEnemy;
+    float blueMoney;
+    float redMoney;
+    int blueTroops;
+    int redTroops;
+
+    public LevelReminder(List<ObjectToDisplay> temporaryObjectsToDisplayForBlue, List<ObjectToDisplay> temporaryObjectsToDisplayForEnemy, float blueMoney, float redMoney)
+    {
+        this.temporaryObjectsToDisplayForBlue = temporaryObjectsToDisplayForBlue;
+        this.temporaryObjectsToDisplayForEnemy = temporaryObjectsToDisplayForEnemy;
+        this.blueMoney = blueMoney;
+        this.redMoney = redMoney;
     }
 
-
-}
+    public List<ObjectToDisplay> TemporaryObjectsToDisplayForBlue { get => temporaryObjectsToDisplayForBlue; set => temporaryObjectsToDisplayForBlue = value; }
+    public List<ObjectToDisplay> TemporaryObjectsToDisplayForEnemy { get => temporaryObjectsToDisplayForEnemy; set => temporaryObjectsToDisplayForEnemy = value; }
+} 

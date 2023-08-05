@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.Purchasing;
+using UnityEngine.UI;
 
 public class BattleManager : MonoBehaviour
 {
@@ -241,8 +242,6 @@ public class BattleManager : MonoBehaviour
     }
     private IEnumerator UpdateCoroutine()
     {
-
-
         while (GameManager.Instance.IsRun)
         {
 
@@ -416,22 +415,26 @@ public class BattleManager : MonoBehaviour
 
     public void Clear()
     {
-
-        foreach (GameObject obj in GameManager.Instance.enemyGameObjects)
+        if (GameManager.Instance.enemyGameObjects != null) 
         {
-            obj.SetActive(false);
-            poolingList[obj.GetComponent<FighterPlacement>().index].Add(obj);
-            
+            foreach (GameObject obj in GameManager.Instance.enemyGameObjects)
+            {
+                obj.SetActive(false);
+                poolingList[obj.GetComponent<FighterPlacement>().index].Add(obj);
+            }
+            GameManager.Instance.enemyGameObjects.Clear();
         }
-        foreach (GameObject obj in GameManager.Instance.blueGameObjects)
+        if(GameManager.Instance.blueGameObjects != null) 
         {
-            obj.SetActive(false);
-            poolingList[obj.GetComponent<FighterPlacement>().index].Add(obj);
-            
+            foreach (GameObject obj in GameManager.Instance.blueGameObjects)
+            {
+                obj.SetActive(false);
+                poolingList[obj.GetComponent<FighterPlacement>().index].Add(obj);
+            }
+            GameManager.Instance.blueGameObjects.Clear();
         }
-        GameManager.Instance.blueGameObjects.Clear();
-        GameManager.Instance.enemyGameObjects.Clear();
-
+       
+ 
         for (int i = 0; i < 10; i++)
         {
             for (int j = 0; j < 10; j++)
@@ -499,6 +502,59 @@ public class BattleManager : MonoBehaviour
                 fighter.Agent.speed = fighter.Speed;
             }
         }
+    }
+
+    public void RefreshSandbox()
+    {
+        SetTransform("Scene Information");
+        SetTransform("Buttons");
+        GameObject objScene = GameObject.Find(("Scene Information"));
+        objScene.SetActive(true);
+        GameManager.Instance.battleManager.Clear();
+        GameManager.Instance.RefreshGameObjects();
+
+        GameObject progressbar = GameObject.Find(("RedArmy"));
+        progressbar.GetComponent<Image>().enabled = false;
+        GameObject.Find(("ProgressBar")).GetComponent<Image>().enabled = false;
+        GameObject obj = GameObject.Find("Terrain");
+        obj.gameObject.GetComponent<DraggableItem>().enabled = true;
+        setRecentPositionOfObject();
+    }
+
+    private void SetTransform(string nameOfObject)
+    {
+        Transform parentTransform = GameManager.Instance.UI.transform; // Zak³adaj¹c, ¿e masz referencjê do rodzica
+        Transform childTransform = parentTransform.Find(nameOfObject);
+        if (childTransform != null)
+        {
+            GameObject child = childTransform.gameObject;
+            child.SetActive(true);
+            // Teraz mo¿esz zrobiæ coœ z obiektem objScene
+        }
+    }
+
+    private void setRecentPositionOfObject()
+    {
+        foreach (ObjectToDisplay fighter in GameManager.Instance.objectPositions.TemporaryObjectsToDisplayForBlue)
+        {
+            List<GameObject> pool = poolingList[fighter.PrefabId];
+            GameObject obj = pool[pool.Count - 1];
+            pool.Remove(pool[pool.Count - 1]);
+            obj.SetActive(true);
+            obj.transform.position = new Vector3(fighter.XAxis, fighter.YAxis, fighter.ZAxis);
+            GameManager.Instance.blueGameObjects.Add(obj);
+        }
+
+        foreach (ObjectToDisplay fighter in GameManager.Instance.objectPositions.TemporaryObjectsToDisplayForEnemy)
+        {
+            List<GameObject> pool = poolingList[fighter.PrefabId];
+            GameObject obj = pool[pool.Count - 1];
+            pool.Remove(pool[pool.Count - 1]);
+            obj.SetActive(true);
+            obj.transform.position = new Vector3(fighter.XAxis, fighter.YAxis, fighter.ZAxis);
+            GameManager.Instance.enemyGameObjects.Add(obj);
+        }
+
     }
 
 }

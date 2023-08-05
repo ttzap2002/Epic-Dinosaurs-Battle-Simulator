@@ -20,18 +20,25 @@ public class PlayButton : MonoBehaviour
             GameObject objScene = GameObject.Find(("Scene Information"));
             BattleInformation uiInfo = objScene.GetComponent<BattleInformation>();
             GameManager.Instance.battleManager.MoneySum=uiInfo.GetMoney();
-            Destroy(objScene);
-            Destroy(GameObject.Find(("Canvas")));
+            objScene.SetActive(false);
+            //GameObject.Find(("Canvas")).SetActive(false);
             (GameObject.Find("Buttons")).SetActive(false);
-            Destroy(objScene);
+            objScene.SetActive(false);
             GameObject progressbar = GameObject.Find(("RedArmy"));
             progressbar.GetComponent<Image>().enabled = true;
             GameObject.Find(("ProgressBar")).GetComponent<Image>().enabled = true;
             GameManager.Instance.battleManager.SetDelegate(GameObject.Find(("RedArmy")));
             GameManager.Instance.battleManager.Delegate();
             GameObject obj = GameObject.Find("Terrain");
-            GameObject.Destroy(obj.gameObject.GetComponent<DraggableItem>());
+            List<ObjectToDisplay>[] savePositionOfObject = SetRecentPosition();
+            obj.gameObject.GetComponent<DraggableItem>().enabled=false;
             GameManager.Instance.dynamicData.battlesWithoutAds++;
+            GameManager.Instance.objectPositions = new LevelReminder(
+                savePositionOfObject[0],
+                savePositionOfObject[1],
+                GameManager.Instance.battleManager.MoneySum[0],
+                GameManager.Instance.battleManager.MoneySum[1]
+                );
             GameManager.Instance.IsRun = true;
             GameManager.Instance.battleManager.SetCourutine();
 
@@ -118,4 +125,30 @@ public class PlayButton : MonoBehaviour
 
         }
     }
+
+
+    private List<ObjectToDisplay>[] SetRecentPosition() 
+    {
+        List<ObjectToDisplay>[] objectInRecentPosition= new List<ObjectToDisplay>[2];
+        objectInRecentPosition[0] = new List<ObjectToDisplay>();
+        objectInRecentPosition[1] = new List<ObjectToDisplay>();
+
+        foreach (var obj in GameManager.Instance.blueGameObjects) 
+        {
+            Vector3 vector3 = obj.transform.position;
+            FighterPlacement fighter = obj.GetComponent<FighterPlacement>();
+            objectInRecentPosition[0].Add(new ObjectToDisplay(vector3.x, vector3.y, vector3.z,
+                fighter.index));
+        }
+        foreach (var obj in GameManager.Instance.enemyGameObjects)
+        {
+            Vector3 vector3 = obj.transform.position;
+            FighterPlacement fighter = obj.GetComponent<FighterPlacement>();
+            objectInRecentPosition[1].Add(new ObjectToDisplay(vector3.x, vector3.y, vector3.z,
+                fighter.index));
+        }
+        return objectInRecentPosition;
+    }
+
+
 }
