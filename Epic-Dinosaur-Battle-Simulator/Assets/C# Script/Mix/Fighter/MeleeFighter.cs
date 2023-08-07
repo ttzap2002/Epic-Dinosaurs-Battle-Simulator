@@ -49,6 +49,13 @@ public class MeleeFighter : MonoBehaviour
     public bool IsResistForStunning { get => isResistForStunning; set => isResistForStunning = value; }
     public float TimeWaitngDuringStunning { get => timeWaitngDuringStunning; set => timeWaitngDuringStunning = value; }
 
+    public void MakeReset()
+    {
+        IsActiveForBattle= false;
+        isFighting= false;
+    }
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (!isFighting)

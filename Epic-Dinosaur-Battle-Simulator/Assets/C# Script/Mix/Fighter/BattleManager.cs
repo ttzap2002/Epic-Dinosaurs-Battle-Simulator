@@ -506,6 +506,7 @@ public class BattleManager : MonoBehaviour
 
     public void RefreshSandbox()
     {
+        GameManager.Instance.endOfBattle.SetActive(false);
         SetTransform("Scene Information");
         SetTransform("Buttons");
         GameObject objScene = GameObject.Find(("Scene Information"));
@@ -541,6 +542,16 @@ public class BattleManager : MonoBehaviour
             GameObject obj = pool[pool.Count - 1];
             pool.Remove(pool[pool.Count - 1]);
             obj.SetActive(true);
+            FighterPlacement f = obj.GetComponent<FighterPlacement>();
+            MeleeFighter m = obj.GetComponent<MeleeFighter>();
+            f.CreateForSpawner();
+            m.MakeReset();
+            f.isAlive = true;
+            obj.tag = "Blue";
+            obj.transform.rotation = new Quaternion(obj.transform.rotation.x,
+               0, obj.transform.rotation.z, obj.transform.rotation.w);
+
+
             obj.transform.position = new Vector3(fighter.XAxis, fighter.YAxis, fighter.ZAxis);
             GameManager.Instance.blueGameObjects.Add(obj);
         }
@@ -551,6 +562,14 @@ public class BattleManager : MonoBehaviour
             GameObject obj = pool[pool.Count - 1];
             pool.Remove(pool[pool.Count - 1]);
             obj.SetActive(true);
+            FighterPlacement f = obj.GetComponent<FighterPlacement>();
+            MeleeFighter m = obj.GetComponent<MeleeFighter>();
+            f.CreateForSpawner();
+            m.MakeReset();
+            obj.tag = "Enemy";
+            f.isAlive= true;
+            obj.transform.rotation = new Quaternion(obj.transform.rotation.x,
+                180, obj.transform.rotation.z, obj.transform.rotation.w);
             obj.transform.position = new Vector3(fighter.XAxis, fighter.YAxis, fighter.ZAxis);
             GameManager.Instance.enemyGameObjects.Add(obj);
         }

@@ -130,23 +130,28 @@ public class PlayButton : MonoBehaviour
     private List<ObjectToDisplay>[] SetRecentPosition() 
     {
         List<ObjectToDisplay>[] objectInRecentPosition= new List<ObjectToDisplay>[2];
-        objectInRecentPosition[0] = new List<ObjectToDisplay>();
-        objectInRecentPosition[1] = new List<ObjectToDisplay>();
+        List<ObjectToDisplay> objectList1 = new List<ObjectToDisplay>();
+        List<ObjectToDisplay> objectList2 = new List<ObjectToDisplay>();
+    
 
-        foreach (var obj in GameManager.Instance.blueGameObjects) 
+        foreach (GameObject obj in GameManager.Instance.blueGameObjects) 
         {
             Vector3 vector3 = obj.transform.position;
             FighterPlacement fighter = obj.GetComponent<FighterPlacement>();
-            objectInRecentPosition[0].Add(new ObjectToDisplay(vector3.x, vector3.y, vector3.z,
+            objectList1.Add(new ObjectToDisplay(vector3.x, vector3.y, vector3.z,
                 fighter.index));
         }
-        foreach (var obj in GameManager.Instance.enemyGameObjects)
+        foreach (GameObject obj in GameManager.Instance.enemyGameObjects)
         {
             Vector3 vector3 = obj.transform.position;
             FighterPlacement fighter = obj.GetComponent<FighterPlacement>();
-            objectInRecentPosition[1].Add(new ObjectToDisplay(vector3.x, vector3.y, vector3.z,
+            objectList2.Add(new ObjectToDisplay(vector3.x, vector3.y, vector3.z,
                 fighter.index));
         }
+        objectInRecentPosition[0] = objectList1;
+        objectInRecentPosition[1] = objectList2;
+
+
         return objectInRecentPosition;
     }
 

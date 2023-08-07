@@ -197,8 +197,8 @@ public class GameManager : MonoBehaviour
         }
 
         isRun = false;
-        enemyGameObjects = null;
-        blueGameObjects = null;
+        
+   
         //battleManager.DestroyAllObject();
         return isEnemyFighterContainAnyFighter;
     }

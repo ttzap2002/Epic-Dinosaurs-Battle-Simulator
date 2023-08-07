@@ -13,10 +13,10 @@ public class ObjectToDisplay
 
     public ObjectToDisplay(float xAxis, float yAxis, float zAxis, int prefabId)
     {
-        xAxis = xAxis;
-        yAxis = yAxis;
-        zAxis = zAxis;
-        prefabId = prefabId;
+        this.xAxis = xAxis;
+        this.yAxis = yAxis;
+        this.zAxis = zAxis;
+        this.prefabId = prefabId;
     }
 
     public ObjectToDisplay(float xAxis, float yAxis, float zAxis, int prefabId, int lvl) :this(xAxis,yAxis,zAxis,prefabId)
