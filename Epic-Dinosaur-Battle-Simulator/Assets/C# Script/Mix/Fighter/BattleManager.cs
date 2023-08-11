@@ -413,43 +413,71 @@ public class BattleManager : MonoBehaviour
         PowerValue[1] = enemyResult;
     }
 
-    public void Clear()
+    public void Clear(bool isForLvl)
     {
-        if (GameManager.Instance.enemyGameObjects != null) 
+        if (GameManager.Instance.enemyGameObjects != null && !isForLvl)
         {
             foreach (GameObject obj in GameManager.Instance.enemyGameObjects)
             {
                 obj.SetActive(false);
-                poolingList[obj.GetComponent<FighterPlacement>().index].Add(obj);
+                FighterPlacement f = obj.GetComponent<FighterPlacement>();
+                f.isAlive = false;
+                poolingList[f.index].Add(obj);
             }
+
             GameManager.Instance.enemyGameObjects.Clear();
         }
-        if(GameManager.Instance.blueGameObjects != null) 
+        if (!isForLvl)
+        {
+            foreach (List<FighterPlacement> list in enemyFighters)
+            {
+                list.Clear();
+            }
+        }
+        foreach (List<FighterPlacement> list in blueFighters)
+        {
+            list.Clear();
+        }
+        if (GameManager.Instance.blueGameObjects != null)
         {
             foreach (GameObject obj in GameManager.Instance.blueGameObjects)
             {
                 obj.SetActive(false);
-                poolingList[obj.GetComponent<FighterPlacement>().index].Add(obj);
+                FighterPlacement f = obj.GetComponent<FighterPlacement>();
+                f.isAlive = false;
+                poolingList[f.index].Add(obj);
             }
             GameManager.Instance.blueGameObjects.Clear();
         }
-       
- 
-        for (int i = 0; i < 10; i++)
-        {
-            for (int j = 0; j < 10; j++)
-            {
-                enemyFighters[i, j] = new List<FighterPlacement>();
-                blueFighters[i, j] = new List<FighterPlacement>();
-            }
-        }
+
+        ClearSquareList(isForLvl);
 
         BattleInformation b = GameManager.Instance.UI.GetComponentInChildren<BattleInformation>();
         b.RefreshMoney();
 
     }
 
+    private void ClearSquareList(bool isForLvl)
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            for (int j = 0; j < 10; j++)
+            {
+                blueFighters[i, j] = new List<FighterPlacement>();
+            }
+        }
+        if (!isForLvl)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
 
+                    enemyFighters[i, j] = new List<FighterPlacement>();
+                }
+            }
+        }
+    }
 
     public void GameResume()
     {
@@ -511,7 +539,7 @@ public class BattleManager : MonoBehaviour
         SetTransform("Buttons");
         GameObject objScene = GameObject.Find(("Scene Information"));
         objScene.SetActive(true);
-        GameManager.Instance.battleManager.Clear();
+        GameManager.Instance.battleManager.Clear(GameManager.Instance.currentMap.Id>0);
         GameManager.Instance.RefreshGameObjects();
 
         GameObject progressbar = GameObject.Find(("RedArmy"));
@@ -542,17 +570,26 @@ public class BattleManager : MonoBehaviour
             GameObject obj = pool[pool.Count - 1];
             pool.Remove(pool[pool.Count - 1]);
             obj.SetActive(true);
+
+            obj.transform.position = new Vector3(fighter.XAxis, fighter.YAxis, fighter.ZAxis);
             FighterPlacement f = obj.GetComponent<FighterPlacement>();
             MeleeFighter m = obj.GetComponent<MeleeFighter>();
             f.CreateForSpawner();
             m.MakeReset();
             f.isAlive = true;
-            obj.tag = "Blue";
+            if (obj.transform.position.z > 50f)
+            {
+                obj.tag = "Blue";
+            }
+            else
+            {
+                obj.tag = "Enemy";
+            }
+
             obj.transform.rotation = new Quaternion(obj.transform.rotation.x,
                0, obj.transform.rotation.z, obj.transform.rotation.w);
 
 
-            obj.transform.position = new Vector3(fighter.XAxis, fighter.YAxis, fighter.ZAxis);
             GameManager.Instance.blueGameObjects.Add(obj);
         }
 
@@ -566,11 +603,19 @@ public class BattleManager : MonoBehaviour
             MeleeFighter m = obj.GetComponent<MeleeFighter>();
             f.CreateForSpawner();
             m.MakeReset();
-            obj.tag = "Enemy";
+            obj.transform.position = new Vector3(fighter.XAxis, fighter.YAxis, fighter.ZAxis);
+
+            if (obj.transform.position.z > 50f)
+            {
+                obj.tag = "Blue";
+            }
+            else
+            {
+                obj.tag = "Enemy";
+            }
             f.isAlive= true;
             obj.transform.rotation = new Quaternion(obj.transform.rotation.x,
                 180, obj.transform.rotation.z, obj.transform.rotation.w);
-            obj.transform.position = new Vector3(fighter.XAxis, fighter.YAxis, fighter.ZAxis);
             GameManager.Instance.enemyGameObjects.Add(obj);
         }
 

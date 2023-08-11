@@ -113,11 +113,11 @@ public GameObject Uiinformation;
 
       
         FighterPlacement creature = obj.GetComponent<FighterPlacement>();
-        //creature.CreateForSpawner();
+        creature.CreateForSpawner();
 
-  
 
-        int cost = creature.Price;
+
+        int cost = GameManager.Instance.dinosaurStats.Dinosaurs[Fighterid].price;
 
         obj.transform.position = new Vector3(vector.x,
             creature.YAxis, vector.z);

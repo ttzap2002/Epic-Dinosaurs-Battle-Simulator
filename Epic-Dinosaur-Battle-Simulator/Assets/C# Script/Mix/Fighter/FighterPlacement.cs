@@ -70,6 +70,7 @@ public class FighterPlacement: MonoBehaviour
             agent.Warp(transform.position);
         }
         agent.speed = speed;
+        isAlive = true;
 
     }
     public void CreateForSpawner()
@@ -87,6 +88,7 @@ public class FighterPlacement: MonoBehaviour
         speed = stats.speed;
         attack = stats.attack;
         price = stats.price;
+        isAlive = true;
         Upgrade();
 
     }

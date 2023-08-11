@@ -100,7 +100,7 @@ public class MeleeFighter : MonoBehaviour
                 if (a % 3 == 0)
                 {
                     if (fighter.target != null && fighter.target != fighter 
-                        && fighter.target.isAlive)
+                        && fighter.target.isAlive && fighter.target.tag!=fighter.tag)
                     {
                         if (!isFighting)
                         {
