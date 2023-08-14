@@ -8,15 +8,24 @@ public class Settings : MonoBehaviour
     public GameObject settingsBox;
     [SerializeField] private Slider intenseSlider;
     [SerializeField] private GameObject menuBox;
+    [SerializeField] private Sprite playingMusic;
+    [SerializeField] private Sprite notPlayingMusic;
+    [SerializeField] private Image musicButton;
     //public MusicManager manager;
     // Start is called before the first frame update
     void Start()
     {
         intenseSlider.value = GameManager.Instance.dynamicData.musicIntense;
         if (GameManager.Instance.dynamicData.WantMusic)
+        {
             intenseSlider.gameObject.SetActive(true);
+            musicButton.sprite = playingMusic;
+        }
         else
+        {
             intenseSlider.gameObject.SetActive(false);
+            musicButton.sprite = notPlayingMusic;
+        }
         settingsBox.SetActive(false);
     }
 
@@ -70,9 +79,15 @@ public class Settings : MonoBehaviour
         GameManager.Instance.dynamicData.WantMusic = !GameManager.Instance.dynamicData.WantMusic;
         GameManager.Instance.dynamicData.Save();
         if (GameManager.Instance.dynamicData.WantMusic)
+        {
             intenseSlider.gameObject.SetActive(true);
+            musicButton.sprite = playingMusic;
+        }
         else
+        {
             intenseSlider.gameObject.SetActive(false);
+            musicButton.sprite = notPlayingMusic;
+        }
         //manager.PlayRandomMusic();
     }
 
