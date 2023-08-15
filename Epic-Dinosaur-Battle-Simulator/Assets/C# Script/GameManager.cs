@@ -108,8 +108,9 @@ public class GameManager : MonoBehaviour
         
         if (isFirst)
         {
-            levelContainer.AddAllScene();
             dinosaurStats = new DinoStats();
+            levelContainer.AddAllScene();
+         
             //dynamicData = new DynamicData(new List<int>(){ 80, 1, 1, 1 }, new List<int>() { 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0 }, new List<bool>() {true,true,false,false}, 25000);
             dynamicData = DynamicData.Load(isFirst);
             isFirst = false;
@@ -335,12 +336,12 @@ public class LevelReminder
 {
     List<ObjectToDisplay> temporaryObjectsToDisplayForBlue;
     List<ObjectToDisplay> temporaryObjectsToDisplayForEnemy;
-    float blueMoney;
-    float redMoney;
+    readonly int blueMoney;
+    readonly int redMoney;
     int blueTroops;
     int redTroops;
 
-    public LevelReminder(List<ObjectToDisplay> temporaryObjectsToDisplayForBlue, List<ObjectToDisplay> temporaryObjectsToDisplayForEnemy, float blueMoney, float redMoney)
+    public LevelReminder(List<ObjectToDisplay> temporaryObjectsToDisplayForBlue, List<ObjectToDisplay> temporaryObjectsToDisplayForEnemy, int blueMoney, int redMoney)
     {
         this.temporaryObjectsToDisplayForBlue = temporaryObjectsToDisplayForBlue;
         this.temporaryObjectsToDisplayForEnemy = temporaryObjectsToDisplayForEnemy;
@@ -350,4 +351,8 @@ public class LevelReminder
 
     public List<ObjectToDisplay> TemporaryObjectsToDisplayForBlue { get => temporaryObjectsToDisplayForBlue; set => temporaryObjectsToDisplayForBlue = value; }
     public List<ObjectToDisplay> TemporaryObjectsToDisplayForEnemy { get => temporaryObjectsToDisplayForEnemy; set => temporaryObjectsToDisplayForEnemy = value; }
+
+    public int BlueMoney => blueMoney;
+
+    public int RedMoney => redMoney;
 } 

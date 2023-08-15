@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEditor.SearchService;
 using UnityEngine;
@@ -9,25 +10,29 @@ using UnityEngine.SceneManagement;
 public class SceneLevel 
 {
     //List<GameObject> enemieslist;
-    int money;
+    int moneyLimit;
     int troopsLimit;
     int enemyTroopsLimit;
     int id;
+    int enemyMoney;
     List<ObjectToDisplay> objectOnScenes;
     public SceneLevel(int money, int troopslimit,int id)
     {
-        Money = money;
+        moneyLimit = money;
         Troopslimit = troopslimit;
         this.id=id;
         objectOnScenes= CreateObjectForScene(id);
-
+        enemyMoney = returnEnemyMoney();
         //enemieslist = new List<GameObject>();
     }
 
-    public int Money { get => money; set => money = value; }
+  
+
+    public int MoneyLimit { get => moneyLimit; set => moneyLimit = value; }
     public int Troopslimit { get => troopsLimit; set => troopsLimit = value; }
     public int Id { get => id;}
     public int EnemyTroopsLimit { get => enemyTroopsLimit; set => enemyTroopsLimit = value; }
+    public int EnemyMoney { get => enemyMoney; set => enemyMoney = value; }
 
     //public List<GameObject> Enemieslist { set => enemieslist = value; }
     private List<ObjectToDisplay> CreateObjectForScene(int id) 
@@ -55,6 +60,8 @@ public class SceneLevel
         return _lobject;
     }
 
+    private int returnEnemyMoney() => objectOnScenes.Select(x=>x.returnMoneyForThisUnit()).Sum();
+    
     public void SetObjectToScene() 
     {
         Debug.Log(objectOnScenes.Count);

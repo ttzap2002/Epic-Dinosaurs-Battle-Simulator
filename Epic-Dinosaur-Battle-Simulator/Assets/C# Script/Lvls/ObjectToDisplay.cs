@@ -29,4 +29,7 @@ public class ObjectToDisplay
     public float ZAxis { get => zAxis; set => zAxis = value; }
     public int PrefabId { get => prefabId; set => prefabId = value; }
     public int Lvl { get => lvl; set => lvl = value; }
+
+
+    public int returnMoneyForThisUnit() => GameManager.Instance.dinosaurStats.Dinosaurs[PrefabId].price;
 }

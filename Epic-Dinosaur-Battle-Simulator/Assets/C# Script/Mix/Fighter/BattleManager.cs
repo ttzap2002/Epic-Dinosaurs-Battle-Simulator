@@ -452,9 +452,13 @@ public class BattleManager : MonoBehaviour
 
         ClearSquareList(isForLvl);
 
-        BattleInformation b = GameManager.Instance.UI.GetComponentInChildren<BattleInformation>();
-        b.RefreshMoney();
+      
+    }
 
+    private static void ChangeBattleInformation(int bluemoney, int enemymoney)
+    {
+        BattleInformation b = GameManager.Instance.UI.GetComponentInChildren<BattleInformation>();
+        b.RefreshMoney(bluemoney, enemymoney);
     }
 
     private void ClearSquareList(bool isForLvl)
@@ -534,20 +538,46 @@ public class BattleManager : MonoBehaviour
 
     public void RefreshSandbox()
     {
+        ChangeAppropiateUI();
+        Clear(GameManager.Instance.currentMap.Id > 0);
+        GameManager.Instance.RefreshGameObjects();
+        setRecentPositionOfObject();
+        ChangeBattleInformation(GameManager.Instance.objectPositions.BlueMoney, GameManager.Instance.objectPositions.RedMoney);
+    }
+
+    private void ChangeAppropiateUI()
+    {
         GameManager.Instance.endOfBattle.SetActive(false);
         SetTransform("Scene Information");
         SetTransform("Buttons");
         GameObject objScene = GameObject.Find(("Scene Information"));
         objScene.SetActive(true);
-        GameManager.Instance.battleManager.Clear(GameManager.Instance.currentMap.Id>0);
-        GameManager.Instance.RefreshGameObjects();
+
 
         GameObject progressbar = GameObject.Find(("RedArmy"));
         progressbar.GetComponent<Image>().enabled = false;
         GameObject.Find(("ProgressBar")).GetComponent<Image>().enabled = false;
         GameObject obj = GameObject.Find("Terrain");
         obj.gameObject.GetComponent<DraggableItem>().enabled = true;
-        setRecentPositionOfObject();
+    }
+
+    public void ChangeLevel(bool isAhead)
+    {
+        if(isAhead) 
+        {
+            GameManager.Instance.AddScene(GameManager.Instance.currentScene.Id + 1); 
+        }
+        else 
+        {
+            GameManager.Instance.AddScene(GameManager.Instance.currentScene.Id - 1);
+        }
+        ChangeAppropiateUI();
+        Clear(false); //troche to dziwne ale tak to zrobi³em bo trzeba wszystko usunaæ
+
+        GameManager.Instance.currentScene.SetObjectToScene();
+        ChangeBattleInformation(0, GameManager.Instance.currentScene.EnemyMoney);
+        //GameManager.Instance.currentMap.SetObjectToScene();
+
     }
 
     private void SetTransform(string nameOfObject)

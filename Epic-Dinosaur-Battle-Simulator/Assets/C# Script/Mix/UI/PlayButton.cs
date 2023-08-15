@@ -36,8 +36,8 @@ public class PlayButton : MonoBehaviour
             GameManager.Instance.objectPositions = new LevelReminder(
                 savePositionOfObject[0],
                 savePositionOfObject[1],
-                GameManager.Instance.battleManager.MoneySum[0],
-                GameManager.Instance.battleManager.MoneySum[1]
+                (int)GameManager.Instance.battleManager.MoneySum[0],
+                (int)GameManager.Instance.battleManager.MoneySum[1]
                 );
             GameManager.Instance.IsRun = true;
             GameManager.Instance.battleManager.SetCourutine();

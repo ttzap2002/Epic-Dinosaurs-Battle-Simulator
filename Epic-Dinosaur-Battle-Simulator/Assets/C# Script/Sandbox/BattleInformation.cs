@@ -94,14 +94,14 @@ public class BattleInformation : MonoBehaviour
             $"{GameManager.Instance.currentScene.Troopslimit}";
         }
     }
-    public void RefreshMoney() 
+    public void RefreshMoney(int bluemoney, int enemymoney) 
     {
-        blueTroopsTxt.text = "0/80";
-        enemyTroopsTxt.text = "0/80";
-        enemyMoneyTxt.text = "0";
-        blueMoneyTxt.text = "0";
-        enemymoney = 0;
-        bmoney = 0;
+        blueTroopsTxt.text = $"{GameManager.Instance.blueGameObjects.Count}/{GameManager.Instance.currentScene.Troopslimit}";
+        enemyTroopsTxt.text = $"{GameManager.Instance.enemyGameObjects.Count}/{GameManager.Instance.currentScene.EnemyTroopsLimit}";
+        enemyMoneyTxt.text = $"{enemymoney}";
+        blueMoneyTxt.text = $"{bluemoney}";
+        this.enemymoney = enemymoney;
+        bmoney = bluemoney;
     }
 
 
