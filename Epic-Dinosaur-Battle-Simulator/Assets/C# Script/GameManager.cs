@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     /// isFirst zmienna do sprawdzenia czy GameManager zosta³ juz wywo³any
     /// </summary>
     /// 
-    private static bool isFirst=true;
+    private static bool isFirst = true;
     /// <summary>
     /// Instancja gameManager
     /// </summary>
@@ -49,14 +49,14 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public List<GameObject> blueGameObjects = new List<GameObject>();
 
-    public List<GameObject> obstaclesObjects= new List<GameObject>();
+    public List<GameObject> obstaclesObjects = new List<GameObject>();
     public bool isStarted = false;
     /// <summary>
     /// Klasa przechowuj¹ca wszystkie lvle, wraz z odpowiedni¹ specyfikacj¹ dla ka¿dego lvl-u w tym sandbox
     /// </summary>
     public AllLevelContainer levelContainer = new AllLevelContainer();
 
-    public AllMapContainer mapContainer= new AllMapContainer();
+    public AllMapContainer mapContainer = new AllMapContainer();
 
     public Map currentMap;
     /// <summary>
@@ -73,8 +73,8 @@ public class GameManager : MonoBehaviour
     public GameObject draggable;
     public int idTileForBackFromShop = 0; //int, przeznaczony do cofania ze sklepu. 0- oznacza menu i jest domyœlne. Jednak jak wyjdziesz z lvlu do sklepu, to wróci ciê do wyboru lvlu. z sandboxu do wyboru mapy itp
     public int numberOfShopScreen = 0; //int przeznaczony do wyboru, który element sklepu jest widoczny (czy aktualnie przegl¹dane s¹ dinozaury, mapy czy co). Numeracja: 0-dinozaury, 1-mapy, 2-pieni¹dze, 99-brak
-    //public int money = 10; // iloœæ posiadanej waluty przez gracza wykorzystywane do gry // nie aktualne. aktualnie kasa jest w dynamic data
-   
+                                       //public int money = 10; // iloœæ posiadanej waluty przez gracza wykorzystywane do gry // nie aktualne. aktualnie kasa jest w dynamic data
+
     public DinoStats dinosaurStats; //klasa, posiadaj¹ca pocz¹tkowe statystyki ka¿dego dinozaura
     /// <summary>
     /// przechowuje zmienne dynamiczne, konieczne do dobrego zarz¹dzania gr¹
@@ -85,19 +85,21 @@ public class GameManager : MonoBehaviour
 
     public List<ObjectToDisplay> temporaryObjectsToDisplay = new List<ObjectToDisplay>();
 
-    public double f=0f;
+    public double f = 0f;
 
     public LevelReminder objectPositions;
 
-    public Stopwatch time=new Stopwatch();
+    public short currentContinent;
+
+    public Stopwatch time = new Stopwatch();
     public static GameManager Instance { get { return _instance; } }
 
     public bool IsRun { get => isRun; set => isRun = value; }
 
     public void Awake()
     {
-        
-        if (_instance != null && _instance!=this)
+
+        if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
         }
@@ -105,12 +107,13 @@ public class GameManager : MonoBehaviour
         {
             _instance = this;
         }
-        
+
         if (isFirst)
         {
+            currentContinent = 0;
             dinosaurStats = new DinoStats();
             levelContainer.AddAllScene();
-         
+
             //dynamicData = new DynamicData(new List<int>(){ 80, 1, 1, 1 }, new List<int>() { 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0 }, new List<bool>() {true,true,false,false}, 25000);
             dynamicData = DynamicData.Load(isFirst);
             isFirst = false;
@@ -118,8 +121,6 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
 
         DontDestroyOnLoad(gameObject);
-
-
     }
 
     // Start is called before the first frame update
@@ -198,8 +199,14 @@ public class GameManager : MonoBehaviour
         }
 
         isRun = false;
-        
-   
+
+        if (currentScene.Id > 0 && !isEnemyFighterContainAnyFighter
+            && currentScene.Id == dynamicData.UnlockLvls[currentContinent])
+        {
+            dynamicData.UnlockLvls[currentContinent]++;
+            dynamicData.Save();
+        }
+
         //battleManager.DestroyAllObject();
         return isEnemyFighterContainAnyFighter;
     }
@@ -254,7 +261,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    
+
 
     /// <summary>
     /// Funkcja która zmienia obecn¹ scene przydatna w szczególnoœci do przycisków przy lvl
@@ -262,7 +269,7 @@ public class GameManager : MonoBehaviour
     /// <param name="id"></param>
     public void AddScene(int id)
     {
-        currentScene = levelContainer.LevelList[id];
+        currentScene = levelContainer.LevelList[currentContinent][id];
     }
 
     public void ChangeMap(int id)
@@ -296,9 +303,9 @@ public class GameManager : MonoBehaviour
             mouse = GameObject.Find("MouseTarget").GetComponent<MousePosition>();
             Canvas canvas = GameObject.Find("AllPrefab").GetComponent<Canvas>();
             Canvas obstaclesCanvas = GameObject.Find("Obstacles").GetComponent<Canvas>();
-            this.battleManager  = GameObject.Find("BattleManager").GetComponent<BattleManager>();
+            this.battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
             prefabGameObjects = new List<GameObject>();
-            obstaclesObjects= new List<GameObject>();
+            obstaclesObjects = new List<GameObject>();
             SetBattleManager();
             UnityEngine.Debug.Log(canvas.transform.childCount);
             for (int i = 0; i < canvas.transform.childCount; i++) // przechodzimy przez wszystkie dzieci Transform
@@ -324,15 +331,15 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void RefreshGameObjects()
     {
-        
+
         blueGameObjects = new List<GameObject>();
         enemyGameObjects = new List<GameObject>();
-        
+
     }
 }
 
 
-public class LevelReminder 
+public class LevelReminder
 {
     List<ObjectToDisplay> temporaryObjectsToDisplayForBlue;
     List<ObjectToDisplay> temporaryObjectsToDisplayForEnemy;
@@ -355,4 +362,4 @@ public class LevelReminder
     public int BlueMoney => blueMoney;
 
     public int RedMoney => redMoney;
-} 
+}

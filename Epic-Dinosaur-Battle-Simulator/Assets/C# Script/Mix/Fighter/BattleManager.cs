@@ -413,9 +413,9 @@ public class BattleManager : MonoBehaviour
         PowerValue[1] = enemyResult;
     }
 
-    public void Clear(bool isForLvl)
+    public void Clear()
     {
-        if (GameManager.Instance.enemyGameObjects != null && !isForLvl)
+        if (GameManager.Instance.enemyGameObjects != null )
         {
             foreach (GameObject obj in GameManager.Instance.enemyGameObjects)
             {
@@ -427,13 +427,12 @@ public class BattleManager : MonoBehaviour
 
             GameManager.Instance.enemyGameObjects.Clear();
         }
-        if (!isForLvl)
+        
+        foreach (List<FighterPlacement> list in enemyFighters)
         {
-            foreach (List<FighterPlacement> list in enemyFighters)
-            {
-                list.Clear();
-            }
+            list.Clear();
         }
+        
         foreach (List<FighterPlacement> list in blueFighters)
         {
             list.Clear();
@@ -450,7 +449,7 @@ public class BattleManager : MonoBehaviour
             GameManager.Instance.blueGameObjects.Clear();
         }
 
-        ClearSquareList(isForLvl);
+        ClearSquareList();
 
       
     }
@@ -461,7 +460,7 @@ public class BattleManager : MonoBehaviour
         b.RefreshMoney(bluemoney, enemymoney);
     }
 
-    private void ClearSquareList(bool isForLvl)
+    private void ClearSquareList()
     {
         for (int i = 0; i < 10; i++)
         {
@@ -470,17 +469,16 @@ public class BattleManager : MonoBehaviour
                 blueFighters[i, j] = new List<FighterPlacement>();
             }
         }
-        if (!isForLvl)
+        
+        for (int i = 0; i < 10; i++)
         {
-            for (int i = 0; i < 10; i++)
+            for (int j = 0; j < 10; j++)
             {
-                for (int j = 0; j < 10; j++)
-                {
 
-                    enemyFighters[i, j] = new List<FighterPlacement>();
-                }
+                enemyFighters[i, j] = new List<FighterPlacement>();
             }
         }
+        
     }
 
     public void GameResume()
@@ -539,7 +537,7 @@ public class BattleManager : MonoBehaviour
     public void RefreshSandbox()
     {
         ChangeAppropiateUI();
-        Clear(GameManager.Instance.currentMap.Id > 0);
+        Clear();
         GameManager.Instance.RefreshGameObjects();
         setRecentPositionOfObject();
         ChangeBattleInformation(GameManager.Instance.objectPositions.BlueMoney, GameManager.Instance.objectPositions.RedMoney);
@@ -572,7 +570,7 @@ public class BattleManager : MonoBehaviour
             GameManager.Instance.AddScene(GameManager.Instance.currentScene.Id - 1);
         }
         ChangeAppropiateUI();
-        Clear(false); //troche to dziwne ale tak to zrobi³em bo trzeba wszystko usunaæ
+        Clear(); //troche to dziwne ale tak to zrobi³em bo trzeba wszystko usunaæ
 
         GameManager.Instance.currentScene.SetObjectToScene();
         ChangeBattleInformation(0, GameManager.Instance.currentScene.EnemyMoney);
