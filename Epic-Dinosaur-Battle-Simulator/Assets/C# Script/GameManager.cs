@@ -10,6 +10,7 @@ using UnityEngine.UI;
 using System;
 using UnityEditorInternal;
 using System.Diagnostics;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -113,7 +114,7 @@ public class GameManager : MonoBehaviour
             currentContinent = 0;
             dinosaurStats = new DinoStats();
             levelContainer.AddAllScene();
-
+            currentMap = mapContainer.MapList[0];
             //dynamicData = new DynamicData(new List<int>(){ 80, 1, 1, 1 }, new List<int>() { 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0 }, new List<bool>() {true,true,false,false}, 25000);
             dynamicData = DynamicData.Load(isFirst);
             isFirst = false;
@@ -185,7 +186,7 @@ public class GameManager : MonoBehaviour
     public bool FinishGame(bool isEnemyFighterContainAnyFighter)
     {
         endOfBattle.SetActive(true);
-        var img = endOfBattle.GetComponentInChildren<Image>();
+        var img = endOfBattle.GetComponentInChildren<UnityEngine.UI.Image>();
         TextMeshProUGUI pro = img.GetComponentInChildren<TextMeshProUGUI>();
         if (!isEnemyFighterContainAnyFighter)
         {
@@ -200,12 +201,30 @@ public class GameManager : MonoBehaviour
 
         isRun = false;
 
+
         if (currentScene.Id > 0 && !isEnemyFighterContainAnyFighter
-            && currentScene.Id == dynamicData.UnlockLvls[currentContinent])
+      && currentScene.Id == dynamicData.UnlockLvls[currentContinent])
         {
             dynamicData.UnlockLvls[currentContinent]++;
             dynamicData.Save();
         }
+
+        Transform childTransform = endOfBattle.transform.Find("EndView");
+        Transform childTransformLeft = childTransform.transform.Find("Left");
+        Transform childTransformRight = childTransform.transform.Find("Right");
+
+
+        if (currentScene.Id == 1) 
+        {
+            childTransformLeft.gameObject.SetActive(false);
+        }
+
+        if (currentScene.Id == 80 || currentScene.Id+1 > dynamicData.UnlockLvls[currentContinent])
+        {
+            childTransformRight.gameObject.SetActive(false);
+        }
+
+      
 
         //battleManager.DestroyAllObject();
         return isEnemyFighterContainAnyFighter;

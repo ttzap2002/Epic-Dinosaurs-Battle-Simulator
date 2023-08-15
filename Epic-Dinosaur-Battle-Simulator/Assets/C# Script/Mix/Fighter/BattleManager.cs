@@ -413,9 +413,9 @@ public class BattleManager : MonoBehaviour
         PowerValue[1] = enemyResult;
     }
 
-    public void Clear()
+    public void Clear(bool isForLvl)
     {
-        if (GameManager.Instance.enemyGameObjects != null )
+        if (GameManager.Instance.enemyGameObjects != null && !isForLvl)
         {
             foreach (GameObject obj in GameManager.Instance.enemyGameObjects)
             {
@@ -427,12 +427,13 @@ public class BattleManager : MonoBehaviour
 
             GameManager.Instance.enemyGameObjects.Clear();
         }
-        
-        foreach (List<FighterPlacement> list in enemyFighters)
+        if (!isForLvl)
         {
-            list.Clear();
+            foreach (List<FighterPlacement> list in enemyFighters)
+            {
+                list.Clear();
+            }
         }
-        
         foreach (List<FighterPlacement> list in blueFighters)
         {
             list.Clear();
@@ -537,7 +538,7 @@ public class BattleManager : MonoBehaviour
     public void RefreshSandbox()
     {
         ChangeAppropiateUI();
-        Clear();
+        Clear(false);
         GameManager.Instance.RefreshGameObjects();
         setRecentPositionOfObject();
         ChangeBattleInformation(GameManager.Instance.objectPositions.BlueMoney, GameManager.Instance.objectPositions.RedMoney);
@@ -570,7 +571,7 @@ public class BattleManager : MonoBehaviour
             GameManager.Instance.AddScene(GameManager.Instance.currentScene.Id - 1);
         }
         ChangeAppropiateUI();
-        Clear(); //troche to dziwne ale tak to zrobi³em bo trzeba wszystko usunaæ
+        Clear(false); //troche to dziwne ale tak to zrobi³em bo trzeba wszystko usunaæ
 
         GameManager.Instance.currentScene.SetObjectToScene();
         ChangeBattleInformation(0, GameManager.Instance.currentScene.EnemyMoney);
