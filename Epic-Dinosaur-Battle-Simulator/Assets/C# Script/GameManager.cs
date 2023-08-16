@@ -209,23 +209,24 @@ public class GameManager : MonoBehaviour
             dynamicData.Save();
         }
 
-        Transform childTransform = endOfBattle.transform.Find("EndView");
-        Transform childTransformLeft = childTransform.transform.Find("Left");
-        Transform childTransformRight = childTransform.transform.Find("Right");
-        childTransformLeft.gameObject.SetActive(true);
-        childTransformRight.gameObject.SetActive(true);
-
-        if (currentScene.Id == 1) 
+        if(currentScene.Id > 0)
         {
-            childTransformLeft.gameObject.SetActive(false);
-        }
+            Transform childTransform = endOfBattle.transform.Find("EndView");
+            Transform childTransformLeft = childTransform.transform.Find("Left");
+            Transform childTransformRight = childTransform.transform.Find("Right");
+            childTransformLeft.gameObject.SetActive(true);
+            childTransformRight.gameObject.SetActive(true);
 
-        if (currentScene.Id == 80 || currentScene.Id+1 > dynamicData.UnlockLvls[currentContinent])
-        {
-            childTransformRight.gameObject.SetActive(false);
-        }
+            if (currentScene.Id == 1)
+            {
+                childTransformLeft.gameObject.SetActive(false);
+            }
 
-      
+            if (currentScene.Id == 80 || currentScene.Id + 1 > dynamicData.UnlockLvls[currentContinent])
+            {
+                childTransformRight.gameObject.SetActive(false);
+            }
+        }
 
         //battleManager.DestroyAllObject();
         return isEnemyFighterContainAnyFighter;
