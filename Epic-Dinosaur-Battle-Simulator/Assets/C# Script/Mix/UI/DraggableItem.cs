@@ -145,11 +145,10 @@ public GameObject Uiinformation;
                 GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().blueTroopsUpdate(true);
                 GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().blueMoneyUpdate(cost);
                 GameManager.Instance.blueGameObjects.Add(obj);
-                if (creature.IsObligatoryToRotate)
-                {
-                    obj.transform.rotation = new Quaternion(obj.transform.rotation.x, 180, obj.transform.rotation.z, obj.transform.rotation.w);
+               
+                obj.transform.rotation = new Quaternion(obj.transform.rotation.x, 0, obj.transform.rotation.z, obj.transform.rotation.w);
 
-                }
+                
             }
         }
         else
@@ -160,11 +159,9 @@ public GameObject Uiinformation;
                 GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().enemyTroopsUpdate(true);
                 GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().enemyMoneyUpdate(cost);
                 GameManager.Instance.enemyGameObjects.Add(obj);
-                if (!creature.IsObligatoryToRotate)
-                {
-                    obj.transform.rotation = new Quaternion(obj.transform.rotation.x, 180, obj.transform.rotation.z, obj.transform.rotation.w);
+                obj.transform.rotation = new Quaternion(obj.transform.rotation.x, 180, obj.transform.rotation.z, obj.transform.rotation.w);
 
-                }
+                
             }
         }
 

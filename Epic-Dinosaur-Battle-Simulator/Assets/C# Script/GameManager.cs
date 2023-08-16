@@ -165,7 +165,7 @@ public class GameManager : MonoBehaviour
         bool isEnemyFighterContainAnyFighter = IsEnemyContainAnyFighter();
         if (!isEnemyFighterContainAnyFighter || !IsBlueContainAnyFighter())
         {
-            GetMoneyForLevel(FinishGame(isEnemyFighterContainAnyFighter));
+            GetMoneyForLevel(!FinishGame(isEnemyFighterContainAnyFighter));
             time.Stop();
             UnityEngine.Debug.Log($"{f / time.Elapsed.TotalSeconds}");
         }
@@ -212,7 +212,8 @@ public class GameManager : MonoBehaviour
         Transform childTransform = endOfBattle.transform.Find("EndView");
         Transform childTransformLeft = childTransform.transform.Find("Left");
         Transform childTransformRight = childTransform.transform.Find("Right");
-
+        childTransformLeft.gameObject.SetActive(true);
+        childTransformRight.gameObject.SetActive(true);
 
         if (currentScene.Id == 1) 
         {
