@@ -11,6 +11,9 @@ using System;
 using UnityEditorInternal;
 using System.Diagnostics;
 using UnityEngine.UIElements;
+using System.Globalization;
+
+
 
 public class GameManager : MonoBehaviour
 {
@@ -118,6 +121,8 @@ public class GameManager : MonoBehaviour
             //dynamicData = new DynamicData(new List<int>(){ 80, 1, 1, 1 }, new List<int>() { 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0 }, new List<bool>() {true,true,false,false}, 25000);
             dynamicData = DynamicData.Load(isFirst);
             isFirst = false;
+            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
+            CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InvariantCulture;
         }
         SceneManager.sceneLoaded += OnSceneLoaded;
 

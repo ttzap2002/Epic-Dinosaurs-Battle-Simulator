@@ -55,6 +55,11 @@ public class SceneLevel
             new ObjectToDisplay(10, 0, 30, 1, 1), new ObjectToDisplay(25, 0, 15.5f, 2, 1), new ObjectToDisplay(31, 0, 36, 2, 1), new ObjectToDisplay(10, 0, 0, 2, 1)
             };
         }
+        else if (id == 4)
+        {
+            _lobject = new List<ObjectToDisplay> { new ObjectToDisplay(38.9488f, 0.009411765f, 3.033492f, 3, 3, 0.9999846f), new ObjectToDisplay(45.39909f, 0.009411765f, 4.855952f, 3, 3, 0.9999846f), new ObjectToDisplay(51.19033f, 0.009411765f, 6.424871f, 3, 3, 0.9999846f), new ObjectToDisplay(40.8208f, 0.009411765f, 8.733994f, 3, 3, 0.9999846f), new ObjectToDisplay(34.7846f, 0.009411765f, 9.297742f, 3, 3, 0.9999846f), new ObjectToDisplay(38.30546f, 0.009411765f, 14.18129f, 3, 3, 0.9999846f), new ObjectToDisplay(43.90849f, 0.009411765f, 16.32804f, 3, 3, 0.9999846f), new ObjectToDisplay(53.76355f, 0.009411765f, 17.39695f, 3, 3, 0.9999846f), new ObjectToDisplay(49.22393f, 0.009411765f, 13.47371f, 3, 3, 0.9999846f) };
+        }
+
         if (id != 0) { enemyTroopsLimit = _lobject.Count; }
         else if (id==0) { enemyTroopsLimit = 80;}
         return _lobject;
