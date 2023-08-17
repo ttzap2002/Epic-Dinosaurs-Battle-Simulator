@@ -12,6 +12,14 @@ public class CamJoystick : MonoBehaviour
     public static bool isNotClicked = true;
     private float osZ;
     private float osX;
+    private Vector3 startingPositionOfCamera;
+    private Quaternion startingRotationOfCamera;
+
+    private void Start()
+    {
+        startingPositionOfCamera = playerCamera.transform.position;
+        startingRotationOfCamera = playerCamera.transform.rotation;
+    }
 
     public void FixedUpdate()
     {
@@ -27,6 +35,12 @@ public class CamJoystick : MonoBehaviour
         }
         else
             CamJoystick.isNotClicked = true;
+    }
+
+    public void RestartCameraPosition()
+    {
+        playerCamera.transform.position = startingPositionOfCamera;
+        playerCamera.transform.rotation = startingRotationOfCamera;
     }
 
 }
