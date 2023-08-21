@@ -349,7 +349,7 @@ public class GameManager : MonoBehaviour
             endOfBattle.SetActive(false);
             currentScene.SetObjectToScene();
             currentMap.SetObjectToScene();
-            //ChangeBattleInformation(0, currentScene.EnemyMoney);
+           
         }
     }
 
