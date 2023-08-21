@@ -51,7 +51,8 @@ public class FighterPlacement: MonoBehaviour
         speed = stats.speed;
         attack = stats.attack;
         price = stats.price;
-       
+        target = null;
+
 
         if (!(GameManager.Instance.currentScene.Id!=0 && tag=="Enemy")) 
         {
@@ -89,6 +90,7 @@ public class FighterPlacement: MonoBehaviour
         attack = stats.attack;
         price = stats.price;
         isAlive = true;
+        target = null;
         Upgrade();
 
     }

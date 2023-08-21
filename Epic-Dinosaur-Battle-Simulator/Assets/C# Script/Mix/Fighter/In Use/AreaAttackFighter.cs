@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
-
+using UnityEngine.Purchasing;
 
 public class AreaAttackFighter : MonoBehaviour
 {
@@ -39,6 +39,58 @@ public class AreaAttackFighter : MonoBehaviour
 
         return gridSquaresToCheck;
     }
+
+    
+    protected List<int[]> GetAllListToCheck(float[] dinoPoint, List<float[]> vertex, float start, int increment) 
+    {
+        List<int[]> dinoToVertex1 = GetSquares(dinoPoint, vertex[0], start, increment);
+        List<int[]> dinoToVertex2 = GetSquares(dinoPoint, vertex[1], start, increment);
+        List<int[]> vertex1Tovertex2 = GetSquares(dinoPoint, vertex[1], start, increment);
+        return dinoToVertex1.Concat(vertex1Tovertex2).Concat(dinoToVertex2).Distinct(new IntArrayEqualityComparer()).ToList();
+    }
+
+    private List<int[]> GetSquares(float[] dinoPoint, float[] vertex, float start, int increment)
+    {
+        float[] A = { 0f, 0f };
+        float[] B = { vertex[0] - dinoPoint[0], vertex[1] - dinoPoint[1] };
+
+        float paramA = (B[1] - A[1]) / (B[0] - A[0]);
+
+        int[] finalPointInSquare = new int[2];
+        finalPointInSquare[0] = (int)(vertex[0] / 10);
+        finalPointInSquare[1] = (int)(vertex[1] / 10);
+        float[] temporaryVector = dinoPoint;
+        int[] temporarySquares = new int[2];
+        temporarySquares[0] = (int)(temporaryVector[0] / 10);
+        temporarySquares[1] = (int)(temporaryVector[1] / 10);
+        float xIntemporarySquare = start;
+
+        List<int[]> getSquare = new List<int[]>
+            {
+                new int[2] { (int)(dinoPoint[0] / 10), (int)(dinoPoint[1] / 10) }
+            };
+
+        while (temporarySquares[0] != finalPointInSquare[0] && temporarySquares[1] != finalPointInSquare[1])
+        {
+            temporaryVector[0] += xIntemporarySquare;
+            temporaryVector[1] += paramA * xIntemporarySquare;
+            temporarySquares[0] = (int)(temporaryVector[0] / 10);
+            temporarySquares[1] = (int)(temporaryVector[1] / 10);
+            xIntemporarySquare += increment;
+            if (!itContainSquare(getSquare, temporarySquares))
+            {
+                int[] newSquares = new int[2];
+                newSquares[0] = temporarySquares[0];
+                newSquares[1] = temporarySquares[1];
+                getSquare.Add(newSquares);
+            }
+        }
+        return getSquare;
+    }
+
+    bool itContainSquare(List<int[]> getSquare, int[] intList) => getSquare.Any(item => item.SequenceEqual(intList));
+
+
 
 
     protected bool IsPointInsideTriangle(Vector3 pointA, Vector3 pointB, Vector3 pointC, Vector3 testPoint)
@@ -109,3 +161,20 @@ public class AreaAttackFighter : MonoBehaviour
 
 }
 
+public class IntArrayEqualityComparer : IEqualityComparer<int[]>
+{
+    public bool Equals(int[] x, int[] y)
+    {
+        return Enumerable.SequenceEqual(x, y);
+    }
+
+    public int GetHashCode(int[] obj)
+    {
+        if (obj == null) return 0;
+
+        int hash = 19;
+        foreach (var val in obj)
+            hash = hash * 31 + val.GetHashCode();
+        return hash;
+    }
+}

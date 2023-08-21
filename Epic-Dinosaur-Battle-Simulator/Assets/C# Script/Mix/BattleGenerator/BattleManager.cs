@@ -618,8 +618,8 @@ public class BattleManager : MonoBehaviour
             obj.transform.rotation = new Quaternion(obj.transform.rotation.x,
                0, obj.transform.rotation.z, obj.transform.rotation.w);
 
-
             GameManager.Instance.blueGameObjects.Add(obj);
+
         }
 
         foreach (ObjectToDisplay fighter in GameManager.Instance.objectPositions.TemporaryObjectsToDisplayForEnemy)

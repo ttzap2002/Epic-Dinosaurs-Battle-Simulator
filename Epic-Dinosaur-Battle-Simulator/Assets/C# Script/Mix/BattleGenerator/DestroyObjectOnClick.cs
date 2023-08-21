@@ -14,24 +14,41 @@ public class DestroyObjectOnClick : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        if(gameObject.tag == "Enemy") 
-        {
-            GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().
-                enemyTroopsUpdate(false);
-            GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().
-                enemyMoneyUpdate(-gameObject.GetComponent<FighterPlacement>().Price);
-            GameManager.Instance.enemyGameObjects.Remove(gameObject);
-        }
-        else 
-        {
-            GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().
-               blueTroopsUpdate(false);
-            GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().
-                       blueMoneyUpdate(-gameObject.GetComponent<FighterPlacement>().Price);
-            GameManager.Instance.blueGameObjects.Remove(gameObject);
 
-        }
+        if (!CheckCondition())
+        {
+            try
+            {
+                if (gameObject.tag == "Enemy")
+                {
+                    GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().
+                        enemyTroopsUpdate(false);
+                    GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().
+                        enemyMoneyUpdate(-gameObject.GetComponent<FighterPlacement>().Price);
+                    GameManager.Instance.enemyGameObjects.Remove(gameObject);
+                }
+                else
+                {
+                    GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().
+                       blueTroopsUpdate(false);
+                    GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().
+                               blueMoneyUpdate(-gameObject.GetComponent<FighterPlacement>().Price);
+                    GameManager.Instance.blueGameObjects.Remove(gameObject);
 
-        Destroy(gameObject);   
+                }
+
+                Destroy(gameObject);
+            }
+            catch 
+            {
+                //DoNothing
+            }
+        }
+    }
+
+    private bool CheckCondition()
+    {
+        return gameObject.tag == "Enemy"
+                    && GameManager.Instance.currentScene.Id > 0;
     }
 }
