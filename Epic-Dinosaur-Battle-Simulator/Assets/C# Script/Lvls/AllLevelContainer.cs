@@ -37,6 +37,9 @@ public class AllLevelContainer
         SceneLevel Level3 = new SceneLevel(30000, 25,3);
         levelList[0].Add(Level3);
 
+        SceneLevel Level4 = new SceneLevel(30000, 5, 4);
+        levelList[0].Add(Level4);
+
     }
 
 }
