@@ -297,6 +297,12 @@ public class GameManager : MonoBehaviour
         currentMap = mapContainer.MapList[id];
     }
 
+    private void ChangeBattleInformation(int bluemoney, int enemymoney)
+    {
+        BattleInformation b = UI.GetComponentInChildren<BattleInformation>();
+        b.RefreshMoney(bluemoney, enemymoney);
+    }
+
     /// <summary>
     /// Funckcja wywo³ywana przy zmianie scen
     /// </summary>
@@ -343,6 +349,7 @@ public class GameManager : MonoBehaviour
             endOfBattle.SetActive(false);
             currentScene.SetObjectToScene();
             currentMap.SetObjectToScene();
+            //ChangeBattleInformation(0, currentScene.EnemyMoney);
         }
     }
 

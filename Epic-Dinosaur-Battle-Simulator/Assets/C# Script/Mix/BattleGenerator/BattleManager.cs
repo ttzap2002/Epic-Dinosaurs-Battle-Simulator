@@ -451,11 +451,12 @@ public class BattleManager : MonoBehaviour
         }
 
         ClearSquareList();
+        ChangeBattleInformation(0, 0);
 
-      
+
     }
 
-    private static void ChangeBattleInformation(int bluemoney, int enemymoney)
+    private void ChangeBattleInformation(int bluemoney, int enemymoney)
     {
         BattleInformation b = GameManager.Instance.UI.GetComponentInChildren<BattleInformation>();
         b.RefreshMoney(bluemoney, enemymoney);
