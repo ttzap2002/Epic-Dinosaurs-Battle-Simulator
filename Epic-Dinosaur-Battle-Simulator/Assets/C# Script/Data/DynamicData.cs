@@ -106,4 +106,12 @@ public class DynamicData
         return returner;
     }
 
+    //Lista dinozaurow
+    /*
+     * 0 - Allosaur
+     * 1 - T-rex
+     * 2 - Diplodocus
+     * 3 - Triceratops
+     * 4 - Stegoceras
+     */
 }
