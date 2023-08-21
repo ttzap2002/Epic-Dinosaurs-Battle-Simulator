@@ -77,7 +77,6 @@ public class GameManager : MonoBehaviour
     public GameObject draggable;
     public int idTileForBackFromShop = 0; //int, przeznaczony do cofania ze sklepu. 0- oznacza menu i jest domyœlne. Jednak jak wyjdziesz z lvlu do sklepu, to wróci ciê do wyboru lvlu. z sandboxu do wyboru mapy itp
     public int numberOfShopScreen = 0; //int przeznaczony do wyboru, który element sklepu jest widoczny (czy aktualnie przegl¹dane s¹ dinozaury, mapy czy co). Numeracja: 0-dinozaury, 1-mapy, 2-pieni¹dze, 99-brak
-                                       //public int money = 10; // iloœæ posiadanej waluty przez gracza wykorzystywane do gry // nie aktualne. aktualnie kasa jest w dynamic data
 
     public DinoStats dinosaurStats; //klasa, posiadaj¹ca pocz¹tkowe statystyki ka¿dego dinozaura
     /// <summary>
@@ -214,23 +213,24 @@ public class GameManager : MonoBehaviour
             dynamicData.Save();
         }
 
-        Transform childTransform = endOfBattle.transform.Find("EndView");
-        Transform childTransformLeft = childTransform.transform.Find("Left");
-        Transform childTransformRight = childTransform.transform.Find("Right");
-        childTransformLeft.gameObject.SetActive(true);
-        childTransformRight.gameObject.SetActive(true);
-
-        if (currentScene.Id == 1) 
+        if(currentScene.Id > 0)
         {
-            childTransformLeft.gameObject.SetActive(false);
-        }
+            Transform childTransform = endOfBattle.transform.Find("EndView");
+            Transform childTransformLeft = childTransform.transform.Find("Left");
+            Transform childTransformRight = childTransform.transform.Find("Right");
+            childTransformLeft.gameObject.SetActive(true);
+            childTransformRight.gameObject.SetActive(true);
 
-        if (currentScene.Id == 80 || currentScene.Id+1 > dynamicData.UnlockLvls[currentContinent])
-        {
-            childTransformRight.gameObject.SetActive(false);
-        }
+            if (currentScene.Id == 1)
+            {
+                childTransformLeft.gameObject.SetActive(false);
+            }
 
-      
+            if (currentScene.Id == 80 || currentScene.Id + 1 > dynamicData.UnlockLvls[currentContinent])
+            {
+                childTransformRight.gameObject.SetActive(false);
+            }
+        }
 
         //battleManager.DestroyAllObject();
         return isEnemyFighterContainAnyFighter;
@@ -302,6 +302,12 @@ public class GameManager : MonoBehaviour
         currentMap = mapContainer.MapList[id];
     }
 
+    private void ChangeBattleInformation(int bluemoney, int enemymoney)
+    {
+        BattleInformation b = UI.GetComponentInChildren<BattleInformation>();
+        b.RefreshMoney(bluemoney, enemymoney);
+    }
+
     /// <summary>
     /// Funckcja wywo³ywana przy zmianie scen
     /// </summary>
@@ -348,6 +354,7 @@ public class GameManager : MonoBehaviour
             endOfBattle.SetActive(false);
             currentScene.SetObjectToScene();
             currentMap.SetObjectToScene();
+           
         }
     }
 

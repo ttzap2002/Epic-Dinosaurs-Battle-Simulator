@@ -5,14 +5,6 @@ using UnityEngine;
 public class BoxChanger : MonoBehaviour
 {
     /// <summary>
-    /// Numer Panelu, do którego dany przycisk zosta³ do³¹czony. domyslnie jest 99 co oznacza, ze nie ma takiego panelu
-    /// </summary>
-    public int shopScreen=99;
-    /// <summary>
-    /// panel, do ktorego zostal dolaczony dany przycisk. powinien to byc element, ktory posiada wszystkie elementy graficzne (takze te z dzieciakami)
-    /// </summary>
-    public GameObject shopPanel;
-    /// <summary>
     /// Wymagane! Numer Panelu, który zostanie uruchomiony poprzez nacisniecie przycisku.
     /// </summary>
     public int nextScreen;
@@ -20,14 +12,27 @@ public class BoxChanger : MonoBehaviour
     /// Wymagane! Panel, ktory bedzie widoczny, w momencie nacisniecia tego przycisku
     /// </summary>
     public GameObject nextPanel;
-    
     /// <summary>
-    /// Wymaga jednego uzupelnienia shopPanelu. Ukrywa zbedne panele przed uzytkownikiem
+    /// Nr panelu, ktory stanie sie niewidoczny po nacisnieciu tego przycisku
+    /// </summary>
+    public static int actualScreen;
+    /// <summary>
+    /// Panel, ktory stanie sie niewidoczny po nacisnieciu tego przycisku
+    /// </summary>
+    public static GameObject actualPanel;
+
+    /// <summary>
+    /// Ukrywa zbedne panele przed uzytkownikiem, a ten, ktory zostaje widoczny jest przypisywany do actualPanel
     /// </summary>
     void Start()
     {
-        if(GameManager.Instance.numberOfShopScreen !=shopScreen && shopScreen!=99)
-            shopPanel.SetActive(false);
+        if (GameManager.Instance.numberOfShopScreen != nextScreen)
+            nextPanel.SetActive(false);
+        else
+        {
+            BoxChanger.actualPanel = nextPanel;
+            actualScreen = nextScreen;
+        }
     }
 
     /// <summary>
@@ -35,10 +40,12 @@ public class BoxChanger : MonoBehaviour
     /// </summary>
     public void ChengePanel()
     {
-        if(shopPanel!=nextPanel)
+        if(BoxChanger.actualScreen != nextScreen)
         {
             nextPanel.SetActive(true);
-            shopPanel.SetActive(false);
+            BoxChanger.actualPanel.SetActive(false);
+            BoxChanger.actualPanel=nextPanel;
+            actualScreen = nextScreen;
             GameManager.Instance.numberOfShopScreen = nextScreen;
         }
     }

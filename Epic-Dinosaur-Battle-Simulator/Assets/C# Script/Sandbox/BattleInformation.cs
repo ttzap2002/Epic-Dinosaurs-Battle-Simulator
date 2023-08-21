@@ -21,6 +21,7 @@ public class BattleInformation : MonoBehaviour
 
     public void Start()
     {
+
         enemyMoneyTxt = enemyMoney.GetComponent<TextMeshProUGUI>();
         enemyTroopsTxt = enemyTroops.GetComponent<TextMeshProUGUI>();
         if (GameManager.Instance.enemyGameObjects != null && GameManager.Instance.enemyGameObjects != null) 
@@ -37,6 +38,11 @@ public class BattleInformation : MonoBehaviour
             blueMoneyTxt = blueMoney.GetComponent<TextMeshProUGUI>();
             blueTroopsTxt = blueTroops.GetComponent<TextMeshProUGUI>();
             blueTroopsTxt.text = $"0/{GameManager.Instance.currentScene.Troopslimit}";
+        }
+        if (GameManager.Instance.currentScene.Id > 0) 
+        {
+            enemymoney = GameManager.Instance.currentScene.EnemyMoney;
+            enemyMoneyTxt.text = enemymoney.ToString();
         }
         
         
