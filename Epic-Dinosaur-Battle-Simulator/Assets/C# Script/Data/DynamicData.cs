@@ -109,9 +109,9 @@ public class DynamicData
     //Lista dinozaurow
     /*
      * 0 - Allosaur
-     * 1 - T-rex
-     * 2 - Diplodocus
+     * 1 - Diplodocus
+     * 2 - Stegoceras
      * 3 - Triceratops
-     * 4 - Stegoceras
+     * 4 - T-rex
      */
 }
