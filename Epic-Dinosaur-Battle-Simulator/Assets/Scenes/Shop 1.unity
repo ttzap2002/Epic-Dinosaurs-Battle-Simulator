@@ -2399,8 +2399,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1070255219}
-  - {fileID: 661749176}
   - {fileID: 1797933177}
+  - {fileID: 2102319612}
   m_Father: {fileID: 1564653938}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4006,8 +4006,8 @@ RectTransform:
   m_Children:
   - {fileID: 928396968}
   - {fileID: 1180654083}
-  m_Father: {fileID: 412856471}
-  m_RootOrder: 1
+  m_Father: {fileID: 941296117}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4026,7 +4026,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b32aca6f25e4b0442867b75d29524b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  indexOfDino: 4
+  indexOfDino: 1
   attack: {fileID: 1226033374}
   hp: {fileID: 1660888161}
   speed: {fileID: 1538248420}
@@ -4431,7 +4431,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 258ae4267809142408c7267ae9771132, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 00b185e4ce59b074ab0906e9072f4042, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4579,7 +4579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b32aca6f25e4b0442867b75d29524b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  indexOfDino: 15
+  indexOfDino: 3
   attack: {fileID: 1490166966}
   hp: {fileID: 1163490797}
   speed: {fileID: 397746168}
@@ -5635,7 +5635,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2102319612}
+  - {fileID: 661749176}
   - {fileID: 727775220}
   - {fileID: 1134632233}
   m_Father: {fileID: 1564653938}
@@ -12554,7 +12554,7 @@ RectTransform:
   - {fileID: 2138249134}
   - {fileID: 135637242}
   m_Father: {fileID: 412856471}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -12573,7 +12573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b32aca6f25e4b0442867b75d29524b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  indexOfDino: 6
+  indexOfDino: 2
   attack: {fileID: 1176668184}
   hp: {fileID: 1383026165}
   speed: {fileID: 946860072}
@@ -14065,8 +14065,8 @@ RectTransform:
   m_Children:
   - {fileID: 79587198}
   - {fileID: 949718158}
-  m_Father: {fileID: 941296117}
-  m_RootOrder: 0
+  m_Father: {fileID: 412856471}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -14085,7 +14085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b32aca6f25e4b0442867b75d29524b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  indexOfDino: 1
+  indexOfDino: 4
   attack: {fileID: 2125216703}
   hp: {fileID: 1149993702}
   speed: {fileID: 1470505136}
