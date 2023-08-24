@@ -94,6 +94,7 @@ public class GameManager : MonoBehaviour
     public Stopwatch time = new Stopwatch();
     public static GameManager Instance { get { return _instance; } }
 
+
     public bool IsRun { get => isRun; set => isRun = value; }
 
     public void Awake()
@@ -185,17 +186,18 @@ public class GameManager : MonoBehaviour
     public bool FinishGame(bool isEnemyFighterContainAnyFighter)
     {
         endOfBattle.SetActive(true);
-        var img = endOfBattle.GetComponentInChildren<UnityEngine.UI.Image>();
-        TextMeshProUGUI pro = img.GetComponentInChildren<TextMeshProUGUI>();
+
+        GameObject blue = GameObject.Find("BlueWon");
+        GameObject red = GameObject.Find("RedWon");
         if (!isEnemyFighterContainAnyFighter)
         {
-            pro.text = "Player Blue is winner";
-            pro.color = Color.blue;
+            blue.GetComponent<UnityEngine.UI.Image>().enabled = true;
+            red.GetComponent<UnityEngine.UI.Image>().enabled = false;
         }
         else
         {
-            pro.text = "Player Red is winner";
-            pro.color = Color.red;
+            blue.GetComponent<UnityEngine.UI.Image>().enabled = false;
+            red.GetComponent<UnityEngine.UI.Image>().enabled = true;
         }
 
         isRun = false;
