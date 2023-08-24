@@ -451,8 +451,15 @@ public class BattleManager : MonoBehaviour
         }
 
         ClearSquareList();
-        ChangeBattleInformation(0, 0);
+		if(isForLvl)
+		{
+			ChangeBattleInformation(0, GameManager.Instance.currentScene.EnemyMoney);
+		}
+		else
+		{
+			ChangeBattleInformation(0, 0);
 
+		}
 
     }
 
