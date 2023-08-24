@@ -66,7 +66,8 @@ public class BattleInformation : MonoBehaviour
     public void enemyTroopsUpdate(bool isAdd)
     {
         //Debug.Log(enemyTroopsTxt.text);
-        int i = GameObject.FindGameObjectsWithTag("Enemy").Length;
+		int i = GameManager.Instance.enemyGameObjects.Count;
+        //int i = GameObject.FindGameObjectsWithTag("Enemy").Length;
         if (isAdd)
         {
             enemyTroops.GetComponent<TextMeshProUGUI>().text = $"{i }/" +
@@ -88,7 +89,7 @@ public class BattleInformation : MonoBehaviour
 
     public void blueTroopsUpdate(bool isAdd)
     {
-        int a = GameObject.FindGameObjectsWithTag("Blue").Length;
+        int a = GameManager.Instance.blueGameObjects.Count;
 
         if (isAdd)
         {

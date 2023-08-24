@@ -41,8 +41,14 @@ public class LongNeckFighting : AreaAttackFighter
         if (rowColLeftPoint[0] > 9) { rowColLeftPoint[0] = 9; }
         if (rowColLeftPoint[1] < 0) { rowColLeftPoint[1] = 0; }
         if (rowColLeftPoint[1] > 9) { rowColLeftPoint[1] = 9; }
-        List<int[]> allSquaresToCheck= GetGridSquaresToCheck(rowColLeftPoint, rowColRightPoint, rowColposition);
+        //List<int[]> allSquaresToCheck= GetGridSquaresToCheck(rowColLeftPoint, rowColRightPoint, rowColposition);
+        float[] dinoPosition = new float[2] { position.x, position.z };
+        float[] leftPosition = new float[2] { leftPoint.x, leftPoint.z };
+        float[] rightPosition = new float[2] { rightPoint.x, rightPoint.z };
 
+        //List<int[]> allSquaresToCheck= GetGridSquaresToCheck(rowColLeftPoint, rowColRightPoint, rowColposition);
+        List<int[]> allSquaresToCheck = GetAllListToCheck(dinoPosition, new List<float[]> { leftPosition, rightPosition },
+            position.x, 1);
         return GetTargets(Target, allSquaresToCheck, leftPoint,rightPoint,position);
     }
 

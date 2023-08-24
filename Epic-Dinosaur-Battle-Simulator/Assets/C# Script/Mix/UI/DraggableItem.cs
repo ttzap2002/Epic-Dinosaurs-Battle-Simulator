@@ -142,9 +142,10 @@ public GameObject Uiinformation;
             else
             {
 
+				GameManager.Instance.blueGameObjects.Add(obj);
                 GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().blueTroopsUpdate(true);
                 GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().blueMoneyUpdate(cost);
-                GameManager.Instance.blueGameObjects.Add(obj);
+                
                
                 obj.transform.rotation = new Quaternion(obj.transform.rotation.x, 0, obj.transform.rotation.z, obj.transform.rotation.w);
 
@@ -156,9 +157,10 @@ public GameObject Uiinformation;
             if (GameManager.Instance.enemyGameObjects.Count >= GameManager.Instance.currentScene.EnemyTroopsLimit) { Destroy(obj); }
             else
             {
+				GameManager.Instance.enemyGameObjects.Add(obj);
                 GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().enemyTroopsUpdate(true);
                 GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().enemyMoneyUpdate(cost);
-                GameManager.Instance.enemyGameObjects.Add(obj);
+                
                 obj.transform.rotation = new Quaternion(obj.transform.rotation.x, 180, obj.transform.rotation.z, obj.transform.rotation.w);
 
                 

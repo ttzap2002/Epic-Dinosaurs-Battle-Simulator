@@ -45,7 +45,7 @@ public class AreaAttackFighter : MonoBehaviour
     {
         List<int[]> dinoToVertex1 = GetSquares(dinoPoint, vertex[0], start, increment);
         List<int[]> dinoToVertex2 = GetSquares(dinoPoint, vertex[1], start, increment);
-        List<int[]> vertex1Tovertex2 = GetSquares(dinoPoint, vertex[1], start, increment);
+        List<int[]> vertex1Tovertex2 = GetSquares(vertex[0], vertex[1], start, increment);
         return dinoToVertex1.Concat(vertex1Tovertex2).Concat(dinoToVertex2).Distinct(new IntArrayEqualityComparer()).ToList();
     }
 
