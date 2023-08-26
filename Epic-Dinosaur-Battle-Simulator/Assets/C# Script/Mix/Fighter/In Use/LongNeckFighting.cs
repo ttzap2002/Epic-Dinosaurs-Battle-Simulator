@@ -48,7 +48,7 @@ public class LongNeckFighting : AreaAttackFighter
 
         //List<int[]> allSquaresToCheck= GetGridSquaresToCheck(rowColLeftPoint, rowColRightPoint, rowColposition);
         List<int[]> allSquaresToCheck = GetAllListToCheck(dinoPosition, new List<float[]> { leftPosition, rightPosition },
-            position.x, 1);
+            1);
         return GetTargets(Target, allSquaresToCheck, leftPoint,rightPoint,position);
     }
 

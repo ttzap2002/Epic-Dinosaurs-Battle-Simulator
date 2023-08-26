@@ -451,15 +451,15 @@ public class BattleManager : MonoBehaviour
         }
 
         ClearSquareList();
-		if(isForLvl)
-		{
-			ChangeBattleInformation(0, GameManager.Instance.currentScene.EnemyMoney);
-		}
-		else
-		{
-			ChangeBattleInformation(0, 0);
+        if (isForLvl)
+        {
+            ChangeBattleInformation(0, GameManager.Instance.currentScene.EnemyMoney);
+        }
+        else
+        {
+            ChangeBattleInformation(0, 0);
 
-		}
+        }
 
     }
 
@@ -478,7 +478,7 @@ public class BattleManager : MonoBehaviour
                 blueFighters[i, j] = new List<FighterPlacement>();
             }
         }
-        
+
         for (int i = 0; i < 10; i++)
         {
             for (int j = 0; j < 10; j++)
@@ -487,7 +487,7 @@ public class BattleManager : MonoBehaviour
                 enemyFighters[i, j] = new List<FighterPlacement>();
             }
         }
-        
+
     }
 
     public void GameResume()
@@ -570,11 +570,11 @@ public class BattleManager : MonoBehaviour
 
     public void ChangeLevel(bool isAhead)
     {
-        if(isAhead) 
+        if (isAhead)
         {
-            GameManager.Instance.AddScene(GameManager.Instance.currentScene.Id + 1); 
+            GameManager.Instance.AddScene(GameManager.Instance.currentScene.Id + 1);
         }
-        else 
+        else
         {
             GameManager.Instance.AddScene(GameManager.Instance.currentScene.Id - 1);
         }
@@ -650,7 +650,7 @@ public class BattleManager : MonoBehaviour
             {
                 obj.tag = "Enemy";
             }
-            f.isAlive= true;
+            f.isAlive = true;
             obj.transform.rotation = new Quaternion(obj.transform.rotation.x,
                 180, obj.transform.rotation.z, obj.transform.rotation.w);
             GameManager.Instance.enemyGameObjects.Add(obj);

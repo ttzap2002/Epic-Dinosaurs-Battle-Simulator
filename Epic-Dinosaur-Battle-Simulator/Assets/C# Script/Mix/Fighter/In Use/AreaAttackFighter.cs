@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Purchasing;
 
@@ -41,15 +42,15 @@ public class AreaAttackFighter : MonoBehaviour
     }
 
     
-    protected List<int[]> GetAllListToCheck(float[] dinoPoint, List<float[]> vertex, float start, int increment) 
+    protected List<int[]> GetAllListToCheck(float[] dinoPoint, List<float[]> vertex,  int increment) 
     {
-        List<int[]> dinoToVertex1 = GetSquares(dinoPoint, vertex[0], start, increment);
-        List<int[]> dinoToVertex2 = GetSquares(dinoPoint, vertex[1], start, increment);
-        List<int[]> vertex1Tovertex2 = GetSquares(vertex[0], vertex[1], start, increment);
+        List<int[]> dinoToVertex1 = GetSquares(dinoPoint, vertex[0], increment);
+        List<int[]> dinoToVertex2 = GetSquares(dinoPoint, vertex[1], increment);
+        List<int[]> vertex1Tovertex2 = GetSquares(vertex[0], vertex[1], increment);
         return dinoToVertex1.Concat(vertex1Tovertex2).Concat(dinoToVertex2).Distinct(new IntArrayEqualityComparer()).ToList();
     }
 
-    private List<int[]> GetSquares(float[] dinoPoint, float[] vertex, float start, int increment)
+    private List<int[]> GetSquares(float[] dinoPoint, float[] vertex, int increment)
     {
         float[] A = { 0f, 0f };
         float[] B = { vertex[0] - dinoPoint[0], vertex[1] - dinoPoint[1] };
@@ -59,24 +60,26 @@ public class AreaAttackFighter : MonoBehaviour
         int[] finalPointInSquare = new int[2];
         finalPointInSquare[0] = (int)(vertex[0] / 10);
         finalPointInSquare[1] = (int)(vertex[1] / 10);
-        float[] temporaryVector = dinoPoint;
+        float[] temporaryVector = { dinoPoint[0], dinoPoint[1] };
         int[] temporarySquares = new int[2];
         temporarySquares[0] = (int)(temporaryVector[0] / 10);
         temporarySquares[1] = (int)(temporaryVector[1] / 10);
-        float xIntemporarySquare = start;
+        int multiplier = 1;
+
+        multiplier = SetMultiplier(B, multiplier);
 
         List<int[]> getSquare = new List<int[]>
             {
                 new int[2] { (int)(dinoPoint[0] / 10), (int)(dinoPoint[1] / 10) }
             };
-
-        while (temporarySquares[0] != finalPointInSquare[0] && temporarySquares[1] != finalPointInSquare[1])
+        int i = 0;
+        while (temporarySquares[0] != finalPointInSquare[0] && temporarySquares[1] != finalPointInSquare[1] && i < 1000)
         {
-            temporaryVector[0] += xIntemporarySquare;
-            temporaryVector[1] += paramA * xIntemporarySquare;
+            temporaryVector[0] += (increment * multiplier);
+            temporaryVector[1] += (paramA * increment * multiplier);
             temporarySquares[0] = (int)(temporaryVector[0] / 10);
             temporarySquares[1] = (int)(temporaryVector[1] / 10);
-            xIntemporarySquare += increment;
+
             if (!itContainSquare(getSquare, temporarySquares))
             {
                 int[] newSquares = new int[2];
@@ -84,8 +87,19 @@ public class AreaAttackFighter : MonoBehaviour
                 newSquares[1] = temporarySquares[1];
                 getSquare.Add(newSquares);
             }
+            i++;
         }
         return getSquare;
+    }
+
+    private int SetMultiplier(float[] B, int multiplier)
+    {
+        if (B[0] < 0)
+        {
+            multiplier = -1;
+        }
+
+        return multiplier;
     }
 
     bool itContainSquare(List<int[]> getSquare, int[] intList) => getSquare.Any(item => item.SequenceEqual(intList));
