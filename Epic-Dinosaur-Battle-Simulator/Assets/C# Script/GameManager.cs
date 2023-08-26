@@ -92,6 +92,12 @@ public class GameManager : MonoBehaviour
     public short currentContinent;
 
     public Stopwatch time = new Stopwatch();
+
+    public delegate void ChangeLevel();
+   
+    public ChangeLevel changeLevel;
+
+
     public static GameManager Instance { get { return _instance; } }
 
 

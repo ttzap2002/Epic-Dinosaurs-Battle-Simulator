@@ -584,7 +584,7 @@ public class BattleManager : MonoBehaviour
         GameManager.Instance.currentScene.SetObjectToScene();
         ChangeBattleInformation(0, GameManager.Instance.currentScene.EnemyMoney);
         //GameManager.Instance.currentMap.SetObjectToScene();
-
+        GameManager.Instance.changeLevel.Invoke();
     }
 
     private void SetTransform(string nameOfObject)
