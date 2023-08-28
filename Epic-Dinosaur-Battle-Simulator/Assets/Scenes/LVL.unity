@@ -2037,7 +2037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ed8cea137a4c6f4cbd6bfd1c9c99f76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fighterId: 6
+  fighterId: 2
   padlock: {fileID: 23062719}
   TextBox: {fileID: 903012736}
 --- !u!114 &440533464
@@ -6567,7 +6567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ed8cea137a4c6f4cbd6bfd1c9c99f76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fighterId: 1
+  fighterId: 4
   padlock: {fileID: 867421238}
   TextBox: {fileID: 903012736}
 --- !u!114 &1231675089
@@ -6907,7 +6907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ed8cea137a4c6f4cbd6bfd1c9c99f76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fighterId: 4
+  fighterId: 1
   padlock: {fileID: 1127897737}
   TextBox: {fileID: 903012736}
 --- !u!114 &1241294741
@@ -7327,7 +7327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ed8cea137a4c6f4cbd6bfd1c9c99f76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fighterId: 13
+  fighterId: 3
   padlock: {fileID: 790561065}
   TextBox: {fileID: 903012736}
 --- !u!114 &1254512866
@@ -8217,18 +8217,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1423862915}
-        m_TargetAssemblyTypeName: ChangeLevelButton, Assembly-CSharp
-        m_MethodName: ActiveImg
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
 --- !u!114 &1423862913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8280,7 +8268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isForRightButton: 1
-  img: {fileID: 1423862913}
+  obj: {fileID: 1423862910}
 --- !u!1 &1444209045
 GameObject:
   m_ObjectHideFlags: 0
@@ -9826,18 +9814,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1698835283}
-        m_TargetAssemblyTypeName: ChangeLevelButton, Assembly-CSharp
-        m_MethodName: ActiveImg
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1698835281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9889,7 +9865,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isForRightButton: 0
-  img: {fileID: 1698835281}
+  obj: {fileID: 1698835278}
 --- !u!1001 &1718818701
 PrefabInstance:
   m_ObjectHideFlags: 0

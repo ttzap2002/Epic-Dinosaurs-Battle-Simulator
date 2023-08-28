@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ChangeLevelButton : MonoBehaviour
 {
     [SerializeField] bool isForRightButton;
-    [SerializeField] Image img;
+    [SerializeField] GameObject obj;
     // Start is called before the first frame update
 
     private void Start()
@@ -17,19 +17,19 @@ public class ChangeLevelButton : MonoBehaviour
 
     public void ActiveImg() 
     {
-        img.enabled = true;
+        obj.SetActive(true);
         if (isForRightButton)
         {
             if (CheckIfItAppropiateLvl())
             {
-                img.enabled = false;
+                obj.SetActive(false);
             }
         }
         else 
         {
             if (GameManager.Instance.currentScene.Id == 1) 
             {
-                img.enabled = false;
+                obj.SetActive(false);
             }
 
         }

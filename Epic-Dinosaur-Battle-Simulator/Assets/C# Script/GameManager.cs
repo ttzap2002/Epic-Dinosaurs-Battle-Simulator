@@ -93,9 +93,8 @@ public class GameManager : MonoBehaviour
 
     public Stopwatch time = new Stopwatch();
 
-    public delegate void ChangeLevel();
-   
-    public ChangeLevel changeLevel;
+    public Action changeLevel;
+
 
 
     public static GameManager Instance { get { return _instance; } }
@@ -353,7 +352,7 @@ public class GameManager : MonoBehaviour
                 obstaclesObjects.Add(child.gameObject); // dodajemy komponent GameObject dziecka do listy
             }
 
-
+            changeLevel = null; 
             endOfBattle.SetActive(false);
             currentScene.SetObjectToScene();
             currentMap.SetObjectToScene();
