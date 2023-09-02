@@ -95,6 +95,7 @@ public class GameManager : MonoBehaviour
 
     public Action changeLevel;
 
+    public Tutorial tutorial; 
 
 
     public static GameManager Instance { get { return _instance; } }

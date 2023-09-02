@@ -18,6 +18,7 @@ public class DynamicData
     static List<int> StartLvls = new List<int>() { 2, 1, 1, 1 }; //Poziomy ktore sa odblokowane na start (stworzone wylacznie w celu zmiany jednej listy zamiast kilku)
     public bool wantMusic = true;
     public float musicIntense = 0.15f;
+    public List<bool> isShowTutorialOnScene;
 
     private DynamicData() 
     {
