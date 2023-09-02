@@ -11,6 +11,7 @@ using System;
 using UnityEditorInternal;
 using System.Diagnostics;
 using UnityEngine.UIElements;
+using Debug = UnityEngine.Debug;
 
 public class GameManager : MonoBehaviour
 {
@@ -79,7 +80,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// przechowuje zmienne dynamiczne, konieczne do dobrego zarz¹dzania gr¹
     /// </summary>
-    public DynamicData dynamicData;
+    public DynamicData2 dynamicData;
     public Dictionary<string, bool> canISetWarrior = new Dictionary<string, bool>(); //Zmienna booli które decyduj¹ czy mo¿na stawiaæ jednostkê. Jeden false blokuje t¹ mo¿liwoœæ. Konkretne nazwy s¹ w starcie (pod awake)
     public int salaryForBattle; //zmienna posiaajaca info o zdobytych pieniazkach z bitwy
 
@@ -122,8 +123,10 @@ public class GameManager : MonoBehaviour
             levelContainer.AddAllScene();
             currentMap = mapContainer.MapList[0];
             //dynamicData = new DynamicData(new List<int>(){ 80, 1, 1, 1 }, new List<int>() { 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0 }, new List<bool>() {true,true,false,false}, 25000);
-            dynamicData = DynamicData.Load(isFirst);
+            dynamicData = DynamicData2.Load();
+            dynamicData.Save();
             isFirst = false;
+            Debug.Log(dynamicData.ItWorks.ToString());
         }
         SceneManager.sceneLoaded += OnSceneLoaded;
 

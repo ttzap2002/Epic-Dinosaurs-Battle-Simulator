@@ -20,7 +20,7 @@ public class DynamicData
     public float musicIntense = 0.15f;
     public List<bool> isShowTutorialOnScene;
 
-    private DynamicData() 
+    protected DynamicData()
     {
         battlesWithoutAds = 0;
         WantMusic = true;
@@ -62,7 +62,7 @@ public class DynamicData
     }
     private static object OdczytajBin(string nazwa)
     {
-        DynamicData zespol = new DynamicData(DynamicData.StartLvls, new List<int>() { 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0 }, new List<bool>() { true, false, true, false }, 25000);
+        object zespol;// = new DynamicData(DynamicData.StartLvls, new List<int>() { 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0 }, new List<bool>() { true, false, true, false }, 25000);
         try
         {
             FileStream fs = new FileStream($"{nazwa}.bin", FileMode.Open); //zrobiæ na try, wrazie jakby pierwszy raz uruchamiano grê
@@ -74,6 +74,11 @@ public class DynamicData
             catch (SerializationException e)
             {
                 Debug.Log("Loading failed");
+                zespol = false;
+            }
+            catch (InvalidCastException f)
+            {
+                zespol = false;
             }
             finally
             {
@@ -82,29 +87,25 @@ public class DynamicData
         }
         catch (FileNotFoundException ex)
         {
-            zespol = new DynamicData(DynamicData.StartLvls, new List<int>() { 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0 }, new List<bool>() { true, false, true, false }, 25000);
+            return false;
         }
         return zespol;
     }
 
-    public void Save()
+    public virtual void Save()
     {
         ZapiszBin("sfdbs");
     }
 
-    public static DynamicData Load(bool firstLoad)
+    public static DynamicData Load()
     {
-        DynamicData returner;
-        if (firstLoad)
-        {
-            returner = (DynamicData)OdczytajBin("sfdbs");
-            firstLoad = false;
-        }
-        else
+        object returner;
+        returner = OdczytajBin("sfdbs");
+        if (returner.GetType() != typeof(DynamicData))
         {
             returner = new DynamicData(DynamicData.StartLvls, new List<int>() { 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0 }, new List<bool>() { true, false, true, false }, 25000);
         }
-        return returner;
+        return (DynamicData)returner;
     }
 
     //Lista dinozaurow
@@ -115,4 +116,101 @@ public class DynamicData
      * 3 - Triceratops
      * 4 - T-rex
      */
+}
+
+
+[Serializable]
+public class DynamicData2 : DynamicData
+{
+    static List<int> StartLvls = new List<int>() { 2, 1, 1, 1 }; //Poziomy ktore sa odblokowane na start (stworzone wylacznie w celu zmiany jednej listy zamiast kilku)
+    private bool itWorks;
+
+    public bool ItWorks { get => itWorks; set => itWorks = value; }
+
+    protected DynamicData2()
+    {
+        battlesWithoutAds = 0;
+        WantMusic = true;
+    }
+
+    public DynamicData2(List<int> unlockLvls, List<int> dinosaurs, List<bool> terrain, int money, bool itWorks) : this()
+    {
+        UnlockLvls = unlockLvls;
+        Dinosaurs = dinosaurs;
+        Terrain = terrain;
+        Money = money;
+        ItWorks = itWorks;
+    }
+
+    private void ZapiszBin(string nazwa)
+    {
+        FileStream fs = new FileStream($"{nazwa}.bin", FileMode.OpenOrCreate);
+        BinaryFormatter formatter = new BinaryFormatter();
+        try
+        {
+            formatter.Serialize(fs, this);
+        }
+        catch (SerializationException e)
+        {
+            Debug.Log("Failed to serialize. Reason: " + e.Message);
+            throw;
+        }
+        finally
+        {
+            fs.Close();
+        }
+    }
+    private static object OdczytajBin(string nazwa)
+    {
+        object zespol;// = new DynamicData2(DynamicData2.StartLvls, new List<int>() { 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0 }, new List<bool>() { true, false, true, false }, 25000, true);
+        try
+        {
+            FileStream fs = new FileStream($"{nazwa}.bin", FileMode.Open); //zrobiæ na try, wrazie jakby pierwszy raz uruchamiano grê
+            try
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                zespol = (DynamicData2)formatter.Deserialize(fs);
+            }
+            catch (SerializationException e)
+            {
+                Debug.Log("Loading failed");
+                zespol = false;
+            }
+            catch (InvalidCastException f)
+            {
+                zespol = false;
+            }
+            finally
+            {
+                fs.Close();
+            }
+        }
+        catch (FileNotFoundException ex)
+        {
+            return false;
+        }
+        return zespol;
+    }
+
+    public override void Save()
+    {
+        ZapiszBin("sfdbs");
+    }
+
+    public static DynamicData2 Load()
+    {
+        object returner;
+        returner = OdczytajBin("sfdbs");
+        if (returner.GetType() != typeof(DynamicData2))
+        {
+            DynamicData returner2 = DynamicData.Load();
+            DynamicData2 cosiek = new DynamicData2(returner2.UnlockLvls, returner2.Dinosaurs, returner2.Terrain, returner2.Money, true);
+            cosiek.battlesWithoutAds = returner2.battlesWithoutAds;
+            cosiek.wantMusic = returner2.wantMusic;
+            cosiek.musicIntense = returner2.musicIntense;
+            cosiek.isShowTutorialOnScene = returner2.isShowTutorialOnScene;
+            return cosiek;
+        }
+        return (DynamicData2)returner;
+    }
 }
