@@ -126,7 +126,6 @@ public class GameManager : MonoBehaviour
             dynamicData = DynamicData2.Load();
             dynamicData.Save();
             isFirst = false;
-            Debug.Log(dynamicData.ItWorks.ToString());
         }
         SceneManager.sceneLoaded += OnSceneLoaded;
 
