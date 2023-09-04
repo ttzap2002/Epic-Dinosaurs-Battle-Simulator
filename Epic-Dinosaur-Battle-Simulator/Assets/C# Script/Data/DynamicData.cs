@@ -20,10 +20,11 @@ public class DynamicData
     public float musicIntense = 0.15f;
     public List<bool> isShowTutorialOnScene;
 
-    protected DynamicData()
+protected DynamicData()
     {
         battlesWithoutAds = 0;
         WantMusic = true;
+        isShowTutorialOnScene = new List<bool> { false, false, false, false };
     }
 
     public DynamicData(List<int> unlockLvls, List<int> dinosaurs, List<bool> terrain, int money) : this()
@@ -32,6 +33,7 @@ public class DynamicData
         Dinosaurs = dinosaurs;
         Terrain = terrain;
         Money = money;
+
     }
 
     // w przyszlosci mozna dodac skorki dinozaurów
