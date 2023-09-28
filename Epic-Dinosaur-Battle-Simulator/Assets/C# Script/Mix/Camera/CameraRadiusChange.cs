@@ -8,6 +8,7 @@ public class CameraRadiusChange : MonoBehaviour
 {
     //public Camera playerCamera;
     public float rotationSpeed = 0.25f;
+    public bool isThisFakeCamera;
     private Vector3 touchStart;
 
     void Update()
@@ -18,8 +19,10 @@ public class CameraRadiusChange : MonoBehaviour
             // Pobierz pozycjê dotyku na ekranie
             Vector3 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
 
+            float rotationX = 0;
             // Oblicz kierunek i prêdkoœæ obrotu kamery
-            float rotationX = -touchDeltaPosition.y * rotationSpeed;
+            if (!isThisFakeCamera)
+                rotationX = -touchDeltaPosition.y * rotationSpeed;
             float rotationY = touchDeltaPosition.x * rotationSpeed;
 
             // Obróæ kamerê

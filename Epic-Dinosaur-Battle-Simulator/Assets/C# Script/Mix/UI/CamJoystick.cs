@@ -9,6 +9,7 @@ public class CamJoystick : MonoBehaviour
     public FixedJoystick axisXZJoystick;
     public FixedJoystick axisYJoystick;
     public GameObject playerCamera;
+    public GameObject fakedPlayerCamera;
     public static bool isNotClicked = true;
     private float osZ;
     private float osX;
@@ -25,12 +26,10 @@ public class CamJoystick : MonoBehaviour
     {
         if (axisXZJoystick.Vertical != 0 || axisXZJoystick.Horizontal != 0 || axisYJoystick.Vertical != 0)
         {
-            Vector3 difference = playerCamera.transform.position;
             osX = axisXZJoystick.Vertical * Time.fixedDeltaTime;
             osZ = axisXZJoystick.Horizontal * Time.fixedDeltaTime;
-            playerCamera.transform.Translate(osZ * speed, 0, osX * speed * 3,Space.Self);
-            playerCamera.transform.position = new Vector3(playerCamera.transform.position.x, difference.y, playerCamera.transform.position.z);
-            playerCamera.transform.position += new Vector3(0f, axisYJoystick.Vertical * speed * Time.fixedDeltaTime, 0f);
+            fakedPlayerCamera.transform.Translate(osZ * speed, 0, osX * speed,Space.Self);
+            playerCamera.transform.position = new Vector3(fakedPlayerCamera.transform.position.x, playerCamera.transform.position.y + axisYJoystick.Vertical * speed * Time.fixedDeltaTime, fakedPlayerCamera.transform.position.z);
             CamJoystick.isNotClicked = false;
         }
         else
