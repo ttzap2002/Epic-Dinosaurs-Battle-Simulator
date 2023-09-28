@@ -48,6 +48,9 @@ public class TutorialActive : MonoBehaviour
                 case SceneTutorial.lvlChoice:
                     SetForLevelChoice();
                     break;
+                case SceneTutorial.lvl:
+                    SetForLvl();
+                    break;
             }
         }
     }
@@ -72,10 +75,24 @@ public class TutorialActive : MonoBehaviour
         stosDelegatow.Push(new ActionWithParams(DisactiveOneActiveAnother, tutorialOutput, arrow, Hide));
         stosDelegatow.Push(new ActionWithParams(ChangeText, textMesh, "Learning how to code efficiently..."));
         stosDelegatow.Push(new ActionWithParams(ChangeText, textMesh, "Gówno"));
+        stosDelegatow.Push(new ActionWithParams(ChangeText, textMesh, "Witaj dzielny wojowniku to sa lvl i po prostu se w nie graj"));
+    }
+
+
+    private void SetForLvl()
+    {
+        
+        stosDelegatow.Push(new ActionWithParams(DisactiveGameObject));
+        
+       
+
+        stosDelegatow.Push(new ActionWithParams(MoveArrow, arrow, -1167.234f, 800f, -36.71281f));
+        stosDelegatow.Push(new ActionWithParams(DisactiveOneActiveAnother, tutorialOutput, arrow, Hide));
+        stosDelegatow.Push(new ActionWithParams(ChangeText, textMesh, "Gówno"));
         stosDelegatow.Push(new ActionWithParams(ChangeText, textMesh, "the easier it will become to write"));
     }
 
-    static void ChangeText(params object[] args)
+    void ChangeText(params object[] args)
     {
         TextMeshProUGUI txt = args[0] as TextMeshProUGUI;
         string text = (string)(args[1]);
@@ -86,7 +103,7 @@ public class TutorialActive : MonoBehaviour
     }
 
 
-    static void DisactiveOneActiveAnother(params object[] args)
+    void DisactiveOneActiveAnother(params object[] args)
     {
         GameObject objToDisative = args[0] as GameObject;
         GameObject objToActive = args[1] as GameObject;
@@ -96,6 +113,18 @@ public class TutorialActive : MonoBehaviour
         objToActive.SetActive(true);
         // Dodaj logikê dla 'isDisactive' i 'obj', jeœli potrzebujesz
     }
+
+
+    void MoveArrow(params object[] args)
+    {
+        GameObject arrow = args[0] as GameObject;
+        RectTransform rectTransform = arrow.GetComponent<RectTransform>();
+        //rectTransform.transform.position = new Vector3((float)args[1], (float)args[2], (float)args[3]);
+        rectTransform.localPosition = new Vector3((float)args[1], (float)args[2], (float)args[3]);
+    }
+
+
+
 
     void DisactiveGameObject(params object[] args)
     {
@@ -118,8 +147,9 @@ public class TutorialActive : MonoBehaviour
 }
 
 
-public enum SceneTutorial 
+public enum SceneTutorial
 {
     continentChoice,
-    lvlChoice
+    lvlChoice,
+    lvl
 }
