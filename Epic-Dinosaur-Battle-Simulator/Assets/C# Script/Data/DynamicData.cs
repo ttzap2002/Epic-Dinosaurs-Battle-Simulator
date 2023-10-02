@@ -126,13 +126,18 @@ public class DynamicData2 : DynamicData
 {
     static List<int> StartLvls = new List<int>() { 2, 1, 1, 1 }; //Poziomy ktore sa odblokowane na start (stworzone wylacznie w celu zmiany jednej listy zamiast kilku)
     private bool itWorks;
-
+    private bool wantSounds;
+    private float soundsIntense;
     public bool ItWorks { get => itWorks; set => itWorks = value; }
+    public bool WantSounds { get => wantSounds; set => wantSounds = value; }
+    public float SoundsIntense { get => soundsIntense; set => soundsIntense = value; }
 
     protected DynamicData2()
     {
         battlesWithoutAds = 0;
         WantMusic = true;
+        WantSounds = true;
+        SoundsIntense = 0.15f;
     }
 
     public DynamicData2(List<int> unlockLvls, List<int> dinosaurs, List<bool> terrain, int money, bool itWorks) : this()

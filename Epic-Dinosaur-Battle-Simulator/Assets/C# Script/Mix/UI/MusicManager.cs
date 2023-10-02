@@ -10,6 +10,11 @@ public class MusicManager : MonoBehaviour
     int randomIndex;
     private bool wasMusicDisgusted;
 
+    [SerializeField] private AudioSource soundsSource;
+    [SerializeField] private AudioClip[] soundsClips;
+    public static float soundsIntense;
+    private bool wantSounds;
+
     void Start()
     {
         // Przy starcie, wywo³ujemy funkcjê do losowego odtwarzania muzyki
@@ -89,5 +94,14 @@ public class MusicManager : MonoBehaviour
     public void ImplementIntense()
     {
         audioSource.volume = MusicManager.musicIntense;
+    }
+
+    public void PlaySound(int soundId)
+    {
+        AudioClip randomClip = soundsClips[soundId];
+
+        // Przypisujemy wybrany utwór do AudioSource i odtwarzamy
+        soundsSource.clip = randomClip;
+        soundsSource.Play();
     }
 }

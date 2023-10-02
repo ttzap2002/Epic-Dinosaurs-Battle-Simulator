@@ -5,12 +5,13 @@ using UnityEngine.UI;
 
 public class Settings : MonoBehaviour
 {
-    public GameObject settingsBox;
     [SerializeField] private Slider intenseSlider;
     [SerializeField] private GameObject menuBox;
     [SerializeField] private Sprite playingMusic;
     [SerializeField] private Sprite notPlayingMusic;
     [SerializeField] private Image musicButton;
+    [SerializeField] private Slider intenseSliderOfSounds;
+    [SerializeField] private Image soundsButton;
     //public MusicManager manager;
     // Start is called before the first frame update
     void Start()
@@ -26,7 +27,19 @@ public class Settings : MonoBehaviour
             intenseSlider.gameObject.SetActive(false);
             musicButton.sprite = notPlayingMusic;
         }
-        settingsBox.SetActive(false);
+        intenseSliderOfSounds.value = GameManager.Instance.dynamicData.SoundsIntense;
+        if (GameManager.Instance.dynamicData.WantSounds)
+        {
+            intenseSliderOfSounds.gameObject.SetActive(true);
+            soundsButton.sprite = playingMusic;
+        }
+        else
+        {
+            intenseSliderOfSounds.gameObject.SetActive(false);
+            soundsButton.sprite = notPlayingMusic;
+        }
+        gameObject.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -38,13 +51,13 @@ public class Settings : MonoBehaviour
     public void ShowSettings()
     {
         menuBox.SetActive(false);
-        settingsBox.SetActive(true);
+        gameObject.SetActive(true);
     }
 
     public void HideSettings()
     {
         menuBox.SetActive(true);
-        settingsBox.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     public void PrivacyPolicy()
@@ -97,4 +110,28 @@ public class Settings : MonoBehaviour
         GameManager.Instance.dynamicData.musicIntense = intenseSlider.value;
         GameManager.Instance.dynamicData.Save();
     }
+
+    public void ReadIntenseOfSounds()
+    {
+        MusicManager.soundsIntense = intenseSliderOfSounds.value;
+        GameManager.Instance.dynamicData.SoundsIntense = intenseSliderOfSounds.value;
+        GameManager.Instance.dynamicData.Save();
+    }
+
+    public void TurnOnOffSounds()
+    {
+        GameManager.Instance.dynamicData.WantSounds= !GameManager.Instance.dynamicData.WantSounds;
+        GameManager.Instance.dynamicData.Save();
+        if (GameManager.Instance.dynamicData.WantSounds)
+        {
+            intenseSliderOfSounds.gameObject.SetActive(true);
+            soundsButton.sprite = playingMusic;
+        }
+        else
+        {
+            intenseSliderOfSounds.gameObject.SetActive(false);
+            soundsButton.sprite = notPlayingMusic;
+        }
+    }
+
 }
