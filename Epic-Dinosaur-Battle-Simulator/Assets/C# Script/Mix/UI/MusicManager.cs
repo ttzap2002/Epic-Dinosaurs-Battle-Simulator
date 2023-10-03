@@ -14,6 +14,8 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private AudioClip[] soundsClips;
     public static float soundsIntense;
     private bool wantSounds;
+    public static AudioSource staticSoundSource;
+    public static AudioClip[] staticSoundsClips;
 
     void Start()
     {
@@ -22,6 +24,20 @@ public class MusicManager : MonoBehaviour
         MusicManager.musicIntense = GameManager.Instance.dynamicData.musicIntense;
         ImplementIntense();
         PlayRandomMusic();
+        ImplementIntenseOfSound();
+        if(MusicManager.staticSoundSource is null)
+            MusicManager.staticSoundSource = soundsSource;
+        if(MusicManager.staticSoundsClips is null)
+            MusicManager.staticSoundsClips = soundsClips;
+    }
+
+    private void Awake()
+    {
+        ImplementIntenseOfSound();
+        if (MusicManager.staticSoundSource is null)
+            MusicManager.staticSoundSource = soundsSource;
+        if (MusicManager.staticSoundsClips is null)
+            MusicManager.staticSoundsClips = soundsClips;
     }
 
     void Update()
@@ -100,6 +116,11 @@ public class MusicManager : MonoBehaviour
         soundsSource.volume = MusicManager.soundsIntense;
     }
 
+    public static void StaticImplementationIntenseOfSounds()
+    {
+        MusicManager.staticSoundSource.volume = MusicManager.soundsIntense;
+    }
+
     public void PlaySound(int soundId)
     {
         AudioClip randomClip = soundsClips[soundId];
@@ -107,5 +128,14 @@ public class MusicManager : MonoBehaviour
         // Przypisujemy wybrany utwór do AudioSource i odtwarzamy
         soundsSource.clip = randomClip;
         soundsSource.Play();
+    }
+
+    public static void PlaySoundFromGameMenager(int soundId)
+    {
+        AudioClip randomClip = MusicManager.staticSoundsClips[soundId];
+
+        // Przypisujemy wybrany utwór do AudioSource i odtwarzamy
+        MusicManager.staticSoundSource.clip = randomClip;
+        MusicManager.staticSoundSource.Play();
     }
 }

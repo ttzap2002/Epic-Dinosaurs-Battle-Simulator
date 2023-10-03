@@ -28,7 +28,6 @@ public class Settings : MonoBehaviour
             musicButton.sprite = notPlayingMusic;
         }
         intenseSliderOfSounds.value = GameManager.Instance.dynamicData.SoundsIntense;
-        MusicManager.soundsIntense = GameManager.Instance.dynamicData.SoundsIntense;
         if (GameManager.Instance.dynamicData.WantSounds)
         {
             intenseSliderOfSounds.gameObject.SetActive(true);
@@ -133,6 +132,19 @@ public class Settings : MonoBehaviour
             intenseSliderOfSounds.gameObject.SetActive(false);
             soundsButton.sprite = notPlayingMusic;
         }
+    }
+
+    public void PlaySound(int idSound)
+    {
+        if(GameManager.Instance.dynamicData.WantSounds)
+        {
+            MusicManager.PlaySoundFromGameMenager(idSound);
+        }
+    }
+
+    public void ImplementSoundsIntense()
+    {
+        MusicManager.StaticImplementationIntenseOfSounds();
     }
 
 }
