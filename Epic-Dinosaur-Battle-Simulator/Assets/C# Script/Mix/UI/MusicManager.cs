@@ -95,6 +95,10 @@ public class MusicManager : MonoBehaviour
     {
         audioSource.volume = MusicManager.musicIntense;
     }
+    public void ImplementIntenseOfSound()
+    {
+        soundsSource.volume = MusicManager.soundsIntense;
+    }
 
     public void PlaySound(int soundId)
     {
