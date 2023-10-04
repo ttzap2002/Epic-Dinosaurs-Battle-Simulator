@@ -11,6 +11,7 @@ public class FighterIdForButton :MonoBehaviour
     [SerializeField] private int fighterId;
     [SerializeField] private GameObject padlock;
     [SerializeField] private GameObject TextBox;
+    [SerializeField] private TextMeshProUGUI attack, hp, speed;
     static public int idInText;
     private string text;
 
@@ -24,7 +25,7 @@ public class FighterIdForButton :MonoBehaviour
         {
             //gameObject.SetActive(false);
         }
-        text = $"attack: {ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[fighterId].attack, GameManager.Instance.dynamicData.Dinosaurs[fighterId] - 1)}\nHP: {ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[fighterId].hp, GameManager.Instance.dynamicData.Dinosaurs[fighterId] - 1)}\nspeed: {GameManager.Instance.dinosaurStats.Dinosaurs[fighterId].speed}\n{GameManager.Instance.dinosaurStats.Dinosaurs[fighterId].description}";
+        //text = $"attack: {ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[fighterId].attack, GameManager.Instance.dynamicData.Dinosaurs[fighterId] - 1)}\nHP: {ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[fighterId].hp, GameManager.Instance.dynamicData.Dinosaurs[fighterId] - 1)}\nspeed: {GameManager.Instance.dinosaurStats.Dinosaurs[fighterId].speed}\n{GameManager.Instance.dinosaurStats.Dinosaurs[fighterId].description}";
         TextBox.SetActive(false);
     }
 
@@ -43,7 +44,7 @@ public class FighterIdForButton :MonoBehaviour
             //Zmiana textu po nacisnieciu
             if (TextBox != null)
             {
-                TextMeshProUGUI tmp = TextBox.GetComponentInChildren<TextMeshProUGUI>();
+                /*TextMeshProUGUI tmp = TextBox.GetComponentInChildren<TextMeshProUGUI>();
                 if (tmp != null)
                 {
                     tmp.text = text;
@@ -58,6 +59,51 @@ public class FighterIdForButton :MonoBehaviour
                 else
                 {
                     Debug.LogWarning("Nie znaleziono komponentu TextMeshPro w dziecku obiektu.");
+                }*/
+                if (attack != null)
+                {
+                    attack.text = $"{ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[fighterId].attack, GameManager.Instance.dynamicData.Dinosaurs[fighterId] - 1)}";
+                    if ((!TextBox.active) || (FighterIdForButton.idInText != fighterId))
+                    {
+                        TextBox.SetActive(true);
+                        FighterIdForButton.idInText = fighterId;
+                    }
+                    else
+                        TextBox.SetActive(false);
+                }
+                else
+                {
+                    Debug.LogWarning("Nie znaleziono komponentu TextMeshPro attack.");
+                }
+                if (hp != null)
+                {
+                    hp.text = $"{ReturnerValue(GameManager.Instance.dinosaurStats.Dinosaurs[fighterId].hp, GameManager.Instance.dynamicData.Dinosaurs[fighterId] - 1)}";
+                    if ((!TextBox.active) || (FighterIdForButton.idInText != fighterId))
+                    {
+                        TextBox.SetActive(true);
+                        FighterIdForButton.idInText = fighterId;
+                    }
+                    else
+                        TextBox.SetActive(false);
+                }
+                else
+                {
+                    Debug.LogWarning("Nie znaleziono komponentu TextMeshPro hp.");
+                }
+                if (speed != null)
+                {
+                    speed.text = $"{GameManager.Instance.dinosaurStats.Dinosaurs[fighterId].speed}";
+                    if ((!TextBox.active) || (FighterIdForButton.idInText != fighterId))
+                    {
+                        TextBox.SetActive(true);
+                        FighterIdForButton.idInText = fighterId;
+                    }
+                    else
+                        TextBox.SetActive(false);
+                }
+                else
+                {
+                    Debug.LogWarning("Nie znaleziono komponentu TextMeshPro speed.");
                 }
             }
             else
@@ -68,4 +114,10 @@ public class FighterIdForButton :MonoBehaviour
     }
 
     int ReturnerValue(int value, int power) => (int)(value * Math.Pow(1.1, power));
+
+    public void HideTextBox()
+    {
+        TextBox.SetActive(false);
+    }
+
 }
