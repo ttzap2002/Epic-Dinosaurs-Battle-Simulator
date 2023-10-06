@@ -106,12 +106,12 @@ public GameObject Uiinformation;
             obj = list[list.Count - 1];
             list.Remove(obj);
         }
-        else 
+        else
         {
             obj = Instantiate(GameManager.Instance.prefabGameObjects[Fighterid]);
         }
 
-      
+
         FighterPlacement creature = obj.GetComponent<FighterPlacement>();
         creature.CreateForSpawner();
 
@@ -142,20 +142,20 @@ public GameObject Uiinformation;
             else
             {
 
-				GameManager.Instance.blueGameObjects.Add(obj);
+                GameManager.Instance.blueGameObjects.Add(obj);
                 GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().blueTroopsUpdate(true);
                 GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().blueMoneyUpdate(cost);
-                
-               
+
+
                 obj.transform.rotation = new Quaternion(obj.transform.rotation.x, 0, obj.transform.rotation.z, obj.transform.rotation.w);
 
-                if(GameManager.Instance.dynamicData.isShowTutorialOnScene[(int)SceneTutorial.lvl] == false && !isTroopPutOnScene) 
+                if (GameManager.Instance.dynamicData.isShowTutorialOnScene[(int)SceneTutorial.lvl] == false && !isTroopPutOnScene && GameManager.Instance.currentScene.Id != 0)
                 {
                     TutorialActive tutorial = GameObject.Find("TutorialManager").GetComponent<TutorialActive>();
                     tutorial.MakeActionFromStack();
                     isTroopPutOnScene = true;
                 }
-                
+
             }
         }
         else
@@ -163,7 +163,7 @@ public GameObject Uiinformation;
             if (GameManager.Instance.enemyGameObjects.Count >= GameManager.Instance.currentScene.EnemyTroopsLimit) { Destroy(obj); }
             else
             {
-				GameManager.Instance.enemyGameObjects.Add(obj);
+                GameManager.Instance.enemyGameObjects.Add(obj);
                 GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().enemyTroopsUpdate(true);
                 GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().enemyMoneyUpdate(cost);
                 obj.transform.rotation = new Quaternion(obj.transform.rotation.x, 180, obj.transform.rotation.z, obj.transform.rotation.w);
