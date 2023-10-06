@@ -40,6 +40,8 @@ public class CamJoystick : MonoBehaviour
     {
         playerCamera.transform.position = startingPositionOfCamera;
         playerCamera.transform.rotation = startingRotationOfCamera;
+        fakedPlayerCamera.transform.position = startingPositionOfCamera;
+        fakedPlayerCamera.transform.rotation = new Quaternion(0, startingRotationOfCamera.y, startingRotationOfCamera.z,startingRotationOfCamera.w);
     }
 
 }
