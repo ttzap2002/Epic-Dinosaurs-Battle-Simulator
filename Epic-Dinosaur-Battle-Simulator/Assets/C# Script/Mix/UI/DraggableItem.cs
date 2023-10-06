@@ -10,7 +10,7 @@ public class DraggableItem : MonoBehaviour //IDragHandler, IEndDragHandler,IBegi
 {
     [SerializeField] private int fighterid = 0;
     private bool isDragging = false;
-
+    private bool isTroopPutOnScene = false;
     public int Fighterid { get => fighterid; set => fighterid = value; }
 
     private void Update()
@@ -149,6 +149,12 @@ public GameObject Uiinformation;
                
                 obj.transform.rotation = new Quaternion(obj.transform.rotation.x, 0, obj.transform.rotation.z, obj.transform.rotation.w);
 
+                if(GameManager.Instance.dynamicData.isShowTutorialOnScene[(int)SceneTutorial.lvl] == false && !isTroopPutOnScene) 
+                {
+                    TutorialActive tutorial = GameObject.Find("TutorialManager").GetComponent<TutorialActive>();
+                    tutorial.MakeActionFromStack();
+                    isTroopPutOnScene = true;
+                }
                 
             }
         }
@@ -160,10 +166,7 @@ public GameObject Uiinformation;
 				GameManager.Instance.enemyGameObjects.Add(obj);
                 GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().enemyTroopsUpdate(true);
                 GameManager.Instance.UI.GetComponentInChildren<BattleInformation>().enemyMoneyUpdate(cost);
-                
                 obj.transform.rotation = new Quaternion(obj.transform.rotation.x, 180, obj.transform.rotation.z, obj.transform.rotation.w);
-
-                
             }
         }
 

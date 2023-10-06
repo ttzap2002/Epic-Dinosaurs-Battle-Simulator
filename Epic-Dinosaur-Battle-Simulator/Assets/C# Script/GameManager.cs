@@ -368,10 +368,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void RefreshGameObjects()
     {
-
         blueGameObjects = new List<GameObject>();
         enemyGameObjects = new List<GameObject>();
-
     }
 }
 
