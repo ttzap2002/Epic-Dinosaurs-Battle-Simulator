@@ -90,15 +90,14 @@ public class TutorialActive : MonoBehaviour
         ActionStack.Push(new ActionWithParams(DisactiveGameObject));
         ActionStack.Push(new ActionWithParams(MoveArrowChangeTextActiveGameObject, arrow, new Vector3(1000f, 680f, 0f), new Quaternion(0, 0, 0.25F, 0), textMesh, "Now Put your troops and click start button", StartButtonHide, false));
         ActionStack.Push(new ActionWithParams(MoveArrowChangeTextActiveGameObject, arrow, new Vector3(1000f, 780f, 0f), new Quaternion(0, 0, 0.25F,0), textMesh, "Now. Lets click the clear button", ClearButtonHide, false));
-        ActionStack.Push(new ActionWithParams(ChangeText, textMesh, "BRAWOOOOOO", true));
+        ActionStack.Push(new ActionWithParams(ChangeText, textMesh, "Congratulation", true));
         ActionStack.Push(new ActionWithParams(MoveArrowChangeTextActiveGameObject, arrow, new Vector3(-1167.234f, 800f, -36.71281f), new Quaternion(0, 0, 45, 0), textMesh, "COS", MapHide, false));
         ActionStack.Push(new ActionWithParams(MoveArrowChangeTextActiveGameObject, arrow, new Vector3(- 1167.234f, 800f, -36.71281f), new Quaternion(0, 0, 45, 0), textMesh, "3", WarriorButton));
         //stosDelegatow.Push(new ActionWithParams(MoveArrow, arrow, -1167.234f, 800f, -36.71281f));
         //stosDelegatow.Push(new ActionWithParams(DisactiveOneActiveAnother, tutorialOutput, arrow, Hide));
         ActionStack.Push(new ActionWithParams(MoveArrowChangeText, arrow, new Vector3(250f, -250f, -36.71281f), new Quaternion(0, 0, 0, 0), textMesh, "Here you have information about money and number of enemy troops"));
         ActionStack.Push(new ActionWithParams(MoveArrowChangeText, arrow, new Vector3(-250f, -250f, -36.71281f), new Quaternion(0,0,0,0), textMesh, "Here you have information about money and number of your troops"));
-        ActionStack.Push(new ActionWithParams(ChangeText, textMesh, "Gówno"));
-        ActionStack.Push(new ActionWithParams(ChangeText, textMesh, "Hello brave surviver. Are you ready for epic dinosaurs battle."));
+        ActionStack.Push(new ActionWithParams(ChangeText, textMesh, "Hello, brave conqueror! I am TutorRex. I'm here to introduce you to all the important opportunities in this scene. Unlike the Sandbox mode, here you will face an enemy that's already positioned in the arena. Are you ready for an epic dinosaur battle? Let the adventure begin!"));
     }
     void ChangeText(params object[] args)
     {
@@ -159,6 +158,13 @@ public class TutorialActive : MonoBehaviour
         }
     }
 
+    public void SkipTutorial() 
+    {
+        DisactiveGameObject();
+        JoystickHideHorizontal.SetActive(false);
+        JoystickHideVertical.SetActive(false);
+        ActionStack = new Stack<ActionWithParams>();
+    }
 
     void DisactiveGameObject(params object[] args)
     {
