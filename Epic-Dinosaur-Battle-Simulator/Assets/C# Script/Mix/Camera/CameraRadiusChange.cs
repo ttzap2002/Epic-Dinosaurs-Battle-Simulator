@@ -9,8 +9,7 @@ public class CameraRadiusChange : MonoBehaviour
     //public Camera playerCamera;
     public float rotationSpeed = 0.25f;
     public bool isThisFakeCamera;
-    private Vector3 touchStart;
-    private Quaternion assistStartRadius;
+    public GameObject fakedCameraHolder;
 
     void Update()
     {
@@ -20,9 +19,6 @@ public class CameraRadiusChange : MonoBehaviour
             // Pobierz pozycjê dotyku na ekranie
             Vector3 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
 
-            //Zapisz startowe katy kamery
-            assistStartRadius = transform.rotation;
-
             float rotationX = 0;
             // Oblicz kierunek i prêdkoœæ obrotu kamery
             if (!isThisFakeCamera)
@@ -31,9 +27,11 @@ public class CameraRadiusChange : MonoBehaviour
 
             // Obróæ kamerê
             transform.localEulerAngles += new Vector3( rotationX, rotationY, 0f);
-
-            if(transform.rotation.x < -90 || transform.rotation.x > 90)
-                transform.rotation = new Quaternion(assistStartRadius.x,transform.rotation.y, transform.rotation.z, transform.rotation.w);
+            //if (transform.localEulerAngles.x < -90 || transform.localEulerAngles.x > 90)
+            //    transform.localEulerAngles = new Vector3(assistStartRadius.x,transform.localEulerAngles.y, transform.localEulerAngles.z);
+            if (transform.localEulerAngles.z != 0)
+                transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0);
+            fakedCameraHolder.transform.localEulerAngles = new Vector3(fakedCameraHolder.transform.localEulerAngles.x, transform.localEulerAngles.y, 0);
             //if(transform.rotation.y + rotationX < 180 && transform.rotation.y + rotationX > 0)
             //    transform.Rotate(rotationX, rotationY, 0, Space.Self);
             //else
