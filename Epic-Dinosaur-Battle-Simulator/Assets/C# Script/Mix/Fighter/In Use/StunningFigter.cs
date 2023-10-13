@@ -55,7 +55,7 @@ public class StunningFigter: MeleeFighter
             {
 
                 Stunning(myEnemy);
-                if (fighter.Hp <= 0)
+                if (myEnemy.Hp <= 0)
                 {
                     isFighting = false;
                     myEnemy.Destroyme();
@@ -96,6 +96,11 @@ public class StunningFigter: MeleeFighter
                 }
             }
         }
+    }
+
+    public void MakeReset() 
+    { 
+        isHitFirstTime = false; 
     }
 }
 

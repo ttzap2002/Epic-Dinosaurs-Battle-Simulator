@@ -35,19 +35,19 @@ public class DinoStats
     public DinoStats() 
     {
         Dinosaurs.Add(new OneDinoStat("Allosaurus fragilis",15,40,5f,200));
+        Dinosaurs.Add(new OneDinoStat("Diplodocus", 10, 150, 2f, 950));
+        Dinosaurs.Add(new OneDinoStat("Stegosaurus", 5, 5, 5, 500));
+        Dinosaurs.Add(new OneDinoStat("Triceratops", 15, 80, 3f, 305));
         Dinosaurs.Add(new OneDinoStat("T-rex", 40, 120, 4f, 1680));
         Dinosaurs.Add(new OneDinoStat("Spinozaur", 25, 27, 5, 11500));
         Dinosaurs.Add(new OneDinoStat("Apatosaurus", 5, 5, 5, 500));
-        Dinosaurs.Add(new OneDinoStat("Diplodocus", 10, 150, 2f, 950));
         Dinosaurs.Add(new OneDinoStat("Barosaurus", 5, 5, 5, 500));
         Dinosaurs.Add(new OneDinoStat("Stegoceras", 5, 5, 5, 310));
         Dinosaurs.Add(new OneDinoStat("Dracorex", 5, 5, 5, 500));
         Dinosaurs.Add(new OneDinoStat("Yaverlandia", 5, 5, 5, 500));
-        Dinosaurs.Add(new OneDinoStat("Stegosaurus", 5, 5, 5, 500));
         Dinosaurs.Add(new OneDinoStat("Tarchia", 5, 5, 5, 500));
         Dinosaurs.Add(new OneDinoStat("Edmontonia", 5, 5, 5, 500));
         Dinosaurs.Add(new OneDinoStat("Ojoceratops", 5, 5, 5, 500));
-        Dinosaurs.Add(new OneDinoStat("Triceratops", 15, 80, 3f, 270));
         Dinosaurs.Add(new OneDinoStat("Kosmoceratops", 5, 5, 5, 500));
         Dinosaurs.Add(new OneDinoStat("Ornitholestes hermanni", 0, 5, 5, 500));
         Dinosaurs.Add(new OneDinoStat("Sinornithosaurus", 0, 5, 5, 500));

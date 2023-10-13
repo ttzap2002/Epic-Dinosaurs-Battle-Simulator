@@ -610,9 +610,19 @@ public class BattleManager : MonoBehaviour
 
             obj.transform.position = new Vector3(fighter.XAxis, fighter.YAxis, fighter.ZAxis);
             FighterPlacement f = obj.GetComponent<FighterPlacement>();
-            MeleeFighter m = obj.GetComponent<MeleeFighter>();
             f.CreateForSpawner();
+            MeleeFighter m = obj.GetComponent<MeleeFighter>();
             m.MakeReset();
+            try 
+            {
+                StunningFigter sF = obj.GetComponent<StunningFigter>();
+                sF.MakeReset();
+            }
+            catch 
+            {
+
+            }
+
             f.isAlive = true;
             if (obj.transform.position.z > 50f)
             {

@@ -88,6 +88,7 @@ public class FighterPlacement: MonoBehaviour
         }
         speed = stats.speed;
         attack = stats.attack;
+        hp = stats.hp;
         price = stats.price;
         isAlive = true;
         target = null;

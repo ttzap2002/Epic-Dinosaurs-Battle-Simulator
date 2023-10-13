@@ -1548,7 +1548,7 @@ MonoBehaviour:
   isAlive: 0
   index: 1
   radius: 5
-  interval: 5
+  interval: 10
   speed: 0
   attack: 0
   hp: 0
@@ -1604,7 +1604,7 @@ MonoBehaviour:
   ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
-  timeWaitngDuringStunning: 0
+  timeWaitngDuringStunning: 3
 --- !u!114 &435813907
 MonoBehaviour:
   m_ObjectHideFlags: 0
