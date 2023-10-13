@@ -105,7 +105,7 @@ protected DynamicData()
         returner = OdczytajBin("sfdbs");
         if (returner.GetType() != typeof(DynamicData))
         {
-            returner = new DynamicData(DynamicData.StartLvls, new List<int>() { 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0 }, new List<bool>() { true, false, true, false }, 25000);
+            returner = new DynamicData(DynamicData.StartLvls, new List<int>() { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, new List<bool>() { true, false, true, false }, 25000);
         }
         return (DynamicData)returner;
     }

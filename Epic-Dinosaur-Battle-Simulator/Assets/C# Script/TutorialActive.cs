@@ -41,7 +41,7 @@ public class TutorialActive : MonoBehaviour
         if (IsTutorialMade())
         {
             gameObject.SetActive(false);
-            if (scene == SceneTutorial.lvl)
+            if (scene == SceneTutorial.lvl || scene == SceneTutorial.sandbox)
             {
                 JoystickHideHorizontal.SetActive(false);
                 JoystickHideVertical.SetActive(false);
@@ -60,7 +60,10 @@ public class TutorialActive : MonoBehaviour
                     SetForLevelChoice();
                     break;
                 case SceneTutorial.lvl:
-                    SetForLvl();
+                    SetForLvl(GameManager.Instance.dynamicData.isShowTutorialOnScene[(int)SceneTutorial.sandbox]);
+                    break;
+                case SceneTutorial.sandbox:
+                    SetForSandbox(GameManager.Instance.dynamicData.isShowTutorialOnScene[(int)SceneTutorial.lvl]);
                     break;
             }
         }
@@ -85,19 +88,54 @@ public class TutorialActive : MonoBehaviour
         ActionStack.Push(new ActionWithParams(ChangeText, textMesh, "Gówno"));
         ActionStack.Push(new ActionWithParams(ChangeText, textMesh, "Witaj dzielny wojowniku to sa lvl i po prostu se w nie graj"));
     }
-    private void SetForLvl()
-    { 
-        ActionStack.Push(new ActionWithParams(DisactiveGameObject));
-        ActionStack.Push(new ActionWithParams(MoveArrowChangeTextActiveGameObject, arrow, new Vector3(1000f, 680f, 0f), new Quaternion(0, 0, 0.25F, 0), textMesh, "Now Put your troops and click start button", StartButtonHide, false));
-        ActionStack.Push(new ActionWithParams(MoveArrowChangeTextActiveGameObject, arrow, new Vector3(1000f, 780f, 0f), new Quaternion(0, 0, 0.25F,0), textMesh, "Now. Lets click the clear button", ClearButtonHide, false));
-        ActionStack.Push(new ActionWithParams(ChangeText, textMesh, "Congratulation", true));
-        ActionStack.Push(new ActionWithParams(MoveArrowChangeTextActiveGameObject, arrow, new Vector3(-1167.234f, 800f, -36.71281f), new Quaternion(0, 0, 45, 0), textMesh, "COS", MapHide, false));
-        ActionStack.Push(new ActionWithParams(MoveArrowChangeTextActiveGameObject, arrow, new Vector3(- 1167.234f, 800f, -36.71281f), new Quaternion(0, 0, 45, 0), textMesh, "3", WarriorButton));
-        //stosDelegatow.Push(new ActionWithParams(MoveArrow, arrow, -1167.234f, 800f, -36.71281f));
-        //stosDelegatow.Push(new ActionWithParams(DisactiveOneActiveAnother, tutorialOutput, arrow, Hide));
-        ActionStack.Push(new ActionWithParams(MoveArrowChangeText, arrow, new Vector3(250f, -250f, -36.71281f), new Quaternion(0, 0, 0, 0), textMesh, "Here you have information about money and number of enemy troops"));
-        ActionStack.Push(new ActionWithParams(MoveArrowChangeText, arrow, new Vector3(-250f, -250f, -36.71281f), new Quaternion(0,0,0,0), textMesh, "Here you have information about money and number of your troops"));
-        ActionStack.Push(new ActionWithParams(ChangeText, textMesh, "Hello, brave conqueror! I am TutorRex. I'm here to introduce you to all the important opportunities in this scene. Unlike the Sandbox mode, here you will face an enemy that's already positioned in the arena. Are you ready for an epic dinosaur battle? Let the adventure begin!"));
+    private void SetForLvl(bool isTutorialInSandbox)
+    {
+        if (isTutorialInSandbox)
+        {
+            ActionStack.Push(new ActionWithParams(DisactiveGameObject));
+            ActionStack.Push(new ActionWithParams(ChangeText, textMesh, "Hello, brave conqueror! I hear that you complete tutorial on sandbox scene. I show you novelty on this scene."));
+        }
+        else
+        {
+            ActionStack.Push(new ActionWithParams(DisactiveGameObject));
+            ActionStack.Push(new ActionWithParams(MoveArrowChangeTextActiveGameObject, arrow, new Vector3(1000f, 680f, 0f), new Quaternion(0, 0, 0.25F, 0), textMesh, "Now put your troops and click start button.", StartButtonHide, false));
+            ActionStack.Push(new ActionWithParams(MoveArrowChangeTextActiveGameObject, arrow, new Vector3(1000f, 780f, 0f), new Quaternion(0, 0, 0.25F, 0), textMesh, "Now. Lets click the clear button.", ClearButtonHide, false));
+            ActionStack.Push(new ActionWithParams(ChangeText, textMesh, "Congratulation", true));
+            ActionStack.Push(new ActionWithParams(MoveArrowChangeTextActiveGameObject, arrow, new Vector3(-1167.234f, 800f, -36.71281f), new Quaternion(0, 0, 45, 0), textMesh, "COS", MapHide, false));
+            ActionStack.Push(new ActionWithParams(MoveArrowChangeTextActiveGameObject, arrow, new Vector3(-1167.234f, 800f, -36.71281f), new Quaternion(0, 0, 45, 0), textMesh, "3", WarriorButton));
+            //stosDelegatow.Push(new ActionWithParams(MoveArrow, arrow, -1167.234f, 800f, -36.71281f));
+            //stosDelegatow.Push(new ActionWithParams(DisactiveOneActiveAnother, tutorialOutput, arrow, Hide));
+            ActionStack.Push(new ActionWithParams(MoveArrowChangeText, arrow, new Vector3(250f, -250f, -36.71281f), new Quaternion(0, 0, 0, 0), textMesh, "Here you have information about money and number of enemy troops"));
+            ActionStack.Push(new ActionWithParams(MoveArrowChangeText, arrow, new Vector3(-250f, -250f, -36.71281f), new Quaternion(0, 0, 0, 0), textMesh, "Here you have information about money and number of your troops"));
+            ActionStack.Push(new ActionWithParams(ChangeText, textMesh, "Hello, brave conqueror! I am TutorRex. I'm here to introduce you to all the important opportunities in this scene. Unlike the Sandbox mode, here you will face an enemy that's already positioned in the arena. Are you ready for an epic dinosaur battle? Let the adventure begin!"));
+
+        }
+    }
+
+    private void SetForSandbox(bool isTutorialInLvl) 
+    {
+        if(isTutorialInLvl) 
+        {
+            ActionStack.Push(new ActionWithParams(ChangeText, textMesh, "Here you can compete with your friends or on your own"));
+            ActionStack.Push(new ActionWithParams(ChangeText, textMesh, "Hello, brave conqueror! I hear that you complete tutorial on level scene. I show you novelty on this scene "));
+        }
+        else 
+        {
+            ActionStack.Push(new ActionWithParams(DisactiveGameObject));
+            ActionStack.Push(new ActionWithParams(MoveArrowChangeTextActiveGameObject, arrow, new Vector3(1000f, 680f, 0f), new Quaternion(0, 0, 0.25F, 0), textMesh, "Now put your troops and click start button.", StartButtonHide, false));
+            ActionStack.Push(new ActionWithParams(MoveArrowChangeTextActiveGameObject, arrow, new Vector3(1000f, 780f, 0f), new Quaternion(0, 0, 0.25F, 0), textMesh, "Now. Lets click the clear button.", ClearButtonHide, false));
+            ActionStack.Push(new ActionWithParams(ChangeText, textMesh, "Congratulation", true));
+            ActionStack.Push(new ActionWithParams(MoveArrowChangeTextActiveGameObject, arrow, new Vector3(-1167.234f, 800f, -36.71281f), new Quaternion(0, 0, 45, 0), textMesh, "COS", MapHide, false));
+            ActionStack.Push(new ActionWithParams(MoveArrowChangeTextActiveGameObject, arrow, new Vector3(-1167.234f, 800f, -36.71281f), new Quaternion(0, 0, 45, 0), textMesh, "3", WarriorButton));
+            //stosDelegatow.Push(new ActionWithParams(MoveArrow, arrow, -1167.234f, 800f, -36.71281f));
+            //stosDelegatow.Push(new ActionWithParams(DisactiveOneActiveAnother, tutorialOutput, arrow, Hide));
+            ActionStack.Push(new ActionWithParams(MoveArrowChangeText, arrow, new Vector3(250f, -250f, -36.71281f), new Quaternion(0, 0, 0, 0), textMesh, "Here you have information about money and number of enemy troops"));
+            ActionStack.Push(new ActionWithParams(MoveArrowChangeText, arrow, new Vector3(-250f, -250f, -36.71281f), new Quaternion(0, 0, 0, 0), textMesh, "Here you have information about money and number of your troops"));
+            ActionStack.Push(new ActionWithParams(ChangeText, textMesh, "Think about position that you want set."));
+            ActionStack.Push(new ActionWithParams(ChangeText, textMesh, "Hello, brave conqueror! I am TutorRex. I'm here to introduce you to all the important opportunities in this scene. Unlike the lvl mode, here you will set troops for both sides.  "));
+
+        }
+
     }
     void ChangeText(params object[] args)
     {
@@ -196,5 +234,6 @@ public enum SceneTutorial
 {
     continentChoice,
     lvlChoice,
-    lvl
+    lvl,
+    sandbox
 }
