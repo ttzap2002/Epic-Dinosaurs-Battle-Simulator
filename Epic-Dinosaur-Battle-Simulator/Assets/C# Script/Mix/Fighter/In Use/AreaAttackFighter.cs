@@ -41,13 +41,15 @@ public class AreaAttackFighter : MonoBehaviour
         return gridSquaresToCheck;
     }
 
-    
-    protected List<int[]> GetAllListToCheck(float[] dinoPoint, List<float[]> vertex,  int increment) 
+
+    protected List<int[]> GetAllListToCheck(float[] dinoPoint, List<float[]> vertex, int increment)
     {
         List<int[]> dinoToVertex1 = GetSquares(dinoPoint, vertex[0], increment);
         List<int[]> dinoToVertex2 = GetSquares(dinoPoint, vertex[1], increment);
         List<int[]> vertex1Tovertex2 = GetSquares(vertex[0], vertex[1], increment);
-        return dinoToVertex1.Concat(vertex1Tovertex2).Concat(dinoToVertex2).Distinct(new IntArrayEqualityComparer()).ToList();
+        List<int[]> returner = dinoToVertex1.Concat(vertex1Tovertex2).Concat(dinoToVertex2).Distinct(new IntArrayEqualityComparer()).ToList();
+        return returner.Where(x => (x[0] >= 0 && x[0] <= 9) && (x[1] >= 0 && x[1] <= 9)).ToList();
+
     }
 
     private List<int[]> GetSquares(float[] dinoPoint, float[] vertex, int increment)
@@ -150,23 +152,37 @@ public class AreaAttackFighter : MonoBehaviour
         if (tag == "Blue")
         {
             foreach (int[] k in allSquaresToCheck)
-                foreach (FighterPlacement fighter in GameManager.Instance.battleManager.EnemyFighters[k[0], k[1]])
+                try
+                {
+                    foreach (FighterPlacement fighter in GameManager.Instance.battleManager.EnemyFighters[k[0], k[1]])
+                    {
+                        if (IsPointInTriangle(fighter.transform.position, me, left, right))
+                        {
+                            Target.Add(fighter.gameObject);
+                        }
+                    }
+                }
+                catch 
+                {
+                    Console.WriteLine("Kot");
+                }
+        }
+        else
+        {
+            foreach (int[] k in allSquaresToCheck)
+                try
+                {
+                    foreach (FighterPlacement fighter in GameManager.Instance.battleManager.BlueFighters[k[0], k[1]])
                 {
                     if (IsPointInTriangle(fighter.transform.position, me, left, right))
                     {
                         Target.Add(fighter.gameObject);
                     }
                 }
-        }
-        else
-        {
-            foreach (int[] k in allSquaresToCheck)
-                foreach (FighterPlacement fighter in GameManager.Instance.battleManager.BlueFighters[k[0], k[1]])
+                }
+                catch
                 {
-                    if (IsPointInTriangle(fighter.transform.position, me, left, right))
-                    {
-                        Target.Add(fighter.gameObject);
-                    }
+                    Console.WriteLine("Kot");
                 }
 
         }

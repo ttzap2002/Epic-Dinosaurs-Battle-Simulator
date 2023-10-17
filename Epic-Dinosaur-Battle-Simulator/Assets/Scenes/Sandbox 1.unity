@@ -4867,7 +4867,7 @@ MonoBehaviour:
   ifEatEggImmediately: 0
   rotationSpeed: 5
   isResistForStunning: 0
-  timeWaitngDuringStunning: 0
+  timeWaitngDuringStunning: 3
 --- !u!65 &945029624
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9454,28 +9454,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5710c8e537873614b951bece9a721f07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1747327025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747327023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f408767065bc42049b234209b6ea046a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isFighting: 0
-  isActiveForBattle: 0
-  ifEatEggImmediately: 1
-  rotationSpeed: 5
-  isResistForStunning: 0
-  timeWaitngDuringStunning: 0
-  stunningProbability: 0.3
-  stunningProbAfterHit: 0
-  BasicSpeed: 10
-  acceleration: 0
 --- !u!114 &1747327026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9543,7 +9521,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isFighting: 0
   isActiveForBattle: 0
-  ifEatEggImmediately: 0
+  ifEatEggImmediately: 1
   rotationSpeed: 5
   isResistForStunning: 0
   timeWaitngDuringStunning: 0
