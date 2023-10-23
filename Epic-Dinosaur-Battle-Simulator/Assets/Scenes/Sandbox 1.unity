@@ -930,6 +930,7 @@ MonoBehaviour:
   attack: {fileID: 1021257494}
   hp: {fileID: 1304544511}
   speed: {fileID: 2141113336}
+  money: {fileID: 1965427011}
 --- !u!114 &151638411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2327,6 +2328,7 @@ MonoBehaviour:
   attack: {fileID: 1021257494}
   hp: {fileID: 1304544511}
   speed: {fileID: 2141113336}
+  money: {fileID: 1965427011}
 --- !u!114 &588015395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4160,6 +4162,7 @@ MonoBehaviour:
   attack: {fileID: 1021257494}
   hp: {fileID: 1304544511}
   speed: {fileID: 2141113336}
+  money: {fileID: 1965427011}
 --- !u!114 &777954368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8891,6 +8894,7 @@ MonoBehaviour:
   attack: {fileID: 1021257494}
   hp: {fileID: 1304544511}
   speed: {fileID: 2141113336}
+  money: {fileID: 1965427011}
 --- !u!114 &1531853175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10253,6 +10257,7 @@ MonoBehaviour:
   attack: {fileID: 1021257494}
   hp: {fileID: 1304544511}
   speed: {fileID: 2141113336}
+  money: {fileID: 1965427011}
 --- !u!114 &1738392639
 MonoBehaviour:
   m_ObjectHideFlags: 0
