@@ -40,7 +40,7 @@ public class DraggableItem : MonoBehaviour //IDragHandler, IEndDragHandler,IBegi
 
     private bool isPossible(Vector3 vector)
     {
-        if (EventSystem.current.IsPointerOverGameObject())
+        if (EventSystem.current.IsPointerOverGameObject()) //&& (GameManager.Instance.blueGameObjects.Count > 0 || GameManager.Instance.enemyGameObjects.Count > 0))
         {
             return false;
         }

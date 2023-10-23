@@ -194,7 +194,8 @@ public class GameManager : MonoBehaviour
     public bool FinishGame(bool isEnemyFighterContainAnyFighter)
     {
         endOfBattle.SetActive(true);
-
+        GameObject pause = GameObject.Find("PauseButton");
+        pause.SetActive(false);
         GameObject blue = GameObject.Find("BlueWon");
         GameObject red = GameObject.Find("RedWon");
         if (!isEnemyFighterContainAnyFighter)
