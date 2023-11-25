@@ -96,8 +96,9 @@ public class GameManager : MonoBehaviour
 
     public Action changeLevel;
 
-    public Tutorial tutorial; 
+    public Tutorial tutorial;
 
+    //static List<Material> backgroundMapsForArenas;
 
     public static GameManager Instance { get { return _instance; } }
 
@@ -361,8 +362,27 @@ public class GameManager : MonoBehaviour
             currentScene.SetObjectToScene();
             currentMap.SetObjectToScene();
            
+            GameObject Skysphere = GameObject.Find("Skysphere");
+            switch (currentMap.mapBackground)
+            {
+                case(Background.DinoDesert):
+                    Skysphere.GetComponent<MeshRenderer>().material = Resources.Load<Material>("Images/FromMB/ArenasPictures/DinoDesert/Materials/Dino_Desert_caosc");
+                    break;
+                case (Background.SandStorm):
+                    Skysphere.GetComponent<MeshRenderer>().material = Resources.Load<Material>("Images/FromMB/ArenasPictures/DinoDesert/Materials/Dino_Desert_caosc");
+                    break;
+                case (Background.ForestFrenzy):
+                    Skysphere.GetComponent<MeshRenderer>().material = Resources.Load<Material>("Images/FromMB/ArenasPictures/ForestFrenzy/Materials/ForestFrenzy");
+                    break;
+                case (Background.JurrasicJungle):
+                    Skysphere.GetComponent<MeshRenderer>().material = Resources.Load<Material>("Images/FromMB/ArenasPictures/DinoDesert/Materials/Dino_Desert_caosc");
+                    break;
+
+            }
+
         }
     }
+
 
     /// <summary>
     /// Ustawia obiekty gracza blue i enemy na nowe puste listy

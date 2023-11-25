@@ -9,6 +9,7 @@ public class Map
 {
     public int Id { get; set; }
     List<Obstacle> obstacles;
+    public Background mapBackground;
 
     public Map(int id, List<Obstacle> obstacles)
     {
@@ -28,4 +29,6 @@ public class Map
         }
     }
 }
+
+public enum Background { DinoDesert, SandStorm, ForestFrenzy, JurrasicJungle }
 

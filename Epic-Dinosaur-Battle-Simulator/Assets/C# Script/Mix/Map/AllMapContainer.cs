@@ -23,6 +23,10 @@ public class AllMapContainer
             new Map(1, new List<Obstacle>{new Obstacle(12.43f,0,12,1),new Obstacle(22,0,51,1),new Obstacle(22,0,65,0),new Obstacle(99,0,91,1) }), 
             new Map(2,  new List<Obstacle>{new Obstacle(27.43f,0,5.1f,0),new Obstacle(49,0,56,1),new Obstacle(32,0,45,0),new Obstacle(98,0,41.11f,1),new Obstacle(40,0,71.11f,1) }), 
             new Map(3, new List<Obstacle>{new Obstacle(27.43f,0,5.1f,1),new Obstacle(49,0,56,1),new Obstacle(32,0,45,1),new Obstacle(98,0,41.11f,1),new Obstacle(40,0,71.11f,1),new Obstacle(40,0,91.11f,1),new Obstacle(20,0,31.11f,1), })};
+        maps[0].mapBackground = Background.DinoDesert;
+        maps[1].mapBackground = Background.SandStorm;
+        maps[2].mapBackground = Background.ForestFrenzy;
+        maps[3].mapBackground = Background.JurrasicJungle;
         return maps;
     }
 }
